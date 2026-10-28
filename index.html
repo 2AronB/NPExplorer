@@ -39,7 +39,11 @@
       <p class="fineprint">Compared with the best distance-first order found for these stops. Default 15%. This limits scenic zigzags; it does not guarantee the shortest possible route.</p>
       <label>Driving pace<select id="pace"><option value="balanced">Balanced · allow stretch days</option><option value="relaxed">Relaxed · target comfortable days</option><option value="efficient">Fewer transfer days · allow long days</option></select></label>
       <div class="field-row triple"><label>Comfortable h<input type="number" id="comfort" min="1" max="10" step="0.5" required></label><label>Stretch h<input type="number" id="stretch" min="1" max="10" step="0.5" required></label><label>Hard limit h<input type="number" id="maxDrive" min="1" max="10" step="0.5" required></label></div>
-      <label>Park stay defaults<select id="stayMode"><option value="park">Park-specific · hikes & highlights</option><option value="uniform">Same number of days for every park</option></select></label>
+      <label>Travel and park days<select id="sharedDays"><option value="true">Allow arrival-day sightseeing</option><option value="false">Preserve full park days</option></select></label>
+      <div class="field-row"><label>Daily activity budget · hours<input id="dayBudget" type="number" min="6" max="12" step=".5" required></label><label>Full exploration day · hours<input id="explorationHours" type="number" min="4" max="10" step=".5" required></label></div>
+      <div class="field-row"><label>Camper teardown · hours<input id="teardownHours" type="number" min="0" max="4" step=".25" required></label><label>Camper setup · hours<input id="setupHours" type="number" min="0" max="4" step=".25" required></label></div>
+      <p class="fineprint">Spare time on the final driving day can count toward the destination in quarter-day increments. Driving limits remain unchanged. Credit assumes daylight and visiting access; verify arrival plans. Flights, boats, access buffers, personal stops and closure waits receive no credit. Departure-day sightseeing is not assumed.</p>
+      <label>Park stay defaults<select id="stayMode"><option value="park">Comfortable Exploration</option><option value="highlights">Hit the Highlights</option><option value="uniform">Same number of days for every park</option></select></label><p class="fineprint">Presets exclude travel days and preserve your individual day edits. Restore defaults to clear park day edits. Highlights are draft minimums for signature sights, not every major hike.</p>
       <div class="field-row"><label id="uniformDaysField" hidden>Uniform park days<input type="number" id="defaultDays" min="1" max="90" required></label><label>Rest-day reserve<input type="number" id="restDays" min="0" max="365" required></label></div>
       <button type="button" id="restoreStays" class="text-button">Reset park day edits to park-specific defaults</button>
       <label style="margin-top:15px">Estimated average driving speed · mph<input type="number" id="averageMph" min="15" max="75" step="0.1" required></label>
@@ -72,3 +76,4 @@
  <dialog id="about"><button id="closeAbout" class="dialog-close" aria-label="Close">×</button><p class="eyebrow">READ THE FINE PRINT, THEN DREAM BIG</p><h2>Honest about the estimates.</h2><div id="aboutContent"></div></dialog>
  <script src="vendor/leaflet.js"></script><script src="vendor/topojson-client.min.js"></script><script src="vendor/xlsx.mini.min.js"></script><script type="module" src="app.mjs"></script>
 </body></html>
+
