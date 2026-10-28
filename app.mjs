@@ -235,16 +235,22 @@ $('export').onclick=()=>{const open=$('exportMenu').hidden;$('exportMenu').hidde
 document.addEventListener('click',e=>{if(!e.target.closest('#exportWrap'))closeExportMenu();});
 $('exportWrap').addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();closeExportMenu(true);}if((e.key==='ArrowDown'||e.key==='ArrowUp')&&!$('exportMenu').hidden){e.preventDefault();const items=[...$('exportMenu').querySelectorAll('button')],i=items.indexOf(document.activeElement);items[(i+(e.key==='ArrowDown'?1:-1)+items.length)%items.length].focus();}});
 function downloadTrip(blob,filename){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);}
-$('exportMenu').onclick=e=>{const b=e.target.closest('[data-export-format]');if(!b)return;const kind=b.dataset.exportFormat;
+let workbookLibrary;
+function loadWorkbookLibrary(){
+ if(globalThis.ExcelJS)return Promise.resolve();
+ return workbookLibrary??=new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/exceljs.min.js',import.meta.url).href;script.onload=()=>resolve();script.onerror=()=>{workbookLibrary=null;script.remove();reject(Error('The Excel library could not load. CSV and JSON remain available.'));};document.head.append(script);});
+}
+$('exportMenu').onclick=async e=>{const b=e.target.closest('[data-export-format]');if(!b||b.disabled)return;const kind=b.dataset.exportFormat;
+ b.disabled=true;
  try{
   if(kind==='json'){downloadTrip(new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString(),estimatesNote:'Draft monthly assumptions and travel estimates. JSON restores plan inputs; recalculate the itinerary.'},null,2)],{type:'application/json'}),'the-long-way-plan.json');toast('Restorable JSON plan backup exported.');}
   else{const tables=exportTables({state,sites,result}),filename='the-long-way-'+(result?'itinerary-'+result.startDate:'selected-places');
    if(kind==='csv')downloadTrip(new Blob([csvText(tables.itinerary)],{type:'text/csv;charset=utf-8'}),filename+'.csv');
-   else{if(!globalThis.XLSX)throw Error('The Excel export library could not load. CSV and JSON are still available.');downloadTrip(new Blob([xlsxBytes(tables,globalThis.XLSX)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
+   else{await loadWorkbookLibrary();downloadTrip(new Blob([await xlsxBytes(tables,globalThis.ExcelJS)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
    toast((kind==='csv'?'CSV':'Excel')+(result?' itinerary exported.':' selected-place report exported; calculate a route to include dates and travel.'));
   }
   closeExportMenu(true);
- }catch(error){toast('Export failed: '+error.message);}
+ }catch(error){toast('Export failed: '+error.message);}finally{b.disabled=false;}
 };
 function calibrationData(){return CALIBRATION_ROUTES.map(row=>{const a=row.from==='cos'?defaults.start:routeStop(row.from),b=routeStop(row.to);return {...row,a,b,airMiles:haversine(roadPoint(a),roadPoint(b)),...(state.calibration[row.id]||{miles:null,hours:null})};});}
 function renderCalibration(){

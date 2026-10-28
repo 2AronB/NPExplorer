@@ -7,10 +7,10 @@ export const runtimeFiles=[
  'reservation-ui.mjs','data/reservation-requirements.json','index.html','style.css','app.mjs','calibration.mjs','current-inventory.mjs',
  'excursions.mjs','location-detail.mjs','map-markers.mjs','optimizer.mjs',
  'personal-priority.mjs','plan-defaults.mjs','remote-parks.mjs','season-quality.mjs',
- 'transport-ui.mjs','trip-export.mjs','trip-optimizer.mjs','worker.mjs',
+ 'transport-ui.mjs','trip-export.mjs','itinerary-workbook.mjs','park-highlights.mjs','trip-optimizer.mjs','worker.mjs',
  'data/sites.json','data/states.json','data/seasonal-research/seasonal-access.json',
- 'vendor/leaflet.js','vendor/leaflet.css','vendor/topojson-client.min.js','vendor/xlsx.mini.min.js',
- 'vendor/LEAFLET-LICENSE.txt','vendor/TOPOJSON-LICENSE.txt','vendor/US-ATLAS-LICENSE.txt','vendor/SHEETJS-LICENSE.txt'
+ 'vendor/leaflet.js','vendor/leaflet.css','vendor/topojson-client.min.js','vendor/exceljs.min.js',
+ 'vendor/LEAFLET-LICENSE.txt','vendor/TOPOJSON-LICENSE.txt','vendor/US-ATLAS-LICENSE.txt','vendor/EXCELJS-LICENSE.txt'
 ];
 export async function buildSite(){
  const hash=createHash('sha256');for(const file of runtimeFiles)hash.update(await fs.readFile(path.join(projectRoot,file)));const version=hash.digest('hex').slice(0,12);
