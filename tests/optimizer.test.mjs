@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {travel,driveDays,dateOf,addDays,isClosed,season,schedule,optimize,detours,routeMiles} from '../optimizer.mjs';
+import {travel,driveDays,dateOf,addDays,iso,isClosed,season,schedule,optimize,detours,routeMiles} from '../optimizer.mjs';
 import {DEFAULT_SETTINGS,upgradePlanPreferences} from '../plan-defaults.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../data/sites.json',import.meta.url))).sites;
 const lookup=new Map(data.map(s=>[s.id,s]));
@@ -112,15 +112,15 @@ test('road days fit both driving ceilings and the complete activity budget',()=>
  assert.throws(()=>driveDays(1,{...ledgerSettings,dayBudget:1}),/activity budget/);
 });
 
-test('partial arrival credits cannot carry unused capacity into another road day',()=>{
+test('arrival and departure exploration reconcile without unbudgeted carry',()=>{
  const stops=[near('first',3),near('second',7),near('personal',8,{type:'custom'})];
  const shared=schedule(stops,ledgerSettings),full=schedule(stops,{...ledgerSettings,sharedDays:false});
  assert.equal(shared.miles,full.miles);assert.equal(shared.hours,full.hours);assert.equal(shared.parkDays,6);
  assert.ok(shared.visits[0].sharedDays>0);assert.equal(shared.visits[2].sharedDays,0);
  for(let i=0;i<stops.length;i++){
-  const v=shared.visits[i];assert.equal(v.calendarDays+v.sharedDays-v.unusedDays,v.days);
-  assert.equal(v.calendarDays,Math.ceil(v.days-v.sharedDays));
-  if(i)assert.equal(shared.legs[i].depart,shared.visits[i-1].departure);
+  const v=shared.visits[i];assert.equal(v.calendarDays+v.sharedDays+v.departureSharedDays-v.unusedDays,v.days);
+  assert.equal(v.calendarDays,Math.ceil(v.days-v.sharedDays-v.departureSharedDays));
+  if(i)assert.equal(shared.legs[i].depart,shared.visits[i-1].departureDriveDate??shared.visits[i-1].departure);
   assert.equal(dateOf(v.stayStart).getUTCHours(),12);
  }
  assert.equal(shared.roundingDays,0);
@@ -147,7 +147,7 @@ test('zero legs, access transfers, closure waits and home legs never invent shar
  const zero=near('zero',3,{lat:0,lng:0}),transfer=near('boat',3,{access:{transferDays:2}}),wait=near('wait',7,{closure:{start:'01-01',end:'03-01'}});
  const r=schedule([zero,transfer,wait],{...ledgerSettings,end:ledgerSettings.start,restDays:3});
  assert.ok(r.visits.every(v=>v.sharedDays===0));assert.ok(r.waitDays>0);assert.equal(r.transferDays,2);
- assert.equal(r.legs.at(-1).to,'finish');assert.equal(r.totalDays,r.parkDays+r.travelDays+r.transferDays+r.waitDays+r.restDays);
+ assert.equal(r.legs.at(-1).to,'finish');assert.equal(r.totalDays,r.parkDays-r.sharedParkDays+r.travelDays+r.transferDays+r.waitDays+r.restDays+r.visits.reduce((n,v)=>n+v.unusedDays,0));
  const longer=schedule([zero,transfer,wait],{...ledgerSettings,end:ledgerSettings.start,restDays:3,duration:1});
  assert.equal(r.score,longer.score);assert.equal(r.endDate,longer.endDate);
 });
@@ -155,4 +155,71 @@ test('zero legs, access transfers, closure waits and home legs never invent shar
 
 test('impossible exploration activity budgets fail explicitly without silently shortening stays',()=>{
  assert.throws(()=>schedule([near('park',3)],{...ledgerSettings,dayBudget:6,explorationHours:8}),/exploration-day hours exceed/);
+});
+
+
+const nextRoad=(from,id,hours,extra={})=>near(id,hours,{lng:from.lng+(hours-.25)*60/69.0934,...extra});
+const checkRoadLedger=(r,s)=>{
+ const dates=new Set();
+ for(const leg of r.legs){
+  assert.equal(leg.dailyActivities.length,leg.days);
+  assert.ok(Math.abs(leg.dailyActivities.reduce((n,d)=>n+d.driveHours,0)-leg.hours)<1e-8);
+  for(const d of leg.dailyActivities){
+   assert.equal(dates.has(d.date),false,'one road allocation per date');dates.add(d.date);
+   assert.ok(d.driveHours<=s.maxDrive+1e-8);
+   assert.ok(d.totalHours<=s.dayBudget+1e-8,JSON.stringify(d));
+   assert.ok(Math.abs(d.totalHours-d.driveHours-d.breakHours-d.campHours-d.departureExplorationHours-d.arrivalExplorationHours)<1e-8);
+  }
+ }
+ assert.equal(r.mixedDays,r.legs.flatMap(l=>l.dailyActivities).filter(d=>d.departureExplorationHours||d.arrivalExplorationHours).length);
+ assert.equal(r.totalDays,r.travelDays+r.parkDays-r.sharedParkDays+r.visits.reduce((n,v)=>n+(v.unusedDays||0),0)+r.transferDays+r.waitDays+r.restDays+r.roundingDays);
+};
+
+test('a half-day final morning can precede a sub-half-hour home drive',()=>{
+ const a=near('morning',3),end=nextRoad(a,'finish',.4),s={...ledgerSettings,end};
+ const r=schedule([a],s),v=r.visits[0],home=r.legs.at(-1);
+ assert.equal(v.sharedDays,.5);assert.equal(v.departureSharedDays,.5);
+ assert.equal(home.depart,v.departureDriveDate);assert.equal(home.depart,'2040-02-02');
+ assert.equal(home.days,1);assert.equal(home.dailyActivities[0].departureExplorationHours,4);
+ assert.ok(home.hours<.5);assert.equal(v.calendarDays,1);assert.equal(v.unusedDays,0);
+ assert.equal(r.totalDays,3);assert.equal(r.parkDays,2);checkRoadLedger(r,s);
+});
+
+test('long afternoon legs split driving across the morning budget and later dates',()=>{
+ const a=near('morning',3),end=nextRoad(a,'finish',10),s={...ledgerSettings,end};
+ const r=schedule([a],s),home=r.legs.at(-1);
+ assert.equal(home.days,2);assert.equal(home.dailyActivities[0].departureExplorationHours,4);
+ assert.ok(home.dailyActivities[0].driveHours<home.dailyActivities[1].driveHours);
+ assert.ok(Math.abs(home.dailyActivities[0].totalHours-10)<1e-8);
+ assert.equal(home.dailyActivities[1].departureExplorationHours,0);checkRoadLedger(r,s);
+});
+
+test('morning at one park and evening at the next share one budget and one mixed day',()=>{
+ const a=near('first',3),b=nextRoad(a,'second',.4),r=schedule([a,b],ledgerSettings),d=r.legs[1].dailyActivities[0];
+ assert.equal(r.visits[0].departureSharedDays,.5);assert.equal(r.visits[1].sharedDays,.5);
+ assert.equal(d.departureExplorationHours,4);assert.equal(d.arrivalExplorationHours,4);
+ assert.equal(r.mixedDays,2);assert.equal(r.sharedParkDays,1.5);checkRoadLedger(r,ledgerSettings);
+});
+
+test('a full final exploration day only permits driving if all activities still fit',()=>{
+ const a=near('full',3,{lat:0,lng:0}),end=nextRoad(a,'finish',.4),s={...ledgerSettings,end};
+ const r=schedule([a],s);assert.equal(r.visits[0].departureSharedDays,1);assert.equal(r.legs.at(-1).dailyActivities[0].departureExplorationHours,8);checkRoadLedger(r,s);
+ const tight={...s,dayBudget:8},blocked=schedule([a],tight);
+ assert.equal(blocked.visits[0].departureSharedDays,0);assert.equal(blocked.legs.at(-1).depart,blocked.visits[0].departure);checkRoadLedger(blocked,tight);
+ const off=schedule([a],{...s,sharedDays:false});assert.equal(off.sharedParkDays,0);assert.equal(off.visits[0].calendarDays,2);
+});
+
+test('afternoon arrival season samples use the shifted date and retain closure checks',()=>{
+ const a=near('first',3),b=nextRoad(a,'second',.4,{profile:{scores:[0,10,10,10,10,10,10,10,10,10,10,10],quiet:[]}});
+ const s={...ledgerSettings,startDate:'2040-01-29'},r=schedule([a,b],s),v=r.visits[1];
+ assert.equal(v.arrival,'2040-01-31');assert.equal(v.sharedDays,.5);assert.equal(v.quality,7.5);assert.equal(v.minQuality,0);checkRoadLedger(r,s);
+ const closed=schedule([a,{...b,closure:{start:'01-31',end:'01-31'}}],s);
+ assert.equal(closed.visits[1].sharedDays,0);assert.equal(closed.visits[1].arrival,'2040-02-01');checkRoadLedger(closed,s);
+});
+
+test('personal, access-transfer and closure-wait stays do not release an exploration morning',()=>{
+ for(const extra of [{type:'custom'},{access:{transferDays:2}},{closure:{start:'01-01',end:'02-01'}}]){
+  const a=near('separate',3,extra),s={...ledgerSettings,end:nextRoad(a,'finish',.4)},r=schedule([a],s);
+  assert.equal(r.visits[0].departureSharedDays,0);assert.equal(r.legs.at(-1).depart,r.visits[0].transferDays?iso(addDays(dateOf(r.visits[0].departure),1)):r.visits[0].departure);
+ }
 });
