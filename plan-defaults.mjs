@@ -1,5 +1,5 @@
 import {REMOTE_DEFAULTS} from './remote-parks.mjs';
-export const DEFAULT_SETTINGS={...REMOTE_DEFAULTS,startDate:'2040-04-01',duration:365,autoMonth:false,objective:'season',seasonDetourPercent:15,pace:'balanced',comfort:4,stretch:7,maxDrive:10,averageMph:60.6,distanceFactor:1.246,breakPercent:10,stayMode:'park',defaultDays:3,restDays:24,detourHours:1,start:{id:'start',name:'Colorado Springs',lat:38.8339,lng:-104.8214},endMode:'return',end:{id:'finish',name:'Colorado Springs',lat:38.8339,lng:-104.8214},endLocation:{name:'Finish',lat:38.8339,lng:-104.8214}};
+export const DEFAULT_SETTINGS={...REMOTE_DEFAULTS,startDate:'2040-04-01',duration:365,autoMonth:false,objective:'season',seasonDetourPercent:15,pace:'balanced',comfort:4,stretch:7,maxDrive:10,averageMph:60.6,distanceFactor:1.246,breakPercent:10,sharedDays:true,dayBudget:10,explorationHours:8,setupHours:.75,teardownHours:.75,stayMode:'park',defaultDays:3,restDays:24,detourHours:1,start:{id:'start',name:'Colorado Springs',lat:38.8339,lng:-104.8214},endMode:'return',end:{id:'finish',name:'Colorado Springs',lat:38.8339,lng:-104.8214},endLocation:{name:'Finish',lat:38.8339,lng:-104.8214}};
 
 export function upgradePlanPreferences(raw){
  if(!raw||raw.version!==1)return raw;
@@ -17,3 +17,4 @@ export function upgradePlanPreferences(raw){
  }
  return next;
 }
+
