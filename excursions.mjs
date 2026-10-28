@@ -48,6 +48,7 @@ export function evaluateExcursion(stop,date,settings,api){
   const samoaEvents=[{kind:'transfer',label:'Pago Pago → Tutuila park access',hours:2,days:1,from:ppg,to:point(samoa)},park(samoa),{kind:'transfer',label:'Tutuila → Pago Pago',hours:2,days:1,from:point(samoa),to:ppg}];
   const hop=(a,b)=>flight(a,b,a.name+' → '+b.name+' (connections/service assumed)'),contingency={kind:'buffer',label:'First-region weather / connection contingency',days:buffer};
   middle=stop.excursion.pacificOrder==='samoa-first'?[[hop(airport,hnl),hop(hnl,ppg),...samoaEvents,contingency,hop(ppg,hnl),hop(hnl,island(hawaii[0])),...hawaiiEvents,hop(previous,airport)]]:[[hop(airport,island(hawaii[0])),...hawaiiEvents,contingency,hop(previous,hnl),hop(hnl,ppg),...samoaEvents,hop(ppg,hnl),hop(hnl,airport)]];
+  suffix=middle[0].splice(stop.excursion.pacificOrder==='samoa-first'?-1:-2);
  }else if(region==='hawaii'){
   let previous=null;middle=[];
   for(const s of parks){const island={name:s.id==='hale'?'Kahului OGG':'Hilo ITO',lat:s.id==='hale'?20.9:19.72,lng:s.id==='hale'?-156.43:-155.05};if(previous)middle.push(flight(previous,island,previous.name+' → '+island.name));const outbound=drive(island,s,'Rental car → '+s.shortName),inbound=drive(s,island,s.shortName+' → island airport');middle.push({...outbound,days:Math.max(1,outbound.days)},park(s),{...inbound,days:Math.max(1,inbound.days)});previous=island;}
