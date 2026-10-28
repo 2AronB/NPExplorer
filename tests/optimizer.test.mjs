@@ -96,3 +96,17 @@ test('stop allowance increases elapsed time but not driving distance or driving 
  assert.equal(withStops.miles,without.miles);assert.equal(withStops.hours,without.hours);assert.ok(Math.abs(withStops.elapsedHours-withStops.hours*1.1)<1e-9);
  const r=schedule([b],{...DEFAULT_SETTINGS,start:a});assert.ok(Math.abs(r.elapsedHours-r.hours*1.1)<1e-9);assert.ok(r.legs.every(l=>l.dailyHours<=10));
 });
+
+test('fixed personal visits wait until the exact first full day without shortening the stay',()=>{
+ const stop={id:'custom-family',type:'custom',name:'Family',shortName:'Family',lat:settings.start.lat,lng:settings.start.lng,days:3,fixedDate:'2040-04-10'};
+ const r=schedule([stop],{...settings,restDays:0});assert.equal(r.visits[0].arrival,'2040-04-10');assert.equal(r.visits[0].departure,'2040-04-13');assert.equal(r.appointmentWaitDays,9);assert.equal(r.parkDays,3);assert.equal(r.totalDays,12);assert.equal(r.appointmentConflicts,0);
+});
+test('missed appointments are infeasible and never shift or shorten the requested visit silently',()=>{
+ const stop={id:'custom-family',type:'custom',name:'Family',shortName:'Family',lat:settings.start.lat,lng:settings.start.lng,days:3,fixedDate:'2040-03-30'};
+ const r=schedule([stop],{...settings,restDays:0});assert.equal(r.appointmentConflicts,1);assert.equal(r.visits[0].lateDays,2);assert.equal(r.visits[0].days,3);assert.ok(r.score>=1e9);assert.ok(r.warnings.some(w=>w.includes('not feasible')));
+});
+test('overlapping fixed visits report a conflict and flexible personal visits stay unchanged',()=>{
+ const a={id:'custom-a',type:'custom',name:'A',shortName:'A',lat:settings.start.lat,lng:settings.start.lng,days:4,fixedDate:'2040-04-01'},b={...a,id:'custom-b',fixedDate:'2040-04-03'};
+ const r=schedule([a,b],{...settings,restDays:0});assert.equal(r.appointmentConflicts,1);assert.equal(r.parkDays,8);const flexible=schedule([{...a,fixedDate:null}],{...settings,restDays:0});assert.equal(flexible.totalDays,4);assert.equal(flexible.appointmentWaitDays,0);
+});
+
