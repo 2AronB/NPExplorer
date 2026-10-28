@@ -14,6 +14,7 @@ const $=id=>document.getElementById(id);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const format=n=>Math.round(n).toLocaleString();
 const nice=s=>dateOf(s).toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});
+const highlightDays={yell:4,grte:2,glac:3,yose:3,grca:2,zion:2,brca:1,arch:1,cany:2,care:1,romo:2,olym:3,mora:2,noca:2,redw:2,sequ:2,kica:1,deva:2,jotr:1,badl:1,thro:2,acad:2,grsm:3,ever:2,bisc:1,drto:1,dena:3,wrst:3,glba:2,katm:2,lacl:2,gaar:2,kova:1,bela:1,hale:2,havo:2,npsa:2,viis:2,jeff:1};
 const defaults=DEFAULT_SETTINGS;
 const sample=['romo','grsa','meve','arch','cany','care','brca','zion','grca','pefo','whsa'];
 const [{sites:baseSites,metadata},states]=await Promise.all([fetch('./data/sites.json').then(r=>{if(!r.ok)throw Error('Unable to load park data');return r.json();}),fetch('./data/states.json').then(r=>r.json())]);
@@ -82,7 +83,6 @@ function validate(raw){
 }
 function validMD(s){if(typeof s!=='string'||!/^\d{2}-\d{2}$/.test(s))return false;const d=dateOf(`2040-${s}`);return Number.isFinite(d.getTime())&&iso(d).slice(5)===s;}
 // Full destination days for signature sights; travel and access buffers remain separate.
-const highlightDays={yell:4,grte:2,glac:3,yose:3,grca:2,zion:2,brca:1,arch:1,cany:2,care:1,romo:2,olym:3,mora:2,noca:2,redw:2,sequ:2,kica:1,deva:2,jotr:1,badl:1,thro:2,acad:2,grsm:3,ever:2,bisc:1,drto:1,dena:3,wrst:3,glba:2,katm:2,lacl:2,gaar:2,kova:1,bela:1,hale:2,havo:2,npsa:2,viis:2,jeff:1};
 function rebuild(){sites=[...baseSites.map(s=>{const rule=state.rules[s.id];return {...s,priority:state.priorities[s.id]??s.priority??1,remote:s.remote?{...s.remote,window:state.settings.remoteWindows?.[s.id]===null?null:state.settings.remoteWindows?.[s.id]||s.remote.window}:undefined,days:state.days[s.id]??(s.type==='park'&&state.settings.stayMode==='uniform'?state.settings.defaultDays:s.type==='park'&&state.settings.stayMode==='highlights'?Math.min(s.days,highlightDays[s.id]??Math.max(1,Math.ceil(s.days/2))):s.days),profile:rule?{...s.profile,ideal:rule.ideal,bad:rule.bad,quiet:rule.quiet,scores:rule.scores,quality:'User-edited monthly quality assumptions'}:s.profile,closure:rule?rule.closure:s.closure};}),...state.custom.map(s=>({...s,priority:state.priorities[s.id]??1,days:state.days[s.id]??s.days}))];lookup=new Map(sites.map(s=>[s.id,s]));}
 function save(){try{localStorage.setItem('long-way-plan-v1',JSON.stringify(state));}catch{toast('Browser storage is unavailable. Use Export plan to save your work.');}}
 function renderTransport(){renderTransportSettings(state.settings,values=>{try{const next=structuredClone(state);Object.assign(next.settings,values);state=validate(next);changed();renderTransport();toast('Transport assumptions saved. Find my route will compare the updated options.');}catch(e){toast(e.message);}},region=>{state.selected=[...new Set([...state.selected,...sites.filter(s=>s.remote?.region===region).map(s=>s.id)])];changed();renderAll();$('mapRegion').value=region;showRegion(region);toast(`${REGION_NAMES[region]} parks added to the trip.`);},toast);}
