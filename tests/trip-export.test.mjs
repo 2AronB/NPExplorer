@@ -31,3 +31,9 @@ test('XLSX stores formula-like personal names as literal text',()=>{
  const s={id:'custom-family',type:'custom',name:'=1+1',shortName:'=1+1',days:3,lat:40,lng:-100},tables=build([s],null),book=XLSX.read(new Uint8Array(xlsxBytes(tables,XLSX)),{type:'array'}),cell=book.Sheets.Itinerary.F2;
  assert.equal(cell.t,'s');assert.equal(cell.v,'=1+1');assert.equal(cell.f,undefined);
 });
+
+test('fixed-date appointment wait is exported separately and reconciles calendar allocation',()=>{
+ const s={id:'custom-family',type:'custom',name:'Family',shortName:'Family',lat:settings.start.lat,lng:settings.start.lng,days:3,fixedDate:'2040-06-10'},r=schedule([s],settings),tables=build([s],r),rows=tables.itinerary.slice(1);
+ assert.ok(rows.some(row=>row[col('Event')]==='Appointment wait'));assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);assert.ok(rows.some(row=>String(row.at(-1)).includes('Fixed first full day 2040-06-10')));
+});
+
