@@ -1,6 +1,7 @@
 import {addDays,dateOf,iso} from './optimizer.mjs';
 import {visitNumbers} from './map-markers.mjs';
 import {REGION_NAMES} from './remote-parks.mjs';
+import {travelDocument,itineraryBytes} from './itinerary-workbook.mjs';
 const rounded=n=>typeof n==='number'&&Number.isFinite(n)?Math.round(n*100)/100:'';
 export const ITINERARY_HEADERS=['Sequence','Stop number','Site ID','Region','Event','Place / activity','From','To','Start date','End date (exclusive)','Days','Full destination days','Estimated road miles','Driving hours','Stop allowance hours','Other travel hours','Season quality /10','Personal priority /5','Notes'];
 const end=(start,days)=>iso(addDays(dateOf(start),days));
@@ -8,9 +9,9 @@ const name=p=>p?.name||p?.shortName||p?.code||(Number.isFinite(p?.lat)&&Number.i
 export function exportTables({state,sites,result,exportedAt=new Date().toISOString()}){
  const lookup=new Map(sites.map(s=>[s.id,s])),selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),numbers=visitNumbers(result),rows=[];
  if(result)selected.sort((a,b)=>(numbers.get(a.id)||0)-(numbers.get(b.id)||0));
- const add=e=>{if(e.days===0&&!e.miles&&!e.hours&&!e.otherHours)return;rows.push(e);};
- const visit=(v,region)=>{const s=lookup.get(v.id);add({stop:numbers.get(v.id)||'',siteId:v.id,region,event:'Park / destination stay',place:s?.shortName||v.id,start:v.arrival,end:v.departure,days:v.calendarDays??v.days,parkDays:v.days,quality:v.quality,priority:s?.priority||v.priority||1,notes:[v.fixedDate?`Fixed first full day ${v.fixedDate}${v.lateDays?' — MISSED by '+v.lateDays+' days':''}`:null,v.sharedDays?`${v.sharedDays} equivalent exploration days included on arrival travel day; dates are approximate day labels.`:null,s?.remote?.route,v.status==='closed'?'Access/closure conflict':null,s?.url].filter(Boolean).join(' · ')});};
- const road=(leg,place)=>{if(!leg)return;add({region:'Mainland',event:leg.to==='finish'?'Return / finish drive':'Drive to next stop',place,from:leg.from==='start'?state.settings.start.name:lookup.get(leg.from)?.shortName||result?.nodes?.find(n=>n.id===leg.from)?.shortName||leg.from,to:place,start:leg.depart,end:end(leg.depart,leg.days),days:leg.days,miles:leg.miles,hours:leg.hours,breakHours:leg.breakHours,notes:(leg.cautions||[]).join(' ')});};
+ const add=e=>{if(e.days===0&&!e.parkDays&&!e.miles&&!e.hours&&!e.otherHours)return;rows.push(e);};
+ const visit=(v,region)=>{const s=lookup.get(v.id);add({stop:numbers.get(v.id)||'',siteId:v.id,region,event:'Park / destination stay',place:s?.shortName||v.id,start:v.stayStart??v.arrival,end:v.stayEnd??v.departure,days:v.calendarDays??v.days,parkDays:v.days,sharedDays:v.sharedDays,sharedArrivalDate:v.arrival,departureSharedDays:v.departureSharedDays,departureDriveDate:v.departureDriveDate,unusedDays:v.unusedDays,fixedDate:v.fixedDate,lateDays:v.lateDays,quality:v.quality,priority:s?.priority||v.priority||1,notes:[v.fixedDate?`Fixed first full day ${v.fixedDate}${v.lateDays?' — MISSED by '+v.lateDays+' days':''}`:null,v.sharedDays?`${v.sharedDays} equivalent exploration days included on arrival travel day; dates are approximate day labels.`:null,s?.remote?.route,v.status==='closed'?'Access/closure conflict':null,s?.url].filter(Boolean).join(' · ')});};
+ const road=(leg,place)=>{if(!leg)return;add({region:'Mainland',event:leg.to==='finish'?'Return / finish drive':'Drive to next stop',place,from:leg.from==='start'?state.settings.start.name:lookup.get(leg.from)?.shortName||result?.nodes?.find(n=>n.id===leg.from)?.shortName||leg.from,to:place,start:leg.depart,end:end(leg.depart,leg.days),days:leg.days,miles:leg.miles,hours:leg.hours,breakHours:leg.breakHours,path:leg.path,dailyActivities:leg.dailyActivities,notes:(leg.cautions||[]).join(' ')});};
  if(result){
   for(let i=0;i<result.visits.length;i++){
    const v=result.visits[i],leg=result.legs[i];
@@ -40,21 +41,12 @@ export function exportTables({state,sites,result,exportedAt=new Date().toISOStri
  const summary=[['Item','Value','Notes'],['Exported at',exportedAt,'UTC'],['Report status',result?'Calculated route currently shown':'Selected places only','CSV/XLSX are reports; JSON is the restorable backup.'],['Selected destinations',selected.length,'Includes every selected off-mainland park.'],['Trip target',state.settings.duration,'Days; reporting target only.'],['Saved departure setting',state.settings.startDate,'The month search may choose a different departure.'],['Calculated departure',result?.startDate||'',''],['Calculated end',result?.endDate||'','Includes the unplaced rest reserve.'],['Allocated days',result?.totalDays??'',''],['Days over target',result?Math.max(0,-result.remaining):'',''],['Days under target',result?Math.max(0,result.remaining):'',''],['Full destination days',result?.parkDays??selected.reduce((n,s)=>n+s.days,0),'Excludes transfers and buffers.'],['Days involving driving',result?.travelDays??'','Includes regional driving; mixed days overlap exploration.'],['Mixed drive / exploration days',result?.mixedDays??'',''],['Exploration days shared with driving',result?.sharedParkDays??'','Quarter-day credits; requested exploration is retained.'],['Other transport / buffer days',result?.transferDays??'','The current model groups non-driving transfers and contingency here.'],['Fixed-date conflicts',result?.appointmentConflicts??'','A missed fixed date makes the route infeasible.'],['Appointment wait days',result?.appointmentWaitDays??'','Early arrival before a fixed visit.'],['Closure / access wait days',result?.waitDays??'',''],['Rest reserve days',state.settings.restDays,'Held at the end, not distributed.'],['Estimated road miles',rounded(result?.miles),''],['Driving hours',rounded(result?.hours),'Excludes stop allowance.'],['Stop allowance hours',rounded(result?.breakHours),''],['Other transport hours',rounded(result?.flightHours),'Includes commercial and regional air/boat/ground transfers.'],['Day-weighted seasonal quality',rounded(result?.quality),'0–10; personal priority affects ranking, not this average.'],['Estimate limitations','Draft roads, times, transport availability, seasonal quality and access windows','Not verified routes, schedules, prices or reservations.'],['Calendar convention','Start included; end excluded','A 3-day stay starting July 1 ends July 4.']];
  const preferences=[['Stop number','Site ID','Place','State / territory','Region','Full days','Personal priority /5','Latitude','Longitude','Monthly quality Jan–Dec','Annual closure starts','Annual closure ends','Transport window starts','Transport window ends','Priority rationale','Official park page'],...selected.map(s=>[numbers.get(s.id)||'',s.id,s.shortName,s.state||'',s.remote?REGION_NAMES[s.remote.region]:'CONUS',s.days,s.priority||1,s.lat,s.lng,(s.profile?.scores||[]).join(', '),s.closure?.start||'',s.closure?.end||'',s.remote?.window?.start||'',s.remote?.window?.end||'',s.priorityNote||'',s.url||''])];
  const settings=[['Setting','Value','Notes'],...Object.entries(state.settings).map(([key,value])=>[key,value===null?'':typeof value==='object'?JSON.stringify(value):value,'Saved optimizer input']),...Object.entries(state.calibration||{}).map(([id,value])=>['Calibration · '+id,JSON.stringify(value),'Saved measurement and inclusion flag.']),...Object.entries(state.rules||{}).map(([id,value])=>['Seasonal override · '+id,JSON.stringify(value),'Full editable assumptions are also preserved in JSON backups.'])];
- return {summary,itinerary,preferences,settings};
+ return {summary,itinerary,preferences,settings,travelDocument:travelDocument({state,sites,result,rows,selected,exportedAt})};
 }
 export function csvText(table){
  const cell=value=>{let text=String(value??'');if(typeof value==='string'&&/^[\s]*[=+\-@]/.test(text))text="'"+text;return /[",\r\n]/.test(text)?'"'+text.replaceAll('"','""')+'"':text;};
  return '\ufeff'+table.map(row=>row.map(cell).join(',')).join('\r\n')+'\r\n';
 }
-export function xlsxBytes(tables,XLSX){
- const workbook=XLSX.utils.book_new();
- for(const [title,key]of [['Summary','summary'],['Itinerary','itinerary'],['Selected places','preferences'],['Settings','settings']]){
-  const data=tables[key],sheet=XLSX.utils.aoa_to_sheet(data);
-  sheet['!autofilter']={ref:sheet['!ref']};
-  sheet['!cols']=data[0].map((_,i)=>({wch:Math.min(55,Math.max(12,...data.slice(0,250).map(row=>String(row[i]??'').length+2)))}));
-  XLSX.utils.book_append_sheet(workbook,sheet,title);
- }
- workbook.Props={Title:'The Long Way — Trip report',Subject:'Draft national park itinerary and planning inputs'};
- return XLSX.write(workbook,{bookType:'xlsx',type:'array',compression:true});
+export async function xlsxBytes(tables,ExcelJS){
+ return itineraryBytes(tables.travelDocument,ExcelJS);
 }
-

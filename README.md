@@ -31,4 +31,6 @@ The public site is a separate browser origin, so its saved plans are independent
 
 CONUS park/site positions use a retained November 2022 public NPS boundary snapshot; coordinates are approximate. Separately maintained park metadata adds off-mainland parks and the current Chiricahua designation. Access-source links and draft seasonal assumptions are available in the app. Maps and optimization are schematic and heuristic.
 
-Bundled third-party libraries: Leaflet 1.9.4, topojson-client, US Census-derived us-atlas geometry, and SheetJS Community Edition 0.20.3. Their notices are in `vendor/`. SheetJS browser exports use the official standalone distribution: https://docs.sheetjs.com/docs/getting-started/installation/standalone/ .
+Bundled third-party libraries: Leaflet 1.9.4, topojson-client, US Census-derived us-atlas geometry, and ExcelJS 4.4.0 (MIT). Their notices are in `vendor/`. The pinned ExcelJS browser bundle is loaded locally on the first XLSX export, without a CDN or external plan processing. SheetJS Community Edition 0.20.3 is retained only for independent export regression reads and its notice remains in `vendor/`.
+
+XLSX exports contain an overview, chronological allocation itinerary, sourced park guide, travel details and action checklist. JSON remains the restorable input backup. Park experiences are editorial options researched from official NPS sources, not assigned activities. Generate synthetic review workbooks with `node scripts/sample-itineraries.mjs`; see `ITINERARY_INTEGRATION.md` for adapter assumptions and validation.

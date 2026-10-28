@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
-import {exportTables,csvText,xlsxBytes,ITINERARY_HEADERS} from '../trip-export.mjs';import {schedule} from '../optimizer.mjs';import {optimizeTrip} from '../trip-optimizer.mjs';import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';import {REMOTE_PARKS} from '../remote-parks.mjs';import {withPriorityDefault} from '../personal-priority.mjs';
+import {exportTables,csvText,ITINERARY_HEADERS} from '../trip-export.mjs';import {schedule} from '../optimizer.mjs';import {optimizeTrip} from '../trip-optimizer.mjs';import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';import {REMOTE_PARKS} from '../remote-parks.mjs';import {withPriorityDefault} from '../personal-priority.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../data/sites.json',import.meta.url))).sites;
 const by=id=>structuredClone(data.find(s=>s.id===id));
 const context={};vm.runInNewContext(fs.readFileSync(new URL('../vendor/xlsx.mini.min.js',import.meta.url),'utf8'),context);const XLSX=context.XLSX;
@@ -23,13 +23,6 @@ test('OCONUS reports contain individual parks, continuous stop numbers and a com
  assert.equal(parks.length,5);assert.deepEqual(parks.map(row=>row[col('Stop number')]),[1,2,3,4,5]);assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);assert.equal(parks.reduce((n,row)=>n+row[col('Full destination days')],0),r.parkDays);
  assert.ok(rows.some(row=>row[col('Event')]==='Commercial flight'));assert.ok(rows.some(row=>row[col('Event')]==='Regional drive'));assert.ok(rows.some(row=>row[col('Event')]==='Contingency buffer'));
  for(let i=1;i<rows.length;i++)assert.ok(rows[i][col('Start date')]>=rows[i-1][col('Start date')]);
- const output=xlsxBytes(tables,XLSX),book=XLSX.read(new Uint8Array(output),{type:'array'});assert.deepEqual(Array.from(book.SheetNames),['Summary','Itinerary','Selected places','Settings']);
- const read=XLSX.utils.sheet_to_json(book.Sheets.Itinerary,{header:1,defval:''});assert.equal(read.length,tables.itinerary.length);assert.equal(read.filter(row=>row[col('Event')]==='Park / destination stay').length,5);assert.equal(typeof read[1][col('Days')],'number');
- assert.ok(book.Sheets.Itinerary['!autofilter']);
-});
-test('XLSX stores formula-like personal names as literal text',()=>{
- const s={id:'custom-family',type:'custom',name:'=1+1',shortName:'=1+1',days:3,lat:40,lng:-100},tables=build([s],null),book=XLSX.read(new Uint8Array(xlsxBytes(tables,XLSX)),{type:'array'}),cell=book.Sheets.Itinerary.F2;
- assert.equal(cell.t,'s');assert.equal(cell.v,'=1+1');assert.equal(cell.f,undefined);
 });
 
 test('fixed-date appointment wait is exported separately and reconciles calendar allocation',()=>{

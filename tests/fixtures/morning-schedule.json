@@ -1,0 +1,361 @@
+{
+  "sourceCommit": "67aaa2be1291b8c11b4f05c17fca294867e468ca",
+  "sites": [
+    {
+      "id": "grsa",
+      "name": "Great Sand Dunes National Park",
+      "shortName": "Great Sand Dunes",
+      "type": "park",
+      "lat": 37.77664,
+      "lng": -105.62891,
+      "days": 3,
+      "url": "https://www.nps.gov/grsa/index.htm"
+    },
+    {
+      "id": "meve",
+      "name": "Mesa Verde National Park",
+      "shortName": "Mesa Verde",
+      "type": "park",
+      "lat": 37.23909,
+      "lng": -108.4624,
+      "days": 3,
+      "url": "https://www.nps.gov/meve/index.htm"
+    },
+    {
+      "id": "arch",
+      "name": "Arches National Park",
+      "shortName": "Arches",
+      "type": "park",
+      "lat": 38.72262,
+      "lng": -109.58638,
+      "days": 3,
+      "url": "https://www.nps.gov/arch/index.htm"
+    }
+  ],
+  "state": {
+    "version": 1,
+    "preferencesRevision": 3,
+    "selected": [
+      "grsa",
+      "meve",
+      "arch"
+    ],
+    "settings": {
+      "alaskaMode": "compare",
+      "remoteBufferDays": 2,
+      "flightDayHours": 12,
+      "remoteRoadMph": 50,
+      "airportCodes": [
+        "SEA"
+      ],
+      "customAirports": [],
+      "remoteWindows": {},
+      "startDate": "2040-06-01",
+      "duration": 365,
+      "autoMonth": false,
+      "objective": "season",
+      "seasonDetourPercent": 15,
+      "pace": "balanced",
+      "comfort": 4,
+      "stretch": 7,
+      "maxDrive": 10,
+      "averageMph": 60.6,
+      "distanceFactor": 1.246,
+      "breakPercent": 10,
+      "sharedDays": true,
+      "dayBudget": 10,
+      "explorationHours": 8,
+      "setupHours": 0.75,
+      "teardownHours": 0.75,
+      "stayMode": "park",
+      "defaultDays": 3,
+      "restDays": 2,
+      "detourHours": 1,
+      "start": {
+        "id": "start",
+        "name": "Colorado Springs",
+        "lat": 38.8339,
+        "lng": -104.8214
+      },
+      "endMode": "return",
+      "end": {
+        "id": "finish",
+        "name": "Colorado Springs",
+        "lat": 38.8339,
+        "lng": -104.8214
+      },
+      "endLocation": {
+        "name": "Finish",
+        "lat": 38.8339,
+        "lng": -104.8214
+      }
+    },
+    "days": {},
+    "custom": [],
+    "rules": {},
+    "priorities": {},
+    "calibration": {}
+  },
+  "result": {
+    "appointmentConflicts": 0,
+    "appointmentLateDays": 0,
+    "appointmentWaitDays": 0,
+    "sharedParkDays": 4,
+    "mixedDays": 5,
+    "dedicatedTravelDays": 1,
+    "roundingDays": 0,
+    "order": [
+      "grsa",
+      "meve",
+      "arch"
+    ],
+    "startDate": "2040-06-01",
+    "endDate": "2040-06-14",
+    "legs": [
+      {
+        "from": "start",
+        "to": "grsa",
+        "miles": 106.11595037931161,
+        "hours": 2.00108829008765,
+        "breakHours": 0.20010882900876503,
+        "elapsedHours": 2.201197119096415,
+        "path": [
+          {
+            "lat": 38.8339,
+            "lng": -104.8214
+          },
+          {
+            "lat": 37.77664,
+            "lng": -105.62891
+          }
+        ],
+        "cautions": [],
+        "days": 1,
+        "dailyHours": 2.00108829008765,
+        "depart": "2040-06-01",
+        "dailyActivities": [
+          {
+            "date": "2040-06-01",
+            "driveHours": 2.00108829008765,
+            "breakHours": 0.2001088290087652,
+            "campHours": 1.5,
+            "departureExplorationHours": 0,
+            "arrivalExplorationHours": 6,
+            "totalHours": 9.701197119096415
+          }
+        ]
+      },
+      {
+        "from": "grsa",
+        "to": "meve",
+        "miles": 198.9570207308424,
+        "hours": 3.533119153974297,
+        "breakHours": 0.3533119153974297,
+        "elapsedHours": 3.8864310693717266,
+        "path": [
+          {
+            "lat": 37.77664,
+            "lng": -105.62891
+          },
+          {
+            "lat": 37.23909,
+            "lng": -108.4624
+          }
+        ],
+        "cautions": [],
+        "days": 1,
+        "dailyHours": 3.533119153974297,
+        "depart": "2040-06-04",
+        "dailyActivities": [
+          {
+            "date": "2040-06-04",
+            "driveHours": 3.533119153974297,
+            "breakHours": 0.35331191539743,
+            "campHours": 1.5,
+            "departureExplorationHours": 2,
+            "arrivalExplorationHours": 2,
+            "totalHours": 9.386431069371728
+          }
+        ]
+      },
+      {
+        "from": "meve",
+        "to": "arch",
+        "miles": 148.75651022359946,
+        "hours": 2.704727891478539,
+        "breakHours": 0.2704727891478539,
+        "elapsedHours": 2.975200680626393,
+        "path": [
+          {
+            "lat": 37.23909,
+            "lng": -108.4624
+          },
+          {
+            "lat": 38.72262,
+            "lng": -109.58638
+          }
+        ],
+        "cautions": [],
+        "days": 2,
+        "dailyHours": 1.3523639457392695,
+        "depart": "2040-06-07",
+        "dailyActivities": [
+          {
+            "date": "2040-06-07",
+            "driveHours": 2.2727272727272725,
+            "breakHours": 0.22727272727272746,
+            "campHours": 1.5,
+            "departureExplorationHours": 6,
+            "arrivalExplorationHours": 0,
+            "totalHours": 10
+          },
+          {
+            "date": "2040-06-08",
+            "driveHours": 0.4320006187512666,
+            "breakHours": 0.0432000618751267,
+            "campHours": 1.5,
+            "departureExplorationHours": 0,
+            "arrivalExplorationHours": 8,
+            "totalHours": 9.975200680626394
+          }
+        ]
+      },
+      {
+        "from": "arch",
+        "to": "finish",
+        "miles": 319.9070713170561,
+        "hours": 5.528994576189044,
+        "breakHours": 0.5528994576189044,
+        "elapsedHours": 6.081894033807949,
+        "path": [
+          {
+            "lat": 38.72262,
+            "lng": -109.58638
+          },
+          {
+            "lat": 38.8339,
+            "lng": -104.8214
+          }
+        ],
+        "cautions": [],
+        "days": 2,
+        "dailyHours": 2.764497288094522,
+        "depart": "2040-06-10",
+        "dailyActivities": [
+          {
+            "date": "2040-06-10",
+            "driveHours": 0.45454545454545453,
+            "breakHours": 0.04545454545454549,
+            "campHours": 1.5,
+            "departureExplorationHours": 8,
+            "arrivalExplorationHours": 0,
+            "totalHours": 10
+          },
+          {
+            "date": "2040-06-11",
+            "driveHours": 5.07444912164359,
+            "breakHours": 0.5074449121643594,
+            "campHours": 1.5,
+            "departureExplorationHours": 0,
+            "arrivalExplorationHours": 0,
+            "totalHours": 7.0818940338079495
+          }
+        ]
+      }
+    ],
+    "visits": [
+      {
+        "id": "grsa",
+        "arrival": "2040-06-01",
+        "stayStart": "2040-06-02",
+        "stayEnd": "2040-06-04",
+        "departure": "2040-06-05",
+        "days": 3,
+        "calendarDays": 2,
+        "unusedDays": 0,
+        "sharedDays": 0.75,
+        "departureSharedDays": 0.25,
+        "fixedDate": null,
+        "appointmentWait": 0,
+        "lateDays": 0,
+        "status": "ideal",
+        "priority": 1,
+        "quality": 9,
+        "minQuality": 9,
+        "wait": 0,
+        "earliest": "2040-06-02",
+        "transferDays": 0,
+        "quiet": false,
+        "departureDriveDate": "2040-06-04"
+      },
+      {
+        "id": "meve",
+        "arrival": "2040-06-04",
+        "stayStart": "2040-06-05",
+        "stayEnd": "2040-06-07",
+        "departure": "2040-06-08",
+        "days": 3,
+        "calendarDays": 2,
+        "unusedDays": 0,
+        "sharedDays": 0.25,
+        "departureSharedDays": 0.75,
+        "fixedDate": null,
+        "appointmentWait": 0,
+        "lateDays": 0,
+        "status": "ideal",
+        "priority": 1,
+        "quality": 9,
+        "minQuality": 9,
+        "wait": 0,
+        "earliest": "2040-06-05",
+        "transferDays": 0,
+        "quiet": false,
+        "departureDriveDate": "2040-06-07"
+      },
+      {
+        "id": "arch",
+        "arrival": "2040-06-08",
+        "stayStart": "2040-06-09",
+        "stayEnd": "2040-06-10",
+        "departure": "2040-06-11",
+        "days": 3,
+        "calendarDays": 1,
+        "unusedDays": 0,
+        "sharedDays": 1,
+        "departureSharedDays": 1,
+        "fixedDate": null,
+        "appointmentWait": 0,
+        "lateDays": 0,
+        "status": "mixed",
+        "priority": 1,
+        "quality": 4,
+        "minQuality": 4,
+        "wait": 0,
+        "earliest": "2040-06-09",
+        "transferDays": 0,
+        "quiet": false,
+        "departureDriveDate": "2040-06-10"
+      }
+    ],
+    "miles": 773.7365526508096,
+    "hours": 13.76792991172953,
+    "flightHours": 0,
+    "excursions": [],
+    "breakHours": 1.376792991172953,
+    "elapsedHours": 15.144722902902483,
+    "travelDays": 6,
+    "parkDays": 9,
+    "transferDays": 0,
+    "waitDays": 0,
+    "restDays": 2,
+    "totalDays": 13,
+    "remaining": 352,
+    "overrun": 0,
+    "longDays": 1,
+    "seasonPenalty": 12.666666666666666,
+    "quality": 7.333333333333333,
+    "qualityDays": 9,
+    "score": 52.76792991172953,
+    "warnings": []
+  }
+}

@@ -23,6 +23,15 @@
 !/season-quality.mjs
 !/transport-ui.mjs
 !/trip-export.mjs
+!/itinerary-workbook.mjs
+!/park-highlights.mjs
+!/vendor/exceljs.min.js
+!/vendor/EXCELJS-LICENSE.txt
+!/scripts/sample-itineraries.mjs
+!/tests/itinerary-workbook.test.mjs
+!/tests/fixtures/
+!/tests/fixtures/morning-schedule.json
+!/ITINERARY_INTEGRATION.md
 !/trip-optimizer.mjs
 !/worker.mjs
 !/data/sites.json
