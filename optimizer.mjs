@@ -44,6 +44,13 @@ export function driveDays(hours,settings){
  const cap=settings.pace==='relaxed'?settings.comfort:settings.pace==='efficient'?settings.maxDrive:settings.stretch;
  return hours===0?0:Math.ceil(hours/Math.min(cap,settings.maxDrive));
 }
+// Each road day has one activity budget. Credit only the final road day's spare time,
+// at the destination; remote access, personal appointments and return-home legs are excluded.
+export function arrivalCredit(t,nd,settings){
+ if(!settings.sharedDays||!nd)return 0;
+ const lastHours=t.hours/nd,elapsed=lastHours*(1+(settings.breakPercent||0)/100)+(settings.setupHours??.75)+(settings.teardownHours??.75);
+ return Math.min(1,Math.max(0,Math.floor(((settings.dayBudget??10)-elapsed)/(settings.explorationHours??8)*4)/4));
+}
 function staySeason(s,date,days,objective){
  let cost=0,qualitySum=0,qualityDays=0,minQuality=10,closedDays=0;
  for(let i=0;i<days;i++){
@@ -58,7 +65,7 @@ function staySeason(s,date,days,objective){
 const seasonalCost=(s,date,days,objective)=>staySeason(s,date,days,objective).cost;
 export function schedule(order,settings,startDate=settings.startDate){
  let now=dateOf(startDate),current=settings.start,miles=0,hours=0,travelDays=0,parkDays=0,transferDays=0,waitDays=0,longDays=0,penalty=0;
- const legs=[],visits=[],warnings=[],excursions=[];let qualitySum=0,qualityDays=0,flightHours=0,remoteDays=0;
+ const legs=[],visits=[],warnings=[],excursions=[];let qualitySum=0,qualityDays=0,flightHours=0,remoteDays=0,sharedParkDays=0,mixedDays=0;
  for(const stop of order){
   const t=travel(current,stop,settings),nd=driveDays(t.hours,settings),daily=nd?t.hours/nd:0;
   const leg={from:current.id||'start',to:stop.id,...t,days:nd,dailyHours:daily,depart:iso(now)};
@@ -70,7 +77,7 @@ export function schedule(order,settings,startDate=settings.startDate){
    if(block.wait)warnings.push(`${stop.shortName}: ${block.wait} wait days before the draft transport/visit window fits. This is a service assumption, not a park closure.`);
    if(!block.feasible)warnings.push(`${stop.shortName}: no complete stay fits the transport windows or closure rules within a year. All requested days are retained, but this excursion is infeasible.`);
    visits.push({id:stop.id,arrival:block.depart,departure:block.returnDate,days:block.parkDays,status:!block.feasible?'closed':block.minQuality<=3?'difficult':block.quality>=8?'ideal':'mixed',quality:block.quality,minQuality:block.minQuality,wait:block.wait,transferDays:block.days-block.parkDays,excursion:true});
-   now=dateOf(block.returnDate);current=stop;legs.push(leg);continue;
+   now=addDays(now,block.days+block.wait);current=stop;legs.push(leg);continue;
   }
   const transfer=stop.access?.transferDays||0;
   // Reserve outbound/inbound transfer days separately from requested full park days.
@@ -80,12 +87,16 @@ export function schedule(order,settings,startDate=settings.startDate){
   while(wait<370 && Array.from({length:days},(_,i)=>isClosed(stop,addDays(now,i))).some(Boolean)){now=addDays(now,1);wait++;}
   if(wait>=370)warnings.push(`${stop.shortName}: requested stay does not fit an available annual opening window.`);
   if(wait){waitDays+=wait;warnings.push(`${stop.shortName}: ${wait} flex/wait days added before the published or user-entered closure window allows this stay.`);}
-  const arrival=iso(now),departure=iso(addDays(now,days));
+  const shared=stop.type==='park'&&!transfer&&!wait?Math.min(days,arrivalCredit(t,nd,settings)):0;
+  const calendarDays=days-shared;
+  sharedParkDays+=shared;if(shared)mixedDays++;
+  // The final travel date also contains this destination's credited exploration.
+  const arrival=iso(addDays(now,shared?-1:0)),departure=iso(addDays(now,calendarDays));
   const quality=staySeason(stop,now,days,settings.objective);
   const status=quality.closedDays?'closed':quality.quality===null?'unknown':quality.minQuality<=3?'difficult':quality.quality>=8?'ideal':'mixed';
   penalty+=quality.cost;qualitySum+=quality.qualitySum;qualityDays+=quality.qualityDays;
-  visits.push({id:stop.id,arrival,departure,days,status,priority:personalPriority(stop),quality:quality.quality,minQuality:quality.minQuality,wait,earliest:iso(earliest),transferDays:transfer,quiet:!!stop.profile?.quiet.includes(now.getUTCMonth()+1)});
-  now=addDays(now,days+Math.floor(transfer/2));parkDays+=days;current=stop;legs.push(leg);
+  visits.push({id:stop.id,arrival,departure,days,calendarDays,sharedDays:shared,status,priority:personalPriority(stop),quality:quality.quality,minQuality:quality.minQuality,wait,earliest:iso(earliest),transferDays:transfer,quiet:!!stop.profile?.quiet.includes(now.getUTCMonth()+1)});
+  now=addDays(now,calendarDays+Math.floor(transfer/2));parkDays+=days;current=stop;legs.push(leg);
  }
  if(settings.end){
   const t=travel(current,settings.end,settings),nd=driveDays(t.hours,settings),daily=nd?t.hours/nd:0;
@@ -94,12 +105,13 @@ export function schedule(order,settings,startDate=settings.startDate){
  }
  const restDays=settings.restDays||0;
  now=addDays(now,restDays);
- const totalDays=Math.round((now-dateOf(startDate))/DAY),overrun=Math.max(0,totalDays-settings.duration);
+ const rawDays=(now-dateOf(startDate))/DAY,roundingDays=Math.ceil(rawDays)-rawDays;now=addDays(now,roundingDays);
+ const totalDays=Math.ceil(rawDays),overrun=Math.max(0,totalDays-settings.duration);
  const weight=settings.objective==='shortest'?0:settings.objective==='quiet'?2.4:3;
  // Duration is a reporting target. It never changes route ranking or stays.
  const score=hours+flightHours+remoteDays*2+penalty*weight+waitDays*10+longDays*(settings.pace==='relaxed'?5:1)+excursions.filter(e=>!e.feasible).length*1e9;
  const breakHours=legs.reduce((n,l)=>n+l.breakHours,0)+excursions.reduce((n,e)=>n+e.breakHours,0);
- return {order:order.map(s=>s.id),startDate,endDate:iso(now),legs,visits,miles,hours,flightHours,excursions,breakHours,elapsedHours:hours+breakHours,travelDays,parkDays,transferDays,waitDays,restDays,totalDays,remaining:settings.duration-totalDays,overrun,longDays,seasonPenalty:penalty,quality:qualityDays?qualitySum/qualityDays:null,qualityDays,score,warnings};
+ return {sharedParkDays,mixedDays,dedicatedTravelDays:travelDays-mixedDays,roundingDays,order:order.map(s=>s.id),startDate,endDate:iso(now),legs,visits,miles,hours,flightHours,excursions,breakHours,elapsedHours:hours+breakHours,travelDays,parkDays,transferDays,waitDays,restDays,totalDays,remaining:settings.duration-totalDays,overrun,longDays,seasonPenalty:penalty,quality:qualityDays?qualitySum/qualityDays:null,qualityDays,score,warnings};
 }
 function greedy(stops,settings,date,seasonal,seed){
  const remaining=[...stops],route=[];let current=settings.start,now=dateOf(date);
@@ -199,3 +211,4 @@ export function detours(candidates,order,settings){
   return {id:s.id,...best};
  }).filter(s=>s.extraHours<=settings.detourHours).sort((a,b)=>a.extraHours-b.extraHours).slice(0,8);
 }
+
