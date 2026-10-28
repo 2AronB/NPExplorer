@@ -38,6 +38,8 @@
 !/package.json
 !/server.mjs
 !/scripts/build-site.mjs
+!/scripts/optimizer-benchmark.mjs
+!/docs/optimizer-performance.md
 !/scripts/validate-seasonal-data.mjs
 !/data/seasonal-research/
 !/data/seasonal-research/seasonal-access.json

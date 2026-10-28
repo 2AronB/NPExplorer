@@ -4,6 +4,18 @@ import fs from 'node:fs';
 import {travel,driveDays,dateOf,addDays,iso,isClosed,season,schedule,optimize,detours,routeMiles} from '../optimizer.mjs';
 import {DEFAULT_SETTINGS,upgradePlanPreferences} from '../plan-defaults.mjs';
 const data=JSON.parse(fs.readFileSync(new URL('../data/sites.json',import.meta.url))).sites;
+test('date memoization preserves UTC labels after mutation, cache turnover and invalid input',()=>{
+ const date=dateOf('2040-02-28');assert.equal(iso(date),'2040-02-28');
+ date.setUTCDate(date.getUTCDate()+1);assert.equal(iso(date),'2040-02-29');
+ date.setUTCHours(23,59);assert.equal(iso(date),'2040-02-29');
+ const leapTime=date.getTime();
+ for(let i=0;i<5000;i++){
+  const next=addDays(date,i);assert.equal(iso(next),next.toISOString().slice(0,10));
+ }
+ assert.equal(iso(new Date(leapTime)),'2040-02-29');
+ assert.equal(iso(new Date('2040-03-01T00:30:00+02:00')),'2040-02-29');
+ assert.throws(()=>iso(new Date(NaN)),RangeError);
+});
 const lookup=new Map(data.map(s=>[s.id,s]));
 const settings={startDate:'2040-04-01',duration:365,comfort:4,stretch:7,maxDrive:10,pace:'balanced',objective:'season',restDays:24,autoMonth:false,detourHours:1,start:{id:'start',lat:38.8339,lng:-104.8214},end:null};
 test('CONUS inventory includes 51 distinct designated parks, including park/preserve duplicate codes',()=>{

@@ -4,7 +4,16 @@ import {personalPriority} from './personal-priority.mjs';
 export const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DAY=86400000;
 export const dateOf=s=>new Date(s+'T12:00:00Z');
-export const iso=d=>d.toISOString().slice(0,10);
+// Searches revisit the same calendar dates millions of times. Key by timestamp,
+// not Date identity (Date objects are mutable), and bound worker-local memory.
+const isoCache=new Map();
+export const iso=d=>{
+ const time=d.getTime(),cached=isoCache.get(time);
+ if(cached!==undefined)return cached;
+ const value=d.toISOString().slice(0,10);
+ if(isoCache.size>=4096)isoCache.clear();
+ isoCache.set(time,value);return value;
+};
 export const addDays=(d,n)=>new Date(d.getTime()+n*DAY);
 export function haversine(a,b){
  const rad=x=>x*Math.PI/180,dlat=rad(b.lat-a.lat),dlng=rad(b.lng-a.lng);
