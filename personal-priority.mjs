@@ -1,0 +1,77 @@
+// Subjective starting priorities for this family's hiking/highlights trip.
+// These describe the value of getting the visit conditions right, not an NPS
+// rating or a measured ranking of park quality. All are editable per plan.
+const rows=[
+ ['acad',4,'Coastal scenery, hiking and a distinctive northeastern stop.'],
+ ['arch',4,'Signature sandstone formations and iconic hiking highlights.'],
+ ['badl',3,'Distinctive landscapes and wildlife, with relatively flexible access.'],
+ ['bibe',4,'Remote desert/mountain scenery; a long approach makes good timing valuable.'],
+ ['bisc',3,'Marine experiences depend on suitable boat and water conditions.'],
+ ['blca',3,'Dramatic canyon scenery; a smaller, more flexible visit.'],
+ ['brca',4,'Signature hoodoos and hiking; seasonal trail conditions matter.'],
+ ['cany',4,'Large canyon landscapes and several substantial hiking opportunities.'],
+ ['care',3,'Strong scenery and hiking within the Utah park circuit.'],
+ ['cave',3,'A distinctive cave experience, with some weather-independent flexibility.'],
+ ['chis',4,'Island wildlife and hiking require a successful boat/access plan.'],
+ ['chir',3,'Rock formations and hiking; a distinctive but relatively flexible stop.'],
+ ['cong',2,'Floodplain forest highlights; a smaller visit with flexible routing.'],
+ ['crla',4,'Signature lake views; snow and seasonal access can define the visit.'],
+ ['cuva',2,'Useful hiking and scenery with relatively flexible access and timing.'],
+ ['deva',4,'Exceptional desert scenery with a strong need to avoid extreme heat.'],
+ ['drto',4,'A remote island experience; arranging the crossing makes timing valuable.'],
+ ['ever',4,'Distinctive wildlife and wetlands; seasonal conditions strongly affect the experience.'],
+ ['jeff',1,'A short landmark visit with more timing flexibility than a major wilderness stay.'],
+ ['glac',5,'A trip centerpiece for mountain hiking, scenery and wildlife; seasonal access is important.'],
+ ['grca',5,'A major landscape and hiking centerpiece worth protecting in the calendar.'],
+ ['grte',5,'Exceptional mountain scenery, hiking and wildlife across a substantial stay.'],
+ ['grba',3,'Remote mountain/cave highlights; a worthwhile visit with a longer approach.'],
+ ['grsa',3,'Distinctive dunes and mountain setting; conditions matter for hiking.'],
+ ['grsm',4,'A substantial hiking and wildlife stay with broad seasonal differences.'],
+ ['gumo',3,'Mountain and desert hiking; a remote approach rewards suitable conditions.'],
+ ['hosp',2,'A shorter cultural/thermal-water visit with relatively flexible timing.'],
+ ['indu',2,'Lakeshore highlights and hiking; a smaller, flexible visit.'],
+ ['isro',4,'Remote island hiking and wildlife require coordinated access and enough usable days.'],
+ ['jotr',3,'Distinctive desert hiking and rock landscapes; avoid poor heat conditions.'],
+ ['kica',4,'Major canyon and mountain hiking with seasonal access constraints.'],
+ ['lavo',4,'Volcanic and alpine highlights; snow and access can limit the intended visit.'],
+ ['maca',3,'A signature cave experience with some flexibility in weather and season.'],
+ ['meve',3,'Distinctive cultural highlights; planning access and timing is worthwhile.'],
+ ['mora',5,'A mountain hiking centerpiece where seasonal access and conditions matter greatly.'],
+ ['neri',3,'Canyon scenery and hiking within a relatively flexible regional route.'],
+ ['noca',4,'High-value mountain hiking with a short useful season and a longer approach.'],
+ ['olym',5,'Several distinct ecosystems and a substantial hiking stay; protect the visit conditions.'],
+ ['pefo',2,'Distinctive scenic and geological highlights in a shorter, flexible stop.'],
+ ['pinn',3,'Distinctive hiking and wildlife; a smaller stay that still benefits from suitable conditions.'],
+ ['redw',4,'Signature forest and coast experiences worth a substantial visit.'],
+ ['romo',4,'Major alpine hiking and wildlife; a substantial stay benefits from the right season.'],
+ ['sagu',3,'Signature desert scenery and hiking; a shorter visit with heat sensitivity.'],
+ ['sequ',4,'Iconic giant trees and mountain hiking; seasonal access matters.'],
+ ['shen',3,'Strong mountain hiking and scenery with relatively flexible road access.'],
+ ['thro',3,'Wildlife and badlands scenery on a somewhat remote northern route.'],
+ ['voya',4,'A remote water-based experience; access and weather should support the intended visit.'],
+ ['whsa',3,'A distinctive landscape and hiking experience that benefits from good conditions.'],
+ ['wica',2,'Cave and prairie highlights in a shorter, relatively flexible visit.'],
+ ['yell',5,'Geysers, major wildlife and a long centerpiece stay should receive strong seasonal protection.'],
+ ['yose',5,'A major hiking and landscape centerpiece; conditions define much of the experience.'],
+ ['zion',5,'A signature hiking and canyon centerpiece worth protecting in the calendar.'],
+ ['dena',5,'Alaska wildlife and mountain highlights; the difficult regional calendar needs to work well.'],
+ ['gaar',5,'Remote wilderness access and a demanding Alaska itinerary warrant strong protection.'],
+ ['glba',5,'A major Alaska marine/glacier experience with coordinated access and seasonal services.'],
+ ['katm',5,'A remote wildlife centerpiece; flights and suitable viewing conditions need to align.'],
+ ['kefj',4,'Major coastal wildlife and glacier highlights; coordinated boat plans deserve high priority.'],
+ ['kova',5,'Very remote park access; the short Alaska planning window needs to go well.'],
+ ['lacl',5,'Remote flight-dependent scenery and wildlife; protect the effort spent arranging this visit.'],
+ ['wrst',5,'A large, remote Alaska hiking/scenery stay; protect the substantial access investment.'],
+ ['hale',4,'Distinctive volcanic hiking on a separate island; flight planning raises its priority.'],
+ ['havo',5,'A volcanic landscape centerpiece reached through a substantial island excursion.'],
+ ['npsa',5,'A distant Pacific excursion; getting suitable conditions matters after the travel investment.'],
+ ['viis',4,'A separate island excursion for coastal hiking and marine highlights.']
+];
+export const PARK_PRIORITIES=Object.fromEntries(rows.map(([id,priority,note])=>[id,{priority,note}]));
+export function personalPriority(site){return Number.isInteger(site.priority)&&site.priority>=1&&site.priority<=5?site.priority:1;}
+export function withPriorityDefault(site){const value=PARK_PRIORITIES[site.id]||{priority:1,note:'Baseline priority for an optional site. Adjust this to reflect your own trip.'};return {...site,priority:value.priority,priorityDefault:value.priority,priorityNote:value.note};}
+export function validatePriorities(raw,allowed){
+ if(raw===undefined)return {};
+ if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Invalid personal priorities');
+ const out={};for(const [id,n]of Object.entries(raw)){if(!allowed.has(id)||!Number.isInteger(n)||n<1||n>5)throw Error('Personal priorities must be whole numbers from 1 to 5 for known places');out[id]=n;}return out;
+}
