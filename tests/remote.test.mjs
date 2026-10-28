@@ -3,7 +3,7 @@ import test from 'node:test';import assert from 'node:assert/strict';import fs f
 import {REMOTE_PARKS,MAINLAND_AIRPORTS,CANADA_CORRIDOR} from '../remote-parks.mjs';
 import {optimizeTrip,airportCandidates} from '../trip-optimizer.mjs';
 import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';
-import {dateOf,addDays,iso} from '../optimizer.mjs';
+import {schedule,dateOf,addDays,iso} from '../optimizer.mjs';
 const land=JSON.parse(fs.readFileSync(new URL('../data/sites.json',import.meta.url))).sites;
 const park=id=>structuredClone(REMOTE_PARKS.find(s=>s.id===id));
 const mia=MAINLAND_AIRPORTS.find(a=>a.code==='MIA');
@@ -70,3 +70,27 @@ test('user-added mainland airports can reach any region without a geographic whi
 });
 
 test('current Chiricahua designation upgrades its existing marker without duplicating it',()=>{const updated=currentInventory(land),p=updated.find(s=>s.id==='chir');assert.equal(updated.length,land.length);assert.equal(p.type,'park');assert.equal(p.shortName,'Chiricahua');assert.equal(p.days,2);assert.ok(p.designationSource.includes('nps.gov/chir'));assert.equal(land.find(s=>s.id==='chir').type,'site');});
+
+
+test('all eight Alaska parks preserve access and whole-day ledgers in each mode',()=>{
+ const parks=REMOTE_PARKS.filter(s=>s.remote.region==='alaska');
+ for(const alaskaMode of ['drive','fly','compare']){
+  const r=optimizeTrip(parks,{...settings,alaskaMode}),b=r.excursions[0];
+  assert.equal(b.visits.length,8);assert.ok(b.feasible);assert.equal(r.sharedParkDays,0);
+  assert.equal(r.parkDays,parks.reduce((n,p)=>n+p.days,0));
+  assert.equal(r.totalDays,r.parkDays+r.travelDays+r.transferDays+r.waitDays);
+  for(const t of b.transport.filter(t=>t.kind==='drive'))assert.ok(!t.days||t.hours/t.days*1.1+1.5<=settings.dayBudget+1e-9);
+  assert.ok(b.transport.some(t=>t.kind==='transfer'));assert.equal(b.bufferDays,settings.remoteBufferDays);
+ }
+});
+
+
+test('reusing an excursion node invalidates cached calendars when assumptions or stays change',()=>{
+ const p=park('hale'),node={id:'excursion-hawaii',shortName:'Hawaii',lat:mia.lat,lng:mia.lng,excursion:{region:'hawaii',mode:'fly',airport:mia,parks:[p]}};
+ const first=schedule([node],settings),buffer=schedule([node],{...settings,remoteBufferDays:5});
+ assert.equal(buffer.totalDays-first.totalDays,5-settings.remoteBufferDays);
+ p.days+=2;const stay=schedule([node],settings);
+ assert.equal(stay.parkDays-first.parkDays,2);assert.equal(stay.totalDays-first.totalDays,2);
+ const slow=schedule([node],{...settings,remoteRoadMph:1});
+ assert.ok(slow.travelDays>stay.travelDays);assert.ok(slow.excursions[0].transport.filter(t=>t.kind==='drive').every(t=>t.hours/t.days<=settings.maxDrive));
+});

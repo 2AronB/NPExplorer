@@ -32,6 +32,33 @@ test('XLSX stores formula-like personal names as literal text',()=>{
  assert.equal(cell.t,'s');assert.equal(cell.v,'=1+1');assert.equal(cell.f,undefined);
 });
 
+
+test('shared stays export nonoverlapping allocations and retain fully credited exploration',()=>{
+ const s={...settings,start:{lat:0,lng:0},end:{lat:0,lng:0},startDate:'2040-01-31',setupHours:0,teardownHours:0,averageMph:60,distanceFactor:1};
+ const sites=[{id:'tiny',shortName:'Tiny',type:'park',lat:0,lng:.1,days:1},{id:'partial',shortName:'Partial',type:'park',lat:0,lng:3,days:2}];
+ const r=schedule(sites,s),rows=exportTables({sites,result:r,state:{selected:sites.map(p=>p.id),settings:s}}).itinerary.slice(1);
+ assert.equal(r.visits[0].calendarDays,0);assert.equal(r.visits[0].sharedDays,1);
+ assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);
+ assert.equal(rows.reduce((n,row)=>n+Number(row[col('Full destination days')]),0),3);
+ for(const row of rows)assert.equal((new Date(row[col('End date (exclusive)')])-new Date(row[col('Start date')]))/86400000,row[col('Days')]);
+ const allocated=rows.filter(row=>row[col('Days')]>0);
+ for(let i=1;i<allocated.length;i++)assert.equal(allocated[i][col('Start date')],allocated[i-1][col('End date (exclusive)')]);
+});
+
+
+test('morning departure reports allocate its calendar date once and describe the activity split',()=>{
+ const a={id:'morning',shortName:'Morning park',type:'park',lat:0,lng:2.388,days:2};
+ const s={...settings,start:{lat:0,lng:0},end:{lat:0,lng:2.52},restDays:2,averageMph:60,distanceFactor:1};
+ const r=schedule([a],s),rows=exportTables({sites:[a],result:r,state:{selected:[a.id],settings:s}}).itinerary.slice(1);
+ assert.equal(r.visits[0].departureSharedDays,.5);
+ assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);
+ assert.equal(rows.reduce((n,row)=>n+Number(row[col('Full destination days')]),0),2);
+ assert.ok(rows.some(row=>row.at(-1).includes('departure morning')));assert.ok(rows.some(row=>row.at(-1).includes('morning exploration +')));
+ const allocated=rows.filter(row=>row[col('Days')]>0);
+ for(const row of rows)assert.equal((new Date(row[col('End date (exclusive)')])-new Date(row[col('Start date')]))/86400000,row[col('Days')]);
+ for(let i=1;i<allocated.length;i++)assert.equal(allocated[i][col('Start date')],allocated[i-1][col('End date (exclusive)')]);
+});
+
 test('fixed-date appointment wait is exported separately and reconciles calendar allocation',()=>{
  const s={id:'custom-family',type:'custom',name:'Family',shortName:'Family',lat:settings.start.lat,lng:settings.start.lng,days:3,fixedDate:'2040-06-10'},r=schedule([s],settings),tables=build([s],r),rows=tables.itinerary.slice(1);
  assert.ok(rows.some(row=>row[col('Event')]==='Appointment wait'));assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);assert.ok(rows.some(row=>String(row.at(-1)).includes('Fixed first full day 2040-06-10')));
