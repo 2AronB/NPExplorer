@@ -4,7 +4,16 @@ import {personalPriority} from './personal-priority.mjs';
 export const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 const DAY=86400000;
 export const dateOf=s=>new Date(s+'T12:00:00Z');
-export const iso=d=>d.toISOString().slice(0,10);
+// Searches revisit the same calendar dates millions of times. Key by timestamp,
+// not Date identity (Date objects are mutable), and bound worker-local memory.
+const isoCache=new Map();
+export const iso=d=>{
+ const time=d.getTime(),cached=isoCache.get(time);
+ if(cached!==undefined)return cached;
+ const value=d.toISOString().slice(0,10);
+ if(isoCache.size>=4096)isoCache.clear();
+ isoCache.set(time,value);return value;
+};
 export const addDays=(d,n)=>new Date(d.getTime()+n*DAY);
 export function haversine(a,b){
  const rad=x=>x*Math.PI/180,dlat=rad(b.lat-a.lat),dlng=rad(b.lng-a.lng);
@@ -180,12 +189,14 @@ function geometrySearch(input,settings){
  }
  return order;
 }
-function optimizeOneMonth(stops,settings){
+function optimizeOneMonth(stops,settings,onProgress){
  if(!stops.length)return null;
+ onProgress?.({fraction:0,phase:'Finding short driving routes'});
  const dates=[settings.startDate];
  const near=[...stops].sort((a,b)=>travel(settings.start,a,settings).miles-travel(settings.start,b,settings).miles);
  const seeds=[...new Set([0,1,2,4,8].map(n=>Math.min(n,near.length-1)))];
  const geographic=seeds.map(i=>geometrySearch(greedy(stops,settings,settings.startDate,false,near[i].id),settings));
+ onProgress?.({fraction:.15,phase:'Comparing seasonal route orders'});
  geographic.sort((a,b)=>routeMiles(a,settings)-routeMiles(b,settings));
  const baselineMiles=routeMiles(geographic[0],settings);
  const detourPercent=settings.objective==='shortest'?0:(settings.seasonDetourPercent??15);
@@ -202,9 +213,11 @@ function optimizeOneMonth(stops,settings){
  let winner=candidates[0].result;
  const closest=new Map(stops.map(s=>[s.id,new Set([...stops].filter(x=>x.id!==s.id).sort((a,b)=>travel(s,a,settings).miles-travel(s,b,settings).miles).slice(0,6).map(x=>x.id))]));
  // Polish the strongest date/order candidates with systematic local moves, not random swaps.
- for(const candidate of candidates.slice(0,4)){
+ const finalists=candidates.slice(0,4);let candidateIndex=0;
+ for(const candidate of finalists){
   let order=[...candidate.order],best=candidate.result;
   for(let pass=0;pass<4;pass++){
+   onProgress?.({fraction:.25+.7*(candidateIndex+pass/4)/finalists.length,phase:`Improving route ${candidateIndex+1} of ${finalists.length} · pass ${pass+1}`});
    let improvedOrder=null,improved=best;
    const consider=proposed=>{if(routeMiles(proposed,settings)>maxMiles)return;const r=schedule(proposed,settings,best.startDate);if(r.score<improved.score-.00001){improved=r;improvedOrder=proposed;}};
    for(let i=0;i<order.length;i++)for(let j=0;j<order.length;j++){
@@ -216,20 +229,21 @@ function optimizeOneMonth(stops,settings){
    if(!improvedOrder)break;best=improved;order=improvedOrder;
   }
   if(best.score<winner.score)winner=best;
+  candidateIndex++;
  }
+ onProgress?.({fraction:1,phase:'Route search complete'});
  return {...winner,baselineMiles,extraMiles:Math.max(0,winner.miles-baselineMiles),detourPercent,maxMiles};
 }
 export function optimize(stops,settings,onProgress){
  if(!stops.length)return null;
- if(!settings.autoMonth)return optimizeOneMonth(stops,settings);
+ if(!settings.autoMonth)return optimizeOneMonth(stops,settings,p=>onProgress?.({...p,completed:0,total:1,startDate:settings.startDate}));
  const monthResults=[];
  for(let month=1;month<=12;month++){
   const startDate=`${settings.startDate.slice(0,4)}-${String(month).padStart(2,'0')}-01`;
-  onProgress?.({completed:month-1,total:12,startDate});
-  monthResults.push(optimizeOneMonth(stops,{...settings,autoMonth:false,startDate}));
+  monthResults.push(optimizeOneMonth(stops,{...settings,autoMonth:false,startDate},p=>onProgress?.({...p,completed:month-1,total:12,startDate})));
  }
  const best=[...monthResults].sort((a,b)=>a.score-b.score)[0];
- onProgress?.({completed:12,total:12,startDate:best.startDate});
+ onProgress?.({completed:12,total:12,fraction:1,phase:'Departure months compared',startDate:best.startDate});
  return {...best,monthResults,searchYear:settings.startDate.slice(0,4)};
 }
 export function detours(candidates,order,settings){

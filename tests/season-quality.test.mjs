@@ -34,7 +34,7 @@ test('old bucket-only edits retain their intent when converted to numeric scores
 test('departure-month search fully optimizes all twelve months independently',()=>{
  const stops=['deva','jotr','pinn','yose'].map(id=>byId.get(id)),progress=[];
  const r=optimize(stops,{...settings,autoMonth:true},p=>progress.push(p.completed));
- assert.equal(r.monthResults.length,12);assert.deepEqual(progress,Array.from({length:13},(_,i)=>i));
+ assert.equal(r.monthResults.length,12);assert.deepEqual([...new Set(progress)],Array.from({length:13},(_,i)=>i));
  for(let month=1;month<=12;month++){
   const date=`2040-${String(month).padStart(2,'0')}-01`,fixed=optimize(stops,{...settings,startDate:date}),option=r.monthResults[month-1];
   assert.equal(option.startDate,date);assert.deepEqual(option.order,fixed.order);assert.equal(option.score,fixed.score);assert.equal(option.parkDays,stops.reduce((n,s)=>n+s.days,0));

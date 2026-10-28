@@ -27,6 +27,8 @@ The local app opens at http://127.0.0.1:4173/ . `dist/` is generated and replace
 
 The public site is a separate browser origin, so its saved plans are independent from localhost. Use a JSON export/import to transfer an existing local plan. XLSX and CSV are reports rather than restorable backups.
 
+Run `npm run benchmark` (or `node scripts/optimizer-benchmark.mjs`) for repeatable optimizer timings and route-quality checks. Use `--compare <commit>` for exact-result comparisons against a baseline. See [performance measurements and methodology](docs/optimizer-performance.md). Benchmarks are development-only and are excluded from the published website.
+
 ## Optimizer calendar contract
 
 Requested `visit.days` are exploration equivalents and never shrink to meet the trip target. With shared exploration/driving enabled, `sharedDays` credits the final road day's spare hours at the destination, rounded down to quarter-day equivalents. Road days fit both the selected driving ceiling and the activity budget after stop allowance and camp setup/teardown. Impossible activity budgets fail with an explanatory error instead of shortening stays. Callers omitting `dayBudget` retain legacy drive-only day counts.

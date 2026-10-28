@@ -9,6 +9,23 @@ const park=id=>structuredClone(REMOTE_PARKS.find(s=>s.id===id));
 const mia=MAINLAND_AIRPORTS.find(a=>a.code==='MIA');
 const settings={...DEFAULT_SETTINGS,autoMonth:false,startDate:'2040-06-01',restDays:0,alaskaMode:'compare',airportCodes:['MIA'],start:{...mia,id:'start'},end:{...mia,id:'finish'}};
 const visited=r=>r.visits.filter(v=>!v.excursion).map(v=>v.id).concat(r.excursions.flatMap(b=>b.visits.map(v=>v.id)));
+
+test('progress advances within each month without changing combined Pacific route results',()=>{
+ const stops=[park('hale'),park('havo'),park('npsa')];
+ for(const autoMonth of [false,true]){
+  const progress=[],input={...settings,autoMonth};
+  const r=optimizeTrip(stops,input,p=>progress.push(p));
+  assert.deepEqual(r,optimizeTrip(stops,input));
+  let previous=-1;
+  for(const p of progress){
+   assert.ok(p.fraction>=0&&p.fraction<=1);assert.ok(p.phase);assert.ok(p.startDate);
+   const value=p.completed===p.total?p.total:p.completed+p.fraction;
+   assert.ok(value>=previous,`Progress moved backward: ${previous} → ${value}`);previous=value;
+  }
+  assert.equal(previous,autoMonth?12:1);
+  assert.ok(progress.some(p=>p.fraction>0&&p.fraction<1));
+ }
+});
 test('combined inventory covers all 64 designated national parks without duplicate IDs',()=>{
  assert.equal(currentInventory(land).filter(s=>s.type==='park').length+REMOTE_PARKS.length,64);
  assert.equal(new Set([...land,...REMOTE_PARKS].map(s=>s.id)).size,398);

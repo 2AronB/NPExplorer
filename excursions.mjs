@@ -1,7 +1,7 @@
 import {personalPriority} from './personal-priority.mjs';
 import {CANADA_CORRIDOR,REGIONAL_GATEWAYS} from './remote-parks.mjs';
 const caches=new WeakMap();
-const inWindow=(date,w)=>{if(!w)return true;const md=date.toISOString().slice(5,10);return w.start<=w.end?md>=w.start&&md<=w.end:md>=w.start||md<=w.end;};
+const inWindow=(date,w,iso)=>{if(!w)return true;const md=iso(date).slice(5,10);return w.start<=w.end?md>=w.start&&md<=w.end:md>=w.start||md<=w.end;};
 export function flightEstimate(from,to,haversine){
  // Every modeled airport can connect to every region; no claim of nonstop service.
  return haversine(from,to)/475+6; // 3 h airport handling + 3 h connection allowance
@@ -67,7 +67,7 @@ export function evaluateExcursion(stop,date,settings,api){
     if(event.kind==='park'){
      const s=event.park,w=settings.remoteWindows?.[s.id]===null?null:settings.remoteWindows?.[s.id]||s.remote.window;
      let sum=0,min=10,closed=false;
-     for(let i=0;i<s.days;i++){const d=addDays(now,i),q=seasonQuality(s,d)??6;if(!inWindow(d,w)||isClosed(s,d))closed=true;sum+=q;min=Math.min(min,q);penalty+=((10-q)/3)**2*personalPriority(s);if(settings.objective==='quiet'&&!s.profile.quiet.includes(d.getUTCMonth()+1))penalty+=3*personalPriority(s);}
+     for(let i=0;i<s.days;i++){const d=addDays(now,i),q=seasonQuality(s,d)??6;if(!inWindow(d,w,iso)||isClosed(s,d))closed=true;sum+=q;min=Math.min(min,q);penalty+=((10-q)/3)**2*personalPriority(s);if(settings.objective==='quiet'&&!s.profile.quiet.includes(d.getUTCMonth()+1))penalty+=3*personalPriority(s);}
      if(closed&&wait<371){feasible=false;break;}
      qualitySum+=sum;qualityDays+=s.days;visits.push({id:s.id,arrival:depart,departure:iso(addDays(now,s.days)),days:s.days,priority:personalPriority(s),quality:sum/s.days,minQuality:min,status:min<=3?'difficult':sum/s.days>=8?'ideal':'mixed',route:s.remote.route});
     }else transport.push({...event,depart,arrival:iso(addDays(now,event.days))});

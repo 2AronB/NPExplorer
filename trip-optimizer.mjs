@@ -21,19 +21,22 @@ function bestInsertion(order,candidates,settings){
  }
  return {best,byMode};
 }
-function oneMonthLayout(stops,settings,combined=false){
+function oneMonthLayout(stops,settings,combined=false,onProgress){
+ const report=(fraction,phase)=>onProgress?.({fraction,phase});
+ report(0,'Finding mainland route');
  const mainland=stops.filter(s=>!s.remote),remote=stops.filter(s=>s.remote),groups=new Map();
  for(const s of remote){const key=s.remote.region;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(s);}
  if(combined&&groups.has('hawaii')&&groups.has('samoa')){groups.set('pacific',[...groups.get('hawaii'),...groups.get('samoa')]);groups.delete('hawaii');groups.delete('samoa');}
- const land=mainland.length?optimize(mainland,{...settings,autoMonth:false}):null;
+ const land=mainland.length?optimize(mainland,{...settings,autoMonth:false},p=>report(p.fraction*.3,p.phase)):null;
  const lookup=new Map(mainland.map(s=>[s.id,s]));let order=land?land.order.map(id=>lookup.get(id)):[];
  const variants=new Map([...groups].map(([region,parks])=>[region,options(region,parks,settings)]));
  // Alaska first: its restrictive transport season matters most. Revisit each
  // inserted block after all others are present to account for shifted dates.
  const regions=[...groups.keys()].sort((a,b)=>(a==='alaska'?-1:b==='alaska'?1:a.localeCompare(b)));
- for(const region of regions)order=bestInsertion(order,variants.get(region),settings).best.order;
+ for(const [index,region] of regions.entries()){report(.3+.2*index/regions.length,`Finding ${REGION_NAMES[region]} connections`);order=bestInsertion(order,variants.get(region),settings).best.order;}
  const comparisons=[];
  for(const region of regions){
+  report(.5+.15*comparisons.length/regions.length,`Refining ${REGION_NAMES[region]} timing`);
   const without=order.filter(s=>s.excursion?.region!==region),choice=bestInsertion(without,variants.get(region),settings);order=choice.best.order;
   comparisons.push({region,chosen:choice.best.node.excursion.mode,airportsTested:variants.get(region).filter(s=>s.excursion.mode==='fly').length,alternatives:[...choice.byMode].map(([mode,item])=>{const b=item.result.excursions.find(e=>e.region===region);return {mode,airport:item.node.excursion.airport?.code||null,score:item.result.score,tripDays:item.result.totalDays,miles:item.result.miles,drivingHours:item.result.hours,flightHours:item.result.flightHours,quality:item.result.quality,excursionQuality:b.quality,depart:b.depart,returnDate:b.returnDate,waitDays:b.wait,blockDays:b.days,feasible:b.feasible};})});
  }
@@ -41,6 +44,7 @@ function oneMonthLayout(stops,settings,combined=false){
  // Preserve the geographic budget on the mainland stops themselves.
  let polished=schedule(order,settings);
  for(let pass=0;pass<2;pass++){
+  report(.65+pass*.075,`Improving mainland and flight timing · pass ${pass+1}`);
   let winner=null;
   for(let i=0;i<order.length-1;i++)for(let size=2;size<=4&&i+size<=order.length;size++){
    if(order.slice(i,i+size).some(s=>s.excursion))continue;
@@ -52,7 +56,8 @@ function oneMonthLayout(stops,settings,combined=false){
   if(!winner)break;order=winner.order;polished=winner.result;
  }
  // Refresh comparison metrics with every other block in its final position.
- for(const comparison of comparisons){
+ for(const [index,comparison] of comparisons.entries()){
+  report(.8+.19*index/comparisons.length,`Comparing ${REGION_NAMES[comparison.region]} alternatives`);
   const region=comparison.region,without=order.filter(s=>s.excursion?.region!==region);
   const choice=bestInsertion(without,variants.get(region),settings);
   comparison.alternatives=[...choice.byMode].map(([mode,item])=>{const b=item.result.excursions.find(e=>e.region===region);return {mode,airport:item.node.excursion.airport?.code||null,score:item.result.score,tripDays:item.result.totalDays,miles:item.result.miles,drivingHours:item.result.hours,flightHours:item.result.flightHours,quality:item.result.quality,excursionQuality:b.quality,depart:b.depart,returnDate:b.returnDate,waitDays:b.wait,blockDays:b.days,feasible:b.feasible};});
@@ -62,24 +67,26 @@ function oneMonthLayout(stops,settings,combined=false){
  // even when a later local move makes another insertion look competitive.
  for(const c of comparisons){const b=r.excursions.find(e=>e.region===c.region);c.alternatives=c.alternatives.map(a=>a.mode!==b.mode?a:{mode:b.mode,airport:b.airport?.code||null,score:r.score,tripDays:r.totalDays,miles:r.miles,drivingHours:r.hours,flightHours:r.flightHours,quality:r.quality,excursionQuality:b.quality,depart:b.depart,returnDate:b.returnDate,waitDays:b.wait,blockDays:b.days,feasible:b.feasible});}
  const mainlandMiles=routeMiles(order.filter(s=>!s.excursion),settings);
+ report(1,'Trip strategy complete');
  return {...r,nodes:order.filter(s=>s.excursion),remoteComparisons:comparisons,requestedIds:stops.map(s=>s.id),baselineMiles:land?.baselineMiles||0,extraMiles:Math.max(0,mainlandMiles-(land?.baselineMiles||0)),detourPercent:land?.detourPercent||0,maxMiles:land?.maxMiles||0,mainlandMiles};
 }
-function oneMonth(stops,settings){
- const separate=oneMonthLayout(stops,settings);
- if(!stops.some(s=>s.remote?.region==='hawaii')||!stops.some(s=>s.remote?.region==='samoa'))return separate;
- const combined=oneMonthLayout(stops,settings,true),chosen=combined.score<separate.score?combined:separate;
+function oneMonth(stops,settings,onProgress){
+ const comparePacific=stops.some(s=>s.remote?.region==='hawaii')&&stops.some(s=>s.remote?.region==='samoa');
+ const separate=oneMonthLayout(stops,settings,false,p=>onProgress?.({...p,fraction:p.fraction*(comparePacific ? .5 : 1)}));
+ if(!comparePacific)return separate;
+ const combined=oneMonthLayout(stops,settings,true,p=>onProgress?.({...p,fraction:.5+p.fraction*.5,phase:'Combined Pacific trip · '+p.phase})),chosen=combined.score<separate.score?combined:separate;
  return {...chosen,pacificComparison:{chosen:chosen===combined?'combined':'separate',alternatives:[['separate',separate],['combined',combined]].map(([strategy,r])=>({strategy,score:r.score,days:r.totalDays,flightHours:r.flightHours,quality:r.quality,feasible:!r.appointmentConflicts&&r.excursions.every(e=>e.feasible),airports:r.excursions.filter(e=>['hawaii','samoa','pacific'].includes(e.region)).map(e=>e.airport?.code),order:r.excursions.find(e=>e.region==='pacific')?.visits.map(v=>v.id)||[]}))}};
 }
 export function optimizeTrip(stops,settings,onProgress){
  if(!stops.some(s=>s.remote))return optimize(stops,settings,onProgress);
  const s={...REMOTE_DEFAULTS,...settings};
- if(!s.autoMonth)return oneMonth(stops,s);
+ if(!s.autoMonth)return oneMonth(stops,s,p=>onProgress?.({...p,completed:0,total:1,startDate:s.startDate}));
  const monthResults=[];
  for(let month=1;month<=12;month++){
   const startDate=`${s.startDate.slice(0,4)}-${String(month).padStart(2,'0')}-01`;
-  onProgress?.({completed:month-1,total:12,startDate});monthResults.push(oneMonth(stops,{...s,autoMonth:false,startDate}));
+  monthResults.push(oneMonth(stops,{...s,autoMonth:false,startDate},p=>onProgress?.({...p,completed:month-1,total:12,startDate})));
  }
- const best=[...monthResults].sort((a,b)=>a.score-b.score)[0];onProgress?.({completed:12,total:12,startDate:best.startDate});
+ const best=[...monthResults].sort((a,b)=>a.score-b.score)[0];onProgress?.({completed:12,total:12,fraction:1,phase:'Departure months compared',startDate:best.startDate});
  return {...best,monthResults,searchYear:s.startDate.slice(0,4)};
 }
 export function tripDetours(candidates,result,lookup,settings){
