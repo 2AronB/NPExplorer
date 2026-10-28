@@ -1,0 +1,34 @@
+{
+  "checkedDate": "2026-10-28",
+  "dataset": "seasonal-access.json",
+  "ok": true,
+  "errors": [],
+  "counts": {
+    "parks": 64,
+    "sources": 219,
+    "claims": 346,
+    "verifiedPrimary": 264,
+    "officialQualitative": 17,
+    "officialMeasured": 64,
+    "inferredFromPrimary": 1,
+    "measuredParkYears": 192,
+    "modeledMonthValues": 816,
+    "unknownEntries": 222,
+    "temporalTypes": {
+      "unknown": 9,
+      "typical_weather_dependent_range": 178,
+      "historical_measurement": 64,
+      "current_year_published_schedule": 7,
+      "fixed_recurring_rule": 81,
+      "temporary_alert": 7
+    },
+    "dimensions": {
+      "accessRules": 62,
+      "experienceWindows": 28,
+      "climateNotes": 64,
+      "crowdEvidence": 64,
+      "services": 52
+    }
+  },
+  "negativeChecks": 8
+}

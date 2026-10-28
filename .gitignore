@@ -38,6 +38,12 @@
 !/package.json
 !/server.mjs
 !/scripts/build-site.mjs
+!/scripts/validate-seasonal-data.mjs
+!/data/seasonal-research/
+!/data/seasonal-research/seasonal-access.json
+!/data/seasonal-research/validation-summary.json
+!/data/seasonal-research/EVIDENCE_REPORT.md
+!/data/seasonal-research/INTEGRATION_CONTRACT.md
 !/.github/workflows/pages.yml
 !/tests/calibration.test.mjs
 !/tests/map-markers.test.mjs
