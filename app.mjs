@@ -18,6 +18,7 @@ const highlightDays={yell:4,grte:2,glac:3,yose:3,grca:2,zion:2,brca:1,arch:1,can
 const defaults=DEFAULT_SETTINGS;
 const sample=['romo','grsa','meve','arch','cany','care','brca','zion','grca','pefo','whsa'];
 const [{sites:baseSites,metadata},states]=await Promise.all([fetch('./data/sites.json').then(r=>{if(!r.ok)throw Error('Unable to load park data');return r.json();}),fetch('./data/states.json').then(r=>r.json())]);
+const seasonalResearch=await fetch('./data/seasonal-research/seasonal-access.json').then(r=>r.ok?r.json():null).catch(()=>null);
 baseSites.splice(0,baseSites.length,...[...currentInventory(baseSites),...REMOTE_PARKS].map(withPriorityDefault));
 let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
 try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)state=validate(JSON.parse(saved));}catch(error){try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)localStorage.setItem('long-way-plan-recovery-v1',saved);}catch{}console.error('Saved-plan validation:',error);toast('Saved plan could not be loaded. A recovery copy was retained in this browser; starter settings are shown.',true);}
@@ -171,6 +172,7 @@ function renderDetail(id){
   onClose:()=>{$('detail').hidden=true;activeId=null;},
   onSave:rule=>{state.rules[id]=rule;changed();rebuild();renderAll();toast('Numeric seasonal scores saved. Recalculate to apply them.');},
   onReset:()=>{delete state.rules[id];changed();rebuild();renderAll();},onError:toast});
+ renderSeasonalEvidence(id);
 }
 
 function fillSettings(){const s=state.settings;$('sharedDays').value=String(s.sharedDays);for(const key of ['dayBudget','explorationHours','setupHours','teardownHours','startDate','duration','objective','seasonDetourPercent','pace','comfort','stretch','maxDrive','averageMph','distanceFactor','breakPercent','stayMode','defaultDays','restDays','detourHours','endMode'])$(key).value=s[key];$('autoMonth').checked=s.autoMonth;for(const key of ['Name','Lat','Lng']){$('start'+key).value=s.start[key.toLowerCase()];$('end'+key).value=s.endLocation[key.toLowerCase()];}$('endFields').hidden=s.endMode!=='custom';$('uniformDaysField').hidden=s.stayMode!=='uniform';$('seasonDetourPercent').disabled=s.objective==='shortest';endRequired();}
@@ -264,3 +266,10 @@ $('dataInfo').onclick=()=>{$('aboutContent').innerHTML=`<ul><li><strong>Inventor
 
 
 
+
+function renderSeasonalEvidence(id){
+ const park=seasonalResearch?.parks[id];if(!park)return;
+ const sections=[['Access and roads','accessRules'],['Signature experiences','experienceWindows'],['Climate and hazards','climateNotes'],['Crowd evidence','crowdEvidence'],['Services and transport','services']];
+ const content=sections.map(([title,key])=>{const claims=park[key]||[];return claims.length?'<h4>'+escape(title)+'</h4>'+claims.map(c=>'<article><strong>'+escape(c.asset)+'</strong><p>'+escape(c.rationale)+'</p><p class="fineprint">'+escape(c.temporal?.label||'Timing unknown')+' · '+escape(c.temporal?.type?.replaceAll('_',' '))+' · '+escape(c.evidenceStatus?.replaceAll('_',' '))+' · '+escape(c.confidence)+' confidence'+(c.temporal?.year?' · applies to '+escape(c.temporal.year):'')+'</p><p>'+escape(c.uncertainty||'')+'</p>'+((c.sourceIDs||[]).map(sourceID=>{const source=seasonalResearch.sources[sourceID];return source&&/^https:\/\//.test(source.url)?'<a target="_blank" rel="noopener" href="'+escape(source.url)+'">'+escape(source.title)+' ↗</a>':'';}).join('<br>'))+'</article>').join(''):'';}).join('');
+ $('detail').insertAdjacentHTML('beforeend','<details class="rule-editor"><summary>Seasonal access research · official sources and limitations</summary><p>Research checked '+escape(seasonalResearch.researchAsOf)+'. Informational evidence: it does not replace your scores, overrides or optimizer constraints. Road/area restrictions do not imply a whole-park closure. Year-specific schedules and temporary alerts are not recurring rules for future trips.</p>'+content+'<h4>Gaps and rechecks</h4><ul>'+[...(park.unknowns||[]).map(x=>x.reason),...(park.reviewNotes||[])].map(x=>'<li>'+escape(x)+'</li>').join('')+'</ul></details>');
+}

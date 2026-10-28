@@ -8,7 +8,7 @@ export const runtimeFiles=[
  'excursions.mjs','location-detail.mjs','map-markers.mjs','optimizer.mjs',
  'personal-priority.mjs','plan-defaults.mjs','remote-parks.mjs','season-quality.mjs',
  'transport-ui.mjs','trip-export.mjs','trip-optimizer.mjs','worker.mjs',
- 'data/sites.json','data/states.json',
+ 'data/sites.json','data/states.json','data/seasonal-research/seasonal-access.json',
  'vendor/leaflet.js','vendor/leaflet.css','vendor/topojson-client.min.js','vendor/xlsx.mini.min.js',
  'vendor/LEAFLET-LICENSE.txt','vendor/TOPOJSON-LICENSE.txt','vendor/US-ATLAS-LICENSE.txt','vendor/SHEETJS-LICENSE.txt'
 ];
