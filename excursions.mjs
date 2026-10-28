@@ -9,7 +9,8 @@ export function flightEstimate(from,to,haversine){
 export function evaluateExcursion(stop,date,settings,api){
  const {travel,driveDays,dateOf,addDays,iso,seasonQuality,isClosed,haversine}=api;
  let cache=caches.get(stop);if(!cache){cache=new Map();caches.set(stop,cache);}
- const key=iso(date);if(cache.has(key))return cache.get(key);
+ // Insertion searches reuse nodes, including across changed planning settings.
+ const key=JSON.stringify([iso(date),settings,stop.excursion]);if(cache.has(key))return cache.get(key);
  const {region,mode,airport,parks}=stop.excursion,gateway=REGIONAL_GATEWAYS[region],buffer=settings.remoteBufferDays??2;
  const point=p=>({lat:p.lat,lng:p.lng});
  const flight=(from,to,label)=>{const hours=flightEstimate(from,to,haversine);return {kind:'flight',label,hours,days:Math.ceil(hours/(settings.flightDayHours??12)),from,to};};
@@ -38,7 +39,7 @@ export function evaluateExcursion(stop,date,settings,api){
   middle=[middle,[...roadEvents,...[...air].reverse().flatMap(s=>[regional(s),park(s),regional(s,true)])]];
  }else if(region==='hawaii'){
   let previous=null;middle=[];
-  for(const s of parks){const island={name:s.id==='hale'?'Kahului OGG':'Hilo ITO',lat:s.id==='hale'?20.9:19.72,lng:s.id==='hale'?-156.43:-155.05};if(previous)middle.push(flight(previous,island,previous.name+' → '+island.name));middle.push({...drive(island,s,'Rental car → '+s.shortName),days:1},park(s),{...drive(s,island,s.shortName+' → island airport'),days:1});previous=island;}
+  for(const s of parks){const island={name:s.id==='hale'?'Kahului OGG':'Hilo ITO',lat:s.id==='hale'?20.9:19.72,lng:s.id==='hale'?-156.43:-155.05};if(previous)middle.push(flight(previous,island,previous.name+' → '+island.name));const outbound=drive(island,s,'Rental car → '+s.shortName),inbound=drive(s,island,s.shortName+' → island airport');middle.push({...outbound,days:Math.max(1,outbound.days)},park(s),{...inbound,days:Math.max(1,inbound.days)});previous=island;}
   middle=[middle];
  }else{
   const s=parks[0];middle=[[{kind:'transfer',label:s.remote.route,hours:region==='virgin'?4:2,days:1,from:gateway,to:point(s)},park(s),{kind:'transfer',label:'Return to '+gateway.name,hours:region==='virgin'?4:2,days:1,from:point(s),to:gateway}]];
