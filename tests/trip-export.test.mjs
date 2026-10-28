@@ -57,3 +57,7 @@ test('morning departure reports allocate its calendar date once and describe the
  for(let i=1;i<allocated.length;i++)assert.equal(allocated[i][col('Start date')],allocated[i-1][col('End date (exclusive)')]);
 });
 
+
+test('combined Hawaii/Samoa exports retain each park, continuous numbering and reconciled transport',()=>{
+ const sites=REMOTE_PARKS.filter(s=>['hale','havo','npsa'].includes(s.id)),r=optimizeTrip(sites,settings),tables=build(sites,r),rows=tables.itinerary.slice(1),parks=rows.filter(row=>row[col('Event')]==='Park / destination stay');assert.equal(r.pacificComparison.chosen,'combined');assert.equal(parks.length,3);assert.deepEqual(parks.map(row=>row[col('Stop number')]),[1,2,3]);assert.equal(rows.reduce((n,row)=>n+Number(row[col('Days')]),0),r.totalDays);assert.equal(rows.reduce((n,row)=>n+Number(row[col('Full destination days')]),0),14);assert.equal(tables.travelDocument.parks.length,3);
+});

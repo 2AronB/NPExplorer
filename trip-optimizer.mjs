@@ -9,7 +9,7 @@ function options(region,parks,settings){
  const out=region==='alaska'&&settings.alaskaMode==='drive'?[]:airportCandidates(settings).map(a=>make('fly',a));
  if(region==='alaska'&&settings.alaskaMode!=='fly')out.push(make('drive',null));
  if(!out.length)throw Error('Select at least one mainland airport for flying excursions.');
- return out;
+ return region==='pacific'?out.flatMap(node=>['hawaii-first','samoa-first'].flatMap(pacificOrder=>[false,true].map(reverseIslands=>({...node,excursion:{...node.excursion,pacificOrder,reverseIslands}})))):out;
 }
 function bestInsertion(order,candidates,settings){
  let best=null;const byMode=new Map();
@@ -21,9 +21,10 @@ function bestInsertion(order,candidates,settings){
  }
  return {best,byMode};
 }
-function oneMonth(stops,settings){
+function oneMonthLayout(stops,settings,combined=false){
  const mainland=stops.filter(s=>!s.remote),remote=stops.filter(s=>s.remote),groups=new Map();
  for(const s of remote){const key=s.remote.region;if(!groups.has(key))groups.set(key,[]);groups.get(key).push(s);}
+ if(combined&&groups.has('hawaii')&&groups.has('samoa')){groups.set('pacific',[...groups.get('hawaii'),...groups.get('samoa')]);groups.delete('hawaii');groups.delete('samoa');}
  const land=mainland.length?optimize(mainland,{...settings,autoMonth:false}):null;
  const lookup=new Map(mainland.map(s=>[s.id,s]));let order=land?land.order.map(id=>lookup.get(id)):[];
  const variants=new Map([...groups].map(([region,parks])=>[region,options(region,parks,settings)]));
@@ -62,6 +63,12 @@ function oneMonth(stops,settings){
  for(const c of comparisons){const b=r.excursions.find(e=>e.region===c.region);c.alternatives=c.alternatives.map(a=>a.mode!==b.mode?a:{mode:b.mode,airport:b.airport?.code||null,score:r.score,tripDays:r.totalDays,miles:r.miles,drivingHours:r.hours,flightHours:r.flightHours,quality:r.quality,excursionQuality:b.quality,depart:b.depart,returnDate:b.returnDate,waitDays:b.wait,blockDays:b.days,feasible:b.feasible});}
  const mainlandMiles=routeMiles(order.filter(s=>!s.excursion),settings);
  return {...r,nodes:order.filter(s=>s.excursion),remoteComparisons:comparisons,requestedIds:stops.map(s=>s.id),baselineMiles:land?.baselineMiles||0,extraMiles:Math.max(0,mainlandMiles-(land?.baselineMiles||0)),detourPercent:land?.detourPercent||0,maxMiles:land?.maxMiles||0,mainlandMiles};
+}
+function oneMonth(stops,settings){
+ const separate=oneMonthLayout(stops,settings);
+ if(!stops.some(s=>s.remote?.region==='hawaii')||!stops.some(s=>s.remote?.region==='samoa'))return separate;
+ const combined=oneMonthLayout(stops,settings,true),chosen=combined.score<separate.score?combined:separate;
+ return {...chosen,pacificComparison:{chosen:chosen===combined?'combined':'separate',alternatives:[['separate',separate],['combined',combined]].map(([strategy,r])=>({strategy,score:r.score,days:r.totalDays,flightHours:r.flightHours,quality:r.quality,feasible:!r.appointmentConflicts&&r.excursions.every(e=>e.feasible),airports:r.excursions.filter(e=>['hawaii','samoa','pacific'].includes(e.region)).map(e=>e.airport?.code),order:r.excursions.find(e=>e.region==='pacific')?.visits.map(v=>v.id)||[]}))}};
 }
 export function optimizeTrip(stops,settings,onProgress){
  if(!stops.some(s=>s.remote))return optimize(stops,settings,onProgress);

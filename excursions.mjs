@@ -21,6 +21,8 @@ export function evaluateExcursion(stop,date,settings,api){
  if(mode==='drive'){
   for(let i=1;i<CANADA_CORRIDOR.length;i++)prefix.push(drive(CANADA_CORRIDOR[i-1],CANADA_CORRIDOR[i],`${CANADA_CORRIDOR[i-1].name} → ${CANADA_CORRIDOR[i].name}`));
   suffix=[...prefix].reverse().map(e=>({...e,from:e.to,to:e.from,label:e.to.name+' → '+e.from.name}));
+ }else if(region==='pacific'){
+  // Entire mainland-to-mainland flight chain is assembled below.
  }else if(region==='samoa'){
   const hnl=REGIONAL_GATEWAYS.hawaii;prefix=[flight(airport,hnl,airport.code+' → Honolulu (connections allowed)'),flight(hnl,gateway,'Honolulu → Pago Pago (service assumed)')];
   suffix=[flight(gateway,hnl,'Pago Pago → Honolulu (service assumed)'),flight(hnl,airport,'Honolulu → '+airport.code+' (connections allowed)')];
@@ -37,6 +39,15 @@ export function evaluateExcursion(stop,date,settings,api){
   middle=[...airEvents,...roadEvents];
   // Test both regional circuit directions against actual visit dates.
   middle=[middle,[...roadEvents,...[...air].reverse().flatMap(s=>[regional(s),park(s),regional(s,true)])]];
+  }else if(region==='pacific'){
+  const hnl=REGIONAL_GATEWAYS.hawaii,ppg={...REGIONAL_GATEWAYS.samoa,name:'Pago Pago PPG'},hawaii=parks.filter(s=>s.remote.region==='hawaii'),samoa=parks.find(s=>s.remote.region==='samoa');
+  if(stop.excursion.reverseIslands)hawaii.reverse();
+  const island=s=>({name:s.id==='hale'?'Kahului OGG':'Hilo ITO',lat:s.id==='hale'?20.9:19.72,lng:s.id==='hale'?-156.43:-155.05});
+  const hawaiiEvents=[];let previous=null;
+  for(const s of hawaii){const a=island(s);if(previous)hawaiiEvents.push(flight(previous,a,previous.name+' → '+a.name));const out=drive(a,s,'Rental car → '+s.shortName),back=drive(s,a,s.shortName+' → island airport');hawaiiEvents.push({...out,days:Math.max(1,out.days)},park(s),{...back,days:Math.max(1,back.days)});previous=a;}
+  const samoaEvents=[{kind:'transfer',label:'Pago Pago → Tutuila park access',hours:2,days:1,from:ppg,to:point(samoa)},park(samoa),{kind:'transfer',label:'Tutuila → Pago Pago',hours:2,days:1,from:point(samoa),to:ppg}];
+  const hop=(a,b)=>flight(a,b,a.name+' → '+b.name+' (connections/service assumed)'),contingency={kind:'buffer',label:'First-region weather / connection contingency',days:buffer};
+  middle=stop.excursion.pacificOrder==='samoa-first'?[[hop(airport,hnl),hop(hnl,ppg),...samoaEvents,contingency,hop(ppg,hnl),hop(hnl,island(hawaii[0])),...hawaiiEvents,hop(previous,airport)]]:[[hop(airport,island(hawaii[0])),...hawaiiEvents,contingency,hop(previous,hnl),hop(hnl,ppg),...samoaEvents,hop(ppg,hnl),hop(hnl,airport)]];
  }else if(region==='hawaii'){
   let previous=null;middle=[];
   for(const s of parks){const island={name:s.id==='hale'?'Kahului OGG':'Hilo ITO',lat:s.id==='hale'?20.9:19.72,lng:s.id==='hale'?-156.43:-155.05};if(previous)middle.push(flight(previous,island,previous.name+' → '+island.name));const outbound=drive(island,s,'Rental car → '+s.shortName),inbound=drive(s,island,s.shortName+' → island airport');middle.push({...outbound,days:Math.max(1,outbound.days)},park(s),{...inbound,days:Math.max(1,inbound.days)});previous=island;}
@@ -66,7 +77,7 @@ export function evaluateExcursion(stop,date,settings,api){
   const failed=wait===371;if(failed)wait=0;
   const miles=transport.reduce((n,e)=>n+(e.miles||0),0),hours=transport.filter(e=>e.kind==='drive').reduce((n,e)=>n+e.hours,0),flightHours=transport.filter(e=>e.kind==='flight'||e.kind==='transfer').reduce((n,e)=>n+e.hours,0),breakHours=transport.reduce((n,e)=>n+(e.breakHours||0),0),driveCount=transport.filter(e=>e.kind==='drive').reduce((n,e)=>n+e.days,0),transferDays=transport.filter(e=>e.kind!=='drive').reduce((n,e)=>n+e.days,0);
   const days=Math.round((now-addDays(date,wait))/86400000),weight=settings.objective==='shortest'?0:settings.objective==='quiet'?2.4:3;
-  const out={region,mode,airport,anchor:point(stop),gateway,wait,feasible:!failed,depart:iso(addDays(date,wait)),returnDate:iso(now),days,parkDays:qualityDays,qualityDays,qualitySum,quality:qualityDays?qualitySum/qualityDays:null,minQuality:Math.min(...visits.map(v=>v.minQuality)),penalty,miles,hours,flightHours,breakHours,driveDays:driveCount,transferDays,bufferDays:buffer,longDays:transport.filter(e=>e.kind==='drive'&&e.days&&e.hours/e.days>settings.comfort).reduce((n,e)=>n+e.days,0),visits,transport,score:hours+flightHours+(days-qualityDays)*2+wait*10+penalty*weight+(failed?1e9:0)};
+  const out={region,mode,airport,anchor:point(stop),gateway,wait,feasible:!failed,depart:iso(addDays(date,wait)),returnDate:iso(now),days,parkDays:qualityDays,qualityDays,qualitySum,quality:qualityDays?qualitySum/qualityDays:null,minQuality:Math.min(...visits.map(v=>v.minQuality)),penalty,miles,hours,flightHours,breakHours,driveDays:driveCount,transferDays,bufferDays:region==='pacific'?buffer*2:buffer,longDays:transport.filter(e=>e.kind==='drive'&&e.days&&e.hours/e.days>settings.comfort).reduce((n,e)=>n+e.days,0),visits,transport,score:hours+flightHours+(days-qualityDays)*2+wait*10+penalty*weight+(failed?1e9:0)};
   if(!best||out.score<best.score)best=out;
  }
  if(!best)best={region,mode,airport,feasible:false,wait:0,days:0,parkDays:parks.reduce((n,s)=>n+s.days,0),qualityDays:0,qualitySum:0,quality:null,minQuality:null,penalty:1e6,miles:0,hours:0,flightHours:0,breakHours:0,driveDays:0,transferDays:0,bufferDays:0,longDays:0,visits:[],transport:[],depart:iso(date),returnDate:iso(date),score:1e9};
