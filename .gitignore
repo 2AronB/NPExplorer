@@ -53,3 +53,10 @@
 !/tests/season-quality.test.mjs
 !/tests/trip-export.test.mjs
 !/tests/pages-build.test.mjs
+
+!/reservation-ui.mjs
+!/data/reservation-requirements.json
+!/docs/
+!/docs/reservation-evidence-report.md
+!/scripts/validate-reservations.mjs
+!/tests/reservations.test.mjs
