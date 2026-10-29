@@ -11,6 +11,8 @@
 !/index.html
 !/style.css
 !/app.mjs
+!/calendar.mjs
+!/tests/calendar.test.mjs
 !/calibration.mjs
 !/current-inventory.mjs
 !/excursions.mjs

@@ -4,7 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 export const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export const runtimeFiles=[
- 'reservation-ui.mjs','data/reservation-requirements.json','index.html','style.css','app.mjs','calibration.mjs','current-inventory.mjs',
+ 'calendar.mjs','reservation-ui.mjs','data/reservation-requirements.json','index.html','style.css','app.mjs','calibration.mjs','current-inventory.mjs',
  'excursions.mjs','location-detail.mjs','map-markers.mjs','optimizer.mjs',
  'personal-priority.mjs','plan-defaults.mjs','remote-parks.mjs','season-quality.mjs',
  'transport-ui.mjs','trip-export.mjs','itinerary-workbook.mjs','park-highlights.mjs','trip-optimizer.mjs','worker.mjs',
