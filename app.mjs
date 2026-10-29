@@ -1,4 +1,5 @@
 import {mountCalendar} from './calendar.mjs';
+import {accessForMonth,accessDetails} from './seasonal-access.mjs';
 import {planningRules,reservationBadge,reservationDetails} from './reservation-ui.mjs';
 import {exportTables,csvText,xlsxBytes} from './trip-export.mjs';
 import {withPriorityDefault,validatePriorities} from './personal-priority.mjs';
@@ -21,6 +22,7 @@ const defaults=DEFAULT_SETTINGS;
 const sample=['romo','grsa','meve','arch','cany','care','brca','zion','grca','pefo','whsa'];
 const [{sites:baseSites,metadata},states]=await Promise.all([fetch('./data/sites.json').then(r=>{if(!r.ok)throw Error('Unable to load park data');return r.json();}),fetch('./data/states.json').then(r=>r.json())]);
 const seasonalResearch=await fetch('./data/seasonal-research/seasonal-access.json').then(r=>r.ok?r.json():null).catch(()=>null);
+const accessAudit=await fetch('./data/seasonal-access-audit.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const reservationResearch=await fetch('./data/reservation-requirements.json').then(r=>r.ok?r.json():null).catch(()=>null);
 baseSites.splice(0,baseSites.length,...[...currentInventory(baseSites),...REMOTE_PARKS].map(withPriorityDefault));
 let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
@@ -100,29 +102,31 @@ function toast(message,persistent=false){$('toast').textContent=message;$('toast
 function renderAll(){calendar.update({state,sites,result,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
 function setSelected(id,selected){state.selected=state.selected.filter(x=>x!==id);if(selected)state.selected.push(id);changed();renderAll();}
 function renderSummary(){renderBookingChecklist();const selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),s=state.settings;$('selectedCount').textContent=selected.length;$('selectionSummary').textContent=`${selected.length} places · ${selected.reduce((n,s)=>n+s.days,0)} full days + travel · ${s.duration}-day target · ${s.endMode==='return'?'round trip to '+s.start.name:s.endMode==='open'?'one-way finish':'finish: '+s.end.name}`;$('optimize').disabled=!selected.length;$('autoMonth').checked=s.autoMonth;$('inventoryNote').textContent=`${baseSites.filter(s=>s.type==='park').length} US national parks · ${baseSites.filter(s=>s.type==='site').length} other CONUS NPS locations. Remote access is modeled separately. CONUS site inventory: Nov 2022.`;}
+function coreAccess(s){return accessForMonth(accessAudit,s.id,month);}
+function accessStriped(s){return lens==='season'&&coreAccess(s)?.level==='major'&&season(s,dateOf(`2040-${String(month).padStart(2,'0')}-15`))!=='closed';}
 function color(s){if(s.type==='custom')return '#846286';if(lens==='selection')return state.selected.includes(s.id)?'#375b43':'#a6b39b';const date=dateOf(`2040-${String(month).padStart(2,'0')}-15`);return season(s,date)==='closed'?'#777e85':qualityColor(seasonQuality(s,date));}
 function renderMarkers(){markerLayer.clearLayers();markers.clear();const selected=new Set(state.selected),numbers=visitNumbers(result);
  for(const s of sites){
   if(!visibleSite(s,shownTypes))continue;
   const stopNumber=lens==='selection'?numbers.get(s.id):undefined;
   const isSelected=selected.has(s.id),type=markerType(s),size=markerSize(s,isSelected);
-  const marker=L.marker([s.lat,s.lng],{keyboard:false,zIndexOffset:isSelected?700:0,icon:L.divIcon({className:`site-marker marker-${type.id}${isSelected?' is-selected':''}`,html:shapeSvg(type.shape,color(s),isSelected)+(stopNumber===undefined?'':`<span class="site-stop-number" aria-hidden="true">${stopNumber}</span>`),iconSize:[size,size],iconAnchor:[size/2,size/2]})});
-  marker.bindTooltip(()=>{const el=document.createElement('div'),d=dateOf(`2040-${String(month).padStart(2,'0')}-15`),q=seasonQuality(s,d);el.textContent=`${s.shortName} · ${s.designation||s.kind||type.label} · ${season(s,d)==='closed'?'Closed at mid-month':q===null?'No seasonal score':q+'/10 in '+MONTHS[month-1]} · Priority ${s.priority}/5 · ${isSelected?'Selected':'Not selected'}`;return el;});
+  const marker=L.marker([s.lat,s.lng],{keyboard:false,zIndexOffset:isSelected?700:0,icon:L.divIcon({className:`site-marker marker-${type.id}${isSelected?' is-selected':''}`,html:shapeSvg(type.shape,color(s),isSelected,accessStriped(s))+(stopNumber===undefined?'':`<span class="site-stop-number" aria-hidden="true">${stopNumber}</span>`),iconSize:[size,size],iconAnchor:[size/2,size/2]})});
+  marker.bindTooltip(()=>{const el=document.createElement('div'),d=dateOf(`2040-${String(month).padStart(2,'0')}-15`),q=seasonQuality(s,d);el.textContent=`${s.shortName} · ${s.designation||s.kind||type.label} · ${season(s,d)==='closed'?'Closed at mid-month':q===null?'No seasonal score':q+'/10 in '+MONTHS[month-1]}${coreAccess(s)?' · '+coreAccess(s).label:''} · Priority ${s.priority}/5 · ${isSelected?'Selected':'Not selected'}`;return el;});
   const activate=()=>{if(pick)map.fire('click',{latlng:L.latLng(s.lat,s.lng)});else openDetail(s.id);};
   marker.on('click',e=>{L.DomEvent.stopPropagation(e);activate();});marker.addTo(markerLayer);markers.set(s.id,marker);
-  const el=marker.getElement();el.setAttribute('aria-label',`${stopNumber===undefined?'':'Stop '+stopNumber+' · '}${s.shortName} · ${s.designation||type.label} · ${isSelected?'selected':'not selected'}`);el.setAttribute('role','button');el.setAttribute('tabindex','0');el.dataset.mapSite=s.id;el.dataset.markerShape=type.shape;el.dataset.selected=String(isSelected);if(stopNumber!==undefined)el.dataset.stopNumber=String(stopNumber);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
+  const el=marker.getElement();el.setAttribute('aria-label',`${stopNumber===undefined?'':'Stop '+stopNumber+' · '}${s.shortName} · ${s.designation||type.label} · ${isSelected?'selected':'not selected'}${coreAccess(s)?' · '+coreAccess(s).label:''}`);el.setAttribute('role','button');el.setAttribute('tabindex','0');el.dataset.mapSite=s.id;el.dataset.markerShape=type.shape;el.dataset.selected=String(isSelected);if(stopNumber!==undefined)el.dataset.stopNumber=String(stopNumber);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
  }
 }
 function renderEndpoints(){endpointLayer.clearLayers();const s=state.settings,points=s.endMode==='return'?[[s.start,'START / FINISH']]:[[s.start,'START'],...(s.end?[[s.end,'FINISH']]:[])];for(const [p,label]of points){L.marker([p.lat,p.lng],{alt:`${label}: ${p.name}`,icon:L.divIcon({className:'start-marker',iconSize:[14,14],iconAnchor:[7,7]})}).bindTooltip(()=>{const e=document.createElement('span');e.textContent=`${label}: ${p.name}`;return e;}).addTo(endpointLayer);}document.querySelector('.intro-note .pill').textContent=`${s.start.name} → ${s.end?.name||'anywhere'}`;}
 function renderList(){const q=$('search').value.trim().toLowerCase(),filter=$('typeFilter').value;const visible=sites.filter(s=>(filter==='all'?s.type!=='custom':filter==='selected'?state.selected.includes(s.id):filter==='remote'?!!s.remote:s.type==='park')&&`${s.name} ${s.state||''} ${s.designation||''}`.toLowerCase().includes(q));
- $('siteList').innerHTML=visible.length?visible.map(s=>`<div class="site-row"><input type="checkbox" data-select="${escape(s.id)}" aria-label="Include ${escape(s.shortName)}" ${state.selected.includes(s.id)?'checked':''}><button class="site-name" data-detail="${escape(s.id)}"><strong>${escape(s.shortName)}</strong><small>${escape(s.state||s.kind||'')} · ${s.type==='park'?'National park':escape(s.designation||'Personal stop')}${s.access?' · '+escape(s.access.mode):''}${s.type==='park'?' · Priority '+s.priority+'/5':''}${escape(reservationBadge(reservationResearch?.parks[s.id]))}</small></button><i class="dot" style="background:${color(s)}" aria-label="${escape(s.profile?season(s,dateOf(`2040-${String(month).padStart(2,'0')}-15`)):'personal')}"></i><label class="days-wrap"><input type="number" min="1" max="365" value="${s.days}" data-days="${escape(s.id)}" aria-label="Full days at ${escape(s.shortName)}">d</label></div>`).join(''):'<p class="muted">No matching places.</p>';
+ $('siteList').innerHTML=visible.length?visible.map(s=>`<div class="site-row"><input type="checkbox" data-select="${escape(s.id)}" aria-label="Include ${escape(s.shortName)}" ${state.selected.includes(s.id)?'checked':''}><button class="site-name" data-detail="${escape(s.id)}"><strong>${escape(s.shortName)}</strong><small>${escape(s.state||s.kind||'')} · ${s.type==='park'?'National park':escape(s.designation||'Personal stop')}${s.access?' · '+escape(s.access.mode):''}${s.type==='park'?' · Priority '+s.priority+'/5':''}${coreAccess(s)?' · '+escape(coreAccess(s).label):''}${escape(reservationBadge(reservationResearch?.parks[s.id]))}</small></button><i class="dot ${accessStriped(s)?'access-striped':''}" style="background:${color(s)}" aria-label="${escape(s.profile?season(s,dateOf(`2040-${String(month).padStart(2,'0')}-15`)):'personal')}"></i><label class="days-wrap"><input type="number" min="1" max="365" value="${s.days}" data-days="${escape(s.id)}" aria-label="Full days at ${escape(s.shortName)}">d</label></div>`).join(''):'<p class="muted">No matching places.</p>';
 }
 $('siteList').addEventListener('click',e=>{const b=e.target.closest('[data-detail]');if(b)openDetail(b.dataset.detail);});
 $('siteList').addEventListener('change',e=>{if(e.target.dataset.select)setSelected(e.target.dataset.select,e.target.checked);if(e.target.dataset.days){const n=Number(e.target.value);if(!Number.isInteger(n)||n<1||n>365){toast('Choose 1–365 full days.');renderList();return;}state.days[e.target.dataset.days]=n;changed();rebuild();renderSummary();if(activeId)renderDetail(activeId);}});
 $('search').addEventListener('input',renderList);$('typeFilter').addEventListener('change',renderList);
 $('selectAll').onclick=()=>{state.selected=[...new Set([...state.selected,...sites.filter(s=>s.type==='park').map(s=>s.id)])];changed();renderAll();toast('All 64 national parks selected. Off-mainland parks are optimized as regional excursions.');};
 $('reset').onclick=()=>{state.selected=[];changed();renderAll();};
-$('month').oninput=()=>{month=Number($('month').value);syncLens();renderMarkers();renderList();};
+$('month').oninput=()=>{month=Number($('month').value);syncLens();renderMarkers();renderList();if(activeId&&$('accessAssessment'))$('accessAssessment').innerHTML=accessDetails(accessAudit,seasonalResearch,activeId,month);};
 $('autoMonth').onchange=()=>{state.settings.autoMonth=$('autoMonth').checked;changed();renderSummary();toast(state.settings.autoMonth?'Full 12-month route search enabled. Find my route will compare every month.':'Departure-month search disabled; the saved departure date will be used.');};
 function syncLens(){
  map.getContainer().classList.toggle('drawing-circle',pick==='circle');
@@ -131,7 +135,7 @@ function syncLens(){
  const monthName=new Date(Date.UTC(2040,month-1,1)).toLocaleString('en-US',{month:'long',timeZone:'UTC'});$('monthValue').textContent=monthName;$('month').setAttribute('aria-valuetext',monthName);
  if(lens==='season'||pick==='circle'){
   if(map.hasLayer(routeLayer))map.removeLayer(routeLayer);
-  $('mapCaption').textContent=pick==='circle'?'Every enabled location stays visible. The circle previews eligible places; selected places are larger. Route labels are temporarily hidden.':'All enabled location types stay visible. Color = draft 0–10 seasonal quality; grey = closed. Selected places are larger. Sliding the month does not recalculate your itinerary.';
+  $('mapCaption').textContent=pick==='circle'?'Every enabled location stays visible. The circle previews eligible places; selected places are larger. Route labels are temporarily hidden.':'All enabled location types stay visible. Color = draft 0–10 seasonal quality; grey = park closure; red/grey stripes = core highlights mostly inaccessible for an ordinary visit (approximate months). Selected places are larger. Sliding the month does not recalculate your itinerary.';
  }else{
   if(!map.hasLayer(routeLayer))routeLayer.addTo(map);
   $('mapCaption').textContent='Selected visible stops are enlarged. Numbers follow every destination, including OCONUS parks. Tan = draft roads; purple = flights / regional transfers. Connections are schematic.';
@@ -180,6 +184,7 @@ function renderDetail(id){
   onSave:rule=>{state.rules[id]=rule;changed();rebuild();renderAll();toast('Numeric seasonal scores saved. Recalculate to apply them.');},
   onReset:()=>{delete state.rules[id];changed();rebuild();renderAll();},onError:toast});
  renderSeasonalEvidence(id);
+ $('detail').insertAdjacentHTML('beforeend','<section id="accessAssessment">'+accessDetails(accessAudit,seasonalResearch,id,month)+'</section>');
  $('detail').insertAdjacentHTML('beforeend',reservationDetails(reservationResearch,id,state.settings.startDate.slice(0,4))); 
 }
 

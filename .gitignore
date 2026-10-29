@@ -12,6 +12,9 @@
 !/style.css
 !/app.mjs
 !/calendar.mjs
+!/seasonal-access.mjs
+!/data/seasonal-access-audit.json
+!/tests/seasonal-access.test.mjs
 !/tests/calendar.test.mjs
 !/calibration.mjs
 !/current-inventory.mjs

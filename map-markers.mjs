@@ -29,8 +29,10 @@ const paths={
  pentagon:'M16 1 31 12 25 30H7L1 12Z',
  heart:'M16 29 3.5 16.5C-4 7 8-1 16 8C24-1 36 7 28.5 16.5Z'
 };
-export function shapeSvg(shape,fill,selected=false){
+let stripeSequence=0;
+export function shapeSvg(shape,fill,selected=false,striped=false){
  const path=paths[shape]||paths.pentagon;
+ if(striped){const id='restricted-'+(++stripeSequence);return `<svg viewBox="-2 -2 36 36" aria-hidden="true" focusable="false"><defs><pattern id="${id}" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)"><rect width="8" height="8" fill="#8a9095"/><rect width="4" height="8" fill="#b94d45"/></pattern></defs><path d="${path}" fill="url(#${id})" stroke="#fffef9" stroke-width="${selected?5:3}"/><path d="${path}" fill="url(#${id})" stroke="#294538" stroke-width="${selected?1.8:1.3}"/></svg>`;}
  return `<svg viewBox="-2 -2 36 36" aria-hidden="true" focusable="false"><path d="${path}" fill="${fill}" stroke="#fffef9" stroke-width="${selected?5:3}" stroke-linejoin="round"/><path d="${path}" fill="${fill}" stroke="#294538" stroke-width="${selected?1.8:1.3}" stroke-linejoin="round"/></svg>`;
 }
 export const markerSize=(site,selected)=>selected?(site.type==='park'?27:24):(site.type==='park'?15:13);

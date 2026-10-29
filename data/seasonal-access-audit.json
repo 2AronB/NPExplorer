@@ -1,0 +1,844 @@
+{
+  "reviewed": "2026-10-28",
+  "basis": "All 64 park records reviewed against the existing sourced seasonal-access dataset; major candidate NPS pages rechecked. Monthly classifications are modeled guidance for an ordinary road/highlights trip, not legal closure dates.",
+  "monthPolicy": "Major months are core restricted months; transition months may contain both restricted and accessible dates. Weather-dependent boundaries must be checked for the travel year. Temporary alerts and construction dates are not repeated annually.",
+  "parks": {
+    "acad": {
+      "majorMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4
+      ],
+      "partialMonths": [],
+      "assessment": "Most Park Loop/paved seasonal roads are closed outside their published season. Schoodic Loop, some coastal access and winter recreation remain available.",
+      "sourceIDs": [
+        "acad-hours"
+      ]
+    },
+    "arch": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "arch-hours",
+        "arch-directions"
+      ]
+    },
+    "badl": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "badl-hours"
+      ]
+    },
+    "bibe": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "bibe-hours"
+      ]
+    },
+    "bisc": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "bisc-hours"
+      ]
+    },
+    "blca": {
+      "majorMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4,
+        11
+      ],
+      "partialMonths": [],
+      "assessment": "Most South Rim scenic-road viewpoints and North Rim vehicle access are closed in winter. Gunnison Point at the South Rim visitor center remains accessible.",
+      "sourceIDs": [
+        "blca-hours"
+      ]
+    },
+    "brca": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "brca-hours"
+      ]
+    },
+    "cany": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "cany-hours",
+        "cany-directions"
+      ]
+    },
+    "care": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "care-hours"
+      ]
+    },
+    "cave": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "cave-hours"
+      ]
+    },
+    "chis": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "chis-hours",
+        "chis-transport"
+      ]
+    },
+    "chir": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "chir-hours"
+      ]
+    },
+    "cong": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "cong-climate2"
+      ]
+    },
+    "crla": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        6,
+        7,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Rim Drive circuit and North Entrance close for snow; lake viewpoints via the south/west approach can remain possible. Full rim access can wait until July.",
+      "sourceIDs": [
+        "crla-hours"
+      ]
+    },
+    "cuva": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "cuva-hours"
+      ]
+    },
+    "deva": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "deva-hours"
+      ]
+    },
+    "drto": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "drto-hours",
+        "drto-transport"
+      ]
+    },
+    "ever": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "ever-hours"
+      ]
+    },
+    "jeff": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "jeff-hours"
+      ]
+    },
+    "glac": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "transitionMonths": [
+        6,
+        7,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Going-to-the-Sun Road alpine crossing and broad high-country hiking are seasonally inaccessible. Lower road sections remain open. Full opening often waits until early July.",
+      "sourceIDs": [
+        "glac-roads",
+        "glac-hours"
+      ]
+    },
+    "grca": {
+      "majorMonths": [],
+      "transitionMonths": [
+        5,
+        10,
+        11
+      ],
+      "partialMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "North Rim access/services are seasonal; the South Rim remains a substantial year-round quintessential visit. Temporary fire, flood and repair closures are separate, not annual assumptions.",
+      "sourceIDs": [
+        "grca-hours",
+        "grca-north"
+      ]
+    },
+    "grte": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5
+      ],
+      "partialMonths": [],
+      "assessment": "The central Teton Park Road scenic circuit is closed to ordinary vehicles. US 89 viewpoints, some wildlife viewing and winter recreation remain possible.",
+      "sourceIDs": [
+        "grte-roads",
+        "grte-hours"
+      ]
+    },
+    "grba": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Wheeler Peak Scenic Drive and other mountain roads close for winter, restricting the alpine/bristlecone hiking visit. Lower areas and available cave tours remain alternatives.",
+      "sourceIDs": [
+        "grba-conditions"
+      ]
+    },
+    "grsa": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "grsa-hours"
+      ]
+    },
+    "grsm": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "grsm-hours"
+      ]
+    },
+    "gumo": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "gumo-hours",
+        "gumo-directions"
+      ]
+    },
+    "hosp": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "hosp-hours"
+      ]
+    },
+    "indu": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "indu-hours"
+      ]
+    },
+    "isro": {
+      "majorMonths": [],
+      "transitionMonths": [
+        4,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "The island is legally closed November 1–April 15. This is a whole-island closure, distinct from mostly-closed highlights. Public transport usually has a narrower summer season.",
+      "sourceIDs": [
+        "isro-hours",
+        "isro-transport"
+      ],
+      "wholeParkClosure": true
+    },
+    "jotr": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "jotr-basic6"
+      ]
+    },
+    "kica": {
+      "majorMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4,
+        5,
+        11
+      ],
+      "partialMonths": [],
+      "assessment": "Highway 180 into Cedar Grove and the Kings River canyon closes for winter. Grant Grove remains a substantial alternative, but it does not replace the namesake canyon visit.",
+      "sourceIDs": [
+        "seki-roads",
+        "kica-hours"
+      ]
+    },
+    "lavo": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        6,
+        7,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Snow closes the park highway and Bumpass Hell hiking route. Winter entrance-area visits and snow travel do not replace the usual drive-and-hike circuit.",
+      "sourceIDs": [
+        "lavo-snow"
+      ]
+    },
+    "maca": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "maca-basic6",
+        "maca-basic"
+      ]
+    },
+    "meve": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4,
+        5,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Signature ranger-led cliff-dwelling tours are seasonal. Overlooks and self-guided stops remain available, but entering the cliff dwellings generally requires the tour season.",
+      "sourceIDs": [
+        "meve-hours"
+      ]
+    },
+    "mora": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        6,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Most ordinary vehicle approaches and summer alpine highlights are inaccessible in winter. Nisqually–Paradise access can remain available subject to weather and gates.",
+      "sourceIDs": [
+        "mora-hours"
+      ]
+    },
+    "neri": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "neri-hours"
+      ]
+    },
+    "noca": {
+      "majorMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4,
+        5,
+        11
+      ],
+      "partialMonths": [],
+      "assessment": "The SR 20 alpine crossing closes for snow/avalanche season and unplowed mountain roads limit trailheads. Lower western areas remain possible.",
+      "sourceIDs": [
+        "noca-roads"
+      ]
+    },
+    "olym": {
+      "majorMonths": [],
+      "transitionMonths": [
+        5,
+        10
+      ],
+      "partialMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "Seasonal mountain-road and facility restrictions affect part of the trip; rainforest and coastal highlights remain alternatives.",
+      "sourceIDs": [
+        "olym-hours"
+      ]
+    },
+    "pefo": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "pefo-hours"
+      ]
+    },
+    "pinn": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "pinn-hours"
+      ]
+    },
+    "redw": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "redw-hours"
+      ]
+    },
+    "romo": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Trail Ridge through-drive and much ordinary high-country hiking are unavailable in winter. Bear Lake and east-side visits remain possible; winter recreation is a different trip.",
+      "sourceIDs": [
+        "romo-hours",
+        "romo-roads"
+      ]
+    },
+    "sagu": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "sagu-climate2"
+      ]
+    },
+    "sequ": {
+      "majorMonths": [],
+      "transitionMonths": [
+        5,
+        11
+      ],
+      "partialMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "Mineral King and some side roads close in winter; Giant Forest and the main giant-sequoia experience can remain accessible with winter conditions.",
+      "sourceIDs": [
+        "seki-roads",
+        "sequ-hours"
+      ]
+    },
+    "shen": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "shen-hours"
+      ]
+    },
+    "thro": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "thro-hours"
+      ]
+    },
+    "voya": {
+      "majorMonths": [],
+      "transitionMonths": [
+        4,
+        5,
+        10,
+        11
+      ],
+      "partialMonths": [
+        12,
+        1,
+        2,
+        3
+      ],
+      "assessment": "Summer boating and lake-camping access differ fundamentally from winter ice/snow recreation. This is a mode/conditions warning, not evidence of a recurring park closure.",
+      "sourceIDs": [
+        "voya-hours",
+        "voya-directions"
+      ]
+    },
+    "whsa": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "whsa-hours"
+      ]
+    },
+    "wica": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "wica-hours"
+      ]
+    },
+    "yell": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3
+      ],
+      "transitionMonths": [
+        4
+      ],
+      "partialMonths": [],
+      "assessment": "Most interior roads close to ordinary vehicles, including ordinary-car access to Old Faithful. North–Northeast corridor remains accessible; winter snowcoach/snowmobile visits need separate arrangements.",
+      "sourceIDs": [
+        "yell-roads",
+        "yell-winter"
+      ]
+    },
+    "yose": {
+      "majorMonths": [],
+      "transitionMonths": [
+        5,
+        6,
+        11
+      ],
+      "partialMonths": [
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "Tioga and Glacier Point roads and high-country hiking have seasonal restrictions, but Yosemite Valley remains a core year-round visit. Not classified mostly closed.",
+      "sourceIDs": [
+        "yose-roads",
+        "yose-weather"
+      ]
+    },
+    "zion": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "zion-hours"
+      ]
+    },
+    "dena": {
+      "majorMonths": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        9
+      ],
+      "partialMonths": [],
+      "assessment": "The main Park Road bus-based interior visit has a summer operating season. Entrance-area winter visits and limited shoulder-season driving remain possible.",
+      "sourceIDs": [
+        "dena-hours",
+        "dena-directions"
+      ]
+    },
+    "gaar": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "Winter access and services require specialized planning. Existing evidence does not establish a recurring closure of the main visit with reliable monthly boundaries; do not infer closure from cold weather or unverified operator schedules.",
+      "sourceIDs": [
+        "gaar-hours",
+        "gaar-directions"
+      ]
+    },
+    "glba": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "Winter access and services require specialized planning. Existing evidence does not establish a recurring closure of the main visit with reliable monthly boundaries; do not infer closure from cold weather or unverified operator schedules.",
+      "sourceIDs": [
+        "glba-directions",
+        "glba-hours"
+      ]
+    },
+    "katm": {
+      "majorMonths": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "transitionMonths": [
+        9
+      ],
+      "partialMonths": [],
+      "assessment": "The conventional Brooks Camp bear-viewing visit loses its normal visitor/concession services outside summer. Specialized access may exist; this is not a legal park closure.",
+      "sourceIDs": [
+        "katm-hours"
+      ]
+    },
+    "kefj": {
+      "majorMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "transitionMonths": [
+        5,
+        9,
+        10
+      ],
+      "partialMonths": [],
+      "assessment": "Winter snow blocks ordinary vehicle access to Exit Glacier and fjord-tour options are substantially reduced. Seward access alone does not provide the usual glacier-and-fjords visit.",
+      "sourceIDs": [
+        "kefj-hours",
+        "kefj-directions"
+      ]
+    },
+    "kova": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "Winter access and services require specialized planning. Existing evidence does not establish a recurring closure of the main visit with reliable monthly boundaries; do not infer closure from cold weather or unverified operator schedules.",
+      "sourceIDs": [
+        "kova-directions"
+      ]
+    },
+    "lacl": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [
+        11,
+        12,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "assessment": "Winter access and services require specialized planning. Existing evidence does not establish a recurring closure of the main visit with reliable monthly boundaries; do not infer closure from cold weather or unverified operator schedules.",
+      "sourceIDs": [
+        "lacl-hours",
+        "lacl-directions"
+      ]
+    },
+    "wrst": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [
+        10,
+        11,
+        12,
+        1,
+        2,
+        3,
+        4
+      ],
+      "assessment": "Winter access and services require specialized planning. Existing evidence does not establish a recurring closure of the main visit with reliable monthly boundaries; do not infer closure from cold weather or unverified operator schedules.",
+      "sourceIDs": [
+        "wrst-hours"
+      ]
+    },
+    "hale": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "hale-hours",
+        "hale-directions"
+      ]
+    },
+    "havo": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "havo-hours",
+        "havo-directions"
+      ]
+    },
+    "npsa": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "npsa-guide"
+      ]
+    },
+    "viis": {
+      "majorMonths": [],
+      "transitionMonths": [],
+      "partialMonths": [],
+      "assessment": "No recurring loss of the core conventional visit identified in this review. This does not guarantee road, trail, tour or service availability.",
+      "sourceIDs": [
+        "viis-hours",
+        "viis-directions"
+      ]
+    }
+  }
+}
