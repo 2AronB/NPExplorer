@@ -3,7 +3,7 @@ import {accessSummaryHtml} from './access-review.mjs';
 import {exportTables} from './trip-export.mjs';
 import {mountCalendar} from './calendar.mjs';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fields=[['days','Allocated days',0],['miles','Estimated road miles',0],['hours','Driving hours',1],['quality','Season quality /10',1],['mixed','Mixed drive / exploration days',0],['dedicated','Dedicated drive + transfer days',0],['waits','Closure / transport wait days',0],['access','Parks with access flags',0],['unknown','Parks with research gaps',0],['appointments','Missed fixed dates',0]];
+const fields=[['days','Allocated days',0],['miles','Estimated road miles',0],['hours','Driving hours',1],['quality','Season quality /10',1],['mixed','Mixed drive / exploration days',0],['dedicated','Dedicated drive + transfer days',0],['waits','Closure / transport wait days',0],['restPlaced','Placed rest days',0],['restUnplaced','Unplaced rest days',0],['access','Parks with access flags',0],['unknown','Parks with research gaps',0],['appointments','Missed fixed dates',0]];
 const show=(n,precision)=>Number.isFinite(n)?n.toLocaleString('en-US',{maximumFractionDigits:precision}):'—';
 
 export function mountComparisons(root,{store,versions,active,onRestore,onExport,toast}){

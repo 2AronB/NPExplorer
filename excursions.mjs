@@ -1,4 +1,5 @@
 import {personalPriority} from './personal-priority.mjs';
+import {restAfterDays} from './rest-days.mjs';
 import {CANADA_CORRIDOR,REGIONAL_GATEWAYS} from './remote-parks.mjs';
 const caches=new WeakMap();
 const inWindow=(date,w,iso)=>{if(!w)return true;const md=iso(date).slice(5,10);return w.start<=w.end?md>=w.start&&md<=w.end:md>=w.start||md<=w.end;};
@@ -58,10 +59,20 @@ export function evaluateExcursion(stop,date,settings,api){
  }
  let best=null;
  for(const circuit of middle){
-  const events=[...prefix,...circuit,{kind:'buffer',label:'Weather / connection contingency',days:buffer},...suffix];
-  let wait=0,visits=[],transport=[],qualitySum=0,qualityDays=0,penalty=0,feasible=false,now;
+  const baseEvents=[...prefix,...circuit,{kind:'buffer',label:'Weather / connection contingency',days:buffer},...suffix],events=[];
+  for(let i=0;i<baseEvents.length;i++){
+   const event=baseEvents[i];events.push(event);
+   if(event.kind==='park'&&restAfterDays(settings,event.park.id)){
+    // Finish immediate boat/air-taxi/island-car recovery before resting at an
+    // unspecified regional base. Road parks rest before the next road leg.
+    const next=baseEvents[i+1];
+    if(event.park.remote?.mode!=='road'&&next&&['transfer','drive'].includes(next.kind)){events.push(next);i++;}
+    events.push({kind:'rest',siteId:event.park.id,days:restAfterDays(settings,event.park.id)});
+   }
+  }
+  let wait=0,visits=[],transport=[],restBlocks=[],qualitySum=0,qualityDays=0,penalty=0,feasible=false,now;
   while(wait<=371){
-   now=addDays(date,wait===371?0:wait);visits=[];transport=[];qualitySum=0;qualityDays=0;penalty=0;feasible=true;
+   now=addDays(date,wait===371?0:wait);visits=[];transport=[];restBlocks=[];qualitySum=0;qualityDays=0;penalty=0;feasible=true;
    for(const event of events){
     const depart=iso(now);
     if(event.kind==='park'){
@@ -70,15 +81,16 @@ export function evaluateExcursion(stop,date,settings,api){
      for(let i=0;i<s.days;i++){const d=addDays(now,i),q=seasonQuality(s,d)??6;if(!inWindow(d,w,iso)||isClosed(s,d))closed=true;sum+=q;min=Math.min(min,q);penalty+=((10-q)/3)**2*personalPriority(s);if(settings.objective==='quiet'&&!s.profile.quiet.includes(d.getUTCMonth()+1))penalty+=3*personalPriority(s);}
      if(closed&&wait<371){feasible=false;break;}
      qualitySum+=sum;qualityDays+=s.days;visits.push({id:s.id,arrival:depart,departure:iso(addDays(now,s.days)),days:s.days,priority:personalPriority(s),quality:sum/s.days,minQuality:min,status:min<=3?'difficult':sum/s.days>=8?'ideal':'mixed',route:s.remote.route});
-    }else transport.push({...event,depart,arrival:iso(addDays(now,event.days))});
+    }else if(event.kind==='rest')restBlocks.push({siteId:event.siteId,start:depart,end:iso(addDays(now,event.days)),days:event.days,region});
+    else transport.push({...event,depart,arrival:iso(addDays(now,event.days))});
     now=addDays(now,event.days);
    }
    if(feasible)break;wait++;
   }
   const failed=wait===371;if(failed)wait=0;
   const miles=transport.reduce((n,e)=>n+(e.miles||0),0),hours=transport.filter(e=>e.kind==='drive').reduce((n,e)=>n+e.hours,0),flightHours=transport.filter(e=>e.kind==='flight'||e.kind==='transfer').reduce((n,e)=>n+e.hours,0),breakHours=transport.reduce((n,e)=>n+(e.breakHours||0),0),driveCount=transport.filter(e=>e.kind==='drive').reduce((n,e)=>n+e.days,0),transferDays=transport.filter(e=>e.kind!=='drive').reduce((n,e)=>n+e.days,0);
-  const days=Math.round((now-addDays(date,wait))/86400000),weight=settings.objective==='shortest'?0:settings.objective==='quiet'?2.4:3;
-  const out={region,mode,airport,anchor:point(stop),gateway,wait,feasible:!failed,depart:iso(addDays(date,wait)),returnDate:iso(now),days,parkDays:qualityDays,qualityDays,qualitySum,quality:qualityDays?qualitySum/qualityDays:null,minQuality:Math.min(...visits.map(v=>v.minQuality)),penalty,miles,hours,flightHours,breakHours,driveDays:driveCount,transferDays,bufferDays:region==='pacific'?buffer*2:buffer,longDays:transport.filter(e=>e.kind==='drive'&&e.days&&e.hours/e.days>settings.comfort).reduce((n,e)=>n+e.days,0),visits,transport,score:hours+flightHours+(days-qualityDays)*2+wait*10+penalty*weight+(failed?1e9:0)};
+  const days=Math.round((now-addDays(date,wait))/86400000),weight=settings.objective==='shortest'?0:settings.objective==='quiet'?2.4:3,restDays=restBlocks.reduce((n,b)=>n+b.days,0);
+  const out={region,mode,airport,anchor:point(stop),gateway,wait,feasible:!failed,depart:iso(addDays(date,wait)),returnDate:iso(now),days,restDays,restBlocks,parkDays:qualityDays,qualityDays,qualitySum,quality:qualityDays?qualitySum/qualityDays:null,minQuality:Math.min(...visits.map(v=>v.minQuality)),penalty,miles,hours,flightHours,breakHours,driveDays:driveCount,transferDays,bufferDays:region==='pacific'?buffer*2:buffer,longDays:transport.filter(e=>e.kind==='drive'&&e.days&&e.hours/e.days>settings.comfort).reduce((n,e)=>n+e.days,0),visits,transport,score:hours+flightHours+(days-qualityDays-restDays)*2+wait*10+penalty*weight+(failed?1e9:0)};
   if(!best||out.score<best.score)best=out;
  }
  if(!best)best={region,mode,airport,feasible:false,wait:0,days:0,parkDays:parks.reduce((n,s)=>n+s.days,0),qualityDays:0,qualitySum:0,quality:null,minQuality:null,penalty:1e6,miles:0,hours:0,flightHours:0,breakHours:0,driveDays:0,transferDays:0,bufferDays:0,longDays:0,visits:[],transport:[],depart:iso(date),returnDate:iso(date),score:1e9};

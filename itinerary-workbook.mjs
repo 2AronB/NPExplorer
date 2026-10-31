@@ -1,3 +1,4 @@
+import {restSummary} from './rest-days.mjs';
 import {accessWarningText} from './access-review.mjs';
 import {PARK_HIGHLIGHTS} from './park-highlights.mjs';
 const DAY=86400000;
@@ -19,7 +20,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
   const s=lookup.get(e.siteId),isVisit=e.event==='Park / destination stay'||e.event==='Unscheduled destination';
   let start=e.start,end=e.end;
   // The solver places rest before final rounding. These labels remain day-level estimates.
-  if(result&&e.event==='Rest-day reserve'){start=shifted(result.endDate,-(result.roundingDays||0)-result.restDays);end=shifted(result.endDate,-(result.roundingDays||0));}
+  if(result&&e.event==='Rest-day reserve'){start=shifted(result.endDate,-(result.roundingDays||0)-restSummary(result).unplaced);end=shifted(result.endDate,-(result.roundingDays||0));}
   if(result&&e.event==='Calendar rounding'){start=shifted(result.endDate,-1);end=result.endDate;}
   const notes=[e.fixedDate?`FIXED APPOINTMENT: ${readable(e.fixedDate)}${e.lateDays?`. MISSED by ${e.lateDays} day(s).`:'.'}`:'',
    e.sharedDays?`${e.sharedDays} exploration equivalents on the arrival drive${e.sharedArrivalDate?' ('+readable(e.sharedArrivalDate)+')':''}. Allocation excludes shared credit.`:'',
@@ -44,7 +45,8 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
  for(const visit of accessReview?.visits||[])for(const warning of visit.warnings){const source=(warning.sourceIDs||[]).map(id=>accessReview.sources[id]).find(s=>s&&/^https:\/\/www\.nps\.gov\//.test(s.url));actions.push({status:warning.kind==='legal'?'CONFLICT':warning.kind==='unknown'?'Research gap':'Review access',place:visit.displayName,action:accessWarningText(warning),url:source?.url||official(lookup.get(visit.siteId))});}
  for(const p of parks)actions.push({status:'Research access',place:p.name,action:p.missing?'Park highlights not yet researched. Check official visitor information.':'Choose highlights, then verify current access, permits, tickets and services for your dates. No reservation status is assumed.',url:p.url});
  actions.push({status:'Arrange overnight stops',place:'Along the route',action:'Choose overnight locations and confirm any reservations. This model does not assign campsites or hotels.',url:null});
- if(result?.restDays)actions.push({status:'Place rest days',place:'Rest reserve',action:`Distribute the ${result.restDays} reserved days among real stops as you refine the trip. The model currently holds them at the end.`,url:null});
+ if(restSummary(result).unplaced)actions.push({status:'Place rest days',place:'Rest reserve',action:`${restSummary(result).unplaced} of ${result.restDays} reserve days remain at the end. Assign them in Rest placement if desired; recalculate the dates.`,url:null});
+ for(const block of result?.restBlocks||[])actions.push({status:'Arrange rest base',place:full(lookup.get(block.siteId)),action:`Confirm accommodation for ${readable(block.start)} through ${readable(shifted(block.end,-1))}: ${block.days} placed rest days from the existing reserve, after immediate return access transfers. No extra exploration or park access is assumed.`,url:official(lookup.get(block.siteId))});
  const accounting={days:sum(events,'days'),exploration:sum(events,'parkDays'),miles:sum(events,'miles'),hours:sum(events,'hours'),breakHours:sum(events,'breakHours'),otherHours:sum(events,'otherHours')};
  // Refuse a plausible-looking workbook if a future solver contract loses an allocation.
  if(result)for(const [key,expected]of Object.entries({days:result.totalDays,exploration:result.parkDays,miles:result.miles,hours:result.hours,breakHours:result.breakHours,otherHours:result.flightHours})){
@@ -108,7 +110,9 @@ export async function itineraryBytes(doc,ExcelJS){
  metric('Other transport hours',r?.flightHours??null,'Modeled commercial flights and regional air, boat or ground transfers.');
  metric('Regional chapters',doc.chapters.join(', ')||'Unscheduled',`${doc.selectedCount} destinations; ${doc.parks.length} national parks. See Itinerary for the route.`);
  metric('Fixed-date conflicts',r?.appointmentConflicts??null,'Resolve missed appointments before using this route. See Checklist.');
- metric('Rest reserve days',r?.restDays??null,'Unplaced reserve held at the end by the model. No overnight base assigned.');
+ metric('Rest reserve days',r?.restDays??null,'Total reserve; placed + unplaced. No overnight base assigned.');
+ metric('Placed rest days',r?restSummary(r).placed:null,'Scheduled after visits and immediate return access transfers; no exploration credit.');
+ metric('Unplaced rest days',r?restSummary(r).unplaced:null,'Remaining reserve held at the end.');
  metric('How to read dates','Approximate date labels','Through dates are inclusive. Shared days may overlap travel. Exact arrival and departure times are unassigned.');
  metric('Travel status','Unbooked estimates','Confirm roads, transport, access and overnight stops. Park highlights are choices, not daily activities.');
  for(const w of r?.warnings||[])row(overview,['Schedule warning',w,'Review before travel.'],{warning:true});

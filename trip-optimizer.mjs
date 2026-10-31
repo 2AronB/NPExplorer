@@ -1,4 +1,5 @@
 import {optimize,schedule,detours,routeMiles} from './optimizer.mjs';
+import {requireRestBudget} from './rest-days.mjs';
 import {MAINLAND_AIRPORTS,REGION_NAMES,CANADA_CORRIDOR,REMOTE_DEFAULTS} from './remote-parks.mjs';
 export function airportCandidates(settings){
  const all=[...MAINLAND_AIRPORTS,...(settings.customAirports||[])];
@@ -78,6 +79,7 @@ function oneMonth(stops,settings,onProgress){
  return {...chosen,pacificComparison:{chosen:chosen===combined?'combined':'separate',alternatives:[['separate',separate],['combined',combined]].map(([strategy,r])=>({strategy,score:r.score,days:r.totalDays,flightHours:r.flightHours,quality:r.quality,feasible:!r.appointmentConflicts&&r.excursions.every(e=>e.feasible),airports:r.excursions.filter(e=>['hawaii','samoa','pacific'].includes(e.region)).map(e=>e.airport?.code),order:r.excursions.find(e=>e.region==='pacific')?.visits.map(v=>v.id)||[]}))}};
 }
 export function optimizeTrip(stops,settings,onProgress){
+ requireRestBudget(settings,stops.map(s=>s.id));
  if(!stops.some(s=>s.remote))return optimize(stops,settings,onProgress);
  const s={...REMOTE_DEFAULTS,...settings};
  if(!s.autoMonth)return oneMonth(stops,s,p=>onProgress?.({...p,completed:0,total:1,startDate:s.startDate}));

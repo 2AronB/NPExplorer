@@ -82,3 +82,7 @@
 !/comparison-ui.mjs
 !/tests/access-review.test.mjs
 !/tests/scenarios.test.mjs
+
+!/rest-days.mjs
+!/rest-ui.mjs
+!/tests/rest-days.test.mjs
