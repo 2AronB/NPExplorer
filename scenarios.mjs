@@ -1,3 +1,4 @@
+import {PREPARATION_STATUSES} from './preparation.mjs';
 import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 export const SCENARIO_KEY='long-way-scenarios-v1';
@@ -7,13 +8,13 @@ export function dataFingerprint(value){
  let hash=2166136261;for(const c of JSON.stringify(value)){hash^=c.charCodeAt(0);hash=Math.imul(hash,16777619);}return (hash>>>0).toString(16);
 }
 export function resultVersionMatches(snapshot,versions){return !!snapshot.result&&JSON.stringify(snapshot.versions)===JSON.stringify(versions);}
-export function createSnapshot({id,name,state,sites,result,accessReview,versions,now=new Date().toISOString()}){
+export function createSnapshot({id,name,state,sites,result,accessReview,preparationTasks,versions,now=new Date().toISOString()}){
  name=String(name??'').trim();if(!name||name.length>80)throw Error('Use a trip name between 1 and 80 characters.');
  // Save the displayed month only. Nested alternatives needlessly multiply storage.
  const chosen=result?{...result}:null;if(chosen){delete chosen.monthResults;delete chosen.searchYear;}
  const selected=new Set(state.selected),savedSites=sites.filter(s=>selected.has(s.id));
  const savedReview=chosen&&accessReview?{...accessReview,sources:Object.fromEntries([...new Set((accessReview.visits||[]).flatMap(v=>v.warnings.flatMap(w=>w.sourceIDs||[])))].filter(id=>accessReview.sources?.[id]).map(id=>[id,accessReview.sources[id]]))}:null;
- return structuredClone({id,name,savedAt:now,state,sites:savedSites,result:chosen,accessReview:savedReview,versions});
+ return structuredClone({id,name,savedAt:now,state,sites:savedSites,result:chosen,accessReview:savedReview,...(preparationTasks?{preparationTasks}:{}),versions});
 }
 
 // Persist first, then publish the new in-memory library. Quota failures cannot
@@ -87,6 +88,8 @@ export function inputDifferences(active,saved){
   const window=w=>w?`${w.start} through ${w.end}`:'No annual window';
   add(name+' · annual closure',window(site.closure),window(other.closure));add(name+' · transport window',window(site.remote?.window),window(other.remote?.window));
  }
+ const prepIDs=new Set([...Object.keys(active.state.preparation||{}),...Object.keys(saved.state.preparation||{})]),prepNames=new Map([...(active.preparationTasks||[]),...(saved.preparationTasks||[])].map(t=>[t.id,t.place+' · '+t.title]));
+ for(const id of prepIDs){const describe=r=>r?(PREPARATION_STATUSES[r.status]||'Not checked')+' · checked '+(r.checkedOn||'not recorded')+' · recorded for '+(r.forDate||'uncalculated dates')+(r.notes?' · '+r.notes:''):'No saved record';add('Preparation · '+(prepNames.get(id)||'Inactive topic'),describe(active.state.preparation?.[id]),describe(saved.state.preparation?.[id]));}
  if(active.result&&saved.result)add('Displayed route departure',active.result.startDate,saved.result.startDate);
  return rows;
 }

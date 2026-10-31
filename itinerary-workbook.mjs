@@ -1,3 +1,4 @@
+import {preparationText,PREPARATION_STATUSES,preparationSummary} from './preparation.mjs';
 import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 import {accessWarningText} from './access-review.mjs';
@@ -12,7 +13,7 @@ const sum=(rows,key)=>rows.reduce((n,r)=>n+(finite(r[key])??0),0);
 const official=s=>s?.id==='kica'||s?.id==='sequ'?'https://www.nps.gov/seki/index.htm':s?.url;
 const full=s=>s?.id==='npsa'?'National Park of American Samoa':s?.name||s?.shortName||'Destination unavailable';
 const safeUrl=url=>{try{const u=new URL(url);return u.protocol==='https:'?u.href:null;}catch{return null;}};
-export function travelDocument({state,sites,result,rows,selected,exportedAt,accessReview}){
+export function travelDocument({state,sites,result,rows,selected,exportedAt,accessReview,preparationTasks=[]}){
  const lookup=new Map(sites.map(s=>[s.id,s]));
  const travelerName=s=>s.excursion?`${s.excursion.airport?.name||'Mainland'} ${s.excursion.airport?.code||''} gateway (${s.excursion.mode==='drive'?'overland':'fly-out'})`:full(s);
  const names=new Map([...sites,...result?.nodes||[]].flatMap(s=>[[s.id,travelerName(s)],[s.shortName,travelerName(s)]]));
@@ -37,7 +38,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
    breakHours:finite(e.breakHours),otherHours:finite(e.otherHours),notes,url:isVisit?official(s):null};
  }).sort((a,b)=>(a.start||'').localeCompare(b.start||''));
  const parks=selected.filter(s=>s.type==='park').map(s=>({name:full(s),url:official(s),...PARK_HIGHLIGHTS[s.id],missing:!PARK_HIGHLIGHTS[s.id]}));
- const actions=[];
+ const actions=preparationTasks.map(t=>({status:'User: '+(PREPARATION_STATUSES[t.status]||'Not checked'),place:t.place,action:preparationText(t)+(t.researchAsOf?' · research as of '+t.researchAsOf:'')+' · Recheck current applicability; no deadline or availability is inferred.',url:t.url,due:null,review:t.contextChanged}));
  for(const e of events){
   if(e.dateWindow)actions.push({status:e.windowConflict?'CONFLICT':'Confirm arrival dates',place:e.place,due:e.dateWindow.earliest===e.dateWindow.latest?e.dateWindow.earliest:null,action:arrivalWindowText(e.dateWindow)+(e.windowConflict?'; calculated first exploration '+e.explorationStart+' misses this window. Revise the route or the constraint; every requested exploration day is retained.':'; verify your arrangements and park access. No booking is assumed.'),url:e.url});
   if(e.fixedDate)actions.push({status:e.lateDays?'CONFLICT':'Confirm appointment',place:e.place,due:e.fixedDate,action:e.lateDays?`Fixed first full day missed by ${e.lateDays} day(s). Revise the route before travel.`:'Confirm the fixed first full visit day and arrangements.',url:null});
@@ -54,7 +55,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
  if(result)for(const [key,expected]of Object.entries({days:result.totalDays,exploration:result.parkDays,miles:result.miles,hours:result.hours,breakHours:result.breakHours,otherHours:result.flightHours})){
   if(Number.isFinite(expected)&&Math.abs(accounting[key]-expected)>1e-6)throw Error(`Itinerary accounting mismatch (${key}). Export JSON and report this schedule contract.`);
  }
- return {events,parks,actions,accounting,result,exportedAt,selectedCount:selected.length,
+ return {events,parks,actions,preparationTasks,accounting,result,exportedAt,selectedCount:selected.length,
   chapters:[...new Set(events.map(e=>e.region).filter(Boolean))],startName:state.settings.start?.name||'Departure',endName:state.settings.end?.name||'Open finish'};
 }
 
@@ -111,6 +112,7 @@ export async function itineraryBytes(doc,ExcelJS){
  metric('Stop allowance hours',r?.breakHours??null,'Additional modeled breaks on road legs.');
  metric('Other transport hours',r?.flightHours??null,'Modeled commercial flights and regional air, boat or ground transfers.');
  metric('Regional chapters',doc.chapters.join(', ')||'Unscheduled',`${doc.selectedCount} destinations; ${doc.parks.length} national parks. See Itinerary for the route.`);
+ const prep=preparationSummary(doc.preparationTasks||[]);metric('Preparation topics',prep.total,'User records in Checklist; they do not establish verified access or bookings.');metric('Preparation dates to review',prep.review,'Visit dates changed since these records were saved.');
  metric('Park arrival-date conflicts',r?.windowConflicts??0,'Resolve missed first-exploration dates before adopting this route. See Checklist.');
  metric('Park arrival-window wait days',r?.windowWaitDays??0,'Gateway waiting to respect earliest park dates; separate from service and appointment waits.');
  metric('Fixed-date conflicts',r?.appointmentConflicts??null,'Resolve missed appointments before using this route. See Checklist.');
@@ -142,8 +144,8 @@ export async function itineraryBytes(doc,ExcelJS){
  if(!r)row(travel,['Route not calculated',null,null,null,null,null,'Calculate a route to estimate travel.']);
  else if(travel.rowCount===5)row(travel,['No travel allocation',null,null,null,null,null,'No driving or regional transport is allocated in this result.']);
  finish(travel);
- const checklist=sheet(book,'Checklist',[22,34,13,58,20],'Fill in your own arrangements after verifying dates, access and operators. Nothing here is marked booked or complete.',['Action status','Place / scope','Fixed date','Next action','Useful link']);
- for(const a of doc.actions)row(checklist,[a.status,a.place,dated(a.due),a.action,a.url?link('Park website',a.url):null],{warning:a.status==='CONFLICT',fixed:!!a.due});
+ const checklist=sheet(book,'Checklist',[22,34,13,58,20],'Fill in your own arrangements after verifying dates, access and operators. User statuses are personal records, not verified bookings. Conflicts and research tasks remain separate.',['Action status','Place / scope','Fixed date','Next action','Useful link']);
+ for(const a of doc.actions)row(checklist,[a.status,a.place,dated(a.due),a.action,a.url?link('Reference',a.url):null],{warning:a.status==='CONFLICT'||a.review,fixed:!!a.due});
  finish(checklist);
  return book.xlsx.writeBuffer();
 }

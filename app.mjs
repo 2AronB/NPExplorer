@@ -1,3 +1,5 @@
+import {validatePreparation,buildPreparationTasks,preparationTaskLabel} from './preparation.mjs';
+import {mountPreparation} from './preparation-ui.mjs';
 import {validateArrivalWindows,arrivalReviewHtml} from './arrival-windows.mjs';
 import {restBudget,validateRestAssignments,requireRestBudget} from './rest-days.mjs';
 import {mountRestPlacement} from './rest-ui.mjs';
@@ -31,14 +33,14 @@ const seasonalResearch=await fetch('./data/seasonal-research/seasonal-access.jso
 const accessAudit=await fetch('./data/seasonal-access-audit.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const reservationResearch=await fetch('./data/reservation-requirements.json').then(r=>r.ok?r.json():null).catch(()=>null);
 baseSites.splice(0,baseSites.length,...[...currentInventory(baseSites),...REMOTE_PARKS].map(withPriorityDefault));
-let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
+let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},preparation:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
 try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)state=validate(JSON.parse(saved));}catch(error){try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)localStorage.setItem('long-way-plan-recovery-v1',saved);}catch{}console.error('Saved-plan validation:',error);toast('Saved plan could not be loaded. A recovery copy was retained in this browser; starter settings are shown.',true);}
 let sites=[],lookup=new Map(),markers=new Map(),activeId=null,lens='season',month=4,pick=null,circleCenter=null,circleLayer=null,result=null,worker=null,revision=0;
-let accessReview=null,comparisons=null,restEditor=null;
+let accessReview=null,comparisons=null,restEditor=null,preparationEditor=null;
 const scenarioVersions={application:new URL(import.meta.url).searchParams.get('v')||'access-compare-1',optimizer:'arrival-windows-v1',data:dataFingerprint([baseSites,defaults,accessAudit,seasonalResearch,reservationResearch])};
 const scenarioStore=openScenarioStore({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},validate);
 function activeSnapshot(name='Previous active trip'){
- return createSnapshot({id:'active-recovery',name,state,sites,result,accessReview,versions:scenarioVersions});
+ return createSnapshot({id:'active-recovery',name,state,sites,result,accessReview,preparationTasks:buildPreparationTasks({state,sites,result,research:reservationResearch}),versions:scenarioVersions});
 }
 const map=L.map('map',{zoomControl:true,minZoom:2,maxZoom:10,attributionControl:true}).setView([38,-97],4);
 map.attributionControl.setPrefix(false);
@@ -50,7 +52,7 @@ for(const [name,lat,lng]of labelData)L.marker([lat,lng],{icon:L.divIcon({classNa
 const markerLayer=L.layerGroup().addTo(map),routeLayer=L.layerGroup().addTo(map),endpointLayer=L.layerGroup().addTo(map);
 let pendingMapFit=false;
 const calendar=mountCalendar($('calendarView'),{onExplore:()=>switchWorkspace('explore'),onCalculate:()=>{switchWorkspace('explore');$('optimize').click();$('journey').scrollIntoView({behavior:'smooth'});},onPlace:id=>{switchWorkspace('explore');openDetail(id);}});
-function switchWorkspace(view){$('exploreView').hidden=view!=='explore';$('calendarView').hidden=view!=='calendar';$('compareView').hidden=view!=='compare';if(view==='compare')comparisons?.update();document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});if(view==='explore')requestAnimationFrame(()=>{map.invalidateSize();if(pendingMapFit){pendingMapFit=false;fit();}});}
+function switchWorkspace(view){$('exploreView').hidden=view!=='explore';$('calendarView').hidden=view!=='calendar';$('compareView').hidden=view!=='compare';$('prepareView').hidden=view!=='prepare';if(view==='prepare')renderPreparation();if(view==='compare')comparisons?.update();document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});if(view==='explore')requestAnimationFrame(()=>{map.invalidateSize();if(pendingMapFit){pendingMapFit=false;fit();}});}
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>switchWorkspace(b.dataset.view));
 $('month').value=month;
 let shownTypes=new Set(MARKER_TYPES.map(t=>t.id));
@@ -66,6 +68,15 @@ comparisons=mountComparisons($('compareView'),{store:scenarioStore,versions:scen
 comparisons.update();
 restEditor=mountRestPlacement($('restPlacement'),{onApply:assignments=>{const next=structuredClone(state);next.settings.restAfter=assignments;requireRestBudget(next.settings,next.selected);state=validate(next);changed();renderAll();toast('Rest placements saved. Recalculate to update the calendar and access review.');},onSettings:()=>{switchWorkspace('explore');switchTab('trip');$('restDays').focus();$('restDays').scrollIntoView({behavior:'smooth',block:'center'});},toast});
 restEditor.update({state,sites,result});
+preparationEditor=mountPreparation($('prepareView'),{onSave:(id,record)=>savePreparation(id,record),onClear:id=>savePreparation(id,null),onPlace:id=>{switchWorkspace('explore');openDetail(id);},toast});
+renderPreparation();
+function renderPreparation(){preparationEditor?.update({state,inactiveLabels:Object.fromEntries(Object.keys(state.preparation||{}).map(id=>[id,preparationTaskLabel(id,sites,reservationResearch)])),tasks:buildPreparationTasks({state,sites,result,research:reservationResearch})});}
+function savePreparation(id,record){
+ const next=structuredClone(state);if(record)next.preparation[id]=record;else delete next.preparation[id];
+ next.preparation=validatePreparation(next.preparation);
+ try{localStorage.setItem('long-way-plan-v1',JSON.stringify(next));}catch{throw Error('Could not save preparation: browser storage is unavailable. Your prior records were kept.');}
+ state=next;renderPreparation();
+}
 
 function restoreScenario(snapshot){
  const next=validate(structuredClone(snapshot.state));
@@ -81,7 +92,7 @@ async function exportScenario(snapshot,kind){
  const filename='the-long-way-'+snapshot.name.replace(/[^a-z0-9_-]+/gi,'-').slice(0,60);
  if(kind==='json')downloadTrip(new Blob([JSON.stringify(snapshot.state,null,2)],{type:'application/json'}),filename+'.json');
  else{
-  const tables=exportTables({state:snapshot.state,sites:snapshot.sites,result:snapshot.result,accessReview:snapshot.accessReview,reportContext:{name:snapshot.name,savedAt:snapshot.savedAt,stale:!resultVersionMatches(snapshot,scenarioVersions)}});
+  const tables=exportTables({state:snapshot.state,sites:snapshot.sites,result:snapshot.result,accessReview:snapshot.accessReview,preparationTasks:snapshot.preparationTasks,research:reservationResearch,reportContext:{name:snapshot.name,savedAt:snapshot.savedAt,stale:!resultVersionMatches(snapshot,scenarioVersions)}});
   if(kind==='csv')downloadTrip(new Blob([csvText(tables.itinerary)],{type:'text/csv;charset=utf-8'}),filename+'.csv');
   else{await loadWorkbookLibrary();downloadTrip(new Blob([await xlsxBytes(tables,globalThis.ExcelJS)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
  }
@@ -129,7 +140,7 @@ function validate(raw){
   if((value.miles!==null&&!bounded(value.miles,.1,10000))||(value.hours!==null&&!bounded(value.hours,.01,250)))throw Error('Invalid route calibration values');
   calibration[row.id]={miles:value.miles,hours:value.hours,include:value.include!==false};
  }
- return {version:1,preferencesRevision:3,settings:s,custom,selected:[...new Set(raw.selected.filter(id=>allowed.has(id)))],days,priorities,rules,calibration};
+ return {version:1,preferencesRevision:3,settings:s,custom,selected:[...new Set(raw.selected.filter(id=>allowed.has(id)))],days,priorities,rules,preparation:validatePreparation(raw.preparation),calibration};
 }
 function validMD(s){if(typeof s!=='string'||!/^\d{2}-\d{2}$/.test(s))return false;const d=dateOf(`2040-${s}`);return Number.isFinite(d.getTime())&&iso(d).slice(5)===s;}
 // Full destination days for signature sights; travel and access buffers remain separate.
@@ -140,7 +151,7 @@ function changed(){revision++;accessReview=null;$('cancelCalculation').hidden=tr
 function toast(message,persistent=false){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);if(!persistent)toast.timer=setTimeout(()=>$('toast').hidden=true,6500);}
 function renderAll(){calendar.update({state,sites,result,accessReview,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
 function setSelected(id,selected){state.selected=state.selected.filter(x=>x!==id);if(selected)state.selected.push(id);changed();renderAll();}
-function renderSummary(){renderBookingChecklist();restEditor?.update({state,sites,result});const rest=restBudget(state.settings,state.selected);$('restBudgetStatus').hidden=!rest.overallocated;$('restBudgetStatus').textContent=rest.overallocated?`Rest placements exceed the reserve by ${rest.placed-rest.total} days. Adjust Rest placement or the total reserve before calculating.`:'';const selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),s=state.settings;$('selectedCount').textContent=selected.length;$('selectionSummary').textContent=`${selected.length} places · ${selected.reduce((n,s)=>n+s.days,0)} full days + travel · ${s.duration}-day target · ${s.endMode==='return'?'round trip to '+s.start.name:s.endMode==='open'?'one-way finish':'finish: '+s.end.name}`;$('optimize').disabled=!!worker||!selected.length||rest.overallocated;$('autoMonth').checked=s.autoMonth;$('inventoryNote').textContent=`${baseSites.filter(s=>s.type==='park').length} US national parks · ${baseSites.filter(s=>s.type==='site').length} other CONUS NPS locations. Remote access is modeled separately. CONUS site inventory: Nov 2022.`;}
+function renderSummary(){renderPreparation();renderBookingChecklist();restEditor?.update({state,sites,result});const rest=restBudget(state.settings,state.selected);$('restBudgetStatus').hidden=!rest.overallocated;$('restBudgetStatus').textContent=rest.overallocated?`Rest placements exceed the reserve by ${rest.placed-rest.total} days. Adjust Rest placement or the total reserve before calculating.`:'';const selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),s=state.settings;$('selectedCount').textContent=selected.length;$('selectionSummary').textContent=`${selected.length} places · ${selected.reduce((n,s)=>n+s.days,0)} full days + travel · ${s.duration}-day target · ${s.endMode==='return'?'round trip to '+s.start.name:s.endMode==='open'?'one-way finish':'finish: '+s.end.name}`;$('optimize').disabled=!!worker||!selected.length||rest.overallocated;$('autoMonth').checked=s.autoMonth;$('inventoryNote').textContent=`${baseSites.filter(s=>s.type==='park').length} US national parks · ${baseSites.filter(s=>s.type==='site').length} other CONUS NPS locations. Remote access is modeled separately. CONUS site inventory: Nov 2022.`;}
 function coreAccess(s){return accessForMonth(accessAudit,s.id,month);}
 function accessStriped(s){return lens==='season'&&coreAccess(s)?.level==='major'&&season(s,dateOf(`2040-${String(month).padStart(2,'0')}-15`))!=='closed';}
 function color(s){if(s.type==='custom')return '#846286';if(lens==='selection')return state.selected.includes(s.id)?'#375b43':'#a6b39b';const date=dateOf(`2040-${String(month).padStart(2,'0')}-15`);return season(s,date)==='closed'?'#777e85':qualityColor(seasonQuality(s,date));}
@@ -306,7 +317,7 @@ $('exportMenu').onclick=async e=>{const b=e.target.closest('[data-export-format]
  b.disabled=true;
  try{
   if(kind==='json'){downloadTrip(new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString(),estimatesNote:'Draft monthly assumptions and travel estimates. JSON restores plan inputs; recalculate the itinerary.'},null,2)],{type:'application/json'}),'the-long-way-plan.json');toast('Restorable JSON plan backup exported.');}
-  else{const tables=exportTables({state,sites,result,accessReview}),filename='the-long-way-'+(result?'itinerary-'+result.startDate:'selected-places');
+  else{const tables=exportTables({state,sites,result,accessReview,research:reservationResearch}),filename='the-long-way-'+(result?'itinerary-'+result.startDate:'selected-places');
    if(kind==='csv')downloadTrip(new Blob([csvText(tables.itinerary)],{type:'text/csv;charset=utf-8'}),filename+'.csv');
    else{await loadWorkbookLibrary();downloadTrip(new Blob([await xlsxBytes(tables,globalThis.ExcelJS)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
    toast((kind==='csv'?'CSV':'Excel')+(result?' itinerary exported.':' selected-place report exported; calculate a route to include dates and travel.'));
@@ -347,8 +358,8 @@ function renderSeasonalEvidence(id){
 
 function renderBookingChecklist(){
  const rows=state.selected.map(id=>lookup.get(id)).filter(s=>s&&planningRules(reservationResearch?.parks[s.id]).length);
- $('bookingChecklist').innerHTML='<details><summary>Bookings to research · '+rows.length+' selected parks</summary><p>Published programs checked '+escape(reservationResearch?.researchAsOf||'unknown')+'. These are planning topics, not confirmed requirements for your trip year. Open park details for seasons, release rounds, lotteries, exceptions and official links. No effect on route ranking.</p>'+rows.map(s=>'<p><button class="text-button" data-booking-site="'+escape(s.id)+'">'+escape(s.shortName)+'</button> · '+planningRules(reservationResearch.parks[s.id]).map(r=>escape(r.name)+(r.programYear?' ('+r.programYear+')':'')).join('; ')+'</p>').join('')+(reservationResearch?'':'<p>Reservation research could not be loaded. Reload to try again.</p>')+'</details>';
+ $('bookingChecklist').innerHTML='<p><button type="button" data-open-prepare>Track research and arrangements in Prepare ↗</button></p><details><summary>Bookings to research · '+rows.length+' selected parks</summary><p>Published programs checked '+escape(reservationResearch?.researchAsOf||'unknown')+'. These are planning topics, not confirmed requirements for your trip year. Open park details for seasons, release rounds, lotteries, exceptions and official links. No effect on route ranking.</p>'+rows.map(s=>'<p><button class="text-button" data-booking-site="'+escape(s.id)+'">'+escape(s.shortName)+'</button> · '+planningRules(reservationResearch.parks[s.id]).map(r=>escape(r.name)+(r.programYear?' ('+r.programYear+')':'')).join('; ')+'</p>').join('')+(reservationResearch?'':'<p>Reservation research could not be loaded. Reload to try again.</p>')+'</details>';
 }
-$('bookingChecklist').onclick=e=>{const button=e.target.closest('[data-booking-site]');if(button)openDetail(button.dataset.bookingSite);};
+$('bookingChecklist').onclick=e=>{if(e.target.closest('[data-open-prepare]')){switchWorkspace('prepare');return;}const button=e.target.closest('[data-booking-site]');if(button)openDetail(button.dataset.bookingSite);};
 
 $('settingsForm').addEventListener('invalid',event=>{let panel=event.target.closest('details');while(panel){panel.open=true;panel=panel.parentElement.closest('details');}},true);

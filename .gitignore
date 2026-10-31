@@ -89,3 +89,7 @@
 
 !/arrival-windows.mjs
 !/tests/arrival-windows.test.mjs
+
+!/preparation.mjs
+!/preparation-ui.mjs
+!/tests/preparation.test.mjs

@@ -3,7 +3,7 @@ export const DEFAULT_SETTINGS={...REMOTE_DEFAULTS,startDate:'2040-04-01',duratio
 
 export function upgradePlanPreferences(raw){
  if(!raw||raw.version!==1)return raw;
- const next={...raw,settings:{...DEFAULT_SETTINGS,...raw.settings},preferencesRevision:3};
+ const next={...raw,preparation:raw.preparation===undefined?{}:raw.preparation,settings:{...DEFAULT_SETTINGS,...raw.settings},preferencesRevision:3};
  // The first prototype defaulted to an open finish and uniform three-day stays.
  // Move untouched legacy defaults once; retain individual day edits and custom endpoints.
  if((raw.preferencesRevision||0)<2){

@@ -9,7 +9,7 @@
  <header class="topbar"><a class="brand" href="#"><span class="brand-mark">△</span><span>THE LONG WAY<small>A YEAR OUT THERE</small></span></a><div class="top-actions"><span class="local-tag"><i></i> LOCAL FIRST DRAFT</span><div id="exportWrap" class="export-wrap"><button id="export" aria-haspopup="menu" aria-expanded="false" aria-controls="exportMenu">Export trip ▾</button><div id="exportMenu" class="export-menu" role="menu" aria-labelledby="export" hidden><button type="button" role="menuitem" data-export-format="xlsx"><strong>Excel workbook · .xlsx</strong><small>Travel itinerary, park highlights and checklist</small></button><button type="button" role="menuitem" data-export-format="csv"><strong>CSV table · .csv</strong><small>A single itinerary table for spreadsheets</small></button><button type="button" role="menuitem" data-export-format="json"><strong>JSON backup · .json <span>Import capable</span></strong><small>Restore the complete plan inputs; recalculate the route</small></button><p id="exportNote"></p></div></div><button id="import" title="Restore an exported JSON plan backup">Import JSON</button><input id="importFile" type="file" accept=".json" hidden></div></header>
  <main>
   <section class="intro"><div><p class="eyebrow">PLAN NOW. RETIRE EVENTUALLY.</p><h1>All the parks.<br><em>Time sold separately.</em></h1></div><div class="intro-note"><span class="compass">✳</span><p>Excessively dreamy road trips.<br>For your theoretically free time.</p><span class="pill">Colorado Springs → anywhere</span></div></section>
-  <nav class="workspace-navigation" aria-label="Trip workspace"><button type="button" class="active" data-view="explore" aria-pressed="true" aria-controls="exploreView">Explore</button><button type="button" data-view="calendar" aria-pressed="false" aria-controls="calendarView">Calendar</button><button type="button" data-view="compare" aria-pressed="false" aria-controls="compareView">Compare</button></nav>
+  <nav class="workspace-navigation" aria-label="Trip workspace"><button type="button" class="active" data-view="explore" aria-pressed="true" aria-controls="exploreView">Explore</button><button type="button" data-view="calendar" aria-pressed="false" aria-controls="calendarView">Calendar</button><button type="button" data-view="compare" aria-pressed="false" aria-controls="compareView">Compare</button><button type="button" data-view="prepare" aria-pressed="false" aria-controls="prepareView">Prepare</button></nav>
   <div id="exploreView">
   <section class="workspace">
    <div class="map-column">
@@ -75,6 +75,7 @@
   <section id="bookingChecklist" class="transport-settings" aria-label="Bookings to research"></section>
   </div>
   <section id="calendarView" class="calendar-view" aria-label="Trip calendar" hidden></section>
+  <section id="prepareView" class="prepare-view" aria-label="Trip preparation" hidden></section>
   <section id="compareView" class="compare-view" aria-label="Trip comparisons" hidden></section>
   <footer><span>THE LONG WAY <span class="footer-dot">·</span> A planning sandbox, with room to grow.</span><button id="dataInfo" class="text-button">Data & assumptions ↗</button></footer>
  </main>

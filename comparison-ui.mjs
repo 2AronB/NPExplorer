@@ -1,3 +1,4 @@
+import {preparationReportHtml} from './preparation-ui.mjs';
 import {arrivalReviewHtml} from './arrival-windows.mjs';
 import {MAX_SCENARIOS,resultVersionMatches,comparisonMetrics,inputDifferences} from './scenarios.mjs';
 import {accessSummaryHtml} from './access-review.mjs';
@@ -21,8 +22,8 @@ export function mountComparisons(root,{store,versions,active,onRestore,onExport,
  function renderReport(){
   const s=find(selectedId),target=root.querySelector('#savedScenarioReport');if(!s||!target)return;
   try{
-   const tables=exportTables({state:s.state,sites:s.sites,result:s.result,accessReview:s.accessReview});
-   target.innerHTML=`<div class="section-title"><h3>Saved report · ${esc(s.name)}</h3><button type="button" data-scenario-close>Close report</button></div><p>${esc(status(s))}. Viewing this report does not replace your active plan. Use its own export buttons for this alternative; the top Export trip menu always uses the active trip.</p>${accessSummaryHtml(s.accessReview)}${arrivalReviewHtml(s.result,s.sites,{interactive:false})}<details><summary>Chronological itinerary · ${tables.travelDocument.events.length} allocations</summary><div class="month-table-scroll"><table><thead><tr><th>Start</th><th>Through</th><th>Place</th><th>Activity</th></tr></thead><tbody>${tables.travelDocument.events.map(e=>`<tr><td>${esc(e.start||'Unscheduled')}</td><td>${esc(e.through||'')}</td><td>${esc(e.place)}</td><td>${esc(e.event)}</td></tr>`).join('')}</tbody></table></div></details><div id="savedScenarioCalendar"></div>`;
+   const tables=exportTables({state:s.state,sites:s.sites,result:s.result,accessReview:s.accessReview,preparationTasks:s.preparationTasks});
+   target.innerHTML=`<div class="section-title"><h3>Saved report · ${esc(s.name)}</h3><button type="button" data-scenario-close>Close report</button></div><p>${esc(status(s))}. Viewing this report does not replace your active plan. Use its own export buttons for this alternative; the top Export trip menu always uses the active trip.</p>${accessSummaryHtml(s.accessReview)}${arrivalReviewHtml(s.result,s.sites,{interactive:false})}${preparationReportHtml(s.preparationTasks)}<details><summary>Chronological itinerary · ${tables.travelDocument.events.length} allocations</summary><div class="month-table-scroll"><table><thead><tr><th>Start</th><th>Through</th><th>Place</th><th>Activity</th></tr></thead><tbody>${tables.travelDocument.events.map(e=>`<tr><td>${esc(e.start||'Unscheduled')}</td><td>${esc(e.through||'')}</td><td>${esc(e.place)}</td><td>${esc(e.event)}</td></tr>`).join('')}</tbody></table></div></details><div id="savedScenarioCalendar"></div>`;
    if(s.result)mountCalendar(target.querySelector('#savedScenarioCalendar'),{idPrefix:'savedScenario',onExplore:()=>{selectedId=null;render();},onCalculate:()=>toast('Restore this trip’s inputs to recalculate it.'),onPlace:id=>{const site=s.sites.find(s=>s.id===id);toast(site?.name||id);}}).update({state:s.state,sites:s.sites,result:s.result,accessReview:s.accessReview});
   }catch(e){target.textContent='This saved report could not be reconciled. Export its JSON inputs, or restore them and recalculate. '+e.message;}
  }

@@ -70,3 +70,11 @@ Open a national park’s details and expand **First exploration dates**. Set an 
 Recalculate after edits. Earlier arrivals can wait at a gateway; regional trips shift their whole excursion together. Date waiting remains separate from closures, service windows, rest and personal appointments. A missed latest date is flagged on the route and Calendar, with **Next arrival-date conflict** to review it. The search keeps all requested exploration and does not prove that no feasible itinerary exists. Check or revise the route and constraints before booking. Compare, JSON backups and CSV/XLSX reports retain the requested and calculated dates.
 
 Calendar’s **Next waiting period** shortcut jumps to the start of each arrival, closure, transport or personal-appointment wait, including adjacent waits with different causes. It wraps to the first waiting period after the last.
+
+## Track preparation
+
+Use **Prepare** to record research and arrangements for selected parks and whole-trip logistics. Each topic has **Not checked**, **Researched**, **Ready to book**, **Booked**, or **Not needed** status, optional notes and a checked date you enter. Open the research link or park details for published release rounds, exceptions and sources. Programs are research prompts for your travel year; no future deadline or availability is inferred.
+
+Saving a record keeps the calculated route. After recalculation, a changed exploration/departure date flags the record for review while retaining its status; save again after reviewing the new date. Reloading without a calculated route does not invent a date change. **Needs attention** includes records with changed dates. Deselecting a park retains its inactive records. **Reset record** clears that topic's status, notes and checked date.
+
+Preparation is browser-local and travels with JSON backups and saved alternatives. Saved reports retain their preparation topics; their own exports use the saved records. XLSX Checklist and CSV notes include user statuses and notes. These records do not establish verified bookings or suppress scheduling/access conflicts. Export JSON for a portable backup.
