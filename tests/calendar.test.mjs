@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {buildCalendarModel,calendarNavigationDate,nextAccessWarningDate} from '../calendar.mjs';
+import {buildCalendarModel,calendarNavigationDate,nextAccessWarningDate,nextWaitingPeriodDate} from '../calendar.mjs';
 import {schedule,dateOf,iso,addDays} from '../optimizer.mjs';
 import {optimizeTrip} from '../trip-optimizer.mjs';
 import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';
@@ -64,4 +64,11 @@ test('access concern navigation skips repeated warning days and wraps to the fir
  assert.equal(nextAccessWarningDate(m,'2040-01-02'),'2040-01-05');
  assert.equal(nextAccessWarningDate(m,'2040-01-06'),'2040-01-02');
  assert.equal(nextAccessWarningDate({days:[days[0]]},'2040-01-01'),null);
+});
+
+test('waiting navigation keeps adjacent arrival and closure waits distinct and wraps between periods',()=>{
+ const stop={...sites.find(s=>s.id==='arch'),days:2,closure:{start:'06-01',end:'06-03'}},input={...settings,startDate:'2040-06-01',sharedDays:false,start:stop,end:null,arrivalWindows:{arch:{earliest:'2040-06-02',latest:null}}},r=schedule([stop],input),m=model([stop],r,input);
+ coverage(m,r);assert.equal(nextWaitingPeriodDate(m,'2040-05-31'),'2040-06-01');assert.equal(nextWaitingPeriodDate(m,'2040-06-01'),'2040-06-02');assert.equal(nextWaitingPeriodDate(m,'2040-06-03'),'2040-06-01');
+ assert.equal(m.byDate.get('2040-06-01').events.find(e=>e.kind==='wait').event,'Arrival-window wait');assert.equal(m.byDate.get('2040-06-02').events.find(e=>e.kind==='wait').event,'Closure wait');
+ assert.equal(nextWaitingPeriodDate({days:m.days.filter(d=>d.kind!=='wait')},'2040-06-04'),null);assert.equal(nextWaitingPeriodDate(null,'2040-06-04'),null);
 });

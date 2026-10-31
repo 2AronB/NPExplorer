@@ -1,3 +1,4 @@
+import {validateArrivalWindows} from './arrival-windows.mjs';
 import {optimize,schedule,detours,routeMiles} from './optimizer.mjs';
 import {requireRestBudget} from './rest-days.mjs';
 import {MAINLAND_AIRPORTS,REGION_NAMES,CANADA_CORRIDOR,REMOTE_DEFAULTS} from './remote-parks.mjs';
@@ -76,9 +77,10 @@ function oneMonth(stops,settings,onProgress){
  const separate=oneMonthLayout(stops,settings,false,p=>onProgress?.({...p,fraction:p.fraction*(comparePacific ? .5 : 1)}));
  if(!comparePacific)return separate;
  const combined=oneMonthLayout(stops,settings,true,p=>onProgress?.({...p,fraction:.5+p.fraction*.5,phase:'Combined Pacific trip · '+p.phase})),chosen=combined.score<separate.score?combined:separate;
- return {...chosen,pacificComparison:{chosen:chosen===combined?'combined':'separate',alternatives:[['separate',separate],['combined',combined]].map(([strategy,r])=>({strategy,score:r.score,days:r.totalDays,flightHours:r.flightHours,quality:r.quality,feasible:!r.appointmentConflicts&&r.excursions.every(e=>e.feasible),airports:r.excursions.filter(e=>['hawaii','samoa','pacific'].includes(e.region)).map(e=>e.airport?.code),order:r.excursions.find(e=>e.region==='pacific')?.visits.map(v=>v.id)||[]}))}};
+ return {...chosen,pacificComparison:{chosen:chosen===combined?'combined':'separate',alternatives:[['separate',separate],['combined',combined]].map(([strategy,r])=>({strategy,score:r.score,days:r.totalDays,flightHours:r.flightHours,quality:r.quality,feasible:!r.appointmentConflicts&&!r.windowConflicts&&r.excursions.every(e=>e.feasible),airports:r.excursions.filter(e=>['hawaii','samoa','pacific'].includes(e.region)).map(e=>e.airport?.code),order:r.excursions.find(e=>e.region==='pacific')?.visits.map(v=>v.id)||[]}))}};
 }
 export function optimizeTrip(stops,settings,onProgress){
+ validateArrivalWindows(settings.arrivalWindows);
  requireRestBudget(settings,stops.map(s=>s.id));
  if(!stops.some(s=>s.remote))return optimize(stops,settings,onProgress);
  const s={...REMOTE_DEFAULTS,...settings};

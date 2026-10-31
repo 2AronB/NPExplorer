@@ -1,3 +1,4 @@
+import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 export const SCENARIO_KEY='long-way-scenarios-v1';
 export const MAX_SCENARIOS=8;
@@ -53,7 +54,7 @@ export function openScenarioStore(storage,validatePlan){
 
 export function comparisonMetrics(result,review){
  if(!result)return null;
- return {days:result.totalDays,miles:result.miles,hours:result.hours,quality:result.quality,mixed:result.mixedDays,dedicated:result.dedicatedTravelDays+result.transferDays,waits:result.waitDays,restPlaced:restSummary(result).placed,restUnplaced:restSummary(result).unplaced,access:review?.affectedStops??null,unknown:review?.unknownStops??null,appointments:result.appointmentConflicts||0};
+ return {days:result.totalDays,miles:result.miles,hours:result.hours,quality:result.quality,mixed:result.mixedDays,dedicated:result.dedicatedTravelDays+result.transferDays,waits:result.waitDays,restPlaced:restSummary(result).placed,restUnplaced:restSummary(result).unplaced,access:review?.affectedStops??null,unknown:review?.unknownStops??null,appointments:result.appointmentConflicts||0,arrivalConflicts:result.windowConflicts||0,arrivalWaits:result.windowWaitDays||0};
 }
 
 // Explain the assumptions behind different totals, using resolved destination
@@ -78,6 +79,7 @@ export function inputDifferences(active,saved){
  for(const site of active.sites){
   const other=savedSites.get(site.id);if(!other||!left.has(site.id)||!right.has(site.id))continue;
   const name=names.get(site.id);add(name+' · name',site.shortName||site.name,other.shortName||other.name);add(name+' · exploration days',site.days,other.days);add(name+' · priority /5',site.priority??1,other.priority??1);
+  add(name+' · arrival window',arrivalWindowText(a.arrivalWindows?.[site.id]),arrivalWindowText(b.arrivalWindows?.[site.id]));
   add(name+' · rest after visit',a.restAfter?.[site.id]||0,b.restAfter?.[site.id]||0);
   add(name+' · first full day',site.fixedDate||'Flexible',other.fixedDate||'Flexible');
   add(name+' · monthly scores Jan–Dec',site.profile?.scores?.join(', ')||'Default scores',other.profile?.scores?.join(', ')||'Default scores');

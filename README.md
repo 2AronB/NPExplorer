@@ -62,3 +62,11 @@ Calendar supports arrow-key date navigation, Home/End week edges and Page Up/Dow
 ## Place rest between visits
 
 Expand **Place rest days** below the map to assign whole days after selected destinations. These days come from the existing reserve: placed + unplaced always equals the total reserve. Deselecting a stop preserves its placement without using the active reserve; over-allocation must be resolved explicitly. Recalculate after edits. The scheduler finishes immediate return access transfers before resting at an unspecified nearby base/gateway, and preserves requested exploration days. A rest block prevents departure-morning sharing across that block, so moving reserve may change total time, later seasons, waits, appointments and regional service-window feasibility. Calendar, CSV/XLSX, JSON backups and Compare retain the placement and its accounting. Accommodation and bookings remain unassigned.
+
+## Set park arrival dates
+
+Open a national park’s details and expand **First exploration dates**. Set an earliest date, a latest date, or the same date in both fields for an exact arrival. Include the travel year. The constraint applies to the first exploration, including sightseeing shared with an arrival drive; personal-stop appointments still refer to their first full day. Deselecting a park preserves its dates without constraining the active route. Use **Clear arrival window** to remove them.
+
+Recalculate after edits. Earlier arrivals can wait at a gateway; regional trips shift their whole excursion together. Date waiting remains separate from closures, service windows, rest and personal appointments. A missed latest date is flagged on the route and Calendar, with **Next arrival-date conflict** to review it. The search keeps all requested exploration and does not prove that no feasible itinerary exists. Check or revise the route and constraints before booking. Compare, JSON backups and CSV/XLSX reports retain the requested and calculated dates.
+
+Calendar’s **Next waiting period** shortcut jumps to the start of each arrival, closure, transport or personal-appointment wait, including adjacent waits with different causes. It wraps to the first waiting period after the last.

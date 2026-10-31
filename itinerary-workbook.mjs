@@ -1,3 +1,4 @@
+import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 import {accessWarningText} from './access-review.mjs';
 import {PARK_HIGHLIGHTS} from './park-highlights.mjs';
@@ -22,7 +23,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
   // The solver places rest before final rounding. These labels remain day-level estimates.
   if(result&&e.event==='Rest-day reserve'){start=shifted(result.endDate,-(result.roundingDays||0)-restSummary(result).unplaced);end=shifted(result.endDate,-(result.roundingDays||0));}
   if(result&&e.event==='Calendar rounding'){start=shifted(result.endDate,-1);end=result.endDate;}
-  const notes=[e.fixedDate?`FIXED APPOINTMENT: ${readable(e.fixedDate)}${e.lateDays?`. MISSED by ${e.lateDays} day(s).`:'.'}`:'',
+  const notes=[e.dateWindow?arrivalWindowText(e.dateWindow)+(e.explorationStart?' · actual first exploration '+e.explorationStart+(e.windowConflict?' · MISSED by '+e.windowLateDays+' day(s)':' · within requested dates'):' · not scheduled'):'',e.fixedDate?`FIXED APPOINTMENT: ${readable(e.fixedDate)}${e.lateDays?`. MISSED by ${e.lateDays} day(s).`:'.'}`:'',
    e.sharedDays?`${e.sharedDays} exploration equivalents on the arrival drive${e.sharedArrivalDate?' ('+readable(e.sharedArrivalDate)+')':''}. Allocation excludes shared credit.`:'',
    e.departureSharedDays?`${e.departureSharedDays} exploration equivalents on departure morning${e.departureDriveDate?' ('+readable(e.departureDriveDate)+')':''}; that calendar day belongs to the drive.`:'',
    e.unusedDays?`${e.unusedDays} day equivalents unused within the stay allocation; not carried forward.`:'',
@@ -38,6 +39,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
  const parks=selected.filter(s=>s.type==='park').map(s=>({name:full(s),url:official(s),...PARK_HIGHLIGHTS[s.id],missing:!PARK_HIGHLIGHTS[s.id]}));
  const actions=[];
  for(const e of events){
+  if(e.dateWindow)actions.push({status:e.windowConflict?'CONFLICT':'Confirm arrival dates',place:e.place,due:e.dateWindow.earliest===e.dateWindow.latest?e.dateWindow.earliest:null,action:arrivalWindowText(e.dateWindow)+(e.windowConflict?'; calculated first exploration '+e.explorationStart+' misses this window. Revise the route or the constraint; every requested exploration day is retained.':'; verify your arrangements and park access. No booking is assumed.'),url:e.url});
   if(e.fixedDate)actions.push({status:e.lateDays?'CONFLICT':'Confirm appointment',place:e.place,due:e.fixedDate,action:e.lateDays?`Fixed first full day missed by ${e.lateDays} day(s). Revise the route before travel.`:'Confirm the fixed first full visit day and arrangements.',url:null});
   if(e.notes.includes('ACCESS CONFLICT')||e.notes.includes('Infeasible access'))actions.push({status:'CONFLICT',place:e.place,action:'Resolve the modeled access conflict before travel.',url:e.url});
  }
@@ -109,6 +111,8 @@ export async function itineraryBytes(doc,ExcelJS){
  metric('Stop allowance hours',r?.breakHours??null,'Additional modeled breaks on road legs.');
  metric('Other transport hours',r?.flightHours??null,'Modeled commercial flights and regional air, boat or ground transfers.');
  metric('Regional chapters',doc.chapters.join(', ')||'Unscheduled',`${doc.selectedCount} destinations; ${doc.parks.length} national parks. See Itinerary for the route.`);
+ metric('Park arrival-date conflicts',r?.windowConflicts??0,'Resolve missed first-exploration dates before adopting this route. See Checklist.');
+ metric('Park arrival-window wait days',r?.windowWaitDays??0,'Gateway waiting to respect earliest park dates; separate from service and appointment waits.');
  metric('Fixed-date conflicts',r?.appointmentConflicts??null,'Resolve missed appointments before using this route. See Checklist.');
  metric('Rest reserve days',r?.restDays??null,'Total reserve; placed + unplaced. No overnight base assigned.');
  metric('Placed rest days',r?restSummary(r).placed:null,'Scheduled after visits and immediate return access transfers; no exploration credit.');
@@ -118,7 +122,7 @@ export async function itineraryBytes(doc,ExcelJS){
  for(const w of r?.warnings||[])row(overview,['Schedule warning',w,'Review before travel.'],{warning:true});
  finish(overview,false);overview.views=[{showGridLines:false}];
  const itinerary=sheet(book,'Itinerary',[13,13,37,10,12,11,11,43],r?'Chronological allocations. Dates are approximate and may overlap on mixed days. Add allocated days, not inclusive date spans.':'Selected places only. The order below is not an optimized itinerary.',['Start','Through (inclusive)','Destination / transition','Allocated days','Exploration equivalents','Est. road miles','Driving hours','Practical notes']);
- for(const e of doc.events){const rr=row(itinerary,[dated(e.start),dated(e.through),link(`${e.place}\n${e.event}${e.region?' · '+e.region:''}`,e.url),e.days,e.parkDays,e.miles,e.hours,e.notes],{warning:!!e.lateDays||/CONFLICT|Infeasible/.test(e.notes),fixed:!!e.fixedDate});rr.getCell(6).numFmt='#,##0';rr.getCell(7).numFmt='0.0';}
+ for(const e of doc.events){const rr=row(itinerary,[dated(e.start),dated(e.through),link(`${e.place}\n${e.event}${e.region?' · '+e.region:''}`,e.url),e.days,e.parkDays,e.miles,e.hours,e.notes],{warning:!!e.lateDays||!!e.windowConflict||/CONFLICT|Infeasible/.test(e.notes),fixed:!!e.fixedDate});rr.getCell(6).numFmt='#,##0';rr.getCell(7).numFmt='0.0';}
  finish(itinerary);
  const guide=sheet(book,'Park guide',[30,29,34,44],'Official NPS sources checked Oct 28, 2026. Click an experience for its source. Choose options to suit your stay; these are not scheduled activities.',['National park','Experience / official source','Why go','Access / planning note']);
  for(const p of doc.parks){
