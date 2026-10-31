@@ -93,3 +93,8 @@
 !/preparation.mjs
 !/preparation-ui.mjs
 !/tests/preparation.test.mjs
+
+!/visit-durations.mjs
+!/along-the-way.mjs
+!/along-the-way-ui.mjs
+!/tests/along-the-way.test.mjs

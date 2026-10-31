@@ -1,3 +1,4 @@
+import {sharesExploration,validVisitDays,durationHelp} from './visit-durations.mjs';
 import {monthlyQuality} from './season-quality.mjs';
 import {evaluateExcursion} from './excursions.mjs';
 import {personalPriority} from './personal-priority.mjs';
@@ -83,6 +84,7 @@ function staySeason(s,date,days,objective,shared=0){
 const seasonalCost=(s,date,days,objective)=>staySeason(s,date,days,objective).cost;
 export function schedule(order,settings,startDate=settings.startDate){
  validateArrivalWindows(settings.arrivalWindows);
+ for(const stop of order)if(stop.type==='site'&&!validVisitDays(stop,stop.days))throw Error(durationHelp(stop));
  const restPlan=requireRestBudget(settings,order.flatMap(s=>s.excursion?s.excursion.parks.map(p=>p.id):[s.id]));
  if(settings.dayBudget!==undefined&&(settings.explorationHours??8)>settings.dayBudget)throw new RangeError('Full exploration-day hours exceed the daily activity budget. Increase the budget or reduce exploration-day hours.');
  let now=dateOf(startDate),current=settings.start,miles=0,hours=0,travelDays=0,parkDays=0,transferDays=0,waitDays=0,longDays=0,penalty=0;
@@ -93,7 +95,7 @@ export function schedule(order,settings,startDate=settings.startDate){
  const roadLeg=(destination,to)=>{
   const t=travel(current,destination,settings),previous=visits.at(-1);
   let depart=now,morning=0,firstHours=0;
-  if(t.hours&&settings.sharedDays&&current.type==='park'&&!current.access?.transferDays&&!previous?.wait&&!previous?.restAfterDays&&previous?.calendarDays>0){
+  if(t.hours&&settings.sharedDays&&sharesExploration(current)&&!current.access?.transferDays&&!previous?.wait&&!previous?.restAfterDays&&previous?.calendarDays>0){
    const remaining=previous.days-previous.sharedDays,lastWeight=remaining%1||1;
    const paceCap=settings.pace==='relaxed'?settings.comfort:settings.pace==='efficient'?settings.maxDrive:settings.stretch;
    const capacity=Math.min(paceCap,settings.maxDrive,(budget-campHours-lastWeight*explorationHours)/breakFactor);
@@ -133,7 +135,7 @@ export function schedule(order,settings,startDate=settings.startDate){
   const dateWindow=stop.type==='park'?arrivalWindow(settings,stop.id):null,windowWaitStart=iso(now),windowWait=dateWindow?.earliest?Math.max(0,civilDays(dateWindow.earliest,iso(now))):0;
   if(windowWait){now=addDays(now,windowWait);windowWaitDays+=windowWait;}
   const closureWaitStart=iso(now);
-  const candidateCredit=stop.type==='park'&&!transfer&&!windowWait&&(!dateWindow?.earliest||iso(addDays(now,-1))>=dateWindow.earliest)&&!isClosed(stop,addDays(now,-1))?Math.min(days,lastActivity?arrivalCredit({hours:lastActivity.driveHours,otherActivityHours:lastActivity.departureExplorationHours},1,settings):0):0;
+  const candidateCredit=sharesExploration(stop)&&!transfer&&!windowWait&&(!dateWindow?.earliest||iso(addDays(now,-1))>=dateWindow.earliest)&&!isClosed(stop,addDays(now,-1))?Math.min(days,lastActivity?arrivalCredit({hours:lastActivity.driveHours,otherActivityHours:lastActivity.departureExplorationHours},1,settings):0):0;
   let wait=0;
   while(wait<370 && Array.from({length:Math.ceil(days-(wait?0:candidateCredit))},(_,i)=>isClosed(stop,addDays(now,i))).some(Boolean)){now=addDays(now,1);wait++;}
   if(wait>=370)warnings.push(`${stop.shortName}: requested stay does not fit an available annual opening window.`);
@@ -180,7 +182,7 @@ function greedy(stops,settings,date,seasonal,seed){
   }
   if(!route.length&&seed!==undefined)best=remaining.findIndex(s=>s.id===seed);
   const next=remaining.splice(Math.max(0,best),1)[0];
-  now=addDays(now,driveDays(travel(current,next,settings).hours,settings)+next.days+(next.access?.transferDays||0)+restAfterDays(settings,next.id));route.push(next);current=next;
+  now=addDays(now,driveDays(travel(current,next,settings).hours,settings)+Math.ceil(next.days)+(next.access?.transferDays||0)+restAfterDays(settings,next.id));route.push(next);current=next;
  }
  return route;
 }
@@ -259,17 +261,17 @@ export function optimize(stops,settings,onProgress){
  onProgress?.({completed:12,total:12,fraction:1,phase:'Departure months compared',startDate:best.startDate});
  return {...best,monthResults,searchYear:settings.startDate.slice(0,4)};
 }
-export function detours(candidates,order,settings){
+export function detours(candidates,order,settings,{limit=8}={}){
  if(!order.length)return [];
  const points=[settings.start,...order,...(settings.end?[settings.end]:[])];
  return candidates.map(s=>{
   let best={extraHours:Infinity,extraMiles:0,after:0};
-  for(let i=0;i<points.length-1;i++){
-   const a=travel(points[i],s,settings),b=travel(s,points[i+1],settings),direct=travel(points[i],points[i+1],settings);
+  for(let i=0;i<points.length-(settings.end?1:0);i++){
+   const a=travel(points[i],s,settings),b=points[i+1]?travel(s,points[i+1],settings):{hours:0,miles:0},direct=points[i+1]?travel(points[i],points[i+1],settings):{hours:0,miles:0};
    const extraHours=Math.max(0,a.hours+b.hours-direct.hours);
    if(extraHours<best.extraHours)best={extraHours,extraMiles:Math.max(0,a.miles+b.miles-direct.miles),after:i};
   }
   return {id:s.id,...best};
- }).filter(s=>s.extraHours<=settings.detourHours).sort((a,b)=>a.extraHours-b.extraHours).slice(0,8);
+ }).filter(s=>s.extraHours<=settings.detourHours).sort((a,b)=>a.extraHours-b.extraHours).slice(0,limit);
 }
 
