@@ -1,3 +1,4 @@
+import {siteStay} from './site-stays.mjs';
 import {detours,schedule} from './optimizer.mjs';
 import {validVisitDays,durationHelp} from './visit-durations.mjs';
 export function displayedOrder(result,sites){
@@ -11,7 +12,7 @@ export function alongCandidates({state,sites,result}){
  const selected=new Set(state.selected),lookup=new Map(sites.map(s=>[s.id,s])),order=displayedOrder(result,sites);
  return detours(sites.filter(s=>s.type==='site'&&!s.remote&&!selected.has(s.id)),order,state.settings,{limit:Infinity}).map(d=>({
   ...d,site:lookup.get(d.id),from:order[d.after-1]||state.settings.start,to:order[d.after]||state.settings.end||null,
-  days:state.days[d.id]??.25
+  days:state.days[d.id]??siteStay(lookup.get(d.id),state.settings.stayMode)?.days??.25
  }));
 }
 const individual=result=>(result.visits||[]).flatMap(v=>v.excursion?result.excursions?.find(b=>b.id===v.id)?.visits||[]:[v]);

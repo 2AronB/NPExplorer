@@ -98,3 +98,7 @@
 !/along-the-way.mjs
 !/along-the-way-ui.mjs
 !/tests/along-the-way.test.mjs
+
+!/site-stays.mjs
+!/data/site-stays.csv
+!/tests/site-stays.test.mjs
