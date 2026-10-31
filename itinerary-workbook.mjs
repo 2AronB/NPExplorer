@@ -1,3 +1,4 @@
+import {accessWarningText} from './access-review.mjs';
 import {PARK_HIGHLIGHTS} from './park-highlights.mjs';
 const DAY=86400000;
 const date=s=>s?new Date(s+'T00:00:00Z'):null;
@@ -9,7 +10,7 @@ const sum=(rows,key)=>rows.reduce((n,r)=>n+(finite(r[key])??0),0);
 const official=s=>s?.id==='kica'||s?.id==='sequ'?'https://www.nps.gov/seki/index.htm':s?.url;
 const full=s=>s?.id==='npsa'?'National Park of American Samoa':s?.name||s?.shortName||'Destination unavailable';
 const safeUrl=url=>{try{const u=new URL(url);return u.protocol==='https:'?u.href:null;}catch{return null;}};
-export function travelDocument({state,sites,result,rows,selected,exportedAt}){
+export function travelDocument({state,sites,result,rows,selected,exportedAt,accessReview}){
  const lookup=new Map(sites.map(s=>[s.id,s]));
  const travelerName=s=>s.excursion?`${s.excursion.airport?.name||'Mainland'} ${s.excursion.airport?.code||''} gateway (${s.excursion.mode==='drive'?'overland':'fly-out'})`:full(s);
  const names=new Map([...sites,...result?.nodes||[]].flatMap(s=>[[s.id,travelerName(s)],[s.shortName,travelerName(s)]]));
@@ -40,6 +41,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt}){
   if(e.notes.includes('ACCESS CONFLICT')||e.notes.includes('Infeasible access'))actions.push({status:'CONFLICT',place:e.place,action:'Resolve the modeled access conflict before travel.',url:e.url});
  }
  for(const block of result?.excursions||[])actions.push({status:block.feasible?'Research transport':'CONFLICT',place:block.gateway?.name||'Regional excursion',action:`${block.mode==='drive'?'Verify the overland route, border requirements and vehicle suitability.':'Verify flight connections, regional transfers and vehicle storage.'} Recover the mainland truck/camper at ${block.airport?.name||block.airport?.code||'the modeled gateway'} before continuing. Buffers are estimates; no transport is booked.`,url:null});
+ for(const visit of accessReview?.visits||[])for(const warning of visit.warnings){const source=(warning.sourceIDs||[]).map(id=>accessReview.sources[id]).find(s=>s&&/^https:\/\/www\.nps\.gov\//.test(s.url));actions.push({status:warning.kind==='legal'?'CONFLICT':warning.kind==='unknown'?'Research gap':'Review access',place:visit.displayName,action:accessWarningText(warning),url:source?.url||official(lookup.get(visit.siteId))});}
  for(const p of parks)actions.push({status:'Research access',place:p.name,action:p.missing?'Park highlights not yet researched. Check official visitor information.':'Choose highlights, then verify current access, permits, tickets and services for your dates. No reservation status is assumed.',url:p.url});
  actions.push({status:'Arrange overnight stops',place:'Along the route',action:'Choose overnight locations and confirm any reservations. This model does not assign campsites or hotels.',url:null});
  if(result?.restDays)actions.push({status:'Place rest days',place:'Rest reserve',action:`Distribute the ${result.restDays} reserved days among real stops as you refine the trip. The model currently holds them at the end.`,url:null});
@@ -94,6 +96,7 @@ export async function itineraryBytes(doc,ExcelJS){
  const overview=sheet(book,'Overview',[30,22,60],r?'Calculated route currently shown. Draft estimates; JSON is the restorable backup.':'Selected places — route not calculated. No travel order, dates or mileage assigned.',['Trip measure','Value','Meaning']);
  overview.pageSetup.orientation='portrait';
  const metric=(a,b,c)=>{const rr=row(overview,[a,b,c]);if(typeof b==='number')rr.getCell(2).numFmt=/miles/.test(a)?'#,##0':/hours/.test(a)?'0.0':Number.isInteger(b)?'0':'0.00';return rr;};
+ if(doc.reportContext){metric('Saved alternative',doc.reportContext.name,'Saved '+doc.reportContext.savedAt);metric('Saved result status',doc.reportContext.stale?'Older result':'Saved result','Historical snapshot. '+(doc.reportContext.stale?'Restore inputs and recalculate with the current version before adopting this route.':'No new calculation was performed for this export.'));}
  metric('Departure',r?dated(r.startDate):null,r?doc.startName:'Calculate a route to assign dates.');
  metric('Last allocated date',r?dated(shifted(r.endDate,-1)):null,r?doc.endName:'');
  metric('Allocated calendar days',r?.totalDays??null,'Sum of Itinerary allocations. Do not add overlapping date ranges.');

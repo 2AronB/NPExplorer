@@ -1,3 +1,4 @@
+import {accessWarningsHtml} from './access-review.mjs';
 import {exportTables} from './trip-export.mjs';
 const DAY=86400000;
 const date=s=>new Date(s+'T00:00:00Z');
@@ -17,12 +18,12 @@ function typeOf(e,lookup){
 
 // Use the report ledger for allocations. Shared exploration is an activity on
 // an existing drive date, never another calendar allocation.
-export function buildCalendarModel({state,sites,result}){
+export function buildCalendarModel({state,sites,result,accessReview}){
  if(!result)return null;
  const {events}=exportTables({state,sites,result}).travelDocument;
  const lookup=new Map(sites.map(s=>[s.id,s])),byDate=new Map(),months=new Map();
  for(let d=result.startDate;d<result.endDate;d=shift(d,1)){
-  const day={date:d,events:[],kind:'unassigned'};byDate.set(d,day);
+  const day={date:d,events:[],kind:'unassigned',accessWarnings:accessReview?.visits.flatMap(v=>v.warnings.filter(w=>w.affectedDates.includes(d)).map(w=>({siteId:v.siteId,...w})))||[]};byDate.set(d,day);
   const key=d.slice(0,7);if(!months.has(key))months.set(key,{key,label:human(key+'-01',{month:'long',year:'numeric'}),days:[]});
   months.get(key).days.push(day);
  }
@@ -40,15 +41,15 @@ export function buildCalendarModel({state,sites,result}){
   day.events.sort((a,b)=>Number(!a.shared)-Number(!b.shared));
   counts[day.kind]=(counts[day.kind]||0)+1;
  }
- return {days:[...byDate.values()],byDate,months:[...months.values()],counts,result};
+ return {days:[...byDate.values()],byDate,months:[...months.values()],counts,result,accessReview};
 }
 
-export function mountCalendar(root,{onExplore,onCalculate,onPlace}){
+export function mountCalendar(root,{onExplore,onCalculate,onPlace,idPrefix='calendar'}){
  let model=null,monthKey=null,selectedDate=null,pending=false,overviewOpen=true;
  const button=day=>{
   const places=[...new Set(day.events.filter(e=>['park','personal'].includes(e.kind)).map(e=>e.shortPlace))];
   const label=places[0]||day.events[0]?.place||CALENDAR_TYPES[day.kind];
-  return `<button type="button" class="calendar-day cal-${day.kind}${day.date===selectedDate?' is-selected':''}" data-calendar-day="${day.date}" aria-pressed="${day.date===selectedDate}" aria-label="${esc(human(day.date)+': '+CALENDAR_TYPES[day.kind]+' · '+label)}"><span class="calendar-date">${Number(day.date.slice(8))}</span><span class="calendar-day-label">${esc(label)}</span>${places.length>1?`<small>+${places.length-1} destination${places.length>2?'s':''}</small>`:`<small>${CALENDAR_TYPES[day.kind]}</small>`}</button>`;
+  return `<button type="button" class="calendar-day cal-${day.kind}${day.date===selectedDate?' is-selected':''}${day.accessWarnings.length?' has-access-warning':''}" data-calendar-day="${day.date}" aria-pressed="${day.date===selectedDate}" aria-label="${esc(human(day.date)+': '+CALENDAR_TYPES[day.kind]+' · '+label+(day.accessWarnings.length?' · access needs review':''))}"><span class="calendar-date">${Number(day.date.slice(8))}${day.accessWarnings.length?' <span aria-hidden="true">⚠</span>':''}</span><span class="calendar-day-label">${esc(label)}</span>${places.length>1?`<small>+${places.length-1} destination${places.length>2?'s':''}</small>`:`<small>${CALENDAR_TYPES[day.kind]}</small>`}</button>`;
  };
  function detail(day){
   const cards=day.events.map(e=>{
@@ -60,9 +61,9 @@ export function mountCalendar(root,{onExplore,onCalculate,onPlace}){
     if(e.otherHours)facts.push(`~${number(e.otherHours)} h transport across this leg`);
    }
    const scope=e.shared?`${e.parkDays} exploration day equivalent`:e.start&&e.end>e.start?`${human(e.start,{month:'short',day:'numeric'})}–${human(shift(e.end,-1),{month:'short',day:'numeric'})} · ${e.days} allocated day${e.days===1?'':'s'}`:'';
-   return `<article class="calendar-event cal-${e.kind}"><p class="eyebrow">${esc(e.event)}</p><h4>${esc(e.place)}</h4>${scope?`<p>${esc(scope)}</p>`:''}${e.from||e.to?`<p>${esc(e.from)} → ${esc(e.to)}</p>`:''}${e.miles?`<p>~${Math.round(e.miles).toLocaleString()} miles for the whole leg</p>`:''}${facts.length?`<p>${esc(facts.join(' · '))}</p>`:''}${e.quality!==null&&e.quality!==undefined?`<p>Stay quality ${number(e.quality)}/10${e.lateDays?' · Fixed date missed':''}</p>`:''}${e.notes?`<details><summary>Planning notes</summary><p>${esc(e.notes)}</p></details>`:''}${e.siteId?`<button type="button" class="text-button" data-calendar-place="${esc(e.siteId)}">Park / stop details ↗</button>`:''}</article>`;
+   return `<article class="calendar-event cal-${e.kind}"><p class="eyebrow">${esc(e.event)}</p><h4>${esc(e.place)}</h4>${scope?`<p>${esc(scope)}</p>`:''}${e.from||e.to?`<p>${esc(e.from)} → ${esc(e.to)}</p>`:''}${e.miles?`<p>~${Math.round(e.miles).toLocaleString()} miles for the whole leg</p>`:''}${facts.length?`<p>${esc(facts.join(' · '))}</p>`:''}${e.quality!==null&&e.quality!==undefined?`<p>Stay quality ${number(e.quality)}/10${e.lateDays?' · Fixed date missed':''}</p>`:''}${e.siteId?accessWarningsHtml(model.accessReview,{siteId:e.siteId,date:day.date}):''}${e.notes?`<details><summary>Planning notes</summary><p>${esc(e.notes)}</p></details>`:''}${e.siteId?`<button type="button" class="text-button" data-calendar-place="${esc(e.siteId)}">Park / stop details ↗</button>`:''}</article>`;
   }).join('');
-  return `<h3 id="calendarDayTitle">${human(day.date,{weekday:'long',month:'short',day:'numeric',year:'numeric'})}</h3><p class="calendar-day-kind"><i class="cal-dot cal-${day.kind}"></i>${CALENDAR_TYPES[day.kind]}</p>${cards||'<p>No activity is allocated to this date. Review the schedule before travel.</p>'}`;
+  return `<h3 id="${idPrefix}DayTitle">${human(day.date,{weekday:'long',month:'short',day:'numeric',year:'numeric'})}</h3><p class="calendar-day-kind"><i class="cal-dot cal-${day.kind}"></i>${CALENDAR_TYPES[day.kind]}</p>${cards||'<p>No activity is allocated to this date. Review the schedule before travel.</p>'}`;
  }
  function render(){
   if(!model){root.innerHTML=`<div class="calendar-empty empty-state"><span>▦</span><h2>Your year, day by day.</h2><p>${pending?'Your route is calculating. The calendar will appear when it finishes.':'Calculate a route to see park stays, shared driving days, flights and waiting time on a calendar.'}</p><button type="button" class="button secondary" data-calendar-action="${pending?'explore':'calculate'}">${pending?'View search progress':'Find my route →'}</button><button type="button" class="text-button" data-calendar-action="explore">Back to the map</button></div>`;return;}
@@ -78,7 +79,7 @@ export function mountCalendar(root,{onExplore,onCalculate,onPlace}){
    const where=places.length>1?places[0]+' → '+places.at(-1):places[0]||CALENDAR_TYPES[m.days[0].kind];
    return `<button type="button" class="calendar-month-preview${m.key===month.key?' is-selected':''}" data-calendar-month="${m.key}" aria-pressed="${m.key===month.key}"><strong>${esc(m.label)}</strong><span class="calendar-month-strip" aria-hidden="true">${m.days.map(d=>`<i class="cal-${d.kind}"></i>`).join('')}</span><span class="calendar-preview-places" title="${esc(places.join(' → ')||where)}">${esc(where)}</span><small>${m.days.length} trip days${m.days.some(d=>d.kind==='wait')?' · includes waiting':''}</small></button>`;
   }).join('');
-  root.innerHTML=`<div class="section-title"><div><p class="eyebrow">A LITTLE PERSPECTIVE ON THAT YEAR</p><h2>Your trip, on the calendar.</h2></div><button type="button" class="text-button" data-calendar-action="explore">Edit on the map ↗</button></div><p class="calendar-summary"><strong>${human(r.startDate)} – ${human(shift(r.endDate,-1))}</strong> · ${r.totalDays} allocated days · ${r.remaining<0?`${-r.remaining} days over target`:`${r.remaining} days under target`}</p><p class="fineprint">Each date appears once. Shared days include driving and exploration. Dates and transport remain draft estimates.${r.restDays?` The ${r.restDays}-day rest reserve is held at the end, not yet distributed.`:''}</p>${r.warnings?.length?`<details class="warning"><summary>Scheduling notes · ${r.warnings.length}</summary>${r.warnings.map(w=>`<p>${esc(w)}</p>`).join('')}</details>`:''}<div class="calendar-legend">${types.map(([kind,label])=>`<span><i class="cal-dot cal-${kind}"></i>${label}<small>${model.counts[kind]}d</small></span>`).join('')}</div><details class="calendar-overview" ${overviewOpen?'open':''}><summary>Whole-trip overview · ${model.months.length} months</summary><div class="calendar-months">${overview}</div></details><div class="calendar-controls"><button type="button" data-calendar-step="-1" aria-label="Previous trip month" ${month===model.months[0]?'disabled':''}>←</button><label>Month<select id="calendarMonth" aria-label="Calendar month">${model.months.map(m=>`<option value="${m.key}" ${m.key===month.key?'selected':''}>${esc(m.label)}</option>`).join('')}</select></label><button type="button" data-calendar-step="1" aria-label="Next trip month" ${month===model.months.at(-1)?'disabled':''}>→</button></div><div class="calendar-layout"><section class="calendar-month" aria-label="${esc(month.label)}"><div class="calendar-weekdays">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<span>${d}</span>`).join('')}</div><div class="calendar-grid">${cells.join('')}</div></section><aside id="calendarDayDetail" class="calendar-day-detail" aria-labelledby="calendarDayTitle">${detail(model.byDate.get(selectedDate))}</aside></div>`;
+  root.innerHTML=`<div class="section-title"><div><p class="eyebrow">A LITTLE PERSPECTIVE ON THAT YEAR</p><h2>Your trip, on the calendar.</h2></div><button type="button" class="text-button" data-calendar-action="explore">Edit on the map ↗</button></div><p class="calendar-summary"><strong>${human(r.startDate)} – ${human(shift(r.endDate,-1))}</strong> · ${r.totalDays} allocated days · ${r.remaining<0?`${-r.remaining} days over target`:`${r.remaining} days under target`}</p><p class="fineprint">Each date appears once. Shared days include driving and exploration. Dates and transport remain draft estimates.${r.restDays?` The ${r.restDays}-day rest reserve is held at the end, not yet distributed.`:''}</p>${r.warnings?.length?`<details class="warning"><summary>Scheduling notes · ${r.warnings.length}</summary>${r.warnings.map(w=>`<p>${esc(w)}</p>`).join('')}</details>`:''}<div class="calendar-legend">${types.map(([kind,label])=>`<span><i class="cal-dot cal-${kind}"></i>${label}<small>${model.counts[kind]}d</small></span>`).join('')}</div><details class="calendar-overview" ${overviewOpen?'open':''}><summary>Whole-trip overview · ${model.months.length} months</summary><div class="calendar-months">${overview}</div></details><div class="calendar-controls"><button type="button" data-calendar-step="-1" aria-label="Previous trip month" ${month===model.months[0]?'disabled':''}>←</button><label>Month<select id="${idPrefix}Month" aria-label="Calendar month">${model.months.map(m=>`<option value="${m.key}" ${m.key===month.key?'selected':''}>${esc(m.label)}</option>`).join('')}</select></label><button type="button" data-calendar-step="1" aria-label="Next trip month" ${month===model.months.at(-1)?'disabled':''}>→</button></div><div class="calendar-layout"><section class="calendar-month" aria-label="${esc(month.label)}"><div class="calendar-weekdays">${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d=>`<span>${d}</span>`).join('')}</div><div class="calendar-grid">${cells.join('')}</div></section><aside id="${idPrefix}DayDetail" class="calendar-day-detail" aria-labelledby="${idPrefix}DayTitle">${detail(model.byDate.get(selectedDate))}</aside></div>`;
  }
  root.addEventListener('click',e=>{
   const b=e.target.closest('button');if(!b)return;
@@ -86,11 +87,11 @@ export function mountCalendar(root,{onExplore,onCalculate,onPlace}){
   if(b.dataset.calendarAction==='calculate')return onCalculate();
   if(b.dataset.calendarPlace)return onPlace(b.dataset.calendarPlace);
   if(!model)return;
-  if(b.dataset.calendarDay){selectedDate=b.dataset.calendarDay;root.querySelectorAll('[data-calendar-day]').forEach(el=>{const chosen=el.dataset.calendarDay===selectedDate;el.classList.toggle('is-selected',chosen);el.setAttribute('aria-pressed',String(chosen));});const panel=root.querySelector('#calendarDayDetail');panel.innerHTML=detail(model.byDate.get(selectedDate));if(root.ownerDocument.defaultView.matchMedia('(max-width:900px)').matches)panel.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
+  if(b.dataset.calendarDay){selectedDate=b.dataset.calendarDay;root.querySelectorAll('[data-calendar-day]').forEach(el=>{const chosen=el.dataset.calendarDay===selectedDate;el.classList.toggle('is-selected',chosen);el.setAttribute('aria-pressed',String(chosen));});const panel=root.querySelector('#'+idPrefix+'DayDetail');panel.innerHTML=detail(model.byDate.get(selectedDate));if(root.ownerDocument.defaultView.matchMedia('(max-width:900px)').matches)panel.scrollIntoView({behavior:'smooth',block:'nearest'});return;}
   if(b.dataset.calendarMonth){monthKey=b.dataset.calendarMonth;selectedDate=null;render();return;}
   if(b.dataset.calendarStep){const index=model.months.findIndex(m=>m.key===monthKey);monthKey=model.months[index+Number(b.dataset.calendarStep)]?.key||monthKey;selectedDate=null;render();root.querySelector(`[data-calendar-step="${b.dataset.calendarStep}"]`)?.focus();}
  });
- root.addEventListener('change',e=>{if(e.target.id==='calendarMonth'){monthKey=e.target.value;selectedDate=null;render();root.querySelector('#calendarMonth').focus();}});
+ root.addEventListener('change',e=>{if(e.target.id===idPrefix+'Month'){monthKey=e.target.value;selectedDate=null;render();root.querySelector('#'+idPrefix+'Month').focus();}});
  root.addEventListener('toggle',e=>{if(e.target===root.querySelector('.calendar-overview'))overviewOpen=e.target.open;},true);
  return {update(input){pending=!!input.pending;try{model=buildCalendarModel(input);render();}catch(error){console.error('Calendar rendering:',error);root.innerHTML='<div class="warning"><p>The calendar could not reconcile this schedule. Your plan is still saved. Recalculate the route or use Explore to review it.</p><button type="button" class="text-button" data-calendar-action="explore">Back to Explore</button></div>';}}};
 }

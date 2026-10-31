@@ -1,4 +1,7 @@
 import {mountCalendar} from './calendar.mjs';
+import {reviewTripAccess,accessSummaryHtml} from './access-review.mjs';
+import {openScenarioStore,createSnapshot,dataFingerprint,resultVersionMatches} from './scenarios.mjs';
+import {mountComparisons} from './comparison-ui.mjs';
 import {accessForMonth,accessDetails} from './seasonal-access.mjs';
 import {planningRules,reservationBadge,reservationDetails} from './reservation-ui.mjs';
 import {exportTables,csvText,xlsxBytes} from './trip-export.mjs';
@@ -28,6 +31,12 @@ baseSites.splice(0,baseSites.length,...[...currentInventory(baseSites),...REMOTE
 let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
 try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)state=validate(JSON.parse(saved));}catch(error){try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)localStorage.setItem('long-way-plan-recovery-v1',saved);}catch{}console.error('Saved-plan validation:',error);toast('Saved plan could not be loaded. A recovery copy was retained in this browser; starter settings are shown.',true);}
 let sites=[],lookup=new Map(),markers=new Map(),activeId=null,lens='season',month=4,pick=null,circleCenter=null,circleLayer=null,result=null,worker=null,revision=0;
+let accessReview=null,comparisons=null;
+const scenarioVersions={application:new URL(import.meta.url).searchParams.get('v')||'access-compare-1',optimizer:'shared-morning-v1',data:dataFingerprint([baseSites,defaults,accessAudit,seasonalResearch,reservationResearch])};
+const scenarioStore=openScenarioStore({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},validate);
+function activeSnapshot(name='Previous active trip'){
+ return createSnapshot({id:'active-recovery',name,state,sites,result,accessReview,versions:scenarioVersions});
+}
 const map=L.map('map',{zoomControl:true,minZoom:2,maxZoom:10,attributionControl:true}).setView([38,-97],4);
 map.attributionControl.setPrefix(false);
 map.attributionControl.addAttribution('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> · US Census / us-atlas · NPS boundary snapshot');
@@ -38,7 +47,7 @@ for(const [name,lat,lng]of labelData)L.marker([lat,lng],{icon:L.divIcon({classNa
 const markerLayer=L.layerGroup().addTo(map),routeLayer=L.layerGroup().addTo(map),endpointLayer=L.layerGroup().addTo(map);
 let pendingMapFit=false;
 const calendar=mountCalendar($('calendarView'),{onExplore:()=>switchWorkspace('explore'),onCalculate:()=>{switchWorkspace('explore');$('optimize').click();$('journey').scrollIntoView({behavior:'smooth'});},onPlace:id=>{switchWorkspace('explore');openDetail(id);}});
-function switchWorkspace(view){$('exploreView').hidden=view!=='explore';$('calendarView').hidden=view!=='calendar';document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});if(view==='explore')requestAnimationFrame(()=>{map.invalidateSize();if(pendingMapFit){pendingMapFit=false;fit();}});}
+function switchWorkspace(view){$('exploreView').hidden=view!=='explore';$('calendarView').hidden=view!=='calendar';$('compareView').hidden=view!=='compare';if(view==='compare')comparisons?.update();document.querySelectorAll('[data-view]').forEach(b=>{const active=b.dataset.view===view;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});if(view==='explore')requestAnimationFrame(()=>{map.invalidateSize();if(pendingMapFit){pendingMapFit=false;fit();}});}
 document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>switchWorkspace(b.dataset.view));
 $('month').value=month;
 let shownTypes=new Set(MARKER_TYPES.map(t=>t.id));
@@ -50,6 +59,29 @@ function changeMapVisibility(){try{localStorage.setItem('long-way-map-types-v1',
 $('shapeLegend').onclick=e=>{const b=e.target.closest('[data-marker-type]');if(b){const id=b.dataset.markerType;if(shownTypes.has(id))shownTypes.delete(id);else shownTypes.add(id);}else if(e.target.closest('#legendShowAll'))shownTypes=new Set(MARKER_TYPES.map(t=>t.id));else if(e.target.closest('#legendHideAll'))shownTypes.clear();else return;changeMapVisibility();};
 renderLegend();
 rebuild();fillSettings();renderAll();syncLens();save();
+comparisons=mountComparisons($('compareView'),{store:scenarioStore,versions:scenarioVersions,active:activeSnapshot,onRestore:restoreScenario,onExport:exportScenario,toast});
+comparisons.update();
+
+function restoreScenario(snapshot){
+ const next=validate(structuredClone(snapshot.state));
+ if(next.selected.length!==snapshot.state.selected.length)throw Error('This saved trip includes destinations no longer recognized. Export its JSON backup and reconcile them before restoring.');
+ // Preserve the active report before touching saved inputs or terminating work.
+ scenarioStore.preserveRecovery(activeSnapshot());
+ try{localStorage.setItem('long-way-plan-v1',JSON.stringify(next));}catch{throw Error('Could not restore inputs: browser storage is unavailable. Your active trip and recovery copy were kept.');}
+ state=next;changed();rebuild();fillSettings();renderAll();
+ toast('Saved trip inputs restored. Previous active trip is in Compare recovery. Find my route will recalculate.');
+}
+async function exportScenario(snapshot,kind){
+ if(!snapshot)throw Error('Saved trip not found.');
+ const filename='the-long-way-'+snapshot.name.replace(/[^a-z0-9_-]+/gi,'-').slice(0,60);
+ if(kind==='json')downloadTrip(new Blob([JSON.stringify(snapshot.state,null,2)],{type:'application/json'}),filename+'.json');
+ else{
+  const tables=exportTables({state:snapshot.state,sites:snapshot.sites,result:snapshot.result,accessReview:snapshot.accessReview,reportContext:{name:snapshot.name,savedAt:snapshot.savedAt,stale:!resultVersionMatches(snapshot,scenarioVersions)}});
+  if(kind==='csv')downloadTrip(new Blob([csvText(tables.itinerary)],{type:'text/csv;charset=utf-8'}),filename+'.csv');
+  else{await loadWorkbookLibrary();downloadTrip(new Blob([await xlsxBytes(tables,globalThis.ExcelJS)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
+ }
+ toast('Exported saved trip: '+snapshot.name);
+}
 
 function validate(raw){
  raw=upgradePlanPreferences(raw);
@@ -97,9 +129,9 @@ function validMD(s){if(typeof s!=='string'||!/^\d{2}-\d{2}$/.test(s))return fals
 function rebuild(){sites=[...baseSites.map(s=>{const rule=state.rules[s.id];return {...s,priority:state.priorities[s.id]??s.priority??1,remote:s.remote?{...s.remote,window:state.settings.remoteWindows?.[s.id]===null?null:state.settings.remoteWindows?.[s.id]||s.remote.window}:undefined,days:state.days[s.id]??(s.type==='park'&&state.settings.stayMode==='uniform'?state.settings.defaultDays:s.type==='park'&&state.settings.stayMode==='highlights'?Math.min(s.days,highlightDays[s.id]??Math.max(1,Math.ceil(s.days/2))):s.days),profile:rule?{...s.profile,ideal:rule.ideal,bad:rule.bad,quiet:rule.quiet,scores:rule.scores,quality:'User-edited monthly quality assumptions'}:s.profile,closure:rule?rule.closure:s.closure};}),...state.custom.map(s=>({...s,priority:state.priorities[s.id]??1,days:state.days[s.id]??s.days}))];lookup=new Map(sites.map(s=>[s.id,s]));}
 function save(){try{localStorage.setItem('long-way-plan-v1',JSON.stringify(state));}catch{toast('Browser storage is unavailable. Use Export plan to save your work.');}}
 function renderTransport(){renderTransportSettings(state.settings,values=>{try{const next=structuredClone(state);Object.assign(next.settings,values);state=validate(next);changed();renderTransport();toast('Transport assumptions saved. Find my route will compare the updated options.');}catch(e){toast(e.message);}},region=>{state.selected=[...new Set([...state.selected,...sites.filter(s=>s.remote?.region===region).map(s=>s.id)])];changed();renderAll();$('mapRegion').value=region;showRegion(region);toast(`${REGION_NAMES[region]} parks added to the trip.`);},toast);}
-function changed(){revision++;const canceled=!!worker;if(worker){worker.terminate();worker=null;$('optimize').disabled=false;$('optimize').textContent='Find my route →';}if(result||canceled){$('routeStatus').textContent='INPUTS CHANGED · RECALCULATE';$('suggestionSection').hidden=true;routeLayer.clearLayers();$('routeOutput').innerHTML='<div class="empty-state"><p>Inputs changed. Find my route will calculate an updated itinerary.</p></div>';result=null;renderMarkers();}calendar.update({state,sites,result,pending:!!worker});save();}
+function changed(){revision++;accessReview=null;const canceled=!!worker;if(worker){worker.terminate();worker=null;$('optimize').disabled=false;$('optimize').textContent='Find my route →';}if(result||canceled){$('routeStatus').textContent='INPUTS CHANGED · RECALCULATE';$('suggestionSection').hidden=true;routeLayer.clearLayers();$('routeOutput').innerHTML='<div class="empty-state"><p>Inputs changed. Find my route will calculate an updated itinerary.</p></div>';result=null;renderMarkers();}calendar.update({state,sites,result,accessReview,pending:!!worker});save();}
 function toast(message,persistent=false){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);if(!persistent)toast.timer=setTimeout(()=>$('toast').hidden=true,6500);}
-function renderAll(){calendar.update({state,sites,result,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
+function renderAll(){calendar.update({state,sites,result,accessReview,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
 function setSelected(id,selected){state.selected=state.selected.filter(x=>x!==id);if(selected)state.selected.push(id);changed();renderAll();}
 function renderSummary(){renderBookingChecklist();const selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),s=state.settings;$('selectedCount').textContent=selected.length;$('selectionSummary').textContent=`${selected.length} places · ${selected.reduce((n,s)=>n+s.days,0)} full days + travel · ${s.duration}-day target · ${s.endMode==='return'?'round trip to '+s.start.name:s.endMode==='open'?'one-way finish':'finish: '+s.end.name}`;$('optimize').disabled=!selected.length;$('autoMonth').checked=s.autoMonth;$('inventoryNote').textContent=`${baseSites.filter(s=>s.type==='park').length} US national parks · ${baseSites.filter(s=>s.type==='site').length} other CONUS NPS locations. Remote access is modeled separately. CONUS site inventory: Nov 2022.`;}
 function coreAccess(s){return accessForMonth(accessAudit,s.id,month);}
@@ -205,16 +237,17 @@ function renderProgress(p){
  $('routeStatus').textContent=p.total>1?`MONTH ${iteration} OF ${p.total}`:'CALCULATING LOCALLY';
  $('routeOutput').innerHTML=`<div class="loading route-progress"><strong>${p.total>1?`Departure month ${iteration} of ${p.total} · `:''}${monthLabel}</strong><div class="progress-label"><span>This iteration · estimated</span><span>${percent}%</span></div><progress max="100" value="${percent}" aria-label="Estimated progress for this departure month"></progress>${p.total>1?`<div class="progress-label"><span>Overall · ${p.completed} of ${p.total} months complete</span><span>~${overall}%</span></div><progress max="100" value="${overall}" aria-label="Estimated progress across all departure months"></progress>`:''}<p role="status">${escape(p.phase||'Comparing visit orders and seasonal fit')}</p><small>Progress estimates follow search stages; some stages take longer. You can keep exploring the map.</small></div>`;
 }
-$('optimize').onclick=()=>{if(!state.selected.length)return;if(worker)worker.terminate();const started=revision;worker=new Worker('./worker.mjs',{type:'module'});$('optimize').disabled=true;$('optimize').textContent='Sketching your route…';renderProgress({completed:0,total:state.settings.autoMonth?12:1,startDate:state.settings.startDate,fraction:0,phase:'Starting local optimizer'});calendar.update({state,sites,result:null,pending:true});$('suggestionSection').hidden=true;
+$('optimize').onclick=()=>{if(!state.selected.length)return;if(worker)worker.terminate();result=null;accessReview=null;const started=revision;worker=new Worker('./worker.mjs',{type:'module'});$('optimize').disabled=true;$('optimize').textContent='Sketching your route…';renderProgress({completed:0,total:state.settings.autoMonth?12:1,startDate:state.settings.startDate,fraction:0,phase:'Starting local optimizer'});calendar.update({state,sites,result:null,pending:true});$('suggestionSection').hidden=true;
  worker.onmessage=({data})=>{if(started!==revision)return;if(data.progress){renderProgress(data.progress);return;}worker.terminate();worker=null;$('optimize').disabled=false;$('optimize').innerHTML='Find my route <span>→</span>';if(data.error){calendar.update({state,sites,result:null});toast(`Route calculation failed: ${data.error}`);$('routeOutput').textContent='Could not calculate this plan.';return;}result=data.result;renderRoute(data.suggestions);};
  worker.onerror=()=>{worker?.terminate();worker=null;$('optimize').disabled=false;$('optimize').textContent='Find my route →';$('routeOutput').textContent='The calculation could not finish. Your selected places are saved.';calendar.update({state,sites,result:null});toast('Local optimizer error. Your plan is still saved.');};
  worker.postMessage({stops:state.selected.map(id=>lookup.get(id)).filter(Boolean),settings:state.settings,candidates:sites.filter(s=>s.type==='site'&&!state.selected.includes(s.id))});
 };
 function routeStop(id){return lookup.get(id)||result?.nodes?.find(s=>s.id===id);}
-function renderRoute(suggestions){if(!result)return;const r=result;$('routeStatus').textContent='SUGGESTED ROUTE · ESTIMATES';routeLayer.clearLayers();
+function renderRoute(suggestions){if(!result)return;accessReview=reviewTripAccess({result,sites,audit:accessAudit,research:seasonalResearch});const r=result;$('routeStatus').textContent='SUGGESTED ROUTE · ESTIMATES';routeLayer.clearLayers();
  const metric=(value,label)=>`<div class="metric"><strong>${value}</strong><span>${label}</span></div>`;
  const conflicts=r.visits.filter(v=>v.status==='difficult'||v.status==='closed');
  $('routeOutput').innerHTML=`<div class="metric-grid">${metric(format(r.miles),'estimated road miles')}${metric(r.parkDays,'full destination days')}${metric(r.dedicatedTravelDays+r.transferDays,'dedicated drive + transfer days')}${metric(r.mixedDays,'mixed drive / exploration days')}${metric(r.restDays,'reserved rest days')}${metric(r.remaining>=0?r.remaining:Math.abs(r.remaining),r.remaining>=0?'days under target':'days over target')}${metric(conflicts.length,'seasonal conflicts')}</div><p class="route-explanation"><strong>${nice(r.startDate)}, ${r.startDate.slice(0,4)} → ${nice(r.endDate)}, ${r.endDate.slice(0,4)}</strong> · ${r.appointmentConflicts?`WARNING: ${r.appointmentConflicts} fixed-date stop(s) missed. `:''}${r.totalDays} days allocated; ${r.sharedParkDays} equivalent park days shared with driving. Includes ${r.waitDays} closure / transport-window wait days. ${format(r.hours)} estimated driving hours; ${r.longDays} driving days above your comfort target. ${r.restDays} rest days are reserved at the end of this draft calendar; remaining flex time is not assigned. Route lines are schematic; verify roads and transport before travel.</p>${r.remaining<0?'<div class="warning">This plan exceeds your reporting target. The target does not affect route ranking or shorten stays. Adjust the target, full park days, driving pace, rest reserve or selections after reviewing the route. <button type="button" data-edit-trip class="text-button">Adjust trip settings ↗</button></div>':''}${conflicts.length?`<div class="warning">Difficult-season visits: ${conflicts.map(v=>escape(routeStop(v.id).shortName)).join(', ')}. Seasonal preferences are soft constraints; inspect the dates before adopting this route.</div>`:''}${r.warnings.length?`<details class="warning"><summary>Closure and scheduling notes (${r.warnings.length})</summary>${r.warnings.map(w=>`<p>${escape(w)}</p>`).join('')}</details>`:''}<div class="route-list">${r.visits.map((v,i)=>{const s=routeStop(v.id),leg=r.legs[i],label=visitNumberLabel(r,v.id);return `<article class="visit-card"><span class="visit-num ${label.length>2?'is-range':''}">${label}</span><h3><button class="text-button" data-route-detail="${escape(s.id)}">${escape(s.shortName)}</button></h3><p>${nice(v.arrival)}–${nice(addDays(dateOf(v.departure),-1).toISOString().slice(0,10))}, ${v.arrival.slice(0,4)}<br>${v.fixedDate?`Fixed first full day: ${escape(v.fixedDate)}${v.lateDays?' · '+v.lateDays+' days late':''}<br>`:''}${v.days} equivalent exploration days${v.sharedDays?` (${v.sharedDays} on arrival day)`:""}${v.excursion?'':' · priority '+v.priority+'/5'}${v.departureSharedDays?` (${v.departureSharedDays} on departure morning)`:""}${v.transferDays?` + ${v.transferDays} transfer days`:''}<br>Getting here: ~${format(leg.miles)} mi · ${leg.hours.toFixed(1)} h<br>${leg.days} driving day${leg.days===1?'':'s'}${leg.days?` · ~${leg.dailyHours.toFixed(1)} h/day`:''}</p><span class="status-label ${v.status}">${v.status==='unknown'?'Personal stop':v.status==='ideal'?'Ideal*':v.status==='difficult'?'Difficult*':v.status==='closed'?'Closure / access conflict':'Mixed*'}</span></article>`;}).join('')}</div>`;
+ $('routeOutput').querySelector('.route-list').before(Object.assign(document.createElement('div'),{innerHTML:accessSummaryHtml(accessReview)}));
  if(r.excursions?.length)$('routeOutput').insertAdjacentHTML('beforeend',transportResults(r,lookup));
  const finishLeg=r.legs.find(l=>l.to==='finish');
  if(finishLeg){
@@ -237,7 +270,7 @@ function renderRoute(suggestions){if(!result)return;const r=result;$('routeStatu
  if(state.settings.end)L.polyline([latlng(previous.access?.gateway||previous),latlng(state.settings.end)],{color:'#a87945',weight:2,dashArray:'6 7',interactive:false}).addTo(routeLayer);
  for(const block of r.excursions||[])for(const t of block.transport){if(!t.from||!t.to)continue;L.polyline([latlng(t.from),latlng(t.to)],{color:t.kind==='drive'?'#a87945':'#6b779d',weight:2,dashArray:t.kind==='drive'?'6 7':'2 6',interactive:false}).addTo(routeLayer);}
 
- $('suggestionSection').hidden=!suggestions.length;$('suggestionList').innerHTML=suggestions.map(d=>{const s=routeStop(d.id);return `<article class="suggestion-card"><p class="eyebrow">${escape(s.state)} · OPTIONAL NPS STOP</p><h3>${escape(s.name)}</h3><p>~${Math.round(d.extraHours*60)} extra driving minutes · ~${format(d.extraMiles)} extra miles<br>+ ${s.days} full visit day${s.days===1?'':'s'} · recalculation may add driving days.</p><button data-add-suggestion="${escape(s.id)}">Include & recalculate ↗</button></article>`;}).join('');calendar.update({state,sites,result});setLens('selection');fit();
+ $('suggestionSection').hidden=!suggestions.length;$('suggestionList').innerHTML=suggestions.map(d=>{const s=routeStop(d.id);return `<article class="suggestion-card"><p class="eyebrow">${escape(s.state)} · OPTIONAL NPS STOP</p><h3>${escape(s.name)}</h3><p>~${Math.round(d.extraHours*60)} extra driving minutes · ~${format(d.extraMiles)} extra miles<br>+ ${s.days} full visit day${s.days===1?'':'s'} · recalculation may add driving days.</p><button data-add-suggestion="${escape(s.id)}">Include & recalculate ↗</button></article>`;}).join('');calendar.update({state,sites,result,accessReview});setLens('selection');fit();
 }
 function renderMonthComparison(r){
  const ranks=new Map([...r.monthResults].sort((a,b)=>a.score-b.score).map((m,i)=>[m.startDate,i+1]));
@@ -261,7 +294,7 @@ $('exportMenu').onclick=async e=>{const b=e.target.closest('[data-export-format]
  b.disabled=true;
  try{
   if(kind==='json'){downloadTrip(new Blob([JSON.stringify({...state,exportedAt:new Date().toISOString(),estimatesNote:'Draft monthly assumptions and travel estimates. JSON restores plan inputs; recalculate the itinerary.'},null,2)],{type:'application/json'}),'the-long-way-plan.json');toast('Restorable JSON plan backup exported.');}
-  else{const tables=exportTables({state,sites,result}),filename='the-long-way-'+(result?'itinerary-'+result.startDate:'selected-places');
+  else{const tables=exportTables({state,sites,result,accessReview}),filename='the-long-way-'+(result?'itinerary-'+result.startDate:'selected-places');
    if(kind==='csv')downloadTrip(new Blob([csvText(tables.itinerary)],{type:'text/csv;charset=utf-8'}),filename+'.csv');
    else{await loadWorkbookLibrary();downloadTrip(new Blob([await xlsxBytes(tables,globalThis.ExcelJS)],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),filename+'.xlsx');}
    toast((kind==='csv'?'CSV':'Excel')+(result?' itinerary exported.':' selected-place report exported; calculate a route to include dates and travel.'));

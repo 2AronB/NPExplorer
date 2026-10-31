@@ -76,3 +76,9 @@
 !/docs/reservation-evidence-report.md
 !/scripts/validate-reservations.mjs
 !/tests/reservations.test.mjs
+
+!/access-review.mjs
+!/scenarios.mjs
+!/comparison-ui.mjs
+!/tests/access-review.test.mjs
+!/tests/scenarios.test.mjs
