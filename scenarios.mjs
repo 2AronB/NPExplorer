@@ -26,7 +26,9 @@ export function openScenarioStore(storage,validatePlan){
    const all=[...saved.items,...saved.recovery?[saved.recovery]:[]],ids=new Set();
    for(const item of all){
     if(!item||typeof item.id!=='string'||ids.has(item.id)||typeof item.name!=='string'||!item.name.trim()||item.name.length>80||!Array.isArray(item.sites)||!item.versions||!Number.isFinite(Date.parse(item.savedAt)))throw Error('Invalid saved-trip snapshot.');
-    ids.add(item.id);validatePlan(item.state);
+    ids.add(item.id);const normalized=validatePlan(item.state);
+    if(normalized.selected.length!==item.state.selected.length)throw Error('A saved trip includes unrecognized destinations. Export the library recovery copy to reconcile them.');
+    if(JSON.stringify(normalized)!==JSON.stringify(item.state)){item.state=normalized;item.versions={...item.versions,migrated:true};}
    }
    library=saved;
   }
@@ -51,4 +53,36 @@ export function openScenarioStore(storage,validatePlan){
 export function comparisonMetrics(result,review){
  if(!result)return null;
  return {days:result.totalDays,miles:result.miles,hours:result.hours,quality:result.quality,mixed:result.mixedDays,dedicated:result.dedicatedTravelDays+result.transferDays,waits:result.waitDays,access:review?.affectedStops??null,unknown:review?.unknownStops??null,appointments:result.appointmentConflicts||0};
+}
+
+// Explain the assumptions behind different totals, using resolved destination
+// values so stay presets and explicit per-park overrides compare consistently.
+export function inputDifferences(active,saved){
+ const rows=[],a=active.state.settings,b=saved.state.settings;
+ const add=(label,left,right)=>{if(JSON.stringify(left)!==JSON.stringify(right))rows.push({label,active:String(left??'—'),saved:String(right??'—')});};
+ const names=new Map([...active.sites,...saved.sites].map(s=>[s.id,s.shortName||s.name||s.id]));
+ const left=new Set(active.state.selected),right=new Set(saved.state.selected);
+ const removed=[...left].filter(id=>!right.has(id)),added=[...right].filter(id=>!left.has(id));
+ if(removed.length||added.length)rows.push({label:'Selected destinations',active:removed.length?'Only here: '+removed.map(id=>names.get(id)||id).join(', '):'All also in saved trip',saved:added.length?'Only here: '+added.map(id=>names.get(id)||id).join(', '):'All also in active trip'});
+ const settings={startDate:'Saved departure date',autoMonth:'Search all departure months',duration:'Trip target · days',objective:'Route priority',pace:'Driving pace',endMode:'Finish strategy',stayMode:'Park stay preset',restDays:'Rest reserve · days',sharedDays:'Share driving / exploration days',comfort:'Comfortable driving · hours',stretch:'Stretch driving · hours',maxDrive:'Driving ceiling · hours',seasonDetourPercent:'Extra seasonal driving · %',dayBudget:'Daily activity budget · hours',explorationHours:'Full exploration day · hours',setupHours:'Camp setup · hours',teardownHours:'Camp teardown · hours',averageMph:'Estimated driving · mph',distanceFactor:'Road-distance multiplier',breakPercent:'Stop allowance · %',detourHours:'Optional detour limit · hours',alaskaMode:'Alaska strategy',remoteBufferDays:'Regional contingency · days',flightDayHours:'Flight day · hours',remoteRoadMph:'Regional driving · mph'};
+ const labels={season:'Seasonal fit',shortest:'Less driving',quiet:'Quieter months',balanced:'Balanced',relaxed:'Relaxed',efficient:'Fewer transfer days',return:'Return home',open:'Open-ended',custom:'Different finish',park:'Comfortable Exploration',highlights:'Hit the Highlights',uniform:'Uniform days',compare:'Compare drive / fly',fly:'Fly',drive:'Drive via Canada'};
+ const format=value=>typeof value==='boolean'?(value?'Yes':'No'):labels[value]??value;
+ for(const [key,label]of Object.entries(settings))add(label,format(a[key]),format(b[key]));
+ const point=p=>p?`${p.name} (${p.lat}, ${p.lng})`:'—';
+ add('Start',point(a.start),point(b.start));if(a.endMode==='custom'||b.endMode==='custom')add('Custom finish',a.endMode==='custom'?point(a.endLocation):'Not used',b.endMode==='custom'?point(b.endLocation):'Not used');
+ add('Enabled mainland airports',[...(a.airportCodes||[])].sort().join(', '),[...(b.airportCodes||[])].sort().join(', '));
+ const airports=list=>(list||[]).map(p=>p.code+': '+point(p)).sort().join('; ')||'None';
+ add('Custom mainland airports',airports(a.customAirports),airports(b.customAirports));
+ const savedSites=new Map(saved.sites.map(s=>[s.id,s]));
+ for(const site of active.sites){
+  const other=savedSites.get(site.id);if(!other||!left.has(site.id)||!right.has(site.id))continue;
+  const name=names.get(site.id);add(name+' · name',site.shortName||site.name,other.shortName||other.name);add(name+' · exploration days',site.days,other.days);add(name+' · priority /5',site.priority??1,other.priority??1);
+  add(name+' · first full day',site.fixedDate||'Flexible',other.fixedDate||'Flexible');
+  add(name+' · monthly scores Jan–Dec',site.profile?.scores?.join(', ')||'Default scores',other.profile?.scores?.join(', ')||'Default scores');
+  add(name+' · quieter months',(site.profile?.quiet||[]).join(', ')||'None',(other.profile?.quiet||[]).join(', ')||'None');
+  const window=w=>w?`${w.start} through ${w.end}`:'No annual window';
+  add(name+' · annual closure',window(site.closure),window(other.closure));add(name+' · transport window',window(site.remote?.window),window(other.remote?.window));
+ }
+ if(active.result&&saved.result)add('Displayed route departure',active.result.startDate,saved.result.startDate);
+ return rows;
 }

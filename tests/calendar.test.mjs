@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {buildCalendarModel} from '../calendar.mjs';
+import {buildCalendarModel,calendarNavigationDate,nextAccessWarningDate} from '../calendar.mjs';
 import {schedule,dateOf,iso,addDays} from '../optimizer.mjs';
 import {optimizeTrip} from '../trip-optimizer.mjs';
 import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';
@@ -41,4 +41,27 @@ test('remote calendar includes individual parks, flights, buffers and restrictiv
 test('a fully shared stay still has a visible park activity',()=>{
  const first={...sites.find(s=>s.id==='arch'),days:1},second={...sites.find(s=>s.id==='cany'),lat:first.lat,lng:first.lng,days:1},input={...settings,start:first,end:null,restDays:0},r=schedule([first,second],input),m=model([first,second],r,input);
  coverage(m,r);for(const s of [first,second])assert.ok(m.days.some(d=>d.events.some(e=>e.siteId===s.id)));
+});
+
+
+test('keyboard calendar navigation crosses leap months and clamps trip boundaries',()=>{
+ const days=[];for(let d='2040-01-28';d<'2040-04-04';d=iso(addDays(dateOf(d),1)))days.push({date:d,accessWarnings:[]});
+ const m={days,byDate:new Map(days.map(d=>[d.date,d]))};
+ assert.equal(calendarNavigationDate(m,'2040-01-31','PageDown'),'2040-02-29');
+ assert.equal(calendarNavigationDate(m,'2040-03-31','PageUp'),'2040-02-29');
+ assert.equal(calendarNavigationDate(m,'2040-02-29','ArrowRight'),'2040-03-01');
+ assert.equal(calendarNavigationDate(m,'2040-03-01','ArrowUp'),'2040-02-23');
+ assert.equal(calendarNavigationDate(m,'2040-01-28','ArrowLeft'),'2040-01-28');
+ assert.equal(calendarNavigationDate(m,'2040-04-03','End'),'2040-04-03');
+ assert.equal(calendarNavigationDate(m,'2040-02-29','Home'),'2040-02-26');
+ assert.equal(calendarNavigationDate(m,'2040-02-29','End'),'2040-03-03');
+ assert.equal(calendarNavigationDate(m,'2040-02-29','Tab'),null);
+});
+test('access concern navigation skips repeated warning days and wraps to the first concern',()=>{
+ const a={siteId:'romo',kind:'major',message:'Winter'},b={siteId:'yose',kind:'partial',message:'High country'};
+ const days=[[],[a],[a],[],[b],[b],[]].map((warnings,i)=>({date:'2040-01-0'+(i+1),accessWarnings:warnings})),m={days};
+ assert.equal(nextAccessWarningDate(m,'2040-01-01'),'2040-01-02');
+ assert.equal(nextAccessWarningDate(m,'2040-01-02'),'2040-01-05');
+ assert.equal(nextAccessWarningDate(m,'2040-01-06'),'2040-01-02');
+ assert.equal(nextAccessWarningDate({days:[days[0]]},'2040-01-01'),null);
 });

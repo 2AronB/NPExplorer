@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {SCENARIO_KEY,MAX_SCENARIOS,createSnapshot,openScenarioStore,resultVersionMatches,comparisonMetrics,dataFingerprint} from '../scenarios.mjs';
+import {SCENARIO_KEY,MAX_SCENARIOS,createSnapshot,openScenarioStore,resultVersionMatches,comparisonMetrics,dataFingerprint,inputDifferences} from '../scenarios.mjs';
 const versions={application:'a',optimizer:'b',data:'c'},state={version:1,selected:['romo'],custom:[],settings:{startDate:'2040-01-01'}};
 const validate=s=>{if(s?.version!==1||!Array.isArray(s.selected))throw Error('Bad inputs');return structuredClone(s);};
 function storage(){const values=new Map();return {values,fail:false,getItem(k){return values.get(k)||null;},setItem(k,v){if(this.fail)throw Error('Quota exceeded');values.set(k,v);}};}
@@ -40,4 +40,21 @@ test('a second tab cannot overwrite newer saved trips with an out-of-date librar
  const disk=storage(),first=openScenarioStore(disk,validate),second=openScenarioStore(disk,validate);first.save(snapshot());const preserved=disk.getItem(SCENARIO_KEY);
  assert.throws(()=>second.save(snapshot('two')),/another tab/);assert.equal(disk.getItem(SCENARIO_KEY),preserved);
  const fresh=openScenarioStore(disk,validate);fresh.save(snapshot('two'));assert.equal(fresh.items.length,2);
+});
+test('input comparison explains selected parks, resolved stays, priorities and displayed departure without mutation',()=>{
+ const active=snapshot(),saved=snapshot('summer');active.sites[0]={id:'romo',shortName:'Rocky Mountain',days:6,priority:5,profile:{scores:Array(12).fill(7),quiet:[1]}};saved.sites[0]={...active.sites[0],days:2,priority:3,profile:{scores:Array(12).fill(7),quiet:[2]}};
+ saved.state.settings.pace='relaxed';saved.state.selected.push('yell');saved.sites.push({id:'yell',shortName:'Yellowstone',days:4});saved.result.startDate='2040-07-01';
+ const before=JSON.stringify([active,saved]),rows=inputDifferences(active,saved);
+ assert.ok(rows.some(r=>r.label==='Selected destinations'&&r.saved.includes('Yellowstone')));
+ assert.ok(rows.some(r=>r.label==='Rocky Mountain · exploration days'&&r.active==='6'&&r.saved==='2'));
+ assert.ok(rows.some(r=>r.label==='Rocky Mountain · priority /5'&&r.saved==='3'));
+ assert.ok(rows.some(r=>r.label==='Displayed route departure'&&r.saved==='2040-07-01'));
+ assert.ok(rows.some(r=>r.label==='Rocky Mountain · quieter months'&&r.active==='1'&&r.saved==='2'));
+ assert.equal(JSON.stringify([active,saved]),before);assert.deepEqual(inputDifferences(active,structuredClone(active)),[]);
+});
+test('loading migrated inputs retains the original library and marks old derived results stale',()=>{
+ const disk=storage(),store=openScenarioStore(disk,validate);store.save(snapshot());const raw=disk.getItem(SCENARIO_KEY);
+ const migrated=openScenarioStore(disk,s=>({...validate(s),settings:{...s.settings,dayBudget:10}}));
+ assert.equal(migrated.items[0].state.settings.dayBudget,10);assert.ok(!resultVersionMatches(migrated.items[0],versions));assert.equal(disk.getItem(SCENARIO_KEY),raw);
+ const missing=openScenarioStore(disk,s=>({...validate(s),selected:[]}));assert.match(missing.error,/unrecognized destinations/);assert.equal(missing.raw,raw);
 });
