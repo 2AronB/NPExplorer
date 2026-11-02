@@ -1,5 +1,19 @@
 import {haversine} from './optimizer.mjs';
 import {automaticSiteCandidate} from './site-visit-review.mjs';
+import {qualityColor} from './season-quality.mjs';
+// Resolve individual regional park visits, never the excursion gateway average.
+export function scheduledVisit(result,id){
+ return result?.visits?.find(v=>v.id===id&&!v.excursion)||result?.excursions?.flatMap(b=>b.visits||[]).find(v=>v.id===id)||null;
+}
+export function tripMarkerColor(site,selected,visit){
+ if(site.type==='custom')return '#846286';
+ if(!visit)return selected?'#375b43':'#a6b39b';
+ return visit.status==='closed'?'#777e85':qualityColor(Number.isFinite(visit.quality)?visit.quality:null);
+}
+export function tripVisitLabel(visit,number){
+ if(!visit)return 'Not on a calculated route';
+ return `Stop ${number} · ${visit.arrival} → ${visit.departure} (checkout) · ${visit.days} exploration day equivalents · ${Number.isFinite(visit.quality)?visit.quality.toFixed(1)+'/10 for this visit':'No seasonal score'}${visit.status==='closed'?' · Closure / access conflict':''}${visit.windowConflict?' · Arrival date conflict':''}${visit.lateDays?' · Fixed date missed':''}`;
+}
 export const MARKER_TYPES=[
  {id:'park',label:'National parks',shape:'circle'},
  {id:'monument',label:'Monuments',shape:'triangle'},

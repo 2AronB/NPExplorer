@@ -2,6 +2,10 @@
 
 A browser-based national park road-trip planner. Explore park seasons, choose visit lengths and priorities, compare mainland routes and off-mainland excursions, and export an itinerary as XLSX or CSV. JSON backups can restore complete planning inputs.
 
+In Places, combine place type, region (including Lower 48), search and a Top 10 / Top 25 shortlist. **Select all matching** adds the filtered places while keeping existing selections. The shortlists are editorial starting points for signature scenery, ordinary hiking and wildlife, informed by [National Geographic](https://www.nationalgeographic.com/travel/article/find-the-best-us-national-park-for-you) and [Condé Nast Traveler](https://www.cntraveler.com/gallery/best-national-parks-usa), reviewed November 2, 2026. Neither publisher ranks this exact list; membership does not change personal priorities or optimization. Top 25 includes Top 10. Combine with Lower 48 to exclude regional excursions; the resulting count can be below 10 or 25.
+
+The Trip route map colors each scheduled destination by its actual visit's exploration-weighted seasonal quality. Hover or keyboard focus shows its stop number, dates, exploration allowance, score and date-aware access notes. Choosing another departure-month result updates these details and colors. Season colors remains a separate monthly exploration view.
+
 The app needs no shared accounts, API keys, server database or package installation. Plans stay in each visitor's browser. Travel estimates, seasonal scores and transport windows are provisional planning assumptions, not verified navigation, schedules or reservations.
 
 ## Publish this repository

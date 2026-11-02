@@ -115,3 +115,6 @@
 !/startup.mjs
 !/plan-import.mjs
 !/tests/plan-import.test.mjs
+
+!/places-filter.mjs
+!/tests/places-filter.test.mjs

@@ -2,6 +2,21 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {MARKER_TYPES,markerType,markerSize,circleCandidates,visibleSite,visitNumbers,visitNumberLabel} from '../map-markers.mjs';
+import {scheduledVisit,tripMarkerColor,tripVisitLabel} from '../map-markers.mjs';
+import {qualityColor} from '../season-quality.mjs';
+test('route markers resolve actual mainland and regional visit dates and quality when routes change',()=>{
+ const july={id:'yell',arrival:'2040-07-20',departure:'2040-07-24',days:4,quality:8.5},remote={id:'dena',arrival:'2040-08-03',departure:'2040-08-06',days:3,quality:9};
+ const r={visits:[july,{id:'alaska',excursion:true,quality:2}],excursions:[{id:'alaska',visits:[remote]}]};
+ assert.equal(scheduledVisit(r,'yell'),july);assert.equal(scheduledVisit(r,'dena'),remote);assert.equal(scheduledVisit(r,'alaska'),null);
+ assert.equal(tripMarkerColor({type:'park'},true,remote),qualityColor(9));
+ assert.match(tripVisitLabel(july,1),/2040-07-20.*8.5\/10 for this visit/);
+ assert.doesNotMatch(tripVisitLabel(july,1),/Apr/);
+ const winter={...july,arrival:'2041-01-20',quality:2};
+ assert.equal(tripMarkerColor({type:'park'},true,scheduledVisit({visits:[winter]},'yell')),qualityColor(2));
+ assert.equal(scheduledVisit(null,'yell'),null);assert.match(tripVisitLabel(null),/Not on a calculated route/);
+ assert.equal(tripMarkerColor({type:'park'},true,{...july,status:'closed'}),'#777e85');
+ assert.equal(tripMarkerColor({type:'site'},true,{quality:null}),qualityColor(null));
+});
 const sites=JSON.parse(fs.readFileSync(new URL('../data/sites.json',import.meta.url))).sites;
 test('all inventory locations have a shape and selection enlarges every type',()=>{
  for(const site of [...sites,{type:'custom'}]){
