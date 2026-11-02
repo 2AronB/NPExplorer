@@ -113,3 +113,5 @@
 !/docs/site-stay-methodology.md
 
 !/startup.mjs
+!/plan-import.mjs
+!/tests/plan-import.test.mjs

@@ -27,6 +27,8 @@ The local app opens at http://127.0.0.1:4173/ . `dist/` is generated and replace
 
 The public site is a separate browser origin, so its saved plans are independent from localhost. Use a JSON export/import to transfer an existing local plan. XLSX and CSV are reports rather than restorable backups.
 
+JSON imports accept files up to 5 MB. Imports validate and save before replacing the active inputs; if reading, validation or browser storage fails, the existing trip remains available. Export a JSON backup when browser storage is full or unavailable. Ordinary edits still use best-effort browser persistence; Prepare and saved-trip operations report their own storage failures.
+
 Run `npm run benchmark` (or `node scripts/optimizer-benchmark.mjs`) for repeatable optimizer timings and route-quality checks. Use `--compare <commit>` for exact-result comparisons against a baseline. See [performance measurements and methodology](docs/optimizer-performance.md). Benchmarks are development-only and are excluded from the published website.
 
 ## Optimizer calendar contract
