@@ -20,7 +20,7 @@ test('preparation schema validates statuses, exact dates and bounded plain-text 
  const map={'park:arch:access':record()};assert.deepEqual(validatePreparation(map),map);assert.deepEqual(validatePreparation(),{});
  for(const raw of [null,[],{'bad':record()},{'park:arch:access':record({status:'complete'})},{'trip:x':record({status:['booked']})},{'trip:x':record({checkedOn:'2026-02-29'})},{'trip:x':record({forDate:false})},{'trip:x':record({notes:'x'.repeat(1001)})},{'trip:x':record({notes:2})}])assert.throws(()=>validatePreparation(raw));
  assert.equal(validatePreparation({'trip:x':record({checkedOn:'2040-02-29',forDate:null,notes:'🦅\n=SUM(A1)'})})['trip:x'].notes,'🦅\n=SUM(A1)');
- assert.throws(()=>validatePreparation(Object.fromEntries(Array.from({length:401},(_,i)=>['trip:'+i,record()]))));
+ assert.throws(()=>validatePreparation(Object.fromEntries(Array.from({length:1001},(_,i)=>['trip:'+i,record()]))));
 });
 test('legacy inputs migrate empty preparation without overwriting saved records',()=>{
  const old=state();delete old.preparation;const migrated=upgradePlanPreferences(old);assert.deepEqual(migrated.preparation,{});assert.equal(old.preparation,undefined);

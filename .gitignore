@@ -102,3 +102,14 @@
 !/site-stays.mjs
 !/data/site-stays.csv
 !/tests/site-stays.test.mjs
+!/site-stay-ui.mjs
+!/site-visit-review.mjs
+!/site-guide.mjs
+!/site-guide-ui.mjs
+!/tests/site-guide.test.mjs
+!/data/site-stay-audit.json
+!/scripts/build-site-stays.mjs
+!/tests/site-stay-audit.test.mjs
+!/docs/site-stay-methodology.md
+
+!/startup.mjs

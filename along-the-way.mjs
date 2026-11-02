@@ -1,4 +1,5 @@
 import {siteStay} from './site-stays.mjs';
+import {automaticSiteCandidate} from './site-visit-review.mjs';
 import {detours,schedule} from './optimizer.mjs';
 import {validVisitDays,durationHelp} from './visit-durations.mjs';
 export function displayedOrder(result,sites){
@@ -10,7 +11,9 @@ export function displayedOrder(result,sites){
 export function alongCandidates({state,sites,result}){
  if(!result)return [];
  const selected=new Set(state.selected),lookup=new Map(sites.map(s=>[s.id,s])),order=displayedOrder(result,sites);
- return detours(sites.filter(s=>s.type==='site'&&!s.remote&&!selected.has(s.id)),order,state.settings,{limit:Infinity}).map(d=>({
+ // Retain inventory IDs and saved selections; administrative umbrellas and
+ // non-public places are unsuitable as automatic roadside recommendations.
+ return detours(sites.filter(s=>automaticSiteCandidate(s)&&!s.remote&&!selected.has(s.id)),order,state.settings,{limit:Infinity}).map(d=>({
   ...d,site:lookup.get(d.id),from:order[d.after-1]||state.settings.start,to:order[d.after]||state.settings.end||null,
   days:state.days[d.id]??siteStay(lookup.get(d.id),state.settings.stayMode)?.days??.25
  }));

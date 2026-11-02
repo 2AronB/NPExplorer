@@ -1,4 +1,5 @@
 import {haversine} from './optimizer.mjs';
+import {automaticSiteCandidate} from './site-visit-review.mjs';
 export const MARKER_TYPES=[
  {id:'park',label:'National parks',shape:'circle'},
  {id:'monument',label:'Monuments',shape:'triangle'},
@@ -52,6 +53,6 @@ export function visitNumberLabel(result,id,numbers=visitNumbers(result)){
  const visits=result?.excursions?.find(b=>b.id===id)?.visits||[],first=numbers.get(visits[0]?.id),last=numbers.get(visits.at(-1)?.id);
  return first===undefined?'':first===last?String(first):`${first}–${last}`;
 }
-export function circleCandidates(sites,center,radiusMiles,scope='parks'){
- return sites.filter(site=>(scope==='all'||scope==='nps'&&site.type!=='custom'||scope==='parks'&&site.type==='park')&&haversine(center,site)<=radiusMiles+1e-8);
+export function circleCandidates(sites,center,radiusMiles,scope='parks',shownTypes=null){
+ return sites.filter(site=>(!shownTypes||visibleSite(site,shownTypes))&&(site.type!=='site'||automaticSiteCandidate(site))&&(scope==='all'||scope==='nps'&&site.type!=='custom'||scope==='parks'&&site.type==='park')&&haversine(center,site)<=radiusMiles+1e-8);
 }

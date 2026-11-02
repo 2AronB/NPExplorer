@@ -38,3 +38,7 @@ test('visit numbers expand OCONUS park order and continue sequentially on the ma
 test('single-park excursions use one shared number in map and itinerary',()=>{
  const r={visits:[{id:'excursion-virgin',excursion:true}],excursions:[{id:'excursion-virgin',visits:[{id:'viis'}]}]};assert.equal(visitNumberLabel(r,'excursion-virgin'),'1');assert.equal(visitNumbers(r).get('viis'),1);
 });
+test('circle preview and commit can share visibility and public-visit eligibility without deleting saved places',()=>{
+ const center={lat:40,lng:-100},sites=[{...center,id:'pima',type:'site',designation:'National Monument'},{...center,id:'naca',type:'site',designation:'Park'},{...center,id:'cagr',type:'site',designation:'National Monument'},{...center,id:'arch',type:'park'},{...center,id:'custom-home',type:'custom'}],shown=new Set(['park','custom']);
+ assert.deepEqual(circleCandidates(sites,center,1,'all',shown).map(s=>s.id),['arch','custom-home']);assert.deepEqual(circleCandidates(sites,center,1,'nps').map(s=>s.id),['cagr','arch']);assert.equal(sites.length,5);assert.equal(sites[0].id,'pima');
+});

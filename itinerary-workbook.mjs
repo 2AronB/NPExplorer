@@ -1,4 +1,5 @@
 import {preparationText,PREPARATION_STATUSES,preparationSummary} from './preparation.mjs';
+import {siteVisitProfile} from './site-visit-review.mjs';
 import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 import {accessWarningText} from './access-review.mjs';
@@ -10,7 +11,7 @@ const shifted=(s,n)=>new Date(date(s).getTime()+n*DAY).toISOString().slice(0,10)
 const through=(start,end)=>start&&end?(end>start?shifted(end,-1):start):null;
 const finite=n=>Number.isFinite(n)?n:null;
 const sum=(rows,key)=>rows.reduce((n,r)=>n+(finite(r[key])??0),0);
-const official=s=>s?.id==='kica'||s?.id==='sequ'?'https://www.nps.gov/seki/index.htm':s?.url;
+const official=s=>s?.id==='kica'||s?.id==='sequ'?'https://www.nps.gov/seki/index.htm':siteVisitProfile(s)?.reference||s?.url;
 const full=s=>s?.id==='npsa'?'National Park of American Samoa':s?.name||s?.shortName||'Destination unavailable';
 const safeUrl=url=>{try{const u=new URL(url);return u.protocol==='https:'?u.href:null;}catch{return null;}};
 export function travelDocument({state,sites,result,rows,selected,exportedAt,accessReview,preparationTasks=[]}){
@@ -31,6 +32,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
    e.event==='Unscheduled destination'?'Selected only. Route not calculated; order is not optimized.':'',
    e.event==='Park / destination stay'&&s?.type==='custom'?'Personal visit allocation.':'',
    e.event==='Park / destination stay'&&e.notes?.includes('Access/closure conflict')?'ACCESS CONFLICT: verify this stay before travel.':'',
+   isVisit?e.siteVisitNote:'',
    !isVisit?e.notes:'',
    ].filter(Boolean).join(' ');
   return {...e,region:e.region==='CONUS'?'Mainland':e.region,start:start||null,through:through(start,end),place:isVisit?full(s):label(e.place),from:label(e.from),to:label(e.to),
@@ -38,7 +40,7 @@ export function travelDocument({state,sites,result,rows,selected,exportedAt,acce
    breakHours:finite(e.breakHours),otherHours:finite(e.otherHours),notes,url:isVisit?official(s):null};
  }).sort((a,b)=>(a.start||'').localeCompare(b.start||''));
  const parks=selected.filter(s=>s.type==='park').map(s=>({name:full(s),url:official(s),...PARK_HIGHLIGHTS[s.id],missing:!PARK_HIGHLIGHTS[s.id]}));
- const actions=preparationTasks.map(t=>({status:'User: '+(PREPARATION_STATUSES[t.status]||'Not checked'),place:t.place,action:preparationText(t)+(t.researchAsOf?' · research as of '+t.researchAsOf:'')+' · Recheck current applicability; no deadline or availability is inferred.',url:t.url,due:null,review:t.contextChanged}));
+ const actions=preparationTasks.map(t=>({status:'User: '+(PREPARATION_STATUSES[t.status]||'Not checked'),place:t.place,action:preparationText(t)+(t.summary?' · '+t.summary:'')+(t.researchAsOf?' · research as of '+t.researchAsOf:'')+' · Recheck current applicability; no deadline or availability is inferred.',url:t.url,due:null,review:t.contextChanged}));
  for(const e of events){
   if(e.dateWindow)actions.push({status:e.windowConflict?'CONFLICT':'Confirm arrival dates',place:e.place,due:e.dateWindow.earliest===e.dateWindow.latest?e.dateWindow.earliest:null,action:arrivalWindowText(e.dateWindow)+(e.windowConflict?'; calculated first exploration '+e.explorationStart+' misses this window. Revise the route or the constraint; every requested exploration day is retained.':'; verify your arrangements and park access. No booking is assumed.'),url:e.url});
   if(e.fixedDate)actions.push({status:e.lateDays?'CONFLICT':'Confirm appointment',place:e.place,due:e.fixedDate,action:e.lateDays?`Fixed first full day missed by ${e.lateDays} day(s). Revise the route before travel.`:'Confirm the fixed first full visit day and arrangements.',url:null});

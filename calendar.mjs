@@ -20,9 +20,9 @@ function typeOf(e,lookup){
 
 // Use the report ledger for allocations. Shared exploration is an activity on
 // an existing drive date, never another calendar allocation.
-export function buildCalendarModel({state,sites,result,accessReview}){
+export function buildCalendarModel({state,sites,result,accessReview,reportContext}){
  if(!result)return null;
- const {events}=exportTables({state,sites,result}).travelDocument;
+ const {events}=exportTables({state,sites,result,reportContext}).travelDocument;
  const lookup=new Map(sites.map(s=>[s.id,s])),byDate=new Map(),months=new Map();
  for(let d=result.startDate;d<result.endDate;d=shift(d,1)){
   const day={date:d,events:[],kind:'unassigned',accessWarnings:accessReview?.visits.flatMap(v=>v.warnings.filter(w=>w.affectedDates.includes(d)).map(w=>({siteId:v.siteId,...w})))||[]};byDate.set(d,day);
@@ -33,7 +33,7 @@ export function buildCalendarModel({state,sites,result,accessReview}){
   const event={...e,shortPlace:lookup.get(e.siteId)?.shortName||e.place,key:'event-'+index,kind:typeOf(e,lookup)};
   for(let d=e.start;d&&d<e.end;d=shift(d,1))if(byDate.has(d))byDate.get(d).events.push(event);
   if(e.event==='Park / destination stay')for(const [when,credit,label]of [[e.sharedArrivalDate,e.sharedDays,'Arrival-day exploration'],[e.departureDriveDate,e.departureSharedDays,'Departure-morning exploration']]){
-   if(credit&&byDate.has(when))byDate.get(when).events.push({...event,key:event.key+'-'+label,start:when,end:shift(when,1),days:0,parkDays:credit,shared:true,event:label,notes:`${credit} exploration day equivalent on a driving day. Included in the requested stay; no extra calendar day.`});
+   if(credit&&byDate.has(when))byDate.get(when).events.push({...event,key:event.key+'-'+label,start:when,end:shift(when,1),days:0,parkDays:credit,shared:true,event:label,notes:[`${credit} exploration day equivalent on a driving day. Included in the requested stay; no extra calendar day.`,e.siteVisitNote].filter(Boolean).join(' ')});
   }
  });
  const counts={};
@@ -41,6 +41,8 @@ export function buildCalendarModel({state,sites,result,accessReview}){
   const kinds=new Set(day.events.map(e=>e.kind));
   day.kind=kinds.has('drive')&&(kinds.has('park')||kinds.has('personal'))?'mixed':['wait','transfer','drive','personal','park','buffer','rest'].find(k=>kinds.has(k))||'unassigned';
   day.events.sort((a,b)=>Number(!a.shared)-Number(!b.shared));
+  const siteConcerns=new Map(day.events.filter(e=>e.siteVisitConcern).map(e=>[e.siteId,e.siteVisitConcern]));
+  day.accessWarnings.push(...siteConcerns.values());
   day.dateConflicts=[...new Set(day.events.filter(e=>e.windowConflict&&['park','personal'].includes(e.kind)).map(e=>e.siteId))];
   counts[day.kind]=(counts[day.kind]||0)+1;
  }
@@ -89,7 +91,7 @@ export function mountCalendar(root,{onExplore,onCalculate,onPlace,idPrefix='cale
     if(e.otherHours)facts.push(`~${number(e.otherHours)} h transport across this leg`);
    }
    const scope=e.shared?`${e.parkDays} exploration day equivalent`:e.start&&e.end>e.start?`${human(e.start,{month:'short',day:'numeric'})}–${human(shift(e.end,-1),{month:'short',day:'numeric'})} · ${e.days} allocated day${e.days===1?'':'s'}`:'';
-   return `<article class="calendar-event cal-${e.kind}"><p class="eyebrow">${esc(e.event)}</p><h4>${esc(e.place)}</h4>${scope?`<p>${esc(scope)}</p>`:''}${e.from||e.to?`<p>${esc(e.from)} → ${esc(e.to)}</p>`:''}${e.miles?`<p>~${Math.round(e.miles).toLocaleString()} miles for the whole leg</p>`:''}${facts.length?`<p>${esc(facts.join(' · '))}</p>`:''}${e.quality!==null&&e.quality!==undefined?`<p>Stay quality ${number(e.quality)}/10${e.lateDays?' · Fixed date missed':''}</p>`:''}${e.siteId?accessWarningsHtml(model.accessReview,{siteId:e.siteId,date:day.date}):''}${e.dateWindow?`<p class="date-window-note"><strong>${e.windowConflict?'ARRIVAL-DATE CONFLICT · ':''}${esc(arrivalWindowText(e.dateWindow))}</strong><br>First exploration: ${esc(e.explorationStart||e.sharedArrivalDate||e.start)}${e.windowConflict?' · missed by '+esc(e.windowLateDays)+' day(s)':''}. Full requested exploration is retained.</p>`:''}${e.notes?`<details><summary>Planning notes</summary><p>${esc(e.notes)}</p></details>`:''}${e.siteId?`<button type="button" class="text-button" data-calendar-place="${esc(e.siteId)}">Park / stop details ↗</button>`:''}</article>`;
+   return `<article class="calendar-event cal-${e.kind}"><p class="eyebrow">${esc(e.event)}</p><h4>${esc(e.place)}</h4>${scope?`<p>${esc(scope)}</p>`:''}${e.from||e.to?`<p>${esc(e.from)} → ${esc(e.to)}</p>`:''}${e.miles?`<p>~${Math.round(e.miles).toLocaleString()} miles for the whole leg</p>`:''}${facts.length?`<p>${esc(facts.join(' · '))}</p>`:''}${e.quality!==null&&e.quality!==undefined?`<p>Stay quality ${number(e.quality)}/10${e.lateDays?' · Fixed date missed':''}</p>`:''}${e.siteId?accessWarningsHtml(model.accessReview,{siteId:e.siteId,date:day.date}):''}${e.siteVisitConcern?`<div class="access-visit-warning"><strong>${esc(e.siteVisitConcern.label)}</strong><p>${esc(e.siteVisitConcern.message)}</p><a href="${esc(e.siteVisitConcern.url)}" target="_blank" rel="noopener">Reviewed visitor reference ↗</a><p class="fineprint">Planning caution, not a verified date-specific opening or booking.</p></div>`:''}${e.dateWindow?`<p class="date-window-note"><strong>${e.windowConflict?'ARRIVAL-DATE CONFLICT · ':''}${esc(arrivalWindowText(e.dateWindow))}</strong><br>First exploration: ${esc(e.explorationStart||e.sharedArrivalDate||e.start)}${e.windowConflict?' · missed by '+esc(e.windowLateDays)+' day(s)':''}. Full requested exploration is retained.</p>`:''}${e.notes?`<details><summary>Planning notes</summary><p>${esc(e.notes)}</p></details>`:''}${e.siteId?`<button type="button" class="text-button" data-calendar-place="${esc(e.siteId)}">Park / stop details ↗</button>`:''}</article>`;
   }).join('');
   return `<h3 id="${idPrefix}DayTitle">${human(day.date,{weekday:'long',month:'short',day:'numeric',year:'numeric'})}</h3><p class="calendar-day-kind"><i class="cal-dot cal-${day.kind}"></i>${CALENDAR_TYPES[day.kind]}</p>${cards||'<p>No activity is allocated to this date. Review the schedule before travel.</p>'}`;
  }

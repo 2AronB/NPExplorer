@@ -1,4 +1,5 @@
 import {PREPARATION_STATUSES} from './preparation.mjs';
+import {frozenSiteVisitProfile} from './site-visit-review.mjs';
 import {arrivalWindowText} from './arrival-windows.mjs';
 import {restSummary} from './rest-days.mjs';
 export const SCENARIO_KEY='long-way-scenarios-v1';
@@ -12,7 +13,7 @@ export function createSnapshot({id,name,state,sites,result,accessReview,preparat
  name=String(name??'').trim();if(!name||name.length>80)throw Error('Use a trip name between 1 and 80 characters.');
  // Save the displayed month only. Nested alternatives needlessly multiply storage.
  const chosen=result?{...result}:null;if(chosen){delete chosen.monthResults;delete chosen.searchYear;}
- const selected=new Set(state.selected),savedSites=sites.filter(s=>selected.has(s.id));
+ const selected=new Set(state.selected),savedSites=sites.filter(s=>selected.has(s.id)).map(s=>s.type==='site'?{...s,familyVisit:frozenSiteVisitProfile(s)}:s);
  const savedReview=chosen&&accessReview?{...accessReview,sources:Object.fromEntries([...new Set((accessReview.visits||[]).flatMap(v=>v.warnings.flatMap(w=>w.sourceIDs||[])))].filter(id=>accessReview.sources?.[id]).map(id=>[id,accessReview.sources[id]]))}:null;
  return structuredClone({id,name,savedAt:now,state,sites:savedSites,result:chosen,accessReview:savedReview,...(preparationTasks?{preparationTasks}:{}),versions});
 }
