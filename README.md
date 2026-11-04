@@ -110,3 +110,11 @@ Selected other sites also appear in **Prepare**, with statuses and notes that do
 Calendar's **Next access concern** includes other-site boat, tour, vehicle and restricted-access cautions. These are planning prompts, not verified date-specific availability. Startup controls remain inactive until data and saved inputs are ready; a missing asset shows a reload/recovery message without clearing saved inputs.
 
 Download [all 334 audited outing scopes and estimates](data/site-stays.csv), including caveats, review depth, references and source update dates. Hour columns assume an 8-hour exploration day; the app uses your chosen full-day hours. Examples: Dinosaur 1/2 days fast/slow; Chaco 0.5/1.5; Florissant 0.25/0.75; compact memorials 0.25/0.25. Edit the canonical `data/site-stay-audit.json`, then run `node scripts/build-site-stays.mjs` to regenerate the module and CSV; tests check that all three agree.
+
+## Start and keep your own trip
+
+New trip offers a blank selection or Utah, Washington, Appalachian and longer Southwest examples. Choose a Lower 48 start, exact departure date, available days, visit style and route priority. Examples are editable starting selections, not verified packages that fit those dates. Creating a trip preserves the previous active inputs/report in Compare recovery; export JSON for a separate backup. Existing visitors keep their saved settings. New visitors see setup on their first visit.
+
+Saved on this device reports successful local persistence. Download backup always exports current JSON inputs, including unsaved edits. Saved trips opens the named Compare library. A best-effort comparison before active-plan writes and storage/focus checks pause stale-tab saving when another tab changes the plan; this is not a transactional multi-tab lock. Download unsaved inputs before loading the latest saved trip. Clearing site data or changing origin/browser can lose local plans; export/import JSON when moving to a new domain. No cloud sync or account was added.
+
+Trip length review reports the last allocated date against available time and links to visit allowances, settings and saved alternatives. It never removes destinations or shortens visits automatically, and unassigned time does not establish access or bookings.
