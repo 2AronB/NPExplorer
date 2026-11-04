@@ -1,0 +1,1356 @@
+{
+  "schemaVersion": 1,
+  "reviewed": "2026-11-04",
+  "scope": "Editorial first-orientation suggestions for the 64 parks retained in this planner, not measured size or popularity rankings.",
+  "coordinateSource": "NPS official structured facility records. Approximate facility pins, not verified parking entrances or navigable vehicle approaches.",
+  "records": {
+    "acad": {
+      "park": "Acadia",
+      "primary": {
+        "name": "Hulls Cove Visitor Center",
+        "lat": 44.40854,
+        "lng": -68.24614,
+        "informationUrl": "https://www.nps.gov/acad/planyourvisit/hours.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "October 31, 2026"
+      },
+      "reason": "Orientation for Mount Desert Island and the main park-loop area.",
+      "note": "Seasonal facility; Schoodic and Isle au Haut need separate approaches.",
+      "alternatives": [
+        {
+          "name": "Schoodic Institute Welcome Center at Rockefeller Hall",
+          "lat": 44.33608,
+          "lng": -68.05914,
+          "informationUrl": "https://www.nps.gov/acad/planyourvisit/hours.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "October 31, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/acad/acad_linked_data.json"
+    },
+    "arch": {
+      "park": "Arches",
+      "primary": {
+        "name": "Arches Visitor Center",
+        "lat": 38.61657,
+        "lng": -109.62004,
+        "informationUrl": "https://www.nps.gov/arch/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 29, 2025"
+      },
+      "reason": "Orientation just inside the park entrance.",
+      "note": "Park entry rules and parking availability need a travel-year check.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/arch/arch_linked_data.json"
+    },
+    "badl": {
+      "park": "Badlands",
+      "primary": {
+        "name": "Ben Reifel Visitor Center",
+        "lat": 43.74908,
+        "lng": -101.94166,
+        "informationUrl": "https://www.nps.gov/thingstodo/visit-ben-reifel.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "March 10, 2026"
+      },
+      "reason": "Orientation for the North Unit and Badlands Loop Road.",
+      "note": "White River serves the separate South Unit.",
+      "alternatives": [
+        {
+          "name": "White River Visitor Center",
+          "lat": 43.51161,
+          "lng": -102.49656,
+          "informationUrl": "https://www.nps.gov/thingstodo/white-river-vc.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 21, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/badl/badl_linked_data.json"
+    },
+    "bibe": {
+      "park": "Big Bend",
+      "primary": {
+        "name": "Panther Junction Visitor Center",
+        "lat": 29.32783,
+        "lng": -103.20589,
+        "informationUrl": "https://www.nps.gov/bibe/planyourvisit/big-bend-visitor-centers.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "October 27, 2026"
+      },
+      "reason": "Central orientation hub for the park road network.",
+      "note": "Other districts are far apart; do not treat one center as the whole visit.",
+      "alternatives": [
+        {
+          "name": "Chisos Basin Visitor Center",
+          "lat": 29.27052,
+          "lng": -103.29935,
+          "informationUrl": "https://www.nps.gov/bibe/planyourvisit/big-bend-visitor-centers.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "October 27, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/bibe/bibe_linked_data.json"
+    },
+    "bisc": {
+      "park": "Biscayne",
+      "primary": {
+        "name": "Dante Fascell Visitor Center",
+        "lat": 25.46444,
+        "lng": -80.33482,
+        "informationUrl": "https://www.nps.gov/bisc/planyourvisit/basicinfo.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "June 10, 2025"
+      },
+      "reason": "Mainland orientation at Convoy Point.",
+      "note": "The mainland center is not an island landing; most marine outings need separate boat arrangements.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/bisc/bisc_linked_data.json"
+    },
+    "blca": {
+      "park": "Black Canyon of the Gunnison",
+      "primary": {
+        "name": "South Rim Visitor Center",
+        "lat": 38.55499,
+        "lng": -107.68658,
+        "informationUrl": "https://www.nps.gov/blca",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "March 19, 2026"
+      },
+      "reason": "Orientation for the South Rim overlooks.",
+      "note": "The North Rim is a separate road approach; there is no road bridge across the canyon.",
+      "alternatives": [
+        {
+          "name": "North Rim Ranger Station",
+          "lat": 38.58703,
+          "lng": -107.70484,
+          "informationUrl": "https://www.nps.gov/blca/planyourvisit/northrim.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 1, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/blca/blca_linked_data.json"
+    },
+    "brca": {
+      "park": "Bryce Canyon",
+      "primary": {
+        "name": "Bryce Canyon Visitor Center",
+        "lat": 37.64039,
+        "lng": -112.16964,
+        "informationUrl": "https://www.nps.gov/brca/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04"
+      },
+      "reason": "Orientation near the park entrance and main amphitheater road.",
+      "note": "Check shuttle service, snow and parking conditions.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/brca/brca_linked_data.json"
+    },
+    "cany": {
+      "park": "Canyonlands",
+      "primary": {
+        "name": "Island in the Sky Visitor Center",
+        "lat": 38.45991,
+        "lng": -109.82099,
+        "informationUrl": "https://www.nps.gov/cany/planyourvisit/islandinthesky.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 18, 2025"
+      },
+      "reason": "Starting point for the mesa-top scenic-drive district.",
+      "note": "The Needles and Maze have separate entrances; no internal road connects the districts.",
+      "alternatives": [
+        {
+          "name": "The Needles Visitor Center",
+          "lat": 38.1681,
+          "lng": -109.75941,
+          "informationUrl": "https://www.nps.gov/cany/planyourvisit/needles.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 18, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/cany/cany_linked_data.json"
+    },
+    "care": {
+      "park": "Capitol Reef",
+      "primary": {
+        "name": "Capitol Reef National Park Visitor Center",
+        "lat": 38.29147,
+        "lng": -111.26204,
+        "informationUrl": "https://www.nps.gov/care",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 28, 2026"
+      },
+      "reason": "Orientation for Fruita and the central scenic-drive area.",
+      "note": "Remote districts require separate road and vehicle research.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/care/care_linked_data.json"
+    },
+    "cave": {
+      "park": "Carlsbad Caverns",
+      "primary": {
+        "name": "Visitor Center",
+        "lat": 32.17548,
+        "lng": -104.44422,
+        "informationUrl": "https://www.nps.gov/cave/planyourvisit/visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 5, 2025"
+      },
+      "reason": "Starting point for cave information and tours.",
+      "note": "The pin is at the surface facility; cave admission, tickets and underground access are separate.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/cave/cave_linked_data.json"
+    },
+    "chir": {
+      "park": "Chiricahua",
+      "primary": {
+        "name": "Visitor Center",
+        "lat": 32.00543,
+        "lng": -109.35642,
+        "informationUrl": "https://www.nps.gov/chir/planyourvisit/hours.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "October 21, 2026"
+      },
+      "reason": "Orientation on the main Bonita Canyon approach.",
+      "note": "Mountain-road and vehicle restrictions still need checking.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/chir/chir_linked_data.json"
+    },
+    "chis": {
+      "park": "Channel Islands",
+      "primary": {
+        "name": "Channel Islands National Park Visitor Center",
+        "lat": 34.24845,
+        "lng": -119.26658,
+        "informationUrl": "https://www.nps.gov/chis/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "June 12, 2025"
+      },
+      "reason": "Mainland orientation at Ventura Harbor.",
+      "note": "This center is on the mainland, not on an island or a guaranteed boat departure point. Island transport is separate.",
+      "alternatives": [
+        {
+          "name": "Scorpion Ranch Visitor Center on Santa Cruz Island",
+          "lat": 34.04888,
+          "lng": -119.55846,
+          "informationUrl": "https://www.nps.gov/chis/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 12, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/chis/chis_linked_data.json"
+    },
+    "cong": {
+      "park": "Congaree",
+      "primary": {
+        "name": "Harry Hampton Visitor Center",
+        "lat": 33.82962,
+        "lng": -80.82337,
+        "informationUrl": "https://www.nps.gov/cong/planyourvisit/hours.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "February 18, 2023"
+      },
+      "reason": "Orientation at the main boardwalk area.",
+      "note": "Flooding and trail conditions can change access.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/cong/cong_linked_data.json"
+    },
+    "crla": {
+      "park": "Crater Lake",
+      "primary": {
+        "name": "Steel Information Center",
+        "lat": 42.89688,
+        "lng": -122.13432,
+        "informationUrl": "https://www.nps.gov/crla/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "March 29, 2024"
+      },
+      "reason": "Headquarters-area orientation below the rim.",
+      "note": "Rim Visitor Center is a seasonal alternative; snow can limit the approach.",
+      "alternatives": [
+        {
+          "name": "Rim Visitor Center",
+          "lat": 42.91117,
+          "lng": -122.14353,
+          "informationUrl": "https://www.nps.gov/crla/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "March 29, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/crla/crla_linked_data.json"
+    },
+    "cuva": {
+      "park": "Cuyahoga Valley",
+      "primary": {
+        "name": "Boston Mill Visitor Center",
+        "lat": 41.26259,
+        "lng": -81.56031,
+        "informationUrl": "https://www.nps.gov/cuva/boston-mill-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "March 20, 2025"
+      },
+      "reason": "Central starting point for park information.",
+      "note": "The park follows a long corridor; other trailheads need their own directions.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/cuva/cuva_linked_data.json"
+    },
+    "dena": {
+      "park": "Denali",
+      "primary": {
+        "name": "Denali Visitor Center",
+        "lat": 63.73091,
+        "lng": -148.91713,
+        "informationUrl": "https://www.nps.gov/dena/planyourvisit/the-denali-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "February 24, 2020"
+      },
+      "reason": "Orientation in the road-accessible entrance area.",
+      "note": "Seasonal center; Murie Science and Learning Center is an entrance-area alternative. Park-road access is separate.",
+      "alternatives": [
+        {
+          "name": "Murie Science and Learning Center",
+          "lat": 63.73355,
+          "lng": -148.91772,
+          "informationUrl": "https://www.nps.gov/rlc/murie/index.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 14, 2022"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/dena/dena_linked_data.json"
+    },
+    "deva": {
+      "park": "Death Valley",
+      "primary": {
+        "name": "Furnace Creek Visitor Center",
+        "lat": 36.4618,
+        "lng": -116.86667,
+        "informationUrl": "https://www.nps.gov/thingstodo/visit-the-furnace-creek-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 23, 2024"
+      },
+      "reason": "Central orientation hub for the Furnace Creek area.",
+      "note": "Heat, flood damage and road conditions need a current check.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/deva/deva_linked_data.json"
+    },
+    "drto": {
+      "park": "Dry Tortugas",
+      "primary": {
+        "name": "Garden Key Visitor Center",
+        "lat": 24.6279,
+        "lng": -82.87265,
+        "informationUrl": "https://www.nps.gov/drto/planyourvisit/garden-key.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 14, 2026"
+      },
+      "reason": "On-island orientation at Fort Jefferson.",
+      "note": "Boat or seaplane access only; there is no driving route to this pin. Book transport separately.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/drto/drto_linked_data.json"
+    },
+    "ever": {
+      "park": "Everglades",
+      "primary": {
+        "name": "Ernest F. Coe Visitor Center",
+        "lat": 25.39531,
+        "lng": -80.58311,
+        "informationUrl": "https://www.nps.gov/ever/planyourvisit/coedirections.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "August 3, 2024"
+      },
+      "reason": "Orientation for the Homestead entrance and main park road.",
+      "note": "Shark Valley and Gulf Coast are separate approaches; this pin does not represent all districts.",
+      "alternatives": [
+        {
+          "name": "Shark Valley Visitor Center",
+          "lat": 25.75696,
+          "lng": -80.76535,
+          "informationUrl": "https://www.nps.gov/ever/planyourvisit/svdirections.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 17, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/ever/ever_linked_data.json"
+    },
+    "gaar": {
+      "park": "Gates of the Arctic",
+      "primary": {
+        "name": "Arctic Interagency Visitor Center",
+        "lat": 67.25273,
+        "lng": -150.18695,
+        "informationUrl": "https://www.nps.gov/gaar/planyourvisit/coldfoot.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "December 1, 2021"
+      },
+      "reason": "Road-accessible orientation in Coldfoot for the Brooks Range.",
+      "note": "Outside the park. There is no road into Gates of the Arctic; flight or wilderness access must be arranged separately.",
+      "alternatives": [
+        {
+          "name": "Bettles Ranger Station and Visitor Center",
+          "lat": 66.91921,
+          "lng": -151.51407,
+          "informationUrl": "https://www.nps.gov/gaar/planyourvisit/bettles.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 6, 2023"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/gaar/gaar_linked_data.json"
+    },
+    "glac": {
+      "park": "Glacier",
+      "primary": {
+        "name": "Apgar Visitor Center",
+        "lat": 48.52311,
+        "lng": -113.98848,
+        "informationUrl": "https://www.nps.gov/glac/planyourvisit/visitor-centers.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 7, 2026"
+      },
+      "reason": "Orientation near the west entrance and Lake McDonald area.",
+      "note": "St. Mary serves the east side; Going-to-the-Sun Road is seasonal.",
+      "alternatives": [
+        {
+          "name": "St. Mary Visitor Center",
+          "lat": 48.74748,
+          "lng": -113.43909,
+          "informationUrl": "https://www.nps.gov/glac/planyourvisit/visitor-centers.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 7, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/glac/glac_linked_data.json"
+    },
+    "glba": {
+      "park": "Glacier Bay",
+      "primary": {
+        "name": "Glacier Bay National Park Visitor Center",
+        "lat": 58.4547,
+        "lng": -135.8827,
+        "informationUrl": "https://www.nps.gov/glba/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "December 17, 2025"
+      },
+      "reason": "Orientation at Bartlett Cove near Gustavus.",
+      "note": "Reach Gustavus by air or water first; visiting the bay requires separate boat arrangements. Seasonal facility.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/glba/glba_linked_data.json"
+    },
+    "grba": {
+      "park": "Great Basin",
+      "primary": {
+        "name": "Lehman Caves Visitor Center",
+        "lat": 39.00569,
+        "lng": -114.2199,
+        "informationUrl": "https://www.nps.gov/grba/planyourvisit/visitor-centers.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "June 29, 2023"
+      },
+      "reason": "Orientation at the cave-tour and Wheeler Peak approach.",
+      "note": "Great Basin Visitor Center in Baker is another useful arrival stop. Cave tickets and mountain-road access are separate.",
+      "alternatives": [
+        {
+          "name": "Great Basin Visitor Center",
+          "lat": 39.01521,
+          "lng": -114.12657,
+          "informationUrl": "https://www.nps.gov/grba/planyourvisit/visitor-centers.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 29, 2023"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/grba/grba_linked_data.json"
+    },
+    "grca": {
+      "park": "Grand Canyon",
+      "primary": {
+        "name": "Grand Canyon Visitor Center (South Rim)",
+        "lat": 36.05921,
+        "lng": -112.10928,
+        "informationUrl": "https://www.nps.gov/grca/planyourvisit/grand-canyon-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "October 11, 2026"
+      },
+      "reason": "Orientation at the main South Rim visitor plaza.",
+      "note": "Use designated parking and walk or shuttle to facilities. Other rims require separate approaches.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/grca/grca_linked_data.json"
+    },
+    "grsa": {
+      "park": "Great Sand Dunes",
+      "primary": {
+        "name": "Great Sand Dunes Visitor Center",
+        "lat": 37.73321,
+        "lng": -105.51213,
+        "informationUrl": "https://www.nps.gov/grsa/planyourvisit/visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 24, 2026"
+      },
+      "reason": "Orientation near the main park entrance.",
+      "note": "Sand, creek, weather and Medano Pass vehicle conditions require separate review.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/grsa/grsa_linked_data.json"
+    },
+    "grsm": {
+      "park": "Great Smoky Mountains",
+      "primary": {
+        "name": "Sugarlands Visitor Center",
+        "lat": 35.68563,
+        "lng": -83.5366,
+        "informationUrl": "https://www.nps.gov/grsm/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 3, 2026"
+      },
+      "reason": "Starting point for the Gatlinburg and Tennessee approach.",
+      "note": "Oconaluftee is the corresponding North Carolina arrival stop.",
+      "alternatives": [
+        {
+          "name": "Oconaluftee Visitor Center",
+          "lat": 35.51307,
+          "lng": -83.30612,
+          "informationUrl": "https://www.nps.gov/grsm/planyourvisit/visitorcenters.htm#CP_JUMP_897119",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "January 3, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/grsm/grsm_linked_data.json"
+    },
+    "grte": {
+      "park": "Grand Teton",
+      "primary": {
+        "name": "Craig Thomas Discovery & Visitor Center",
+        "lat": 43.65338,
+        "lng": -110.71861,
+        "informationUrl": "https://www.nps.gov/grte/planyourvisit/ctdvc.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "June 6, 2026"
+      },
+      "reason": "Orientation near Moose and the southern park approach.",
+      "note": "Colter Bay serves the northern lakes area. Facility seasons vary.",
+      "alternatives": [
+        {
+          "name": "Colter Bay Visitor Center",
+          "lat": 43.90317,
+          "lng": -110.6437,
+          "informationUrl": "https://www.nps.gov/grte/planyourvisit/cbvc.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 6, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/grte/grte_linked_data.json"
+    },
+    "gumo": {
+      "park": "Guadalupe Mountains",
+      "primary": {
+        "name": "Pine Springs Visitor Center",
+        "lat": 31.89362,
+        "lng": -104.82206,
+        "informationUrl": "https://www.nps.gov/gumo/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 24, 2023"
+      },
+      "reason": "Orientation at the main US 62/180 entrance.",
+      "note": "Dog Canyon has a separate approach; there is no through-road across the park.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/gumo/gumo_linked_data.json"
+    },
+    "hale": {
+      "park": "Haleakalā",
+      "primary": {
+        "name": "Haleakalā Visitor Center",
+        "lat": 20.71512,
+        "lng": -156.24986,
+        "informationUrl": "https://www.nps.gov/hale/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 2, 2024"
+      },
+      "reason": "Orientation near the summit's principal viewing area.",
+      "note": "Summit access and sunrise reservations require review. Kīpahulu is a separate coastal district with no through-road.",
+      "alternatives": [
+        {
+          "name": "Headquarters Visitor Center",
+          "lat": 20.75948,
+          "lng": -156.24678,
+          "informationUrl": "https://www.nps.gov/hale/learn/photosmultimedia/virtual-tours.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 26, 2020"
+        },
+        {
+          "name": "Kīpahulu Visitor Center",
+          "lat": 20.66166,
+          "lng": -156.04454,
+          "informationUrl": "https://www.nps.gov/hale/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "January 2, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/hale/hale_linked_data.json"
+    },
+    "havo": {
+      "park": "Hawaiʻi Volcanoes",
+      "primary": {
+        "name": "Welcome Center",
+        "lat": 19.43271,
+        "lng": -155.27393,
+        "informationUrl": "https://www.nps.gov/havo/planyourvisit/welcome-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 5, 2026"
+      },
+      "reason": "Current NPS-listed visitor-information location near Kīlauea Military Camp.",
+      "note": "Reviewed November 2026: use this Welcome Center rather than assuming the older Kīlauea Visitor Center is operating. Recheck construction changes.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/havo/havo_linked_data.json"
+    },
+    "hosp": {
+      "park": "Hot Springs",
+      "primary": {
+        "name": "Fordyce Bathhouse Visitor Center and Museum",
+        "lat": 34.51376,
+        "lng": -93.05341,
+        "informationUrl": "https://www.nps.gov/hosp/learn/historyculture/fordyce-bathhouse.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "July 7, 2022"
+      },
+      "reason": "Orientation on Bathhouse Row.",
+      "note": "The building is on a pedestrian-oriented historic street; use legal parking and walk to the center.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/hosp/hosp_linked_data.json"
+    },
+    "indu": {
+      "park": "Indiana Dunes",
+      "primary": {
+        "name": "Dorothy Buell Memorial Visitor Center (Indiana Dunes Visitor Center)",
+        "lat": 41.63322,
+        "lng": -87.05432,
+        "informationUrl": "https://www.nps.gov/indu/planyourvisit/idnlvc.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "October 28, 2020"
+      },
+      "reason": "Orientation at the shared Indiana Dunes visitor-information center.",
+      "note": "Beach parking and individual lakefront sites are separate destinations.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/indu/indu_linked_data.json"
+    },
+    "isro": {
+      "park": "Isle Royale",
+      "primary": {
+        "name": "Rock Harbor Visitor Center",
+        "lat": 48.14594,
+        "lng": -88.48626,
+        "informationUrl": "https://www.nps.gov/isro/planyourvisit/rock-harbor.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "August 27, 2024"
+      },
+      "reason": "Orientation for a Rock Harbor island arrival.",
+      "note": "Boat or seaplane only. Windigo serves the island's other end; Houghton is a mainland planning center, not the island.",
+      "alternatives": [
+        {
+          "name": "Windigo Visitor Center",
+          "lat": 47.9118,
+          "lng": -89.15714,
+          "informationUrl": "https://www.nps.gov/isro/planyourvisit/windigo.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 27, 2024"
+        },
+        {
+          "name": "Houghton Visitor Center",
+          "lat": 47.12294,
+          "lng": -88.56368,
+          "informationUrl": "https://www.nps.gov/isro/planyourvisit/houghton.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "March 26, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/isro/isro_linked_data.json"
+    },
+    "jeff": {
+      "park": "Gateway Arch",
+      "primary": {
+        "name": "Gateway Arch Visitor Center",
+        "lat": 38.62525,
+        "lng": -90.18732,
+        "informationUrl": "https://www.nps.gov/jeff/planyourvisit/index.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 21, 2026"
+      },
+      "reason": "Orientation at the Arch visitor complex.",
+      "note": "Use designated downtown parking and walk to the entrance; the pin is not a vehicle drop-off or garage. Security screening applies.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/jeff/jeff_linked_data.json"
+    },
+    "jotr": {
+      "park": "Joshua Tree",
+      "primary": {
+        "name": "Joshua Tree Visitor Center",
+        "lat": 34.13387,
+        "lng": -116.31546,
+        "informationUrl": "https://www.nps.gov/jotr/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "June 12, 2025"
+      },
+      "reason": "Orientation in Joshua Tree town before the west entrance.",
+      "note": "Outside the entrance. The similarly named National Park Visitor Center in Twentynine Palms serves another approach.",
+      "alternatives": [
+        {
+          "name": "Joshua Tree National Park Visitor Center",
+          "lat": 34.13488,
+          "lng": -116.05708,
+          "informationUrl": "https://www.nps.gov/jotr/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 12, 2025"
+        },
+        {
+          "name": "Cottonwood Visitor Center",
+          "lat": 33.74851,
+          "lng": -115.82408,
+          "informationUrl": "https://www.nps.gov/jotr/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 12, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/jotr/jotr_linked_data.json"
+    },
+    "katm": {
+      "park": "Katmai",
+      "primary": {
+        "name": "Brooks Camp Visitor Center",
+        "lat": 58.55614,
+        "lng": -155.77822,
+        "informationUrl": "https://www.nps.gov/katm/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 28, 2020"
+      },
+      "reason": "Orientation for the park's Brooks Camp bear-viewing area.",
+      "note": "Floatplane or boat access; no road reaches Brooks Camp. King Salmon is a separate gateway center. Bear-safety orientation and transport are required.",
+      "alternatives": [
+        {
+          "name": "King Salmon Visitor Center",
+          "lat": 58.68283,
+          "lng": -156.66851,
+          "informationUrl": "https://www.nps.gov/katm/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "September 28, 2020"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/katm/katm_linked_data.json"
+    },
+    "kefj": {
+      "park": "Kenai Fjords",
+      "primary": {
+        "name": "Kenai Fjords National Park Visitor Center",
+        "lat": 60.11627,
+        "lng": -149.43974,
+        "informationUrl": "https://www.nps.gov/kefj/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "December 17, 2025"
+      },
+      "reason": "Orientation by Seward's small-boat harbor.",
+      "note": "The center is seasonal; Exit Glacier has a separate road approach, and fjord outings need boat arrangements.",
+      "alternatives": [
+        {
+          "name": "Exit Glacier Nature Center",
+          "lat": 60.18833,
+          "lng": -149.63165,
+          "informationUrl": "https://www.nps.gov/kefj/planyourvisit/visitorcenters.htm#naturecenter",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "December 17, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/kefj/kefj_linked_data.json"
+    },
+    "kica": {
+      "park": "Kings Canyon",
+      "primary": {
+        "name": "Kings Canyon Visitor Center",
+        "lat": 36.74002,
+        "lng": -118.96342,
+        "informationUrl": "https://www.nps.gov/seki/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "December 19, 2024"
+      },
+      "reason": "Orientation in Grant Grove Village for the main western approach.",
+      "note": "Cedar Grove is farther into the canyon on a seasonal road.",
+      "alternatives": [
+        {
+          "name": "Cedar Grove Visitor Center",
+          "lat": 36.79096,
+          "lng": -118.67113,
+          "informationUrl": "https://www.nps.gov/seki/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "December 19, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/seki/seki_linked_data.json"
+    },
+    "kova": {
+      "park": "Kobuk Valley",
+      "primary": {
+        "name": "Northwest Arctic Heritage Center",
+        "lat": 66.89254,
+        "lng": -162.60511,
+        "informationUrl": "https://www.nps.gov/kova/planyourvisit/northwest-arctic-heritage-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 22, 2026"
+      },
+      "reason": "Park orientation in Kotzebue.",
+      "note": "Outside the park. There is no road to Kobuk Valley; a visit here does not replace an arranged park flight.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/kova/kova_linked_data.json"
+    },
+    "lacl": {
+      "park": "Lake Clark",
+      "primary": {
+        "name": "Port Alsworth Visitor Center",
+        "lat": 60.19737,
+        "lng": -154.32267,
+        "informationUrl": "https://www.nps.gov/lacl/planyourvisit/port-alsworth.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "July 25, 2021"
+      },
+      "reason": "Orientation at the Port Alsworth gateway.",
+      "note": "Arrive by small aircraft or other arranged remote transport; there is no road from Anchorage. Other park areas may use different landings.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/lacl/lacl_linked_data.json"
+    },
+    "lavo": {
+      "park": "Lassen Volcanic",
+      "primary": {
+        "name": "Kohm Yah-mah-nee Visitor Center",
+        "lat": 40.43778,
+        "lng": -121.53384,
+        "informationUrl": "https://www.nps.gov/lavo/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 6, 2025"
+      },
+      "reason": "Orientation at the southwest entrance.",
+      "note": "The park highway is seasonal; Loomis Museum serves the northwest approach.",
+      "alternatives": [
+        {
+          "name": "Loomis Museum",
+          "lat": 40.53612,
+          "lng": -121.56315,
+          "informationUrl": "https://www.nps.gov/lavo/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 6, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/lavo/lavo_linked_data.json"
+    },
+    "maca": {
+      "park": "Mammoth Cave",
+      "primary": {
+        "name": "Mammoth Cave Visitor Center",
+        "lat": 37.18702,
+        "lng": -86.10107,
+        "informationUrl": "https://www.nps.gov/maca/planyourvisit/mammoth-cave-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 12, 2020"
+      },
+      "reason": "Main cave-tour and park-information starting point.",
+      "note": "Reserve the specific cave tour separately; the pin is not an underground route.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/maca/maca_linked_data.json"
+    },
+    "meve": {
+      "park": "Mesa Verde",
+      "primary": {
+        "name": "Mesa Verde Visitor and Research Center",
+        "lat": 37.33597,
+        "lng": -108.40817,
+        "informationUrl": "https://www.nps.gov/meve/planyourvisit/meve_vc.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 21, 2025"
+      },
+      "reason": "Orientation near the park entrance before the long mesa-top drive.",
+      "note": "Cliff-dwelling tour locations and tickets are separate; allow additional driving from this center.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/meve/meve_linked_data.json"
+    },
+    "mora": {
+      "park": "Mount Rainier",
+      "primary": {
+        "name": "Henry M Jackson Memorial Visitor Center",
+        "lat": 46.78586,
+        "lng": -121.73671,
+        "informationUrl": "https://www.nps.gov/mora/planyourvisit/paradise.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 21, 2026"
+      },
+      "reason": "Orientation at Paradise, a principal mountain-viewing and hiking area.",
+      "note": "Paradise road access and facility hours vary with snow. Sunrise has a separate seasonal approach.",
+      "alternatives": [
+        {
+          "name": "Sunrise Visitor Center",
+          "lat": 46.91446,
+          "lng": -121.64341,
+          "informationUrl": "https://www.nps.gov/mora/planyourvisit/sunrise.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "December 5, 2025"
+        },
+        {
+          "name": "Longmire Museum",
+          "lat": 46.74976,
+          "lng": -121.81236,
+          "informationUrl": "https://www.nps.gov/mora/planyourvisit/longmire.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "September 21, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/mora/mora_linked_data.json"
+    },
+    "neri": {
+      "park": "New River Gorge",
+      "primary": {
+        "name": "Canyon Rim Visitor Center",
+        "lat": 38.07005,
+        "lng": -81.07594,
+        "informationUrl": "https://www.nps.gov/neri/planyourvisit/crvc.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "March 1, 2024"
+      },
+      "reason": "Orientation near the New River Gorge Bridge.",
+      "note": "Sandstone and the southern gorge have separate approaches.",
+      "alternatives": [
+        {
+          "name": "Sandstone Visitor Center",
+          "lat": 37.7832,
+          "lng": -80.89785,
+          "informationUrl": "https://www.nps.gov/neri/planyourvisit/sandstone.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 21, 2023"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/neri/neri_linked_data.json"
+    },
+    "noca": {
+      "park": "North Cascades",
+      "primary": {
+        "name": "North Cascades Visitor Center",
+        "lat": 48.6663,
+        "lng": -121.26675,
+        "informationUrl": "https://www.nps.gov/noca/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 15, 2026"
+      },
+      "reason": "Orientation near Newhalem on the SR 20 corridor.",
+      "note": "Stehekin's Golden West center requires a separate boat, air or trail approach; seasonal road and facility access vary.",
+      "alternatives": [
+        {
+          "name": "Golden West Visitor Center",
+          "lat": 48.30836,
+          "lng": -120.65637,
+          "informationUrl": "https://www.nps.gov/noca/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "September 15, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/noca/noca_linked_data.json"
+    },
+    "npsa": {
+      "park": "National Park of American Samoa",
+      "primary": {
+        "name": "Visitor Center and Park Store",
+        "lat": -14.27441,
+        "lng": -170.69695,
+        "informationUrl": "https://www.nps.gov/npsa/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "November 26, 2025"
+      },
+      "reason": "Orientation in the Pago Pago area on Tutuila.",
+      "note": "The center is outside the main park units; outer-island trips require separate transport.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/npsa/npsa_linked_data.json"
+    },
+    "olym": {
+      "park": "Olympic",
+      "primary": {
+        "name": "Olympic National Park Visitor Center",
+        "lat": 48.09941,
+        "lng": -123.42576,
+        "informationUrl": "https://www.nps.gov/olym/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 26, 2026"
+      },
+      "reason": "Park-wide orientation in Port Angeles.",
+      "note": "Rainforest and coast districts are far apart; Hoh is a separate destination, not a nearby branch.",
+      "alternatives": [
+        {
+          "name": "Hoh Rain Forest Visitor Center",
+          "lat": 47.86086,
+          "lng": -123.93479,
+          "informationUrl": "https://www.nps.gov/olym/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 26, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/olym/olym_linked_data.json"
+    },
+    "pefo": {
+      "park": "Petrified Forest",
+      "primary": {
+        "name": "Painted Desert Visitor Center",
+        "lat": 35.06558,
+        "lng": -109.78158,
+        "informationUrl": "https://www.nps.gov/pefo/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "July 21, 2026"
+      },
+      "reason": "Orientation at the northern I-40 approach.",
+      "note": "Rainbow Forest Museum serves the southern US 180 entrance.",
+      "alternatives": [
+        {
+          "name": "Rainbow Forest Museum",
+          "lat": 34.81515,
+          "lng": -109.86582,
+          "informationUrl": "https://www.nps.gov/pefo/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "July 21, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/pefo/pefo_linked_data.json"
+    },
+    "pinn": {
+      "park": "Pinnacles",
+      "primary": {
+        "name": "Pinnacles Park Store",
+        "lat": 36.49373,
+        "lng": -121.14646,
+        "informationUrl": "https://www.nps.gov/pinn/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "August 2, 2024"
+      },
+      "reason": "Visitor-information starting point by the east-side campground.",
+      "note": "NPS lists this as a park store at the east visitor-center area. East and west entrances have no connecting road; ranger staffing varies.",
+      "alternatives": [
+        {
+          "name": "West Pinnacles Visitor Contact Station",
+          "lat": 36.47751,
+          "lng": -121.22588,
+          "informationUrl": "https://www.nps.gov/pinn/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 2, 2024"
+        },
+        {
+          "name": "Bear Gulch Nature Center",
+          "lat": 36.48136,
+          "lng": -121.18081,
+          "informationUrl": "https://www.nps.gov/pinn/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 2, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/pinn/pinn_linked_data.json"
+    },
+    "redw": {
+      "park": "Redwood",
+      "primary": {
+        "name": "Thomas H. Kuchel Visitor Center",
+        "lat": 41.28681,
+        "lng": -124.09093,
+        "informationUrl": "https://www.nps.gov/redw/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "November 13, 2025"
+      },
+      "reason": "Orientation near Orick for the southern redwood and coastal areas.",
+      "note": "Hiouchi serves the far northern parks; this is a spread-out park complex.",
+      "alternatives": [
+        {
+          "name": "Hiouchi Visitor Center",
+          "lat": 41.79677,
+          "lng": -124.08182,
+          "informationUrl": "https://www.nps.gov/redw/planyourvisit/visitorcenters.htm#CP_JUMP_281916",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "November 13, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/redw/redw_linked_data.json"
+    },
+    "romo": {
+      "park": "Rocky Mountain",
+      "primary": {
+        "name": "Beaver Meadows Visitor Center",
+        "lat": 40.36623,
+        "lng": -105.56097,
+        "informationUrl": "https://www.nps.gov/romo/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 23, 2023"
+      },
+      "reason": "Orientation near Estes Park and the east-side entrance.",
+      "note": "Kawuneeche serves Grand Lake; Trail Ridge Road is a seasonal connection.",
+      "alternatives": [
+        {
+          "name": "Kawuneeche Visitor Center",
+          "lat": 40.26682,
+          "lng": -105.83272,
+          "informationUrl": "https://www.nps.gov/romo/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "May 23, 2023"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/romo/romo_linked_data.json"
+    },
+    "sagu": {
+      "park": "Saguaro",
+      "primary": {
+        "name": "Red Hills Visitor Center (West)",
+        "lat": 32.25448,
+        "lng": -111.19732,
+        "informationUrl": "https://www.nps.gov/sagu",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "February 9, 2026"
+      },
+      "reason": "Orientation for the Tucson Mountain and western saguaro district.",
+      "note": "Rincon Mountain is a separate district across Tucson; there is no internal park road between them.",
+      "alternatives": [
+        {
+          "name": "Rincon Mountain Visitor Center (East)",
+          "lat": 32.17966,
+          "lng": -110.73603,
+          "informationUrl": "https://www.nps.gov/sagu",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "February 9, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/sagu/sagu_linked_data.json"
+    },
+    "sequ": {
+      "park": "Sequoia",
+      "primary": {
+        "name": "Foothills Visitor Center",
+        "lat": 36.49107,
+        "lng": -118.82559,
+        "informationUrl": "https://www.nps.gov/seki/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "December 19, 2024"
+      },
+      "reason": "Orientation just inside the Ash Mountain entrance before the mountain drive.",
+      "note": "Giant Forest Museum serves the sequoia-grove area farther uphill. Vehicle-length and winter-road restrictions matter.",
+      "alternatives": [
+        {
+          "name": "Giant Forest Museum",
+          "lat": 36.56469,
+          "lng": -118.77268,
+          "informationUrl": "https://www.nps.gov/seki/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "December 19, 2024"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/seki/seki_linked_data.json"
+    },
+    "shen": {
+      "park": "Shenandoah",
+      "primary": {
+        "name": "Harry F. Byrd Sr. Visitor Center",
+        "lat": 38.51787,
+        "lng": -78.43681,
+        "informationUrl": "https://www.nps.gov/shen/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 22, 2026"
+      },
+      "reason": "Orientation at Big Meadows in the central Skyline Drive area.",
+      "note": "Dickey Ridge is the useful northern arrival alternative; both facilities and Skyline Drive have seasonal limitations.",
+      "alternatives": [
+        {
+          "name": "Dickey Ridge Visitor Center",
+          "lat": 38.87172,
+          "lng": -78.20466,
+          "informationUrl": "https://www.nps.gov/shen/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "September 22, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/shen/shen_linked_data.json"
+    },
+    "thro": {
+      "park": "Theodore Roosevelt",
+      "primary": {
+        "name": "South Unit Visitor Center",
+        "lat": 46.9165,
+        "lng": -103.52621,
+        "informationUrl": "https://www.nps.gov/thro/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 28, 2026"
+      },
+      "reason": "Orientation in Medora for the South Unit.",
+      "note": "The North Unit is a separate road trip; the units have different time zones.",
+      "alternatives": [
+        {
+          "name": "North Unit Visitor Center",
+          "lat": 47.6,
+          "lng": -103.2601,
+          "informationUrl": "https://www.nps.gov/thro/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 28, 2026"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/thro/thro_linked_data.json"
+    },
+    "viis": {
+      "park": "Virgin Islands",
+      "primary": {
+        "name": "Cruz Bay Visitor Center",
+        "lat": 18.33278,
+        "lng": -64.79371,
+        "informationUrl": "https://www.nps.gov/viis/planyourvisit/basicinfo.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "November 19, 2021"
+      },
+      "reason": "Orientation near the passenger-ferry arrival on St. John.",
+      "note": "Reach St. John by ferry or other arranged boat transport; the center is not a mainland driving destination.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/viis/viis_linked_data.json"
+    },
+    "voya": {
+      "park": "Voyageurs",
+      "primary": {
+        "name": "Rainy Lake Visitor Center",
+        "lat": 48.58471,
+        "lng": -93.16115,
+        "informationUrl": "https://www.nps.gov/voya/planyourvisit/visitorcenters.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 21, 2025"
+      },
+      "reason": "Orientation at a road-accessible mainland visitor hub.",
+      "note": "Most park exploration is on water; Kabetogama and Ash River serve other lake approaches.",
+      "alternatives": [
+        {
+          "name": "Kabetogama Lake Visitor Center",
+          "lat": 48.445,
+          "lng": -93.02999,
+          "informationUrl": "https://www.nps.gov/voya/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 21, 2025"
+        },
+        {
+          "name": "Ash River Visitor Center",
+          "lat": 48.4356,
+          "lng": -92.85043,
+          "informationUrl": "https://www.nps.gov/voya/planyourvisit/visitorcenters.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 21, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/voya/voya_linked_data.json"
+    },
+    "whsa": {
+      "park": "White Sands",
+      "primary": {
+        "name": "White Sands Visitor Center",
+        "lat": 32.77966,
+        "lng": -106.17239,
+        "informationUrl": "https://www.nps.gov/whsa/planyourvisit/visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "February 29, 2024"
+      },
+      "reason": "Orientation at the main entrance before Dunes Drive.",
+      "note": "Check current road and temporary closure notices.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/whsa/whsa_linked_data.json"
+    },
+    "wica": {
+      "park": "Wind Cave",
+      "primary": {
+        "name": "Wind Cave Visitor Center",
+        "lat": 43.55656,
+        "lng": -103.47831,
+        "informationUrl": "https://www.nps.gov/wica/planyourvisit/placestogo.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "January 18, 2026"
+      },
+      "reason": "Main cave-tour and park-orientation starting point.",
+      "note": "Check cave-tour availability and ticket rules separately.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/wica/wica_linked_data.json"
+    },
+    "wrst": {
+      "park": "Wrangell–St. Elias",
+      "primary": {
+        "name": "Wrangell-St. Elias Visitor Center in Copper Center",
+        "lat": 62.02005,
+        "lng": -145.36344,
+        "informationUrl": "https://www.nps.gov/wrst/planyourvisit/wrangell-st-elias-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "September 25, 2026"
+      },
+      "reason": "Road-accessible orientation for this very large park.",
+      "note": "This is not Kennecott. McCarthy/Kennecott need a separate long approach and local access planning.",
+      "alternatives": [
+        {
+          "name": "Kennecott Visitor Center",
+          "lat": 61.48333,
+          "lng": -142.88782,
+          "informationUrl": "https://www.nps.gov/wrst/planyourvisit/kennecott-visitor-center.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "September 2, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/wrst/wrst_linked_data.json"
+    },
+    "yell": {
+      "park": "Yellowstone",
+      "primary": {
+        "name": "Old Faithful Visitor Education Center",
+        "lat": 44.45861,
+        "lng": -110.82923,
+        "informationUrl": "https://www.nps.gov/yell/planyourvisit/oldfaithfulvec.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "April 30, 2025"
+      },
+      "reason": "Orientation for the signature geyser basin and popular Old Faithful area.",
+      "note": "This is an interior destination, not the nearest entrance. Road seasons matter; Canyon and Mammoth are useful alternatives.",
+      "alternatives": [
+        {
+          "name": "Canyon Visitor Education Center",
+          "lat": 44.73471,
+          "lng": -110.49185,
+          "informationUrl": "https://www.nps.gov/yell/planyourvisit/canyonvc.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "June 24, 2025"
+        },
+        {
+          "name": "Albright Visitor Center",
+          "lat": 44.97637,
+          "lng": -110.69953,
+          "informationUrl": "https://www.nps.gov/yell/planyourvisit/albright-visitor-center.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "April 30, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/yell/yell_linked_data.json"
+    },
+    "yose": {
+      "park": "Yosemite",
+      "primary": {
+        "name": "Yosemite Valley Welcome Center",
+        "lat": 37.74651,
+        "lng": -119.58445,
+        "informationUrl": "https://www.nps.gov/yose/planyourvisit/hours.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "May 26, 2026"
+      },
+      "reason": "Current visitor-information starting point near Yosemite Village parking.",
+      "note": "Use designated parking and walk to the center. This is the newer Welcome Center, not the former Valley Visitor Center.",
+      "alternatives": [],
+      "sourceUrl": "https://www.nps.gov/yose/yose_linked_data.json"
+    },
+    "zion": {
+      "park": "Zion",
+      "primary": {
+        "name": "Zion Canyon Visitor Center",
+        "lat": 37.20008,
+        "lng": -112.98689,
+        "informationUrl": "https://www.nps.gov/places/zion-canyon-visitor-center.htm",
+        "informationReviewed": "2026-11-04",
+        "informationUpdated": "July 10, 2026"
+      },
+      "reason": "Orientation at the south entrance and main canyon shuttle hub.",
+      "note": "Use designated parking; canyon shuttle rules and parking demand vary. Kolob Canyons has a separate entrance.",
+      "alternatives": [
+        {
+          "name": "Kolob Canyons Visitor Center",
+          "lat": 37.45364,
+          "lng": -113.22574,
+          "informationUrl": "https://www.nps.gov/zion/planyourvisit/kolob-canyons.htm",
+          "informationReviewed": "2026-11-04",
+          "informationUpdated": "August 18, 2025"
+        }
+      ],
+      "sourceUrl": "https://www.nps.gov/zion/zion_linked_data.json"
+    }
+  }
+}

@@ -127,3 +127,11 @@
 
 !/trip-fit.mjs
 !/tests/trip-fit.test.mjs
+
+!/visitor-centers.mjs
+!/data/park-visitor-centers.json
+!/data/park-visitor-centers.csv
+!/tests/visitor-centers.test.mjs
+
+!/scripts/build-visitor-centers.mjs
+!/docs/visitor-centers.md

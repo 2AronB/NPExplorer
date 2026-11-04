@@ -1,3 +1,4 @@
+import {validateVisitorCenters} from './visitor-centers.mjs';
 import {filterPlaces} from './places-filter.mjs';
 import {tripFit,tripFitHtml} from './trip-fit.mjs';
 import {createStarterPlan} from './trip-setup.mjs';
@@ -44,6 +45,7 @@ const seasonalResearch=await fetch('./data/seasonal-research/seasonal-access.jso
 const accessAudit=await fetch('./data/seasonal-access-audit.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const reservationResearch=await fetch('./data/reservation-requirements.json').then(r=>r.ok?r.json():null).catch(()=>null);
 baseSites.splice(0,baseSites.length,...[...currentInventory(baseSites),...REMOTE_PARKS].map(withPriorityDefault));
+const visitorCenters=validateVisitorCenters(await fetch('./data/park-visitor-centers.json').then(r=>{if(!r.ok)throw Error('Unable to load visitor-center data');return r.json();}),baseSites.filter(s=>s.type==='park').map(s=>s.id));
 let state={version:1,preferencesRevision:3,selected:sample,days:{},priorities:{},custom:[],rules:{},preparation:{},calibration:structuredClone(INITIAL_CALIBRATION),settings:structuredClone(defaults)};
 const planStorage=openPlanStorage({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},showSaveStatus);
 let restoredSavedInputs=false;
@@ -273,7 +275,7 @@ map.on('click',e=>{if(!pick)return;const {lat,lng}=e.latlng;if(pick!=='circle'&&
 function openDetail(id){if(pick)return;if(!lookup.has(id)){document.getElementById('result-'+id)?.scrollIntoView({behavior:'smooth',block:'start'});return;}activeId=id;renderDetail(id);markers.get(id)?.setZIndexOffset(900);$('detail').scrollIntoView({behavior:'smooth',block:'nearest'});}
 function renderDetail(id){
  const s=lookup.get(id);if(!s){$('detail').hidden=true;return;}$('detail').hidden=false;
- renderLocationDetail({site:s,baseSite:baseSites.find(p=>p.id===id),selected:state.selected.includes(id),siteStayMode:state.settings.stayMode,hasSiteOverride:Object.hasOwn(state.days,id),onResetSiteDays:()=>{delete state.days[id];changed();rebuild();renderAll();toast('Site visit allowance restored to the route preset.');},arrivalWindow:state.settings.arrivalWindows[id],
+ renderLocationDetail({site:s,visitorCenters,baseSite:baseSites.find(p=>p.id===id),selected:state.selected.includes(id),siteStayMode:state.settings.stayMode,hasSiteOverride:Object.hasOwn(state.days,id),onResetSiteDays:()=>{delete state.days[id];changed();rebuild();renderAll();toast('Site visit allowance restored to the route preset.');},arrivalWindow:state.settings.arrivalWindows[id],
   onSaveArrivalWindow:window=>{try{const next=structuredClone(state);if(window)next.settings.arrivalWindows[id]=window;else delete next.settings.arrivalWindows[id];state=validate(next);changed();rebuild();renderAll();toast('Park arrival dates saved. Recalculate to apply them; full exploration days are preserved.');}catch(e){toast(e.message);}},
   onToggle:()=>setSelected(id,!state.selected.includes(id)),
   onSaveVisit:values=>{try{const next=structuredClone(state);next.priorities[id]=values.priority;next.days[id]=values.days;state=validate(next);changed();rebuild();renderAll();toast('Visit priority and exploration days saved. Recalculate to apply them.');}catch(e){toast(e.message);}},

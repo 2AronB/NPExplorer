@@ -118,3 +118,7 @@ New trip offers a blank selection or Utah, Washington, Appalachian and longer So
 Saved on this device reports successful local persistence. Download backup always exports current JSON inputs, including unsaved edits. Saved trips opens the named Compare library. A best-effort comparison before active-plan writes and storage/focus checks pause stale-tab saving when another tab changes the plan; this is not a transactional multi-tab lock. Download unsaved inputs before loading the latest saved trip. Clearing site data or changing origin/browser can lose local plans; export/import JSON when moving to a new domain. No cloud sync or account was added.
 
 Trip length review reports the last allocated date against available time and links to visit allowances, settings and saved alternatives. It never removes destinations or shortens visits automatically, and unassigned time does not establish access or bookings.
+
+## Visitor-center starting points
+
+Open a national park's details for a **Suggested first stop**, source-backed latitude/longitude and **View on Google Maps**. One editorial starting point is shown for each of the 64 retained parks, with 44 selected district/entrance alternatives collapsed underneath. Remote and outside-park centers are labeled. These are facility pins, not measured popularity rankings, verified parking entrances or changes to the optimizer's routing points. The full 64-row CSV is downloadable from each card. See docs/visitor-centers.md for review scope and updating instructions.
