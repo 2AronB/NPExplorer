@@ -36,6 +36,7 @@ test('compact card escapes facility text and only expands selected alternatives'
 });
 test('download is exactly 64 primary suggestions and matches the checked-in artifact',async()=>{
  const csv=visitorCentersCsv(data);assert.equal(csv.trim().split('\r\n').length,65);
- assert.equal(await fs.readFile(new URL('../data/park-visitor-centers.csv',import.meta.url),'utf8'),csv);
+ // Git may normalize the stored text to LF on Linux; generated CSV uses CRLF.
+ assert.equal((await fs.readFile(new URL('../data/park-visitor-centers.csv',import.meta.url),'utf8')).replaceAll('\r\n','\n'),csv.replaceAll('\r\n','\n'));
  assert.match(csv,/"Google Maps pin"/);assert.match(csv,/"-14\.27441"/);assert.ok(csv.includes('Yosemite Valley Welcome Center'));
 });
