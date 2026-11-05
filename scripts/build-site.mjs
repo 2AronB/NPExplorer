@@ -4,6 +4,7 @@ import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 export const projectRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 export const runtimeFiles=[
+ 'favicon.svg',
  'visitor-centers.mjs','data/park-visitor-centers.json','data/park-visitor-centers.csv','trip-fit.mjs','trip-setup.mjs','trip-setup-ui.mjs','plan-storage.mjs','places-filter.mjs','site-stays.mjs','site-guide.mjs','site-guide-ui.mjs','site-visit-review.mjs','site-stay-ui.mjs','data/site-stay-audit.json','data/site-stays.csv','visit-durations.mjs','along-the-way.mjs','along-the-way-ui.mjs','preparation.mjs','preparation-ui.mjs','arrival-windows.mjs','rest-days.mjs','rest-ui.mjs','access-review.mjs','scenarios.mjs','comparison-ui.mjs','seasonal-access.mjs','data/seasonal-access-audit.json','calendar.mjs','reservation-ui.mjs','data/reservation-requirements.json','index.html','style.css','startup.mjs','app.mjs','calibration.mjs','current-inventory.mjs',
  'excursions.mjs','location-detail.mjs','map-markers.mjs','optimizer.mjs',
  'personal-priority.mjs','plan-defaults.mjs','plan-import.mjs','remote-parks.mjs','season-quality.mjs',
@@ -14,7 +15,7 @@ export const runtimeFiles=[
 ];
 export async function buildSite(){
  const hash=createHash('sha256');for(const file of runtimeFiles)hash.update(await fs.readFile(path.join(projectRoot,file)));const version=hash.digest('hex').slice(0,12);
- const versionAssets=text=>text.replace(/(["'])([^"'\s?]+\.(?:mjs|css|js))\1/g,(match,quote,url)=>url.startsWith('http')?match:quote+url+'?v='+version+quote);
+ const versionAssets=text=>text.replace(/(["'])([^"'\s?]+\.(?:mjs|css|js|svg))\1/g,(match,quote,url)=>url.startsWith('http')?match:quote+url+'?v='+version+quote);
  const destination=path.resolve(projectRoot,'dist');
  if(destination===projectRoot||path.dirname(destination)!==projectRoot||path.basename(destination)!=='dist')throw Error('Unsafe build destination');
  try{const entry=await fs.lstat(destination);if(entry.isSymbolicLink())throw Error('Build destination must not be a symbolic link');}catch(error){if(error.code!=='ENOENT')throw error;}
