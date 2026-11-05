@@ -1,3 +1,4 @@
+import {mountMapSummary,summaryRecord} from './map-summary.mjs';
 import {validateVisitorCenters} from './visitor-centers.mjs';
 import {filterPlaces} from './places-filter.mjs';
 import {tripFit,tripFitHtml} from './trip-fit.mjs';
@@ -32,7 +33,7 @@ import {importPlanFile} from './plan-import.mjs';
 import {CALIBRATION_ROUTES,INITIAL_CALIBRATION,parseDrivingHours,fitCalibration} from './calibration.mjs';
 import {monthlyQuality,qualityColor} from './season-quality.mjs';
 import {renderLocationDetail} from './location-detail.mjs';
-import {MARKER_TYPES,markerType,shapeSvg,markerSize,circleCandidates,visibleSite,visitNumbers,visitNumberLabel,scheduledVisit,tripMarkerColor,tripVisitLabel} from './map-markers.mjs';
+import {MARKER_TYPES,markerType,shapeSvg,markerSize,circleCandidates,boundaryCandidates,validBoundary,visibleSite,visitNumbers,visitNumberLabel,scheduledVisit,tripMarkerColor,tripVisitLabel} from './map-markers.mjs';
 const $=id=>document.getElementById(id);
 const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const format=n=>Math.round(n).toLocaleString();
@@ -41,6 +42,7 @@ const highlightDays={yell:4,grte:2,glac:3,yose:3,grca:2,zion:2,brca:1,arch:1,can
 const defaults=DEFAULT_SETTINGS;
 const sample=['romo','grsa','meve','arch','cany','care','brca','zion','grca','pefo','whsa'];
 const [{sites:baseSites,metadata},states]=await Promise.all([fetch('./data/sites.json').then(r=>{if(!r.ok)throw Error('Unable to load park data');return r.json();}),fetch('./data/states.json').then(r=>r.json())]);
+const mapSummaries=await fetch('./data/map-summaries.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const seasonalResearch=await fetch('./data/seasonal-research/seasonal-access.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const accessAudit=await fetch('./data/seasonal-access-audit.json').then(r=>r.ok?r.json():null).catch(()=>null);
 const reservationResearch=await fetch('./data/reservation-requirements.json').then(r=>r.ok?r.json():null).catch(()=>null);
@@ -51,6 +53,7 @@ const planStorage=openPlanStorage({getItem:key=>localStorage.getItem(key),setIte
 let restoredSavedInputs=false;
 try{const saved=localStorage.getItem('long-way-plan-v1');if(saved){state=validate(JSON.parse(saved));restoredSavedInputs=true;}}catch(error){try{const saved=localStorage.getItem('long-way-plan-v1');if(saved)localStorage.setItem('long-way-plan-recovery-v1',saved);}catch{}console.error('Saved-plan validation:',error);toast('Saved plan could not be loaded. A recovery copy was retained in this browser; starter settings are shown.',true);}
 let sites=[],lookup=new Map(),markers=new Map(),activeId=null,lens='season',month=4,pick=null,circleCenter=null,circleLayer=null,result=null,worker=null,revision=0;
+let mapSummaryPopup=null;
 let accessReview=null,comparisons=null,restEditor=null,preparationEditor=null,alongEditor=null;
 const scenarioVersions={application:new URL(import.meta.url).searchParams.get('v')||'access-compare-1',optimizer:'audited-family-site-stays-v2',data:dataFingerprint([baseSites,defaults,accessAudit,seasonalResearch,reservationResearch,SITE_STAYS])};
 const scenarioStore=openScenarioStore({getItem:key=>localStorage.getItem(key),setItem:(key,value)=>localStorage.setItem(key,value)},validate);
@@ -58,6 +61,7 @@ function activeSnapshot(name='Previous active trip'){
  return createSnapshot({id:'active-recovery',name,state,sites,result,accessReview,preparationTasks:buildPreparationTasks({state,sites,result,research:reservationResearch}),versions:scenarioVersions});
 }
 const map=L.map('map',{zoomControl:true,minZoom:2,maxZoom:10,attributionControl:true}).setView([38,-97],4);
+map.on('resize',()=>{if(mapSummaryPopup?.isOpen()){mapSummaryPopup.options.maxHeight=Math.max(220,Math.min(520,map.getSize().y-60));mapSummaryPopup.update();}});
 map.attributionControl.setPrefix(false);
 map.attributionControl.addAttribution('<a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> · US Census / us-atlas · NPS boundary snapshot');
 const stateFeatures=topojson.feature(states,states.objects.states);
@@ -73,9 +77,9 @@ $('month').value=month;
 let shownTypes=new Set(MARKER_TYPES.map(t=>t.id));
 try{const saved=JSON.parse(localStorage.getItem('long-way-map-types-v1'));if(Array.isArray(saved))shownTypes=new Set(saved.filter(id=>MARKER_TYPES.some(t=>t.id===id)));}catch{}
 function renderLegend(){
- $('shapeLegend').innerHTML='<div class="legend-actions"><strong>Map locations</strong><button type="button" id="legendShowAll">Show all</button><button type="button" id="legendHideAll">Hide all</button><small>'+shownTypes.size+' of '+MARKER_TYPES.length+' types shown</small></div>'+MARKER_TYPES.map(t=>`<button type="button" class="legend-type" data-marker-type="${t.id}" aria-pressed="${shownTypes.has(t.id)}" title="${shownTypes.has(t.id)?'Hide':'Show'} ${t.label}"><i>${shapeSvg(t.shape,'#71866a')}</i>${t.label}</button>`).join('')+'<span class="selection-key"><i class="small-selected">'+shapeSvg('circle','#375b43',true)+'</i>Selected = larger</span><small class="legend-note">Hidden types stay in your trip. Circle selection includes visible types only.</small>';
+ $('shapeLegend').innerHTML='<div class="legend-actions"><strong>Map locations</strong><button type="button" id="legendShowAll">Show all</button><button type="button" id="legendHideAll">Hide all</button><small>'+shownTypes.size+' of '+MARKER_TYPES.length+' types shown</small></div>'+MARKER_TYPES.map(t=>`<button type="button" class="legend-type" data-marker-type="${t.id}" aria-pressed="${shownTypes.has(t.id)}" title="${shownTypes.has(t.id)?'Hide':'Show'} ${t.label}"><i>${shapeSvg(t.shape,'#71866a')}</i>${t.label}</button>`).join('')+'<span class="selection-key"><i class="small-selected">'+shapeSvg('circle','#375b43',true)+'</i>Selected = larger</span><small class="legend-note">Hidden types stay in your trip. Area selection includes visible types only.</small>';
 }
-function changeMapVisibility(){try{localStorage.setItem('long-way-map-types-v1',JSON.stringify([...shownTypes]));}catch{}renderLegend();renderMarkers();if(pick==='circle'&&circleCenter&&circleEdge)previewCircle(circleEdge);}
+function changeMapVisibility(){try{localStorage.setItem('long-way-map-types-v1',JSON.stringify([...shownTypes]));}catch{}renderLegend();renderMarkers();if(pick==='circle'&&circleCenter&&circleEdge)previewCircle(circleEdge);if(pick==='boundary')previewBoundary();}
 $('shapeLegend').onclick=e=>{const b=e.target.closest('[data-marker-type]');if(b){const id=b.dataset.markerType;if(shownTypes.has(id))shownTypes.delete(id);else shownTypes.add(id);}else if(e.target.closest('#legendShowAll'))shownTypes=new Set(MARKER_TYPES.map(t=>t.id));else if(e.target.closest('#legendHideAll'))shownTypes.clear();else return;changeMapVisibility();};
 renderLegend();
 rebuild();fillSettings();renderAll();syncLens();save();
@@ -192,7 +196,7 @@ function save(){try{planStorage.setItem(PLAN_KEY,JSON.stringify(state));}catch(e
 function renderTransport(){renderTransportSettings(state.settings,values=>{try{const next=structuredClone(state);Object.assign(next.settings,values);state=validate(next);changed();renderTransport();toast('Transport assumptions saved. Find my route will compare the updated options.');}catch(e){toast(e.message);}},region=>{state.selected=[...new Set([...state.selected,...sites.filter(s=>s.remote?.region===region).map(s=>s.id)])];changed();renderAll();$('mapRegion').value=region;showRegion(region);toast(`${REGION_NAMES[region]} parks added to the trip.`);},toast);}
 function changed(){revision++;accessReview=null;$('cancelCalculation').hidden=true;const canceled=!!worker;if(worker){worker.terminate();worker=null;$('optimize').disabled=false;$('optimize').textContent='Find my route →';}if(result||canceled){$('routeStatus').textContent='INPUTS CHANGED · RECALCULATE';$('suggestionSection').hidden=true;routeLayer.clearLayers();$('routeOutput').innerHTML='<div class="empty-state"><p>Inputs changed. Find my route will calculate an updated itinerary.</p></div>';result=null;renderMarkers();syncLens();}calendar.update({state,sites,result,accessReview,pending:!!worker});save();}
 function toast(message,persistent=false){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toast.timer);if(!persistent)toast.timer=setTimeout(()=>$('toast').hidden=true,6500);}
-function renderAll(){calendar.update({state,sites,result,accessReview,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
+function renderAll(){document.querySelectorAll('[data-popup-field]').forEach(el=>{if(document.activeElement!==el){const site=lookup.get(el.dataset.siteId);if(site)el.value=site[el.dataset.popupField];}});document.querySelectorAll('[data-popup-select]').forEach(el=>{el.checked=state.selected.includes(el.dataset.popupSelect);});calendar.update({state,sites,result,accessReview,pending:!!worker});renderMarkers();renderList();renderCustom();renderSummary();renderEndpoints();syncLens();renderCalibration();renderTransport();if(activeId)renderDetail(activeId);}
 function setSelected(id,selected){state.selected=state.selected.filter(x=>x!==id);if(selected)state.selected.push(id);changed();renderAll();}
 function renderSummary(){renderAlong();renderPreparation();renderBookingChecklist();restEditor?.update({state,sites,result});const rest=restBudget(state.settings,state.selected);$('restBudgetStatus').hidden=!rest.overallocated;$('restBudgetStatus').textContent=rest.overallocated?`Rest placements exceed the reserve by ${rest.placed-rest.total} days. Adjust Rest placement or the total reserve before calculating.`:'';const selected=state.selected.map(id=>lookup.get(id)).filter(Boolean),s=state.settings;$('selectedCount').textContent=selected.length;$('selectionSummary').textContent=`${selected.length} places · ${selected.reduce((n,s)=>n+s.days,0)} exploration day equivalents + travel · ${s.duration}-day target · ${s.endMode==='return'?'round trip to '+s.start.name:s.endMode==='open'?'one-way finish':'finish: '+s.end.name}`;$('optimize').disabled=!!worker||!selected.length||rest.overallocated;$('autoMonth').checked=s.autoMonth;$('inventoryNote').textContent=`${baseSites.filter(s=>s.type==='park').length} US national parks · ${baseSites.filter(s=>s.type==='site').length} other CONUS NPS locations. Remote access is modeled separately. CONUS site inventory: Nov 2022.`;}
 function coreAccess(s){return lens==='selection'?null:accessForMonth(accessAudit,s.id,month);}
@@ -206,7 +210,7 @@ function renderMarkers(){markerLayer.clearLayers();markers.clear();const selecte
   const marker=L.marker([s.lat,s.lng],{keyboard:false,zIndexOffset:isSelected?700:0,icon:L.divIcon({className:`site-marker marker-${type.id}${isSelected?' is-selected':''}`,html:shapeSvg(type.shape,color(s),isSelected,accessStriped(s))+(stopNumber===undefined?'':`<span class="site-stop-number" aria-hidden="true">${stopNumber}</span>`),iconSize:[size,size],iconAnchor:[size/2,size/2]})});
   const visit=scheduledVisit(result,s.id),tripLabel=lens==='selection'?tripVisitLabel(visit,stopNumber)+(visit?(accessReview?.visits.find(v=>v.siteId===s.id)?.warnings||[]).map(w=>' · '+w.label).join(''):''):null;
   marker.bindTooltip(()=>{const el=document.createElement('div'),d=dateOf(`2040-${String(month).padStart(2,'0')}-15`),q=seasonQuality(s,d);el.textContent=`${s.shortName} · ${s.designation||s.kind||type.label} · ${tripLabel||(season(s,d)==='closed'?'Closed at mid-month':q===null?'No seasonal score':q+'/10 in '+MONTHS[month-1])}${coreAccess(s)?' · '+coreAccess(s).label:''}${siteAccessLabel(s)?' · '+siteAccessLabel(s):''} · Priority ${s.priority}/5 · ${isSelected?'Selected':'Not selected'}`;return el;},{className:'park-tooltip'});
-  const activate=()=>{if(pick)map.fire('click',{latlng:L.latLng(s.lat,s.lng)});else openDetail(s.id);};
+  const activate=()=>{if(pick)map.fire('click',{latlng:L.latLng(s.lat,s.lng)});else openMapSummary(s.id);};
   marker.on('click',e=>{L.DomEvent.stopPropagation(e);activate();});marker.addTo(markerLayer);markers.set(s.id,marker);
   const el=marker.getElement();el.setAttribute('aria-label',`${stopNumber===undefined?'':'Stop '+stopNumber+' · '}${s.shortName} · ${s.designation||type.label} · ${isSelected?'selected':'not selected'}${siteAccessLabel(s)?' · '+siteAccessLabel(s):''}${coreAccess(s)?' · '+coreAccess(s).label:''}`);if(tripLabel)el.setAttribute('aria-label',`${s.shortName} · ${tripLabel} · ${isSelected?'selected':'not selected'}`);el.setAttribute('role','button');el.setAttribute('tabindex','0');el.dataset.mapSite=s.id;el.dataset.markerShape=type.shape;el.dataset.selected=String(isSelected);if(stopNumber!==undefined)el.dataset.stopNumber=String(stopNumber);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}});
  }
@@ -226,15 +230,15 @@ $('reset').onclick=()=>{state.selected=[];changed();renderAll();};
 $('month').oninput=()=>{month=Number($('month').value);syncLens();renderMarkers();renderList();if(activeId&&$('accessAssessment'))$('accessAssessment').innerHTML=accessDetails(accessAudit,seasonalResearch,activeId,month);};
 $('autoMonth').onchange=()=>{state.settings.autoMonth=$('autoMonth').checked;changed();renderSummary();toast(state.settings.autoMonth?'Full 12-month route search enabled. Find my route will compare every month.':'Departure-month search disabled; the saved departure date will be used.');};
 function syncLens(){
- map.getContainer().classList.toggle('drawing-circle',pick==='circle');
+ map.getContainer().classList.toggle('drawing-circle',pick==='circle'||pick==='boundary');
  document.querySelectorAll('[data-lens]').forEach(b=>{b.classList.toggle('active',b.dataset.lens===lens);b.setAttribute('aria-pressed',String(b.dataset.lens===lens));});
  $('month').disabled=lens==='selection';
  document.querySelector('.month-control').hidden=lens==='selection';
  $('mapLegend').lastElementChild.hidden=lens==='selection';
  const monthName=new Date(Date.UTC(2040,month-1,1)).toLocaleString('en-US',{month:'long',timeZone:'UTC'});$('monthValue').textContent=monthName;$('month').setAttribute('aria-valuetext',monthName);
- if(lens==='season'||pick==='circle'){
+ if(lens==='season'||pick==='circle'||pick==='boundary'){
   if(map.hasLayer(routeLayer))map.removeLayer(routeLayer);
-  $('mapCaption').textContent=pick==='circle'?'Every enabled location stays visible. The circle previews eligible places; selected places are larger. Route labels are temporarily hidden.':'All enabled location types stay visible. Color = draft 0–10 seasonal quality; grey = park closure; red/grey stripes = core highlights mostly inaccessible for an ordinary visit (approximate months). Selected places are larger. Sliding the month does not recalculate your itinerary.';
+  $('mapCaption').textContent=(pick==='circle'||pick==='boundary')?'Every enabled location stays visible. The area previews eligible places; selected places are larger. Route labels are temporarily hidden.':'All enabled location types stay visible. Color = draft 0–10 seasonal quality; grey = park closure; red/grey stripes = core highlights mostly inaccessible for an ordinary visit (approximate months). Selected places are larger. Sliding the month does not recalculate your itinerary.';
  }else{
   if(!map.hasLayer(routeLayer))routeLayer.addTo(map);
   $('mapCaption').textContent='Color = seasonal quality on each scheduled visit; grey = closure conflict. Hover for trip dates and scores. Unscheduled places stay muted. Selected visible stops are enlarged. Numbers follow every destination, including OCONUS parks. Tan = draft roads; purple = flights / regional transfers. Connections are schematic.';
@@ -250,11 +254,15 @@ function fit(){if($('exploreView').hidden){pendingMapFit=true;return;}const poin
 $('fit').onclick=fit;
 function showRegion(region){const bounds={conus:[[24,-125],[50,-66]],alaska:[[55,-170],[71.5,-130]],hawaii:[[18.6,-160.5],[22.5,-154.5]],virgin:[[18.24,-65.05],[18.46,-64.55]],samoa:[[-14.45,-170.9],[-14.1,-170.45]],all:[[-15,-174],[72,-64]]};map.fitBounds(bounds[region],{padding:[25,30],maxZoom:9});}
 $('mapRegion').onchange=()=>showRegion($('mapRegion').value);
-let circleEdge=null;
-function beginPick(mode){cancelPick();pick=mode;$('circle').classList.toggle('active',mode==='circle');$('circle').setAttribute('aria-pressed',String(mode==='circle'));map.getContainer().style.cursor='crosshair';syncLens();toast(mode==='circle'?'Click a center, move to preview, then click the outer edge to add places. Escape cancels.':`Click the map to choose the ${mode==='custom'?'personal stop':mode} location.`,true);}
+let circleEdge=null,boundaryVertices=[],boundaryLayer=null,boundaryCorners=null;
+function beginPick(mode){cancelPick();pick=mode;map.closePopup();$('boundaryActions').hidden=mode!=='boundary';$('boundary').classList.toggle('active',mode==='boundary');$('boundary').setAttribute('aria-pressed',String(mode==='boundary'));$('circle').classList.toggle('active',mode==='circle');$('circle').setAttribute('aria-pressed',String(mode==='circle'));map.getContainer().style.cursor='crosshair';syncLens();if(mode==='boundary'){previewBoundary();return;}toast(mode==='circle'?'Click a center, move to preview, then click the outer edge to add places. Escape cancels.':`Click the map to choose the ${mode==='custom'?'personal stop':mode} location.`,true);}
 $('circle').onclick=()=>{if(pick==='circle')cancelPick();else beginPick('circle');};
+$('boundary').onclick=()=>{if(pick==='boundary')cancelPick();else beginPick('boundary');};
+$('boundaryCancel').onclick=cancelPick;
+$('boundaryUndo').onclick=()=>{boundaryVertices.pop();previewBoundary();};
+$('boundaryAdd').onclick=()=>{if(pick!=='boundary'||!validBoundary(boundaryVertices))return;const candidates=boundaryCandidates(sites,boundaryVertices,$('circleScope').value,shownTypes),added=candidates.filter(s=>!state.selected.includes(s.id)).length;state.selected=[...new Set([...state.selected,...candidates.map(s=>s.id)])];cancelPick();if(added)changed();renderAll();toast(added+' new places added · '+(candidates.length-added)+' already selected. Places outside the boundary kept.');};
 $('pickStart').onclick=()=>beginPick('start');$('pickEnd').onclick=()=>beginPick('finish');$('pickCustom').onclick=()=>beginPick('custom');
-function cancelPick(){pick=null;circleCenter=null;circleEdge=null;map.getContainer().style.cursor='';$('circle').classList.remove('active');$('circle').setAttribute('aria-pressed','false');$('circlePreview').hidden=true;for(const m of markers.values())m.getElement()?.classList.remove('circle-new','circle-kept');if(circleLayer){map.removeLayer(circleLayer);circleLayer=null;}$('toast').hidden=true;syncLens();}
+function cancelPick(){pick=null;boundaryVertices=[];if(boundaryLayer){map.removeLayer(boundaryLayer);boundaryLayer=null;}if(boundaryCorners){map.removeLayer(boundaryCorners);boundaryCorners=null;}$('boundaryActions').hidden=true;$('boundary').classList.remove('active');$('boundary').setAttribute('aria-pressed','false');circleCenter=null;circleEdge=null;map.getContainer().style.cursor='';$('circle').classList.remove('active');$('circle').setAttribute('aria-pressed','false');$('circlePreview').hidden=true;for(const m of markers.values())m.getElement()?.classList.remove('circle-new','circle-kept');if(circleLayer){map.removeLayer(circleLayer);circleLayer=null;}$('toast').hidden=true;syncLens();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')cancelPick();});
 function previewCircle(edge){
  circleEdge=edge;const radius=map.distance(circleCenter,edge);
@@ -263,15 +271,32 @@ function previewCircle(edge){
  for(const [id,m]of markers){const el=m.getElement();el?.classList.toggle('circle-new',ids.has(id)&&!selected.has(id));el?.classList.toggle('circle-kept',ids.has(id)&&selected.has(id));}
  $('circlePreview').hidden=false;const text=`Inside circle: ${candidates.length} eligible · ${candidates.length-kept} new · ${kept} already selected. Click the edge to add; Escape cancels.`;if($('circlePreview').textContent!==text)$('circlePreview').textContent=text;
 }
-$('circleScope').onchange=()=>{if(pick==='circle'&&circleCenter&&circleEdge)previewCircle(circleEdge);};
+function previewBoundary(){
+ const vertices=boundaryVertices,valid=validBoundary(vertices);
+ if(boundaryLayer)map.removeLayer(boundaryLayer);if(boundaryCorners)map.removeLayer(boundaryCorners);
+ boundaryLayer=(vertices.length>=3?L.polygon(vertices,{color:'#375b43',weight:2,fillOpacity:.1,interactive:false}):L.polyline(vertices,{color:'#375b43',weight:2,interactive:false})).addTo(map);
+ boundaryCorners=L.layerGroup(vertices.map((v,i)=>L.circleMarker(v,{radius:i===0?5:3,color:'#375b43',fillColor:'#fffef9',fillOpacity:1,interactive:false}))).addTo(map);
+ const candidates=boundaryCandidates(sites,vertices,$('circleScope').value,shownTypes),ids=new Set(candidates.map(s=>s.id)),selected=new Set(state.selected),kept=candidates.filter(s=>selected.has(s.id)).length;
+ for(const [id,m]of markers){m.getElement()?.classList.toggle('circle-new',ids.has(id)&&!selected.has(id));m.getElement()?.classList.toggle('circle-kept',ids.has(id)&&selected.has(id));}
+ $('boundaryUndo').disabled=!vertices.length;$('boundaryAdd').disabled=!valid;
+ $('circlePreview').hidden=false;$('circlePreview').textContent=valid?'Inside boundary: '+candidates.length+' eligible · '+(candidates.length-kept)+' new · '+kept+' already selected. Add corners or choose Add places.':vertices.length+' corners · Use at least three corners enclosing an area without crossing edges. Undo to adjust; Escape cancels.';
+}
+$('circleScope').onchange=()=>{if(pick==='boundary')previewBoundary();if(pick==='circle'&&circleCenter&&circleEdge)previewCircle(circleEdge);};
 map.on('mousemove',e=>{if(pick==='circle'&&circleCenter)previewCircle(e.latlng);});
-map.on('click',e=>{if(!pick)return;const {lat,lng}=e.latlng;if(pick!=='circle'&&(lat<24||lat>50||lng< -125||lng> -66)){toast('This first map supports the contiguous United States.');return;}
+map.on('click',e=>{if(!pick)return;const {lat,lng}=e.latlng;if(pick==='boundary'){if(!boundaryVertices.length||!boundaryVertices.at(-1).equals(e.latlng)){boundaryVertices.push(e.latlng);previewBoundary();}return;}if(pick!=='circle'&&(lat<24||lat>50||lng< -125||lng> -66)){toast('This first map supports the contiguous United States.');return;}
  if(pick==='circle'){
   if(!circleCenter){circleCenter=e.latlng;previewCircle(e.latlng);return;}
   const candidates=circleCandidates(sites,circleCenter,haversine(circleCenter,e.latlng),$('circleScope').value,shownTypes),added=candidates.filter(s=>!state.selected.includes(s.id)).length;state.selected=[...new Set([...state.selected,...candidates.map(s=>s.id)])];cancelPick();if(added)changed();renderAll();toast(`${added} new places added · ${candidates.length-added} already selected. Places outside the circle kept.`);return;
  }
  const mode=pick;const prefix=mode==='finish'?'end':mode;$(prefix+'Lat').value=lat.toFixed(4);$(prefix+'Lng').value=lng.toFixed(4);cancelPick();switchTab(mode==='custom'?'custom':'trip');toast('Coordinates filled in. Save the form to apply the location.');
 });
+function openMapSummary(id){
+ const site=lookup.get(id);if(!site||pick)return;
+ const box=mountMapSummary({site,record:summaryRecord(mapSummaries,id),selected:state.selected.includes(id),
+  onSaveField:(field,value)=>{if(lookup.get(id)?.[field]===value)return;const next=structuredClone(state);if(field==='days')next.days[id]=value;else next.priorities[id]=value;state=validate(next);changed();rebuild();renderAll();},
+  onToggle:selected=>setSelected(id,selected),onMore:()=>{map.closePopup();openDetail(id);}});
+ mapSummaryPopup=L.popup({className:'site-summary-popup',maxWidth:320,minWidth:230,maxHeight:Math.max(220,Math.min(520,map.getSize().y-60)),autoPanPadding:[20,20]}).setLatLng([site.lat,site.lng]).setContent(box).openOn(map);
+}
 function openDetail(id){if(pick)return;if(!lookup.has(id)){document.getElementById('result-'+id)?.scrollIntoView({behavior:'smooth',block:'start'});return;}activeId=id;renderDetail(id);markers.get(id)?.setZIndexOffset(900);$('detail').scrollIntoView({behavior:'smooth',block:'nearest'});}
 function renderDetail(id){
  const s=lookup.get(id);if(!s){$('detail').hidden=true;return;}$('detail').hidden=false;

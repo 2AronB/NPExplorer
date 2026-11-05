@@ -4,6 +4,18 @@ import fs from 'node:fs';
 import {MARKER_TYPES,markerType,markerSize,circleCandidates,visibleSite,visitNumbers,visitNumberLabel} from '../map-markers.mjs';
 import {scheduledVisit,tripMarkerColor,tripVisitLabel} from '../map-markers.mjs';
 import {qualityColor} from '../season-quality.mjs';
+import {insideBoundary,validBoundary,boundaryCandidates} from '../map-markers.mjs';
+test('drawn boundary includes edges and concave areas, respects scope, visibility and public eligibility',()=>{
+ const vertices=[{lat:0,lng:0},{lat:0,lng:4},{lat:2,lng:2},{lat:4,lng:4},{lat:4,lng:0}];
+ assert.ok(validBoundary(vertices));assert.ok(insideBoundary({lat:2,lng:1},vertices));assert.ok(insideBoundary({lat:2,lng:2},vertices));assert.ok(!insideBoundary({lat:2,lng:3},vertices));
+ assert.ok(!validBoundary(vertices.slice(0,2)));assert.ok(!validBoundary([{lat:0,lng:0},{lat:1,lng:1},{lat:2,lng:2}]));
+ assert.ok(!validBoundary([{lat:0,lng:0},{lat:4,lng:4},{lat:0,lng:4},{lat:3,lng:0}]));
+ const places=[{id:'arch',type:'park',lat:2,lng:1},{id:'cagr',type:'site',designation:'National Monument',lat:2,lng:1},{id:'pima',type:'site',lat:2,lng:1},{id:'home',type:'custom',lat:2,lng:1},{id:'outside',type:'park',lat:2,lng:3}];
+ assert.deepEqual(boundaryCandidates(places,vertices).map(s=>s.id),['arch']);
+ assert.deepEqual(boundaryCandidates(places,vertices,'nps').map(s=>s.id),['arch','cagr']);
+ assert.deepEqual(boundaryCandidates(places,vertices,'all',new Set(['park','custom'])).map(s=>s.id),['arch','home']);
+ assert.deepEqual(boundaryCandidates(places,[],'all'),[]);
+});
 test('route markers resolve actual mainland and regional visit dates and quality when routes change',()=>{
  const july={id:'yell',arrival:'2040-07-20',departure:'2040-07-24',days:4,quality:8.5},remote={id:'dena',arrival:'2040-08-03',departure:'2040-08-06',days:3,quality:9};
  const r={visits:[july,{id:'alaska',excursion:true,quality:2}],excursions:[{id:'alaska',visits:[remote]}]};

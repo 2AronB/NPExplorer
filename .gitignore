@@ -135,3 +135,7 @@
 
 !/scripts/build-visitor-centers.mjs
 !/docs/visitor-centers.md
+
+!/map-summary.mjs
+!/data/map-summaries.json
+!/tests/map-summary.test.mjs

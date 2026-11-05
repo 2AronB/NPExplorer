@@ -70,3 +70,31 @@ export function visitNumberLabel(result,id,numbers=visitNumbers(result)){
 export function circleCandidates(sites,center,radiusMiles,scope='parks',shownTypes=null){
  return sites.filter(site=>(!shownTypes||visibleSite(site,shownTypes))&&(site.type!=='site'||automaticSiteCandidate(site))&&(scope==='all'||scope==='nps'&&site.type!=='custom'||scope==='parks'&&site.type==='park')&&haversine(center,site)<=radiusMiles+1e-8);
 }
+
+// Match the displayed polygon's longitude/latitude plane; boundary edges count.
+export function insideBoundary(point,vertices){
+ if(vertices.length<3)return false;
+ let inside=false;
+ for(let i=0,j=vertices.length-1;i<vertices.length;j=i++){
+  const a=vertices[j],b=vertices[i],cross=(point.lng-a.lng)*(b.lat-a.lat)-(point.lat-a.lat)*(b.lng-a.lng);
+  if(Math.abs(cross)<1e-9&&point.lng>=Math.min(a.lng,b.lng)-1e-9&&point.lng<=Math.max(a.lng,b.lng)+1e-9&&point.lat>=Math.min(a.lat,b.lat)-1e-9&&point.lat<=Math.max(a.lat,b.lat)+1e-9)return true;
+  if((a.lat>point.lat)!==(b.lat>point.lat)&&point.lng<(b.lng-a.lng)*(point.lat-a.lat)/(b.lat-a.lat)+a.lng)inside=!inside;
+ }
+ return inside;
+}
+export function validBoundary(vertices){
+ const cross=(a,b,c)=>(b.lng-a.lng)*(c.lat-a.lat)-(b.lat-a.lat)*(c.lng-a.lng);
+ const on=(a,b,c)=>Math.abs(cross(a,b,c))<1e-9&&c.lng>=Math.min(a.lng,b.lng)-1e-9&&c.lng<=Math.max(a.lng,b.lng)+1e-9&&c.lat>=Math.min(a.lat,b.lat)-1e-9&&c.lat<=Math.max(a.lat,b.lat)+1e-9;
+ for(let i=0;i<vertices.length;i++)for(let j=i+1;j<vertices.length;j++){
+  if(j===i+1||i===0&&j===vertices.length-1)continue;
+  const a=vertices[i],b=vertices[(i+1)%vertices.length],c=vertices[j],d=vertices[(j+1)%vertices.length];
+  if(cross(a,b,c)*cross(a,b,d)<0&&cross(c,d,a)*cross(c,d,b)<0||on(a,b,c)||on(a,b,d)||on(c,d,a)||on(c,d,b))return false;
+ }
+ let area=0;
+ for(let i=0;i<vertices.length;i++){const a=vertices[i],b=vertices[(i+1)%vertices.length];area+=a.lng*b.lat-b.lng*a.lat;}
+ return vertices.length>=3&&Math.abs(area)>1e-8;
+}
+export function boundaryCandidates(sites,vertices,scope='parks',shownTypes=null){
+ if(!validBoundary(vertices))return [];
+ return circleCandidates(sites,{lat:0,lng:0},Infinity,scope,shownTypes).filter(site=>insideBoundary(site,vertices));
+}
