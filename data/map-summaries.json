@@ -1,6 +1,1122 @@
 {
   "version": 1,
   "records": {
+    "badl": {
+      "near": {
+        "city": "Interior",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/badl/planyourvisit/directions.htm"
+      },
+      "description": "Walk among sharply eroded buttes and colorful sediment layers where ancient horses and rhinos once roamed. Beyond the rock formations, mixed-grass prairie supports bison, bighorn sheep, and prairie dogs.",
+      "descriptionSourceUrl": "https://www.nps.gov/badl/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/f78c36f6-ead6-414c-b4a4-a2367f781861/proxymdres.jpg",
+        "alt": "Layered Badlands ridges rising above patches of prairie after sunset.",
+        "credit": "NPS Photo / Mackenzie Reed",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/f78c36f6-ead6-414c-b4a4-a2367f781861",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/f78c36f6-ead6-414c-b4a4-a2367f781861"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "bibe": {
+      "near": {
+        "city": "Study Butte",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/bibe/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Rio Grande into limestone canyons, then look toward the Chisos Mountains rising out of the Chihuahuan Desert. Big Bend pairs expansive desert hikes and mountain views with the dark skies of far West Texas.",
+      "descriptionSourceUrl": "https://www.nps.gov/bibe/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/09856e34-155d-451f-67ad-fa3f48f9e9d2/proxyhires.jpg",
+        "alt": "Sunset beyond the Window, framed by the Chisos Mountains.",
+        "credit": "NPS Photo/Cookie Ballou",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/09856e34-155d-451f-67ad-fa3f48f9e9d2",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/09856e34-155d-451f-67ad-fa3f48f9e9d2"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "bisc": {
+      "near": {
+        "city": "Homestead",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/bisc/planyourvisit/directions.htm"
+      },
+      "description": "Trade the highway for mangrove shorelines, island waters, and coral reefs at the northern end of the Florida Keys. Explore Biscayne by boat or paddle its shallow bay, with underwater landscapes adding another dimension to the visit.",
+      "descriptionSourceUrl": "https://www.nps.gov/bisc/index.htm",
+      "photo": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Biscayne_National_Park_V-twilight_boca_chita.jpg",
+        "alt": "Twilight at Boca Chita in Biscayne National Park.",
+        "credit": "National Park Service Digital Image Archives",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Biscayne_National_Park_V-twilight_boca_chita.jpg",
+        "license": "public-domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Biscayne_National_Park_V-twilight_boca_chita.jpg"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "blca": {
+      "near": {
+        "city": "Montrose",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/blca/planyourvisit/southrim.htm"
+      },
+      "description": "Peer into a narrow gorge where the Gunnison River cuts between sheer cliffs and jagged rock spires. Rim trails and overlooks reveal a dramatic vertical landscape, with the river far below and ancient rock rising around it.",
+      "descriptionSourceUrl": "https://www.nps.gov/blca/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/a047c08c-0934-4f83-8253-999edb68d614/proxymdres.jpg",
+        "alt": "Backlit cliffs of Black Canyon of the Gunnison at sunset.",
+        "credit": "NPS / Victoria Stauffenberg",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/a047c08c-0934-4f83-8253-999edb68d614",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/a047c08c-0934-4f83-8253-999edb68d614"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "brca": {
+      "near": {
+        "city": "Bryce Canyon City",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/brca/planyourvisit/park-brochure.htm"
+      },
+      "description": "Look out across amphitheaters crowded with orange, pink, and pale stone hoodoos, then descend between the spires for a different perspective. Bryce Canyon's high plateau combines sweeping rim views with trails that bring its intricate rock formations close.",
+      "descriptionSourceUrl": "https://www.nps.gov/brca/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/60a5897fc33e4a7fbeb5ad9b9ff682a6/proxyhires.jpg",
+        "alt": "Stone hoodoos in Bryce Canyon National Park.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/60a5897fc33e4a7fbeb5ad9b9ff682a6",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/60a5897fc33e4a7fbeb5ad9b9ff682a6"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "cany": {
+      "near": {
+        "city": "Moab",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/cany/planyourvisit/directions.htm"
+      },
+      "description": "Stand above a maze of canyons and mesas shaped by the Colorado and Green rivers, or explore trails among the striped sandstone spires of the Needles. Canyonlands opens onto immense desert views, with each district offering a different way into the landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/cany/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/845f2b11-9cf9-4596-a1f0-9cd3bebbb522/proxylores.jpg",
+        "alt": "Mesa Arch standing at the top of a high sandstone cliff in Canyonlands.",
+        "credit": "NPS/Chris Wonderly",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/845f2b11-9cf9-4596-a1f0-9cd3bebbb522",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/845f2b11-9cf9-4596-a1f0-9cd3bebbb522"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "care": {
+      "near": {
+        "city": "Torrey",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/care/planyourvisit/directions.htm"
+      },
+      "description": "Explore cliffs, natural bridges, and folded bands of colorful rock along the Waterpocket Fold. Around Fruita, historic farms and orchards sit beneath sandstone walls, bringing a human scale to Capitol Reef's sweeping desert geology.",
+      "descriptionSourceUrl": "https://www.nps.gov/care/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/68d4150b-155d-451f-67df-f0cf5a61b638/proxyhires.jpg",
+        "alt": "The Castle's red sandstone cliffs above tree-lined Sulphur Creek.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/68d4150b-155d-451f-67df-f0cf5a61b638",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/68d4150b-155d-451f-67df-f0cf5a61b638"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "cave": {
+      "near": {
+        "city": "Whites City",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/cave/planyourvisit/directions.htm"
+      },
+      "description": "Step beneath the Chihuahuan Desert into vast limestone chambers filled with sculpted cave formations. Carlsbad Caverns contrasts the underground scale of the Big Room with rocky canyons and desert life above the surface.",
+      "descriptionSourceUrl": "https://www.nps.gov/cave/index.htm",
+      "photo": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/%22Formations_in_the_Big_Room_near_%27the_Temple_of_the_Sun%27%2C_detail%2C_Carlsbad_Caverns_National_Park%2C%22_New_Mexico._%28vertical_-_NARA_-_520045.jpg/500px-%22Formations_in_the_Big_Room_near_%27the_Temple_of_the_Sun%27%2C_detail%2C_Carlsbad_Caverns_National_Park%2C%22_New_Mexico._%28vertical_-_NARA_-_520045.jpg",
+        "alt": "Historic black-and-white photograph of formations near the Temple of the Sun in Carlsbad Cavern's Big Room.",
+        "credit": "Ansel Adams / National Archives, NAID 520045",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:%22Formations_in_the_Big_Room_near_'the_Temple_of_the_Sun',_detail,_Carlsbad_Caverns_National_Park,%22_New_Mexico._(vertical_-_NARA_-_520045.jpg",
+        "license": "public-domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:%22Formations_in_the_Big_Room_near_'the_Temple_of_the_Sun',_detail,_Carlsbad_Caverns_National_Park,%22_New_Mexico._(vertical_-_NARA_-_520045.jpg#Licensing"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "chis": {
+      "near": {
+        "city": "Ventura",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/chis/planyourvisit/directions.htm"
+      },
+      "description": "Leave the mainland behind for five islands shaped by sea cliffs, isolation, and the Pacific Ocean. Coastal walks and boat journeys reveal a Southern California landscape with distinctive plants and animals found nowhere else.",
+      "descriptionSourceUrl": "https://www.nps.gov/chis/index.htm",
+      "photo": {
+        "src": "https://channelislands.noaa.gov/media/img/painted-cave-viys-cinms-2018-400.jpg",
+        "alt": "A boat approaching Painted Cave on Santa Cruz Island.",
+        "credit": "Robert Schwemmer/NOAA",
+        "sourceUrl": "https://channelislands.noaa.gov/news/media_resources.html",
+        "license": "public-domain",
+        "licenseUrl": "https://channelislands.noaa.gov/news/media_resources.html"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "chir": {
+      "near": {
+        "city": "Sunizona",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/chir/planyourvisit/directions.htm"
+      },
+      "description": "Wind through a landscape of rhyolite pinnacles, balancing rocks, and shaded passages carved from ancient volcanic deposits. Scenic drives and hiking trails bring Chiricahua's standing rocks into view from both the overlooks and the spaces between them.",
+      "descriptionSourceUrl": "https://www.nps.gov/chir/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/ba6a0fbc-3faa-4fcc-ac8c-78dcd81799c2/proxyhires.jpg",
+        "alt": "Pinnacles and balancing rocks at Chiricahua.",
+        "credit": "NPS staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/ba6a0fbc-3faa-4fcc-ac8c-78dcd81799c2",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/ba6a0fbc-3faa-4fcc-ac8c-78dcd81799c2"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "cong": {
+      "near": {
+        "city": "Hopkins",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/cong/planyourvisit/directions.htm"
+      },
+      "description": "Step beneath towering old-growth trees into a floodplain forest nourished by the Congaree and Wateree rivers. Cypress knees, broad-bottomed trunks, and the wooded waters of Cedar Creek make Congaree an invitation to look slowly and explore at forest level.",
+      "descriptionSourceUrl": "https://www.nps.gov/cong/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/e28262a3-9691-418d-9cc4-c28c0cbcbf3c/proxymdres.jpg",
+        "alt": "Trees lining the still waters of Cedar Creek at Congaree.",
+        "credit": "NPS / Victoria Stauffenberg",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/e28262a3-9691-418d-9cc4-c28c0cbcbf3c",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/e28262a3-9691-418d-9cc4-c28c0cbcbf3c"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "crla": {
+      "near": {
+        "city": "Fort Klamath",
+        "state": "OR",
+        "sourceUrl": "https://www.nps.gov/crla/planyourvisit/lodging-camping.htm"
+      },
+      "description": "Look down into intensely blue water held inside the collapsed summit of an ancient volcano. Crater Lake's rim viewpoints and mountain scenery reveal the scale of an eruption that reshaped this Cascade peak about 7,700 years ago.",
+      "descriptionSourceUrl": "https://www.nps.gov/crla/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/C1F20DB6-1DD8-B71B-0BA19A3E27A31449/proxyhires.jpg",
+        "alt": "Panoramic winter view of Crater Lake and the Watchman lookout.",
+        "credit": "National Park Service",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/C1F20DB6-1DD8-B71B-0BA19A3E27A31449",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/C1F20DB6-1DD8-B71B-0BA19A3E27A31449"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "cuva": {
+      "near": {
+        "city": "Peninsula",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/cuva/planyourvisit/directions.htm"
+      },
+      "description": "Follow the winding Cuyahoga River through forests, rolling hills, and open farmland between Cleveland and Akron. Walk or cycle the Towpath Trail to trace the Ohio & Erie Canal through a landscape where nature and transportation history meet.",
+      "descriptionSourceUrl": "https://www.nps.gov/cuva/index.htm",
+      "photo": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Brandywine_Falls_%40Cuyahoga_Valley.jpg/500px-Brandywine_Falls_%40Cuyahoga_Valley.jpg",
+        "alt": "Brandywine Falls flowing over layered rock in Cuyahoga Valley.",
+        "credit": "Prashant wakte",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brandywine_Falls_@Cuyahoga_Valley.jpg",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Brandywine_Falls_@Cuyahoga_Valley.jpg#Licensing"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "deva": {
+      "near": {
+        "city": "Furnace Creek",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/deva/planyourvisit/directions.htm"
+      },
+      "description": "Explore a below-sea-level desert basin framed by mountains, sculpted dunes, and deeply cut canyons. Death Valley's stark landscapes reward a closer look, from the shapes of the Mesquite Dunes to natural rock bridges and small oases.",
+      "descriptionSourceUrl": "https://www.nps.gov/deva/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/F44FF828-155D-4519-3E8CDA6F43338416/proxyhires.jpg",
+        "alt": "Weathered mesquite wood exposed among the Mesquite Flat Sand Dunes.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/F44FF828-155D-4519-3E8CDA6F43338416",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/F44FF828-155D-4519-3E8CDA6F43338416"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "drto": {
+      "near": {
+        "city": "Key West",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/drto/planyourvisit/directions.htm"
+      },
+      "description": "Cross open water to a cluster of small islands where Fort Jefferson rises above blue sea and coral reefs. Dry Tortugas combines a remote island journey with coastal history, bird habitat, and an underwater world reached by boat or seaplane.",
+      "descriptionSourceUrl": "https://www.nps.gov/drto/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/0aa401b6-1a06-4a76-b8cc-72be62f40c79/proxyhires.jpg",
+        "alt": "Aerial view of Fort Jefferson and the surrounding sea in 1993.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/0aa401b6-1a06-4a76-b8cc-72be62f40c79",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/0aa401b6-1a06-4a76-b8cc-72be62f40c79"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "ever": {
+      "near": {
+        "city": "Homestead",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/ever/planyourvisit/directions.htm"
+      },
+      "description": "Explore a vast South Florida landscape where wetlands, forests, and coastal waters form connected habitats for native wildlife. From trails to paddling waters, Everglades invites you into the meeting places of marsh and mangrove.",
+      "descriptionSourceUrl": "https://www.nps.gov/ever/index.htm",
+      "photo": {
+        "src": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/images/everglades_national_park_0.jpg",
+        "alt": "Water lilies beside the elevated Anhinga Trail boardwalk in Everglades.",
+        "credit": "NPS / Dylann Turffs",
+        "sourceUrl": "https://www.usgs.gov/media/images/evergladesnationalparkjpg",
+        "license": "public-domain",
+        "licenseUrl": "https://www.usgs.gov/media/images/evergladesnationalparkjpg"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "jeff": {
+      "near": {
+        "city": "St. Louis",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/jeff/planyourvisit/directions.htm"
+      },
+      "description": "Stand beneath the Gateway Arch on the Mississippi riverfront and explore the city's role in the nation's westward expansion. The park also preserves the story of Dred and Harriet Scott, who sued for their freedom in the Old Courthouse.",
+      "descriptionSourceUrl": "https://www.nps.gov/jeff/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/e810f907-e938-4485-bc84-95309cc5d26d/proxymdres.jpg",
+        "alt": "The Gateway Arch beside trees and the downtown St. Louis skyline.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/e810f907-e938-4485-bc84-95309cc5d26d",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/e810f907-e938-4485-bc84-95309cc5d26d"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "glac": {
+      "near": {
+        "city": "West Glacier",
+        "state": "MT",
+        "sourceUrl": "https://www.nps.gov/glac/planyourvisit/directions.htm"
+      },
+      "description": "Travel through glacier-carved valleys, alpine meadows, and mountain lakes along Going-to-the-Sun Road. With more than 700 miles of trails, Glacier offers both sweeping roadside views and paths deeper into its rugged mountain landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/glac/index.htm",
+      "photo": {
+        "src": "https://www.fws.gov/sites/default/files/images/2008-10/6423.jpg",
+        "alt": "Lake McDonald beneath cloud-covered mountains on an autumn day.",
+        "credit": "Hagerty, Ryan/USFWS",
+        "sourceUrl": "https://www.fws.gov/media/lake-mcdonald-mt",
+        "license": "public-domain",
+        "licenseUrl": "https://www.fws.gov/media/lake-mcdonald-mt"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "grca": {
+      "near": {
+        "city": "Grand Canyon Village",
+        "state": "AZ",
+        "sourceUrl": "https://home.nps.gov/grca/planyourvisit/directions.htm"
+      },
+      "description": "Look across a mile-deep canyon where the Colorado River has exposed a vast landscape of layered rock. From the rim, changing viewpoints reveal side canyons, distant cliffs, and the immense scale of the river's work.",
+      "descriptionSourceUrl": "https://www.nps.gov/grca/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/45e6c3ca-93dd-4675-865e-d85e86ddf00a/proxymdres.jpg",
+        "alt": "Visitors looking across Grand Canyon from Ooh Aah Point on South Kaibab Trail.",
+        "credit": "NPS/M.Quinn",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/45e6c3ca-93dd-4675-865e-d85e86ddf00a",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/45e6c3ca-93dd-4675-865e-d85e86ddf00a"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "grte": {
+      "near": {
+        "city": "Moose",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/grte/planyourvisit/mooseplan.htm"
+      },
+      "description": "Watch the Teton skyline rise above lakes and the broad valley of Jackson Hole. Explore a landscape where alpine scenery, wildlife habitat, and generations of human history share the same mountain backdrop.",
+      "descriptionSourceUrl": "https://www.nps.gov/grte/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/a57c94b9-5102-4216-a87b-2a395c78dd74/proxyhires.jpg",
+        "alt": "The Teton Range in autumn.",
+        "credit": "NPS staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/a57c94b9-5102-4216-a87b-2a395c78dd74",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/a57c94b9-5102-4216-a87b-2a395c78dd74"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "grba": {
+      "near": {
+        "city": "Baker",
+        "state": "NV",
+        "sourceUrl": "https://www.nps.gov/grba/planyourvisit/directions.htm"
+      },
+      "description": "Climb from sagebrush foothills toward Wheeler Peak and walk among ancient bristlecone pines. Great Basin brings high-mountain scenery, underground passages, and dark night skies together in a remote corner of Nevada.",
+      "descriptionSourceUrl": "https://www.nps.gov/grba/index.htm",
+      "photo": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/7/71/ParkFromLexRoad_GreatBasin.jpg",
+        "alt": "Great Basin National Park viewed from Lexington Road.",
+        "credit": "National Park Service (photographer not identified)",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:ParkFromLexRoad_GreatBasin.jpg",
+        "license": "public-domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:ParkFromLexRoad_GreatBasin.jpg"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "grsa": {
+      "near": {
+        "city": "Mosca",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/grsa/planyourvisit/directions.htm"
+      },
+      "description": "Climb sweeping sand ridges with the Sangre de Cristo Mountains rising behind them. Beyond the dunes, Great Sand Dunes protects grasslands, wetlands, forests, alpine lakes, and tundra, making this far more than a desert scene.",
+      "descriptionSourceUrl": "https://www.nps.gov/grsa/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/bfad0ff7-10ce-458a-b02d-56b8cfee10a8/proxymdres.jpg",
+        "alt": "Visitors on sand dunes below the snow-capped Sangre de Cristo Mountains.",
+        "credit": "NPS Photo / Mackenzie Reed",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/bfad0ff7-10ce-458a-b02d-56b8cfee10a8",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/bfad0ff7-10ce-458a-b02d-56b8cfee10a8"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "grsm": {
+      "near": {
+        "city": "Gatlinburg",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/grsm/planyourvisit/directions.htm"
+      },
+      "description": "Follow wooded mountain ridges and streams through a landscape rich in Appalachian plant life and history. Historic homes, barns, churches, and gristmills add stories of mountain communities to the Great Smokies' forest scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/grsm/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/b6e35cac-06d2-4293-a00d-f88a6ddd35aa/proxyhires.jpg",
+        "alt": "A road winding through the Great Smoky Mountains.",
+        "credit": "NPS staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/b6e35cac-06d2-4293-a00d-f88a6ddd35aa",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/b6e35cac-06d2-4293-a00d-f88a6ddd35aa"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "gumo": {
+      "near": {
+        "city": "Pine Springs",
+        "state": "TX",
+        "sourceUrl": "https://www.tshaonline.org/handbook/entries/pine-springs-tx-culberson-county"
+      },
+      "description": "Hike into mountains and canyons built from an ancient Permian reef, with desert country stretching below the heights. Guadalupe Mountains protects Texas's four highest peaks alongside dunes, diverse habitats, and stories of people who made lives in this rugged borderland.",
+      "descriptionSourceUrl": "https://www.nps.gov/gumo/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/f81ab494-e623-4680-bd9c-c45f581f3497/proxyhires.jpg",
+        "alt": "The Guadalupe Mountains rising above desert terrain.",
+        "credit": "NPS staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/f81ab494-e623-4680-bd9c-c45f581f3497",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/f81ab494-e623-4680-bd9c-c45f581f3497"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "hosp": {
+      "near": {
+        "city": "Hot Springs",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/hosp/planyourvisit/directions.htm"
+      },
+      "description": "Walk from grand historic bathhouses into forested hills above a city built around thermal springs. Hot Springs brings together bathing culture, mountain views, and the geology of naturally heated water in the heart of town.",
+      "descriptionSourceUrl": "https://www.nps.gov/hosp/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/f43b05fb-7826-4508-bcf2-73b614f13260/proxymdres.jpg",
+        "alt": "The Hale Bathhouse's stucco facade, red tile roof, and rounded windows.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/f43b05fb-7826-4508-bcf2-73b614f13260",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/f43b05fb-7826-4508-bcf2-73b614f13260"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "indu": {
+      "near": {
+        "city": "Porter",
+        "state": "IN",
+        "sourceUrl": "https://www.nps.gov/indu/planyourvisit/directions.htm"
+      },
+      "description": "Follow Lake Michigan's shore from sandy beaches and wind-shaped dunes into woods, prairies, and wetlands. Indiana Dunes packs striking habitat variety into 15 miles of lakeshore, with more than 50 miles of trails to explore beyond the beach.",
+      "descriptionSourceUrl": "https://www.nps.gov/indu/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/1b5626f5-b40f-4e0c-9ff8-3e4f25984fbe/proxymdres.jpg",
+        "alt": "Central Beach on the Lake Michigan shore at Indiana Dunes.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/1b5626f5-b40f-4e0c-9ff8-3e4f25984fbe",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/1b5626f5-b40f-4e0c-9ff8-3e4f25984fbe"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "isro": {
+      "near": {
+        "city": "Copper Harbor",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/isro/planyourvisit/directions.htm"
+      },
+      "description": "Cross Lake Superior to a rugged island wilderness of rocky shores and secluded hiking routes. Isle Royale offers a chance to travel at the pace of a backpack, paddle, or boat, far from the mainland road network.",
+      "descriptionSourceUrl": "https://www.nps.gov/isro/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/f643eb09-6229-49e0-a8d9-fbd9a395106f/proxylores.jpg",
+        "alt": "Aerial view of Ojibway Fire Tower above Isle Royale's wooded landscape.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/f643eb09-6229-49e0-a8d9-fbd9a395106f",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/f643eb09-6229-49e0-a8d9-fbd9a395106f"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "jotr": {
+      "near": {
+        "city": "Joshua Tree",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/jotr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the meeting place of the Mojave and Colorado deserts, where distinctive plants and sculpted rock formations give the landscape its character. Joshua Tree combines desert walking, unusual geology, and dark night skies in a wide-open Southern California setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/jotr/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/932e5462-1557-4cb6-a656-7263bcac3b17/proxylores.jpg",
+        "alt": "Joshua trees in a foggy desert landscape.",
+        "credit": "Joshua Tree National Park / NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/932e5462-1557-4cb6-a656-7263bcac3b17",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/932e5462-1557-4cb6-a656-7263bcac3b17"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "kica": {
+      "near": {
+        "city": "Grant Grove Village",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/seki/planyourvisit/basicinfo.htm"
+      },
+      "description": "Walk among giant sequoias, then look toward the rugged mountains and deep canyons of the Sierra Nevada. Kings Canyon combines the immense trees of Grant Grove with a landscape that opens into far larger mountain wilderness.",
+      "descriptionSourceUrl": "https://www.nps.gov/seki/index.htm",
+      "photo": {
+        "src": "https://www.nps.gov/npgallery/GetAsset/7b802d43-63e2-41f6-acb9-1f84d9a0945a/proxyhires.jpg",
+        "alt": "Historic view of the South Fork Kings River near Zumwalt Meadow, photographed in 1981.",
+        "credit": "Hank Jones",
+        "sourceUrl": "https://www.nps.gov/npgallery/AssetDetail/7b802d43-63e2-41f6-acb9-1f84d9a0945a",
+        "license": "public-domain",
+        "licenseUrl": "https://www.nps.gov/npgallery/AssetDetail/7b802d43-63e2-41f6-acb9-1f84d9a0945a"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "lavo": {
+      "near": {
+        "city": "Mineral",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/lavo/planyourvisit/directions.htm"
+      },
+      "description": "Explore a volcanic landscape where jagged peaks rise above mountain lakes and meadows, and hot water still reshapes the ground. Lassen Volcanic pairs the scenery of an alpine park with fumaroles and other evidence of heat beneath the surface.",
+      "descriptionSourceUrl": "https://www.nps.gov/lavo/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/32167603-547a-4add-99f0-571208f1d1af/proxymdres.jpg",
+        "alt": "A park road lined with tall pine trees in Lassen Volcanic.",
+        "credit": "NPS / Victoria Stauffenberg",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/32167603-547a-4add-99f0-571208f1d1af",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/32167603-547a-4add-99f0-571208f1d1af"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "maca": {
+      "near": {
+        "city": "Cave City",
+        "state": "KY",
+        "sourceUrl": "https://www.nps.gov/maca/planyourvisit/directions.htm"
+      },
+      "description": "Step into the world's longest known cave system, where underground passages add another dimension to Kentucky's rolling hills. Above ground, river valleys and wooded backcountry reveal a different side of Mammoth Cave's landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/maca/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/710d32ba-158f-477a-9b68-7a13eb5166fd/proxymdres.jpg",
+        "alt": "Stairs descending from the forest into Mammoth Cave's Historic Entrance.",
+        "credit": "NPS Photo/ David Kem",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/710d32ba-158f-477a-9b68-7a13eb5166fd",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/710d32ba-158f-477a-9b68-7a13eb5166fd"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "meve": {
+      "near": {
+        "city": "Mancos",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/meve/planyourvisit/directions.htm"
+      },
+      "description": "Look into cliff alcoves and across mesas where Ancestral Pueblo communities built their homes over more than 700 years. Mesa Verde offers a close encounter with enduring architecture and a living cultural heritage connected to 27 Pueblos and Tribes.",
+      "descriptionSourceUrl": "https://www.nps.gov/meve/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/ff500f3a-155d-451f-672f-70437d482b09/proxyhires.jpg",
+        "alt": "Cliff Palace's stone buildings sheltered beneath a rock alcove at Mesa Verde.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/ff500f3a-155d-451f-672f-70437d482b09",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/ff500f3a-155d-451f-672f-70437d482b09"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "mora": {
+      "near": {
+        "city": "Ashford",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/mora/planyourvisit/directions.htm"
+      },
+      "description": "Follow forested slopes toward the glacier-covered summit of Mount Rainier, an active volcano rising above Washington's landscape. Mountain trails, subalpine meadows, and cascading water reveal different sides of a peak that feeds five major rivers.",
+      "descriptionSourceUrl": "https://www.nps.gov/mora/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/caac960d-55ea-4666-9182-6893bc6854b8/proxylores.jpg",
+        "alt": "Mount Rainier's glaciated summit above a rocky ridge and conifer trees.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/caac960d-55ea-4666-9182-6893bc6854b8",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/caac960d-55ea-4666-9182-6893bc6854b8"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "neri": {
+      "near": {
+        "city": "Lansing",
+        "state": "WV",
+        "sourceUrl": "https://www.nps.gov/neri/planyourvisit/crvc.htm"
+      },
+      "description": "Look across a deep gorge carved by a rugged north-flowing river, then explore trails, overlooks, and the stories of river communities. New River Gorge brings whitewater and wooded canyon scenery together beneath its sweeping steel bridge.",
+      "descriptionSourceUrl": "https://www.nps.gov/neri/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/bad7e122-7e3f-4555-9a4f-c90ebfd4a2b1/proxymdres.jpg",
+        "alt": "The New River Gorge Bridge spanning the river and wooded gorge.",
+        "credit": "Gary Hartley",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/bad7e122-7e3f-4555-9a4f-c90ebfd4a2b1",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/bad7e122-7e3f-4555-9a4f-c90ebfd4a2b1"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "noca": {
+      "near": {
+        "city": "Newhalem",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/noca/planyourvisit/visitorcenters.htm"
+      },
+      "description": "Explore jagged peaks, glacier-shaped heights, and forested valleys threaded with cascading water. North Cascades offers mountain trails and wild backcountry where dramatic elevation changes bring very different landscapes close together.",
+      "descriptionSourceUrl": "https://www.nps.gov/noca/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/322982e8bebb4cceab893d66a37ee69c/proxymdres.jpg",
+        "alt": "Castle Rock summit with a backdrop of snow-capped North Cascades peaks.",
+        "credit": "Courtesy of North Cascades National Park Service Complex; NPS Staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/322982e8bebb4cceab893d66a37ee69c",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/322982e8bebb4cceab893d66a37ee69c"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "olym": {
+      "near": {
+        "city": "Port Angeles",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/olym/planyourvisit/directions.htm"
+      },
+      "description": "Move between glacier-capped mountains, old-growth temperate rain forest, and a wild Pacific coastline. Olympic's nearly million-acre landscape invites very different journeys, from high-country views to forest walks and rocky shores.",
+      "descriptionSourceUrl": "https://www.nps.gov/olym/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/55e40441-11c9-4839-b2cb-4715c01f46f4/proxylores.jpg",
+        "alt": "A lake at Olympic surrounded by forest and mountain slopes.",
+        "credit": "NPS/USGS/Collin Eagles-Smith",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/55e40441-11c9-4839-b2cb-4715c01f46f4",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/55e40441-11c9-4839-b2cb-4715c01f46f4"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "pefo": {
+      "near": {
+        "city": "Holbrook",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/pefo/planyourvisit/directions.htm"
+      },
+      "description": "Walk through colorful badlands and past ancient logs transformed into brilliantly patterned stone. Petrified Forest connects more than 200 million years of geologic history with ancestral Puebloan sites and traces of historic Route 66.",
+      "descriptionSourceUrl": "https://www.nps.gov/pefo/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/9f69e0b3-3543-4056-bf78-197516f8af45/proxyhires.jpg",
+        "alt": "Petrified wood at Petrified Forest National Park.",
+        "credit": "NPS staff",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/9f69e0b3-3543-4056-bf78-197516f8af45",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/9f69e0b3-3543-4056-bf78-197516f8af45"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "pinn": {
+      "near": {
+        "city": "Paicines",
+        "state": "CA",
+        "sourceUrl": "https://home.nps.gov/places/pinnacles-east-entrance-station.htm"
+      },
+      "description": "Hike among volcanic rock spires, oak woodlands, and shaded canyons, with talus caves adding a hidden dimension to the terrain. Pinnacles pairs unusual geology with habitat protected for California condors.",
+      "descriptionSourceUrl": "https://www.nps.gov/pinn/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/f3eb3427-155d-4519-3e8b-c8fe544b434e/proxyhires.jpg",
+        "alt": "Sunset light on Pinnacles' rocky High Peaks beneath a purple sky.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/f3eb3427-155d-4519-3e8b-c8fe544b434e",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/f3eb3427-155d-4519-3e8b-c8fe544b434e"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "redw": {
+      "near": {
+        "city": "Orick",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/redw/planyourvisit/directions.htm"
+      },
+      "description": "Walk beneath towering coast redwoods, then explore a landscape that reaches into prairies, rivers, and the Pacific shore. Redwood's forest groves are only part of a much larger coastal world shaped by both ancient ecosystems and enduring human connections.",
+      "descriptionSourceUrl": "https://www.nps.gov/redw/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/02675190-155D-4519-3E438EDD5512869C/proxyhires.jpg",
+        "alt": "Fog among the trunks of an ancient coast redwood forest.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/02675190-155D-4519-3E438EDD5512869C",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/02675190-155D-4519-3E438EDD5512869C"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "romo": {
+      "near": {
+        "city": "Estes Park",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/romo/planyourvisit/directions.htm"
+      },
+      "description": "Follow mountain trails from open meadows and subalpine forest toward lakes and the rocky heights of the alpine tundra. Rocky Mountain offers a landscape of changing elevations, where each climb reveals a different view of Colorado's high country.",
+      "descriptionSourceUrl": "https://www.nps.gov/romo/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/1C28EE13-155D-451F-67C69BBFA4642D0A/proxyhires.jpg",
+        "alt": "Lake Helene beneath snowy peaks along the Continental Divide.",
+        "credit": "NPS photo by John Marino",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/1C28EE13-155D-451F-67C69BBFA4642D0A",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/1C28EE13-155D-451F-67C69BBFA4642D0A"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "sagu": {
+      "near": {
+        "city": "Tucson",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/sagu/index.htm"
+      },
+      "description": "Walk among giant saguaros rising above the Sonoran Desert, with the cactus landscape stretching across two districts on opposite sides of Tucson. Saguaro offers a close look at the plants and wildlife adapted to this distinctive corner of the American Southwest.",
+      "descriptionSourceUrl": "https://www.nps.gov/sagu/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/d7d448ce-2f97-445d-99bf-31685b0f591a/proxylores.jpg",
+        "alt": "A tall branching saguaro above prickly pear and paloverde vegetation.",
+        "credit": "National Park Service/Alice Wondrak Biel",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/d7d448ce-2f97-445d-99bf-31685b0f591a",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/d7d448ce-2f97-445d-99bf-31685b0f591a"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "sequ": {
+      "near": {
+        "city": "Three Rivers",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/seki/planyourvisit/directions.htm"
+      },
+      "description": "Walk beneath giant sequoias and look upward into the rugged mountain country of the Sierra Nevada. Sequoia combines immense living trees with foothills, deep canyons, and high-country wilderness on a scale that reaches far beyond the forest groves.",
+      "descriptionSourceUrl": "https://www.nps.gov/seki/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/095e134c-e47b-4bad-a80c-eaadcf2eeedd/proxylores.jpg",
+        "alt": "Visitors gathered beside the enormous trunk of the General Sherman Tree.",
+        "credit": "Rebecca Paterson",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/095e134c-e47b-4bad-a80c-eaadcf2eeedd",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/095e134c-e47b-4bad-a80c-eaadcf2eeedd"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "shen": {
+      "near": {
+        "city": "Luray",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/shen/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Blue Ridge through wooded hollows, waterfall country, and overlooks facing layers of mountain scenery. Shenandoah's forests shelter deer, songbirds, and black bears, while its trails invite a closer look beyond the drive.",
+      "descriptionSourceUrl": "https://www.nps.gov/shen/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/1b4731da-155d-451f-67a6-e6e087426aa9/proxyhires.jpg",
+        "alt": "Lands Run Falls cascading through green woodland at Shenandoah.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/1b4731da-155d-451f-67a6-e6e087426aa9",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/1b4731da-155d-451f-67a6-e6e087426aa9"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "thro": {
+      "near": {
+        "city": "Medora",
+        "state": "ND",
+        "sourceUrl": "https://www.nps.gov/thro/planyourvisit/directions.htm"
+      },
+      "description": "Explore striped badland buttes and the winding Little Missouri River in the country that helped shape Theodore Roosevelt's conservation outlook. Scenic views and trails connect the rugged landscape with the story of his years in Dakota Territory.",
+      "descriptionSourceUrl": "https://www.nps.gov/thro/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/5E7D74AB-1DD8-B71B-0B57C18CC3A50930/proxyhires.jpg",
+        "alt": "Sunlight breaking through clouds over badland buttes and the Little Missouri River.",
+        "credit": "NPS/Dave Bruner",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/5E7D74AB-1DD8-B71B-0B57C18CC3A50930",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/5E7D74AB-1DD8-B71B-0B57C18CC3A50930"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "voya": {
+      "near": {
+        "city": "International Falls",
+        "state": "MN",
+        "sourceUrl": "https://rainylake.org/frequent-questions/"
+      },
+      "description": "Travel into a northern Minnesota landscape of broad lakes, forested shores, and ancient granite rising from the water. Voyageurs carries the memory of French-Canadian canoe travelers into a park where exploring by water remains central to the experience.",
+      "descriptionSourceUrl": "https://www.nps.gov/voya/index.htm",
+      "photo": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/Voyageurs_National_Park_VOYA9501.jpg/960px-Voyageurs_National_Park_VOYA9501.jpg",
+        "alt": "Rock formations and water in Voyageurs National Park.",
+        "credit": "National Park Service Digital Image Archives",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Voyageurs_National_Park_VOYA9501.jpg",
+        "license": "public-domain",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Voyageurs_National_Park_VOYA9501.jpg"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "whsa": {
+      "near": {
+        "city": "Alamogordo",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/whsa/planyourvisit/directions.htm"
+      },
+      "description": "Walk into wave-like dunes of white gypsum, where wind draws ripples and sharp ridgelines across the Tularosa Basin. White Sands protects part of an enormous dunefield and the plants and animals that have adapted to life among its shifting sands.",
+      "descriptionSourceUrl": "https://www.nps.gov/whsa/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/48f37a02-1dd8-b71b-0bb4-cb218908c4e1/proxyhires.jpg",
+        "alt": "Visitors walking down gypsum dunes during a White Sands sunset program.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/48f37a02-1dd8-b71b-0bb4-cb218908c4e1",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/48f37a02-1dd8-b71b-0bb4-cb218908c4e1"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "wica": {
+      "near": {
+        "city": "Hot Springs",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/wica/planyourvisit/directions.htm"
+      },
+      "description": "Explore two contrasting worlds: a complex cave below ground and rolling prairie and forested hills above it. Wind Cave's delicate calcite boxwork shares the park with grassland habitat for bison, elk, and other wildlife.",
+      "descriptionSourceUrl": "https://www.nps.gov/wica/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/955c500a-155d-4519-3efe-9289de11982c/proxyhires.jpg",
+        "alt": "A bison bull standing in frosty prairie grass at Wind Cave.",
+        "credit": "NPS photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/955c500a-155d-4519-3efe-9289de11982c",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/955c500a-155d-4519-3efe-9289de11982c"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "yell": {
+      "near": {
+        "city": "West Yellowstone",
+        "state": "MT",
+        "sourceUrl": "https://www.nps.gov/yell/planyourvisit/directions.htm"
+      },
+      "description": "Explore a landscape where geysers and brilliantly colored hot springs reveal heat close beneath the surface. Yellowstone pairs these hydrothermal wonders with wild country that supports bison, wolves, bears, and elk.",
+      "descriptionSourceUrl": "https://www.nps.gov/yell/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/d134eb8c-9a02-49f1-ab76-802605c266f3/proxymdres.jpg",
+        "alt": "Visitors on the Midway Geyser Basin boardwalk beneath a wide plume of steam.",
+        "credit": "NPS/Jim Peaco",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/d134eb8c-9a02-49f1-ab76-802605c266f3",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/d134eb8c-9a02-49f1-ab76-802605c266f3"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "yose": {
+      "near": {
+        "city": "Yosemite Village",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/yose/planyourvisit/brochures.htm"
+      },
+      "description": "Look up at immense granite walls, explore waterfall country, and follow the landscape from deep valleys toward High Sierra meadows. Yosemite brings giant sequoias, glacier-shaped scenery, and mountain wilderness together far beyond its famous valley.",
+      "descriptionSourceUrl": "https://www.nps.gov/yose/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/d8f7dd5b8885429da362a92fd973fc30/proxymdres.jpg",
+        "alt": "Yosemite Valley's granite cliffs seen from Tunnel View.",
+        "credit": "U. S. National Park Service (publisher; photographer unknown)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/d8f7dd5b8885429da362a92fd973fc30",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/d8f7dd5b8885429da362a92fd973fc30"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "zion": {
+      "near": {
+        "city": "Springdale",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/zion/planyourvisit/directions.htm"
+      },
+      "description": "Walk into a canyon of towering sandstone walls, where cream, pink, and red cliffs rise above the river corridor. From broad views near the Watchman to the close walls of the Narrows, Zion offers striking changes in scale as you explore.",
+      "descriptionSourceUrl": "https://www.nps.gov/zion/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/98b15eba-155d-451f-6776-104114f96789/original.jpg",
+        "alt": "The Watchman rising above the river corridor at the mouth of Zion Canyon.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/98b15eba-155d-451f-6776-104114f96789",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/98b15eba-155d-451f-6776-104114f96789"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "dena": {
+      "near": {
+        "city": "Healy",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/dena/planyourvisit/directions.htm"
+      },
+      "description": "Follow a single park road from taiga forest toward open tundra and the great Alaska Range. Denali's six-million-acre landscape is habitat for wide-ranging wildlife, with North America's tallest peak rising beyond the lower valleys.",
+      "descriptionSourceUrl": "https://www.nps.gov/dena/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/8298003b-54eb-4c55-b324-0bdf24736ff7/proxymdres.jpg",
+        "alt": "North America's tallest mountain appearing between clouds above Eielson Bluffs.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/8298003b-54eb-4c55-b324-0bdf24736ff7",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/8298003b-54eb-4c55-b324-0bdf24736ff7"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "gaar": {
+      "near": {
+        "city": "Coldfoot",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/gaar/planyourvisit/directions.htm"
+      },
+      "description": "Enter a roadless Arctic landscape of glacier-carved valleys, wild rivers, and mountain passes. Gates of the Arctic offers wilderness travel without established park trails, in country where people have lived with the land for more than ten thousand years.",
+      "descriptionSourceUrl": "https://www.nps.gov/gaar/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/7ead59398cfb4e54b27e0797cbe73c42/proxyhires.jpg",
+        "alt": "A rainbow over the Arctic Divide in Gates of the Arctic.",
+        "credit": "U.S. National Park Service (publisher)",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/7ead59398cfb4e54b27e0797cbe73c42",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/7ead59398cfb4e54b27e0797cbe73c42"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "glba": {
+      "near": {
+        "city": "Gustavus",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/glba/planyourvisit/directions.htm"
+      },
+      "description": "Travel into sheltered fjords surrounded by glaciers, rugged mountains, and temperate rain forest. Glacier Bay is both a dramatic coastal wilderness and the homeland of Huna and Yakutat Lingit people, with stories that reach from the shoreline to the ice.",
+      "descriptionSourceUrl": "https://www.nps.gov/glba/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/3f230eb6-b3ae-4804-afbb-4c494f177615/proxymdres.jpg",
+        "alt": "Margerie Glacier extending from the mountains toward Glacier Bay in 2010.",
+        "credit": "National Park Service",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/3f230eb6-b3ae-4804-afbb-4c494f177615",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/3f230eb6-b3ae-4804-afbb-4c494f177615"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "katm": {
+      "near": {
+        "city": "King Salmon",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/katm/planyourvisit/directions.htm"
+      },
+      "description": "Explore salmon waters and brown-bear habitat in a landscape transformed by the 1912 Novarupta eruption. From Brooks Falls to the Valley of Ten Thousand Smokes, Katmai brings living ecosystems and stark volcanic history into the same journey.",
+      "descriptionSourceUrl": "https://www.nps.gov/katm/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/2951FE4F-1DD8-B71C-07705C9F2FEB9B85/proxyhires.jpg",
+        "alt": "Katmai Caldera and glacier with Mount Griggs in the distance.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/2951FE4F-1DD8-B71C-07705C9F2FEB9B85",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/2951FE4F-1DD8-B71C-07705C9F2FEB9B85"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "kefj": {
+      "near": {
+        "city": "Seward",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/kefj/planyourvisit/directions.htm"
+      },
+      "description": "Explore a coast of steep fjords and forests beneath glaciers flowing from the Harding Icefield. Kenai Fjords offers very different perspectives from the Exit Glacier trails and the waters along its ice-carved shoreline.",
+      "descriptionSourceUrl": "https://www.nps.gov/kefj/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/5ABF04B0-1DD8-B71C-077A505FA6028407/proxyhires.jpg",
+        "alt": "Aerial view of Aialik Glacier descending from the Harding Icefield.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/5ABF04B0-1DD8-B71C-077A505FA6028407",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/5ABF04B0-1DD8-B71C-077A505FA6028407"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "kova": {
+      "near": {
+        "city": "Kotzebue",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/kova/planyourvisit/directions.htm"
+      },
+      "description": "Discover Arctic sand dunes, mountain scenery, and the winding Kobuk River in a landscape crossed by generations of people and caribou. Kobuk Valley links an unexpected dunefield with the continuing cultural traditions of Onion Portage.",
+      "descriptionSourceUrl": "https://www.nps.gov/kova/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/c598f0a0-1dd8-b71c-074c-978b786ee0a1/proxyhires.jpg",
+        "alt": "Two researchers crossing the sand dunes of Kobuk Valley.",
+        "credit": "NPS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/c598f0a0-1dd8-b71c-074c-978b786ee0a1",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/c598f0a0-1dd8-b71c-074c-978b786ee0a1"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "lacl": {
+      "near": {
+        "city": "Port Alsworth",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/lacl/planyourvisit/directions.htm"
+      },
+      "description": "Explore turquoise lakes, craggy mountains, and glacier-shaped country in a landscape still closely tied to local life. Lake Clark connects wilderness scenery with salmon habitat, volcanic geology, and the waterside community of Port Alsworth.",
+      "descriptionSourceUrl": "https://www.nps.gov/lacl/index.htm",
+      "photo": {
+        "src": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/media/images/P6150227.jpeg",
+        "alt": "A biologist collecting a water sample from a boat on a lake in Lake Clark National Park.",
+        "credit": "National Park Service, via USGS",
+        "sourceUrl": "https://www.usgs.gov/media/images/water-collection-alaska",
+        "license": "public-domain",
+        "licenseUrl": "https://www.usgs.gov/media/images/water-collection-alaska"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "wrst": {
+      "near": {
+        "city": "Copper Center",
+        "state": "AK",
+        "sourceUrl": "https://www.nps.gov/wrst/planyourvisit/directions.htm"
+      },
+      "description": "Look toward immense mountains and glaciers in a park that rises from the coast to peaks above 18,000 feet. Wrangell-St. Elias offers room for ambitious wilderness journeys across 13.2 million acres, alongside the continuing lives of people connected to the land.",
+      "descriptionSourceUrl": "https://www.nps.gov/wrst/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/3D6EDE6C-1DD8-B71C-071E9CD2982EEE30/proxyhires.jpg",
+        "alt": "Sunrise over the Wrangell Mountains viewed from Willow Lake.",
+        "credit": "Wrangell-St. Elias National Park & Preserve",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/3D6EDE6C-1DD8-B71C-071E9CD2982EEE30",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/3D6EDE6C-1DD8-B71C-071E9CD2982EEE30"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "hale": {
+      "near": {
+        "city": "Kula",
+        "state": "HI",
+        "sourceUrl": "https://www.nps.gov/hale/planyourvisit/directions.htm"
+      },
+      "description": "Explore stark volcanic slopes and colorful cinder landscapes high above Maui's coast. Haleakala also protects a separate world of subtropical rain forest, with Hawaiian cultural connections linking the mountain and its living ecosystems.",
+      "descriptionSourceUrl": "https://www.nps.gov/hale/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/fc4ddda2-f045-89d3-221e-afbaf24fb08a/original.jpg",
+        "alt": "Sliding Sands Trail crossing the open floor of Haleakala's volcanic crater.",
+        "credit": "NPS Photo, 2008",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/fc4ddda2-f045-89d3-221e-afbaf24fb08a",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/fc4ddda2-f045-89d3-221e-afbaf24fb08a"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "havo": {
+      "near": {
+        "city": "Volcano",
+        "state": "HI",
+        "sourceUrl": "https://www.nps.gov/havo/planyourvisit/lodging.htm"
+      },
+      "description": "Explore the landscapes of Kilauea and Mauna Loa, where volcanic summits, lava formations, and rain forest tell different chapters of an island's growth. Hawaii Volcanoes connects powerful geology with ecosystems and cultural places held sacred for centuries.",
+      "descriptionSourceUrl": "https://www.nps.gov/havo/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/67cd8153-f04a-43c9-a673-b18282d03736/proxymdres.jpg",
+        "alt": "Lava erupting from vents in Halemaumau crater during the June 2023 eruption.",
+        "credit": "USGS Photo",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/67cd8153-f04a-43c9-a673-b18282d03736",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/67cd8153-f04a-43c9-a673-b18282d03736"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "npsa": {
+      "near": {
+        "city": "Pago Pago",
+        "state": "AS",
+        "sourceUrl": "https://www.nps.gov/npsa/planyourvisit/index.htm?pubDate=20250215"
+      },
+      "description": "Explore volcanic islands where tropical rain forest reaches toward the coast and coral reefs add another world offshore. The National Park of American Samoa brings South Pacific landscapes together with the living Samoan culture that gives these places meaning.",
+      "descriptionSourceUrl": "https://www.nps.gov/npsa/planyourvisit/index.htm?pubDate=20250215",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/c3103d5c-f78c-a6cb-cee5-e3c982b164f4/proxyhires.jpg",
+        "alt": "Ofu's sandy beach and fringing reef with Olosega rising in the distance.",
+        "credit": "NPS",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/c3103d5c-f78c-a6cb-cee5-e3c982b164f4",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/c3103d5c-f78c-a6cb-cee5-e3c982b164f4"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "viis": {
+      "near": {
+        "city": "Cruz Bay",
+        "state": "VI",
+        "sourceUrl": "https://www.nps.gov/viis/planyourvisit/directions.htm"
+      },
+      "description": "Go beyond St. John's white-sand beaches to coral reefs, Indigenous petroglyphs, and historic plantation sites. Virgin Islands pairs island scenery with a history that includes Taino communities and the enslaved people whose labor sustained the sugar economy.",
+      "descriptionSourceUrl": "https://www.nps.gov/viis/index.htm",
+      "photo": {
+        "src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/Trunk_bay_pano.jpg/960px-Trunk_bay_pano.jpg",
+        "alt": "Panoramic view of Trunk Bay's beach, wooded shore, and turquoise water on St. John.",
+        "credit": "Ravens freak0624",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Trunk_bay_pano.jpg",
+        "license": "CC-BY-SA-4.0",
+        "licenseUrl": "https://commons.wikimedia.org/wiki/File:Trunk_bay_pano.jpg#Licensing"
+      },
+      "reviewedAt": "2026-11-04"
+    },
     "acad": {
       "near": {
         "city": "Bar Harbor",
