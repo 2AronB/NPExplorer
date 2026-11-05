@@ -5,13 +5,16 @@ const https=value=>{try{return new URL(value).protocol==='https:';}catch{return 
 export function validSummaryPhoto(photo){
  return !!photo&&https(photo.src)&&https(photo.sourceUrl)&&https(photo.licenseUrl)&&['public-domain','CC0','CC-BY-4.0','CC-BY-SA-4.0'].includes(photo.license)&&['alt','credit'].every(key=>typeof photo[key]==='string'&&photo[key].trim());
 }
+export function validDraftSummaryPhoto(photo){
+ return !!photo&&photo.reviewStatus==='draft'&&photo.license==='unverified'&&photo.licenseUrl===null&&https(photo.src)&&https(photo.sourceUrl)&&['alt','credit'].every(key=>typeof photo[key]==='string'&&photo[key].trim());
+}
 export function summaryRecord(data,id){
  const record=data?.version===1?data.records?.[id]:null;
  if(!record)return null;
  return {
   near:record.near&&['city','state'].every(key=>typeof record.near[key]==='string'&&record.near[key].trim())&&https(record.near.sourceUrl)?record.near:null,
   description:typeof record.description==='string'&&record.description.trim()&&https(record.descriptionSourceUrl)?record.description:null,
-  photo:validSummaryPhoto(record.photo)?record.photo:null
+  photo:validSummaryPhoto(record.photo)||validDraftSummaryPhoto(record.photo)?record.photo:null
  };
 }
 export function popupPreferenceError(site,field,value){
@@ -48,9 +51,14 @@ export function mountMapSummary({site,record,selected,onSaveField,onToggle,onMor
   const photo=record.photo,figure=document.createElement('figure'),img=document.createElement('img');img.src=photo.src;img.alt=photo.alt;img.loading='lazy';img.referrerPolicy='no-referrer';
   img.onerror=()=>{figure.hidden=true;};
   const caption=document.createElement('figcaption'),source=document.createElement('a'),license=document.createElement('a');
-  source.href=photo.sourceUrl;source.textContent=photo.credit;license.href=photo.licenseUrl;license.textContent=photo.license;
-  for(const link of [source,license]){link.target='_blank';link.rel='noopener noreferrer';}
-  caption.append(source,document.createTextNode(' · '),license);figure.append(img,caption);box.append(figure);
+  source.href=photo.sourceUrl;source.textContent=photo.credit;source.target='_blank';source.rel='noopener noreferrer';
+  caption.append(source,document.createTextNode(' · '));
+  if(validDraftSummaryPhoto(photo)){
+   const mark=document.createElement('strong');mark.className='summary-photo-draft';mark.textContent='Draft photo — rights unverified';caption.append(mark);
+  }else{
+   license.href=photo.licenseUrl;license.textContent=photo.license;license.target='_blank';license.rel='noopener noreferrer';caption.append(license);
+  }
+  figure.append(img,caption);box.append(figure);
  }
  const actions=document.createElement('div');actions.className='summary-actions';
  const label=document.createElement('label');label.className='summary-trip-toggle';

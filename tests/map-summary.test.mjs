@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {popupPreferenceError,summaryRecord,validSummaryPhoto} from '../map-summary.mjs';
+import {mountMapSummary,popupPreferenceError,summaryRecord,validSummaryPhoto,validDraftSummaryPhoto} from '../map-summary.mjs';
 
 test('popup preferences enforce the optimizer duration and priority rules',()=>{
  assert.equal(popupPreferenceError({type:'park'},'days',3),'');
@@ -21,12 +21,31 @@ test('popup content only exposes attributed photos with explicit supported right
  assert.equal(summaryRecord({version:1,records:{arch:{...record,photo:{...photo,credit:''},near:{city:'Unverified'},descriptionSourceUrl:''}}},'arch').description,null);
  assert.equal(summaryRecord(null,'arch'),null);assert.equal(summaryRecord({version:2,records:{arch:record}},'arch'),null);
 });
+const draftPhoto={...photo,license:'unverified',licenseUrl:null,reviewStatus:'draft'};
+test('draft photos require explicit review marks and never qualify as licensed photos',()=>{
+ assert.ok(validDraftSummaryPhoto(draftPhoto));assert.ok(!validSummaryPhoto(draftPhoto));
+ for(const replacement of [{reviewStatus:undefined},{license:'public-domain'},{licenseUrl:'https://example.com'},{src:'javascript:alert(1)'},{sourceUrl:'http://example.com'},{credit:''},{alt:''}])assert.ok(!validDraftSummaryPhoto({...draftPhoto,...replacement}));
+ assert.equal(summaryRecord({version:1,records:{draft:{photo:draftPhoto}}},'draft').photo,draftPhoto);
+ assert.equal(summaryRecord({version:1,records:{draft:{photo:{...draftPhoto,reviewStatus:undefined}}}},'draft').photo,null);
+});
+test('draft popup labels unresolved rights without fabricating a license link',()=>{
+ class Node{constructor(tag,text=''){this.tag=tag;this.children=[];this.text=text;this.dataset={};}append(...nodes){this.children.push(...nodes);}setAttribute(){}set textContent(value){this.text=value;}get textContent(){return this.text+this.children.map(n=>n.textContent).join('');}}
+ const previous=globalThis.document;globalThis.document={createElement:tag=>new Node(tag),createTextNode:text=>new Node('#text',text)};
+ try{
+  const box=mountMapSummary({site:{id:'draft',shortName:'Draft site',type:'site'},record:{photo:draftPhoto},selected:false});
+  const all=node=>[node,...node.children.flatMap(all)],caption=all(box).find(n=>n.tag==='figcaption');
+  assert.match(caption.textContent,/Draft photo — rights unverified/);
+  assert.equal(all(caption).filter(n=>n.tag==='a').length,1);
+  assert.equal(all(caption).find(n=>n.tag==='a').href,draftPhoto.sourceUrl);
+  assert.equal(all(box).find(n=>n.tag==='img').src,draftPhoto.src);
+ }finally{if(previous===undefined)delete globalThis.document;else globalThis.document=previous;}
+});
 test('research content file has the runtime schema and each supplied record can be displayed',()=>{
  const data=JSON.parse(fs.readFileSync(new URL('../data/map-summaries.json',import.meta.url)));
  assert.equal(data.version,1);assert.equal(typeof data.records,'object');
  for(const [id,record]of Object.entries(data.records)){
   const parsed=summaryRecord(data,id);
   assert.ok(parsed.near,id+' needs a sourced nearby city');assert.ok(parsed.description,id+' needs a sourced description');
-  if(record.photo!==null)assert.ok(parsed.photo,id+' needs a fully attributed photo, or null');
+  if(record.photo!==null)assert.ok(parsed.photo,id+' needs an attributed licensed photo, explicitly marked draft, or null');
  }
 });
