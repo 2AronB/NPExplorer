@@ -98,3 +98,6 @@
 
 #map:has(.site-summary-popup) .leaflet-map-pane{z-index:1001}
 .site-summary-popup .summary-actions{position:sticky;bottom:0;background:var(--white);box-shadow:0 -4px 6px var(--white);z-index:1}
+
+/* Contextual explanations stay keyboard- and touch-accessible. */
+.field-help{font-size:11px;color:var(--muted);margin:6px 0 14px}.field-help summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}.field-help p{line-height:1.6;margin:8px 0}.field-help summary:focus-visible{outline:2px solid var(--green);outline-offset:3px}.field-help[open]{padding:8px;background:#edf0e2;border-radius:4px}.calendar-review-controls .field-help{margin:0}.along-view>.estimate-notes{margin:12px 0}.trip-fit>button{margin-bottom:8px}.trip-fit.warning{background:#f2e4d5;border-color:#c79d72}

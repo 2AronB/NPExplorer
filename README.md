@@ -8,6 +8,8 @@ The Trip route map colors each scheduled destination by its actual visit's explo
 
 The app needs no shared accounts, API keys, server database or package installation. Plans stay in each visitor's browser. Travel estimates, seasonal scores and transport windows are provisional planning assumptions, not verified navigation, schedules or reservations.
 
+Driving estimates use a road-distance factor calibrated once against Google Maps comparisons. Trip settings keeps average driving speed and the break allowance editable; calibration fitting is not part of the planning workflow. Existing saved custom factors and calibration records remain compatible. Use Save & export for backups and reports, Restore backup to reopen inputs, and Prepare to track booking research. Longer explanations are available in expandable sections.
+
 ## Publish this repository
 
 1. Upload this package's contents to the root of `2AronB/NPExplorer` on the `main` branch. `index.html` and `.github/workflows/pages.yml` must be at those exact paths; do not upload the ZIP itself or an enclosing folder.

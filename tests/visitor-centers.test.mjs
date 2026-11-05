@@ -32,7 +32,11 @@ test('compact card escapes facility text and only expands selected alternatives'
  assert.ok(html.includes('&lt;script&gt;bad &amp; name&lt;/script&gt;'));assert.ok(!html.includes('<script>'));
  assert.match(html,/<details><summary>Other useful centers/);assert.match(html,/not a measured size or popularity ranking/);
  assert.match(html,/not a verified parking entrance/);assert.equal(visitorCenterHtml(null,data.reviewed),'');
- assert.doesNotMatch(visitorCenterHtml(data.records.arch,data.reviewed),/<details>/);
+ const single=visitorCenterHtml(data.records.arch,data.reviewed);
+ assert.doesNotMatch(single,/<summary>Other useful centers/);
+ assert.match(single,/<details><summary>Sources & location details/);
+ assert.match(single.split('<details>')[0],/NPS visitor information/);
+ assert.doesNotMatch(single.split('<details>')[0],/visitor-center-coordinates/);
 });
 test('download is exactly 64 primary suggestions and matches the checked-in artifact',async()=>{
  const csv=visitorCentersCsv(data);assert.equal(csv.trim().split('\r\n').length,65);
