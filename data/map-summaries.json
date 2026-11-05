@@ -1,4 +1,41 @@
 {
   "version": 1,
-  "records": {}
+  "records": {
+    "acad": {
+      "near": {
+        "city": "Bar Harbor",
+        "state": "ME",
+        "sourceUrl": "https://www.nps.gov/acad/planyourvisit/visitor-centers-contact-stations.htm"
+      },
+      "description": "Follow granite ridgelines above the Atlantic, wander forest trails beside freshwater lakes, and watch waves break against the rocky Maine coast. Acadia brings mountain hikes, historic carriage roads, and ocean scenery together in one compact coastal landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/acad/index.htm",
+      "photo": {
+        "src": "https://npgallery.nps.gov/GetAsset/be6a5322-3e43-404a-a174-fd8bd6a430b9/proxymdres.jpg",
+        "alt": "Waves breaking against granite ledges at Schoodic Point in Acadia.",
+        "credit": "NPS/Victoria Stauffenberg",
+        "sourceUrl": "https://npgallery.nps.gov/AssetDetail/be6a5322-3e43-404a-a174-fd8bd6a430b9",
+        "license": "public-domain",
+        "licenseUrl": "https://npgallery.nps.gov/AssetDetail/be6a5322-3e43-404a-a174-fd8bd6a430b9"
+      },
+      "reviewedAt": "2026-11-04"
+    },
+    "arch": {
+      "near": {
+        "city": "Moab",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/arch/planyourvisit/directions.htm"
+      },
+      "description": "Walk beneath sweeping sandstone arches and between towering rock fins in Utah's red-rock desert. From roadside overlooks to the hike toward Delicate Arch, exploring Arches reveals how dramatically stone can frame the open sky.",
+      "descriptionSourceUrl": "https://www.nps.gov/arch/index.htm",
+      "photo": {
+        "src": "https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/1%20delicate%20arch.jpg",
+        "alt": "Delicate Arch above a sandstone basin with distant ridges and mountains.",
+        "credit": "USGS / Annie Scott",
+        "sourceUrl": "https://www.usgs.gov/media/images/delicate-arch-arches-national-park-0",
+        "license": "public-domain",
+        "licenseUrl": "https://www.usgs.gov/media/images/delicate-arch-arches-national-park-0"
+      },
+      "reviewedAt": "2026-11-04"
+    }
+  }
 }
