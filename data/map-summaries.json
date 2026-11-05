@@ -1152,6 +1152,3680 @@
         "licenseUrl": "https://www.usgs.gov/media/images/delicate-arch-arches-national-park-0"
       },
       "reviewedAt": "2026-11-04"
+    },
+    "amis": {
+      "near": {
+        "city": "Del Rio",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/amis/planyourvisit/directions.htm"
+      },
+      "description": "Follow desert shores and open water along the United States portion of Amistad Reservoir. Paddling, hiking, and cultural traces reaching back nearly 5,000 years bring the borderland's natural and human stories together.",
+      "descriptionSourceUrl": "https://www.nps.gov/amis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bica": {
+      "near": {
+        "city": "Lovell",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/bica/planyourvisit/directions.htm"
+      },
+      "description": "Explore a canyon landscape spread across more than 120,000 acres, with lake waters, rugged overlooks, and historic ranches. Bighorn sheep habitat and more than 10,000 years of human history add depth to the scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/bica/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "boha": {
+      "near": {
+        "city": "Boston",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/boha/planyourvisit/directions.htm"
+      },
+      "description": "Leave the city shore for a network of 34 harbor islands and peninsulas. Explore tide pools, island trails, historic lighthouses, and Civil War-era Fort Warren with Boston's skyline across the water.",
+      "descriptionSourceUrl": "https://www.nps.gov/boha/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chat": {
+      "near": {
+        "city": "Sandy Springs",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/chat/planyourvisit/directions.htm"
+      },
+      "description": "Follow wooded riverbanks past rocky shoals and the stone remains of old mills. The Chattahoochee offers paddling, fishing, and walking through a river corridor that also supports nesting great blue herons.",
+      "descriptionSourceUrl": "https://www.nps.gov/chat/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chic": {
+      "near": {
+        "city": "Sulphur",
+        "state": "OK",
+        "sourceUrl": "https://www.nps.gov/chic/planyourvisit/directions.htm"
+      },
+      "description": "Follow spring-fed creeks beneath historic bridges, or head onto the broad waters of Lake of the Arbuckles. Chickasaw brings freshwater springs, lakeside recreation, and a resident bison herd into one varied landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/chic/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cure": {
+      "near": {
+        "city": "Gunnison",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/cure/planyourvisit/directions.htm"
+      },
+      "description": "Explore three reservoirs framed by mesas, rock pinnacles, and steep canyon walls. Curecanti pairs boating and shoreline walks with a changing landscape of sagebrush country and forest.",
+      "descriptionSourceUrl": "https://www.nps.gov/cure/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "dewa": {
+      "near": {
+        "city": "Bushkill",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/dewa/planyourvisit/directions.htm"
+      },
+      "description": "Follow 40 miles of the Delaware River through a long corridor of wooded ridges, waterfalls, and historic places. Trails and paddling routes reveal both the river's mountain gap and quieter stretches of valley.",
+      "descriptionSourceUrl": "https://www.nps.gov/dewa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gate": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/gate/planyourvisit/directions.htm"
+      },
+      "description": "Explore beaches, salt marshes, and historic coastal structures across 27,000 acres around New York Harbor. Gateway links urban shorelines with bird habitat at Jamaica Bay and the lighthouse landscape of Sandy Hook.",
+      "descriptionSourceUrl": "https://www.nps.gov/gate/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gari": {
+      "near": {
+        "city": "Summersville",
+        "state": "WV",
+        "sourceUrl": "https://www.nps.gov/gari/planyourvisit/directions.htm"
+      },
+      "description": "Take on the Gauley's steep-sided gorge, where 25 miles of river and six miles of the Meadow River wind through wooded valleys. Powerful rapids make this a destination for experienced whitewater trips.",
+      "descriptionSourceUrl": "https://www.nps.gov/gari/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "glca": {
+      "near": {
+        "city": "Page",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/glca/planyourvisit/directions.htm"
+      },
+      "description": "Explore more than 1.25 million acres of desert canyons, sandstone walls, and Lake Powell shoreline. Scenic overlooks and backcountry routes reveal a landscape stretching from Lees Ferry into southern Utah.",
+      "descriptionSourceUrl": "https://www.nps.gov/glca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "goga": {
+      "near": {
+        "city": "San Francisco",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/goga/planyourvisit/directions.htm"
+      },
+      "description": "Walk from bayfront beaches to windswept headlands and former military posts around the Golden Gate. Nineteen ecosystems support more than 2,000 plant and animal species across this varied coastal park.",
+      "descriptionSourceUrl": "https://www.nps.gov/goga/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lach": {
+      "near": {
+        "city": "Stehekin",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/noca/planyourvisit/directions.htm"
+      },
+      "description": "Arrive at the head of Lake Chelan to find mountain trails, forested valleys, and the small community of Stehekin. This lake-accessed corner of the North Cascades pairs deep-water scenery with a quieter mountain approach.",
+      "descriptionSourceUrl": "https://www.nps.gov/noca/planyourvisit/stehekin.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lake": {
+      "near": {
+        "city": "Boulder City",
+        "state": "NV",
+        "sourceUrl": "https://www.nps.gov/lake/planyourvisit/directions.htm"
+      },
+      "description": "Explore 1.5 million acres of desert mountains, canyons, and the broad waters of lakes Mead and Mohave. Paddle beneath Black Canyon's walls or follow land routes into the Mojave landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/lake/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lamr": {
+      "near": {
+        "city": "Fritch",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/lamr/planyourvisit/directions.htm"
+      },
+      "description": "Drop below the Texas plains into colorful, 200-foot canyon breaks carved by the Canadian River. Lake Meredith's coves and shoreline trails reveal seven habitats within this rugged grassland setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/lamr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "laro": {
+      "near": {
+        "city": "Davenport",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/laro/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Columbia River reservoir through stone-walled country shaped by Ice Age floods. Shoreline stops connect boating and walking with stories of Indigenous communities, traders, settlers, and the building of Grand Coulee Dam.",
+      "descriptionSourceUrl": "https://www.nps.gov/laro/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rola": {
+      "near": {
+        "city": "Newhalem",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/noca/planyourvisit/directions.htm"
+      },
+      "description": "Follow the North Cascades Highway past forested slopes and the blue-green waters of Diablo and Ross lakes. Trails and lakeside camps lead deeper into a mountain corridor shaped by rivers, glaciers, and hydropower.",
+      "descriptionSourceUrl": "https://www.nps.gov/noca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "samo": {
+      "near": {
+        "city": "Calabasas",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/samo/planyourvisit/directions.htm"
+      },
+      "description": "Explore chaparral-covered ridges, coastal canyons, and Malibu beaches along a network of more than 500 miles of trails. Native American cultural sites and former movie ranches add human stories to the mountain scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/samo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "whis": {
+      "near": {
+        "city": "Redding",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/whis/planyourvisit/directions.htm"
+      },
+      "description": "Explore 42,000 acres around Whiskeytown Lake, with waterfalls, rugged trails, and Gold Rush-era buildings. Forests recovering from fire reveal another chapter in this northern California landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/whis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "biso": {
+      "near": {
+        "city": "Oneida",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/biso/planyourvisit/directions.htm"
+      },
+      "description": "Explore 125,000 acres of the Cumberland Plateau, where sandstone bluffs and wooded gorges frame a free-flowing river. Trails, overlooks, and river routes reveal the Big South Fork's rugged terrain.",
+      "descriptionSourceUrl": "https://www.nps.gov/biso/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "miss": {
+      "near": {
+        "city": "Saint Paul",
+        "state": "MN",
+        "sourceUrl": "https://www.nps.gov/miss/planyourvisit/directions.htm"
+      },
+      "description": "Follow a 72-mile reach of the Mississippi through the Twin Cities, from urban riverfronts to quieter islands and wooded banks. Walking, cycling, and paddling routes connect river scenery with the history of communities along its shores.",
+      "descriptionSourceUrl": "https://www.nps.gov/miss/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "arpo": {
+      "near": {
+        "city": "Gillett",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/arpo/planyourvisit/directions.htm"
+      },
+      "description": "Explore a riverside meeting place where cultures traded, settled, and competed for control of the lower Mississippi region. Trails through the former post's landscape connect its layered human history with river scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/arpo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "arho": {
+      "near": {
+        "city": "Arlington",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/arho/planyourvisit/directions.htm"
+      },
+      "description": "Look across the Potomac from the hilltop home associated with Robert E. Lee and the Custis family. The house and grounds open difficult questions about slavery, military service, and the Civil War.",
+      "descriptionSourceUrl": "https://www.nps.gov/arho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cham": {
+      "near": {
+        "city": "El Paso",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/cham/planyourvisit/directions.htm"
+      },
+      "description": "Walk the borderland grounds that commemorate the peaceful settlement of a century-long dispute between Mexico and the United States. The memorial connects diplomacy with the cultures of the Rio Grande region.",
+      "descriptionSourceUrl": "https://www.nps.gov/cham/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "coro": {
+      "near": {
+        "city": "Sierra Vista",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/coro/planyourvisit/directions.htm"
+      },
+      "description": "Explore rugged borderland mountains while considering the consequences of Coronado's expedition and its encounters with Indigenous peoples. Desert views give scale to a story of conquest, cultural exchange, and lasting change.",
+      "descriptionSourceUrl": "https://www.nps.gov/coro/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "deso": {
+      "near": {
+        "city": "Bradenton",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/deso/planyourvisit/directions.htm"
+      },
+      "description": "Follow the coastal landscape associated with Hernando de Soto's 1539 landing in Tampa Bay. The memorial examines the expedition's search for wealth and the Indigenous resistance to an invasion of their homelands.",
+      "descriptionSourceUrl": "https://www.nps.gov/deso/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ddem": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/ddem/planyourvisit/directions.htm"
+      },
+      "description": "Encounter the story of Dwight D. Eisenhower through an outdoor memorial in the nation's capital. Its sculptures and expansive setting invite a closer look at his military leadership and presidency.",
+      "descriptionSourceUrl": "https://www.nps.gov/ddem/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "feha": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/feha/planyourvisit/directions.htm"
+      },
+      "description": "Stand at the Wall Street site where George Washington took his first presidential oath in 1789. The present memorial connects this small stretch of Manhattan with the first Congress and the beginnings of the federal government.",
+      "descriptionSourceUrl": "https://www.nps.gov/feha/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "flni": {
+      "near": {
+        "city": "Shanksville",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/flni/planyourvisit/directions.htm"
+      },
+      "description": "Walk a landscape of remembrance honoring Flight 93's 40 passengers and crew, who resisted their hijackers on September 11, 2001. The memorial brings their individual lives and collective actions into focus.",
+      "descriptionSourceUrl": "https://www.nps.gov/flni/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "foca": {
+      "near": {
+        "city": "Jacksonville",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/timu/planyourvisit/directions.htm"
+      },
+      "description": "Explore the riverfront setting of a short-lived French settlement in sixteenth-century Florida. Fort Caroline's story connects European rivalry with the lives and homelands of the Timucua people.",
+      "descriptionSourceUrl": "https://www.nps.gov/articles/ftcaroline.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frde": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/frde/planyourvisit/directions.htm"
+      },
+      "description": "Follow a sequence of outdoor memorial spaces beside the Tidal Basin, with sculpture and water recalling Franklin D. Roosevelt's presidency. The setting invites reflection on the Depression, war, and his enduring political legacy.",
+      "descriptionSourceUrl": "https://www.nps.gov/frde/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gegr": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/gegr/planyourvisit/directions.htm"
+      },
+      "description": "Step into the monumental tomb of Ulysses S. Grant and his wife, Julia, above the Hudson River. The mausoleum connects the Union commander's Civil War service with his presidency and the unfinished work of Reconstruction.",
+      "descriptionSourceUrl": "https://www.nps.gov/gegr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hagr": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/hagr/planyourvisit/directions.htm"
+      },
+      "description": "Visit the country home Alexander Hamilton built in what is now Harlem. Its early American architecture offers a personal entry into the life of a Revolutionary soldier and the first secretary of the Treasury.",
+      "descriptionSourceUrl": "https://www.nps.gov/hagr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jofl": {
+      "near": {
+        "city": "South Fork",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/jofl/planyourvisit/directions.htm"
+      },
+      "description": "Look across the remains of South Fork Dam, whose failure unleashed the devastating Johnstown flood of May 31, 1889. The landscape makes the disaster's scale tangible and explores the human decisions behind it.",
+      "descriptionSourceUrl": "https://www.nps.gov/jofl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "kowa": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/kowa/planyourvisit/directions.htm"
+      },
+      "description": "Walk beside sculpted servicemen and a reflective wall honoring those who served in the Korean War. The memorial's faces and figures bring an often distant conflict into a personal setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/kowa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "libo": {
+      "near": {
+        "city": "Lincoln City",
+        "state": "IN",
+        "sourceUrl": "https://www.nps.gov/libo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the southern Indiana landscape where Abraham Lincoln grew up. A recreated pioneer farm and memorial grounds connect everyday frontier work with the formative years of the future president.",
+      "descriptionSourceUrl": "https://www.nps.gov/libo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "linc": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/linc/planyourvisit/directions.htm"
+      },
+      "description": "Climb the broad steps to Lincoln's seated marble figure, with the Reflecting Pool stretching toward the Washington Monument. The memorial brings his words on union and freedom into a setting that also became central to the civil rights movement.",
+      "descriptionSourceUrl": "https://www.nps.gov/linc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lyba": {
+      "near": {
+        "city": "Arlington",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/lyba/planyourvisit/directions.htm"
+      },
+      "description": "Follow winding paths through white pines and an open meadow overlooking Washington across the Potomac. Chosen by Lady Bird Johnson, this grove honors Lyndon Johnson's legacy in social justice and conservation.",
+      "descriptionSourceUrl": "https://www.nps.gov/lyba/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mlkm": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/mlkm/planyourvisit/directions.htm"
+      },
+      "description": "Encounter Martin Luther King Jr.'s stone likeness beside the Tidal Basin. The memorial pairs a striking sculptural setting with words from his struggle for racial equality, freedom, and justice.",
+      "descriptionSourceUrl": "https://www.nps.gov/mlkm/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "moru": {
+      "near": {
+        "city": "Keystone",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/moru/planyourvisit/directions.htm"
+      },
+      "description": "Look up at the immense faces of Washington, Jefferson, Roosevelt, and Lincoln carved into the Black Hills granite. The memorial offers a place to examine the presidents' legacies alongside the region's longer Indigenous history.",
+      "descriptionSourceUrl": "https://www.nps.gov/moru/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pevi": {
+      "near": {
+        "city": "Put-in-Bay",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/pevi/planyourvisit/directions.htm"
+      },
+      "description": "See a 352-foot Doric column rise above Lake Erie, commemorating the War of 1812's Battle of Lake Erie. The island memorial also celebrates the lasting peace among the United States, Canada, and the United Kingdom.",
+      "descriptionSourceUrl": "https://www.nps.gov/pevi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "poch": {
+      "near": {
+        "city": "Concord",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/poch/planyourvisit/directions.htm"
+      },
+      "description": "Remember the 320 men killed when ammunition ships exploded at Port Chicago on July 17, 1944. The memorial connects this wartime disaster with segregation and the struggle for racial equality in the military; access requires advance arrangements.",
+      "descriptionSourceUrl": "https://www.nps.gov/poch/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rowi": {
+      "near": {
+        "city": "Providence",
+        "state": "RI",
+        "sourceUrl": "https://www.nps.gov/rowi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the place where Roger Williams founded Providence in 1636 after banishment from Massachusetts. The memorial grounds introduce his defense of religious liberty and the Indigenous relationships that made the settlement possible.",
+      "descriptionSourceUrl": "https://www.nps.gov/rowi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "thko": {
+      "near": {
+        "city": "Philadelphia",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/thko/planyourvisit/directions.htm"
+      },
+      "description": "Visit the modest Philadelphia house where Polish military engineer Thaddeus Kosciuszko recovered from his wounds. His story links Revolutionary War fortifications with a wider struggle for liberty and human rights.",
+      "descriptionSourceUrl": "https://www.nps.gov/thko/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "this": {
+      "near": {
+        "city": "Arlington",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/this/planyourvisit/directions.htm"
+      },
+      "description": "Cross to a Potomac island of wooded uplands and marshy lowlands, reshaped in the 1930s as a living memorial to Theodore Roosevelt. Forest paths place his conservation legacy within sight of the capital.",
+      "descriptionSourceUrl": "https://www.nps.gov/this/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jefm": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/thje/planyourvisit/directions.htm"
+      },
+      "description": "Approach the columned memorial to Thomas Jefferson across the Tidal Basin landscape. Inside, his statue and selected writings invite reflection on the Declaration of Independence and the contradictions of his life.",
+      "descriptionSourceUrl": "https://www.nps.gov/thje/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "vive": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/vive/planyourvisit/directions.htm"
+      },
+      "description": "Follow the dark, reflective wall bearing the names of Americans who died or remain missing from the Vietnam War. The descending path creates an intimate space for remembrance within the National Mall.",
+      "descriptionSourceUrl": "https://www.nps.gov/vive/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wamo": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/wamo/planyourvisit/directions.htm"
+      },
+      "description": "Look up the 555-foot marble obelisk built to honor George Washington. Its unmistakable silhouette anchors the National Mall and frames views across the capital's memorial landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/wamo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wwim": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/wwim/planyourvisit/directions.htm"
+      },
+      "description": "Pause in the capital's memorial landscape to remember the 4.7 million Americans who served in World War I. Sculpture and commemorative spaces connect individual sacrifice with a war that reshaped the twentieth century.",
+      "descriptionSourceUrl": "https://www.nps.gov/wwim/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wwii": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/wwii/planyourvisit/directions.htm"
+      },
+      "description": "Walk between stone pillars, bronze details, and fountains honoring Americans who served during World War II. The gold-star wall gives a solemn focus to the memorial's broad ceremonial setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/wwii/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wrbr": {
+      "near": {
+        "city": "Kill Devil Hills",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/wrbr/planyourvisit/directions.htm"
+      },
+      "description": "Stand near the sandy ground where Wilbur and Orville Wright achieved powered airplane flight on December 17, 1903. Flight markers and the hilltop memorial turn a familiar invention story into a landscape you can walk.",
+      "descriptionSourceUrl": "https://www.nps.gov/wrbr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "blri": {
+      "near": {
+        "city": "Asheville",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/blri/planyourvisit/directions.htm"
+      },
+      "description": "Follow a 469-mile mountain road through the Appalachian Highlands, with overlooks opening onto layered ridges and pastoral valleys. Short walks and roadside stops reveal the landscape at a slower pace.",
+      "descriptionSourceUrl": "https://www.nps.gov/blri/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "natr": {
+      "near": {
+        "city": "Tupelo",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/natr/planyourvisit/directions.htm"
+      },
+      "description": "Trace a 444-mile scenic road through Mississippi, Alabama, and Tennessee. Stops along the way connect forest and field with the older travel corridor used by Indigenous peoples, traders, settlers, and soldiers.",
+      "descriptionSourceUrl": "https://www.nps.gov/natr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gwmp": {
+      "near": {
+        "city": "Arlington",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/gwmp/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Potomac corridor through woodland, waterfront views, and sites tied to American history. This scenic parkway links places to walk and pause within the busy Washington metropolitan area.",
+      "descriptionSourceUrl": "https://www.nps.gov/gwmp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jodr": {
+      "near": {
+        "city": "Moran",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/jodr/planyourvisit/directions.htm"
+      },
+      "description": "Travel the forested corridor between Grand Teton and Yellowstone, following the upper Snake River through mountain country. The parkway honors John D. Rockefeller Jr.'s contributions to the national parks.",
+      "descriptionSourceUrl": "https://www.nps.gov/jodr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "abli": {
+      "near": {
+        "city": "Hodgenville",
+        "state": "KY",
+        "sourceUrl": "https://www.nps.gov/abli/planyourvisit/directions.htm"
+      },
+      "description": "Visit the Kentucky birthplace landscape of Abraham Lincoln, where a formal memorial shelters a symbolic frontier cabin. The site connects his modest beginnings with the life that would lead him to the presidency.",
+      "descriptionSourceUrl": "https://www.nps.gov/abli/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "adam": {
+      "near": {
+        "city": "Quincy",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/adam/planyourvisit/directions.htm"
+      },
+      "description": "Explore the homes and gardens that held generations of the Adams family. From modest birthplaces to Peace field, the park brings the work of presidents, writers, and politically influential women into a domestic setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/adam/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "apco": {
+      "near": {
+        "city": "Appomattox",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/apco/planyourvisit/directions.htm"
+      },
+      "description": "Walk the village where Robert E. Lee surrendered the Army of Northern Virginia on April 9, 1865. The McLean House and surrounding landscape open the story of the war's end, emancipation, and the challenges of reunion.",
+      "descriptionSourceUrl": "https://www.nps.gov/apco/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bost": {
+      "near": {
+        "city": "Boston",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/bost/planyourvisit/directions.htm"
+      },
+      "description": "Follow Boston's revolutionary story through meeting places, monuments, and the historic harbor. These connected sites make the struggle for independence part of a walk through the living city.",
+      "descriptionSourceUrl": "https://www.nps.gov/bost/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cari": {
+      "near": {
+        "city": "Natchez",
+        "state": "LA",
+        "sourceUrl": "https://www.nps.gov/cari/planyourvisit/directions.htm"
+      },
+      "description": "Explore the buildings and landscapes of Oakland and Magnolia plantations along Cane River. More than two centuries of Creole history emerge through the lives of enslaved workers, tenant families, and owners.",
+      "descriptionSourceUrl": "https://www.nps.gov/cari/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cebe": {
+      "near": {
+        "city": "Middletown",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/cebe/planyourvisit/directions.htm"
+      },
+      "description": "Read the Shenandoah Valley's history across farmland, Belle Grove, and the Cedar Creek battlefield. This fertile landscape connects generations of settlement and agriculture with a decisive Union victory in 1864.",
+      "descriptionSourceUrl": "https://www.nps.gov/cebe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chcu": {
+      "near": {
+        "city": "Nageezi",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/chcu/planyourvisit/directions.htm"
+      },
+      "description": "Walk among monumental great houses in a broad desert canyon that flourished as an ancestral Pueblo center from 850 to 1250 CE. The scale of the masonry and surrounding landscape reveals a place that remains sacred to Indigenous communities.",
+      "descriptionSourceUrl": "https://www.nps.gov/chcu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "choh": {
+      "near": {
+        "city": "Potomac",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/choh/planyourvisit/directions.htm"
+      },
+      "description": "Follow a canal-side pathway beside old locks, stone structures, and the Potomac River. The waterway carried coal, lumber, and farm goods for nearly a century, leaving a corridor where transportation history meets river scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/choh/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "colo": {
+      "near": {
+        "city": "Yorktown",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/colo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the landscapes of Jamestown and Yorktown, from the founding of the English settlement in 1607 to the Revolutionary victory of 1781. These places connect Virginia Indian, African, and European histories across the colonial era.",
+      "descriptionSourceUrl": "https://www.nps.gov/colo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cuga": {
+      "near": {
+        "city": "Middlesboro",
+        "state": "KY",
+        "sourceUrl": "https://www.nps.gov/cuga/planyourvisit/directions.htm"
+      },
+      "description": "Follow the mountain passage used by bison, Indigenous peoples, and later settlers crossing the Appalachians. Eighty-five miles of trails and 14,000 acres of wilderness reveal the ridges and valleys surrounding the historic gap.",
+      "descriptionSourceUrl": "https://www.nps.gov/cuga/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "daav": {
+      "near": {
+        "city": "Dayton",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/daav/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Dayton places connected with Wilbur and Orville Wright and poet Paul Laurence Dunbar. Workshops, homes, and aviation landscapes bring their different paths of invention and expression into view.",
+      "descriptionSourceUrl": "https://www.nps.gov/daav/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frst": {
+      "near": {
+        "city": "New Castle",
+        "state": "DE",
+        "sourceUrl": "https://www.nps.gov/frst/planyourvisit/directions.htm"
+      },
+      "description": "Explore Delaware's early story through historic places spread across the state and neighboring Pennsylvania. The park connects colonial rivalry, religious diversity, and the decision to become the first state to ratify the Constitution.",
+      "descriptionSourceUrl": "https://www.nps.gov/frst/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fosu": {
+      "near": {
+        "city": "Charleston",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/fosu/planyourvisit/directions.htm"
+      },
+      "description": "Look across Charleston Harbor from forts that witnessed both the Revolution and the opening of the Civil War. Fort Moultrie's 1776 defense and the attack on Fort Sumter in April 1861 frame two turning points in American history.",
+      "descriptionSourceUrl": "https://www.nps.gov/fosu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gero": {
+      "near": {
+        "city": "Vincennes",
+        "state": "IN",
+        "sourceUrl": "https://www.nps.gov/gero/planyourvisit/directions.htm"
+      },
+      "description": "Stand beside the Wabash River where George Rogers Clark's forces captured Fort Sackville in February 1779. The imposing memorial recalls a winter march through floodwaters and the Revolutionary struggle for the western frontier.",
+      "descriptionSourceUrl": "https://www.nps.gov/gero/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gosp": {
+      "near": {
+        "city": "Corinne",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/gosp/planyourvisit/directions.htm"
+      },
+      "description": "Stand where the transcontinental railroad joined in 1869, with open country stretching beyond the rails. Original railroad grades, construction traces, and replica steam locomotives bring the engineering achievement and its human labor into focus.",
+      "descriptionSourceUrl": "https://www.nps.gov/gosp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hafe": {
+      "near": {
+        "city": "Harpers Ferry",
+        "state": "WV",
+        "sourceUrl": "https://www.nps.gov/hafe/planyourvisit/directions.htm"
+      },
+      "description": "Walk a historic town tucked between the Potomac, Shenandoah, and steep Blue Ridge slopes. John Brown's raid, Civil War events, and Storer College's work in education and civil rights give its streets a remarkable depth of history.",
+      "descriptionSourceUrl": "https://www.nps.gov/hafe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hart": {
+      "near": {
+        "city": "Auburn",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/hart/planyourvisit/directions.htm"
+      },
+      "description": "Explore the community where Harriet Tubman made her home after moving to central New York in 1859. The park connects her later life with continuing work for family, freedom, faith, and human dignity.",
+      "descriptionSourceUrl": "https://www.nps.gov/hart/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hatu": {
+      "near": {
+        "city": "Church Creek",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/hatu/planyourvisit/directions.htm"
+      },
+      "description": "Explore Eastern Shore landscapes tied to Harriet Tubman's life and the journeys she led out of slavery. Marshes, fields, and waterways help make the risks and geography of the Underground Railroad tangible.",
+      "descriptionSourceUrl": "https://www.nps.gov/hatu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "home": {
+      "near": {
+        "city": "Beatrice",
+        "state": "NE",
+        "sourceUrl": "https://www.nps.gov/home/planyourvisit/directions.htm"
+      },
+      "description": "Walk prairie and historic homestead ground while exploring the far-reaching Homestead Act of 1862. The park examines the opportunities settlers pursued and the profound changes imposed on Indigenous homelands.",
+      "descriptionSourceUrl": "https://www.nps.gov/home/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hocu": {
+      "near": {
+        "city": "Chillicothe",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/hocu/planyourvisit/directions.htm"
+      },
+      "description": "Walk beside monumental earthworks created by Native American communities nearly 2,000 years ago. Mounds and geometric enclosures reveal ceremonial landscapes connected to gatherings, exchange, and religious life across a vast region.",
+      "descriptionSourceUrl": "https://www.nps.gov/hocu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "inde": {
+      "near": {
+        "city": "Philadelphia",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/inde/planyourvisit/directions.htm"
+      },
+      "description": "Stand among the buildings and symbols at the heart of the nation's founding, including Independence Hall and the Liberty Bell. The streets around them bring the debates over independence, government, and freedom into a compact historic landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/inde/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jela": {
+      "near": {
+        "city": "Marrero",
+        "state": "LA",
+        "sourceUrl": "https://www.nps.gov/jela/planyourvisit/directions.htm"
+      },
+      "description": "Follow Louisiana's stories from bayou wetlands and alligator habitat to Cajun culture and the 1815 Battle of New Orleans. The park's separate sites connect living traditions with the landscapes and events that shaped the region.",
+      "descriptionSourceUrl": "https://www.nps.gov/jela/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jica": {
+      "near": {
+        "city": "Plains",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/jica/planyourvisit/directions.htm"
+      },
+      "description": "Explore the small Georgia town and rural setting that shaped Jimmy Carter. School, farm, and community stories trace the roots of the thirty-ninth president's life and public service.",
+      "descriptionSourceUrl": "https://www.nps.gov/jica/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "kewe": {
+      "near": {
+        "city": "Calumet",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/kewe/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Keweenaw Peninsula's copper story through historic industrial communities and preserved places. Indigenous metalworking, nineteenth-century mining, and immigrant labor left traces across this Lake Superior landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/kewe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lewi": {
+      "near": {
+        "city": "Astoria",
+        "state": "OR",
+        "sourceUrl": "https://www.nps.gov/lewi/planyourvisit/directions.htm"
+      },
+      "description": "Explore coastal forests and Columbia River places linked with Lewis and Clark's expedition. The park connects the explorers' experience with the deeper and continuing history of the region's Native peoples.",
+      "descriptionSourceUrl": "https://www.nps.gov/lewi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lowe": {
+      "near": {
+        "city": "Lowell",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/lowe/planyourvisit/directions.htm"
+      },
+      "description": "Follow canals and brick textile mills through a city transformed by waterpower. The park tells the industrial revolution through the work and lives of women factory workers and immigrant families.",
+      "descriptionSourceUrl": "https://www.nps.gov/lowe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lyjo": {
+      "near": {
+        "city": "Johnson City",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/lyjo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Texas Hill Country places that shaped Lyndon B. Johnson, from his early community to the LBJ Ranch. The landscape connects family history, political life, and the president's final resting place.",
+      "descriptionSourceUrl": "https://www.nps.gov/lyjo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mapr": {
+      "near": {
+        "city": "Los Alamos",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/mapr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the places where secret wartime communities developed the first atomic bombs. Sites in Los Alamos, Hanford, and Oak Ridge connect scientific innovation with the lasting human consequences of the nuclear age.",
+      "descriptionSourceUrl": "https://www.nps.gov/mapr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mabi": {
+      "near": {
+        "city": "Woodstock",
+        "state": "VT",
+        "sourceUrl": "https://www.nps.gov/mabi/planyourvisit/directions.htm"
+      },
+      "description": "Walk the shaded paths of Mount Tom Forest through a landscape shaped by generations of conservation work. The estate connects managed woodland, restoration, and the people who helped change American ideas about stewardship.",
+      "descriptionSourceUrl": "https://www.nps.gov/mabi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "malu": {
+      "near": {
+        "city": "Atlanta",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/malu/planyourvisit/directions.htm"
+      },
+      "description": "Walk the Atlanta neighborhood where Martin Luther King Jr. was born and grew up. His childhood home, church, and surrounding community connect everyday life under segregation with the roots of the civil rights movement.",
+      "descriptionSourceUrl": "https://www.nps.gov/malu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mima": {
+      "near": {
+        "city": "Concord",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/mima/planyourvisit/directions.htm"
+      },
+      "description": "Follow the roads, fields, and historic structures tied to the fighting of April 19, 1775. The landscape between Lexington and Concord brings the opening of the American Revolution into walking distance.",
+      "descriptionSourceUrl": "https://www.nps.gov/mima/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "morr": {
+      "near": {
+        "city": "Morristown",
+        "state": "NJ",
+        "sourceUrl": "https://www.nps.gov/morr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the places where Washington and the Continental Army endured the winter of 1779–1780. Encampment ground and historic buildings reveal the work of sustaining an army through severe cold and scarcity.",
+      "descriptionSourceUrl": "https://www.nps.gov/morr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "natc": {
+      "near": {
+        "city": "Natchez",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/natc/planyourvisit/directions.htm"
+      },
+      "description": "Explore historic places in a Mississippi River city shaped by cotton wealth, slavery, and the struggle for civil rights. The park brings different lives into the story of Natchez and the lower river.",
+      "descriptionSourceUrl": "https://www.nps.gov/natc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nebe": {
+      "near": {
+        "city": "New Bedford",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/nebe/planyourvisit/directions.htm"
+      },
+      "description": "Walk the historic waterfront district of a city built around the whaling trade. Streets and preserved buildings connect ocean voyages with the fortunes, labor, and communities that grew around them.",
+      "descriptionSourceUrl": "https://www.nps.gov/nebe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jazz": {
+      "near": {
+        "city": "New Orleans",
+        "state": "LA",
+        "sourceUrl": "https://www.nps.gov/jazz/planyourvisit/directions.htm"
+      },
+      "description": "Explore the roots of jazz in the French Quarter through music, exhibits, and ranger programs. The park connects a sound heard around the world with the New Orleans communities that helped create it.",
+      "descriptionSourceUrl": "https://www.nps.gov/jazz/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nepe": {
+      "near": {
+        "city": "Lapwai",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/nepe/planyourvisit/directions.htm"
+      },
+      "description": "Discover 38 places important to the history and culture of the nimíipuu, or Nez Perce, across four states. Valleys, prairies, and mountain landscapes reveal a homeland with a continuing cultural story.",
+      "descriptionSourceUrl": "https://www.nps.gov/nepe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ocmu": {
+      "near": {
+        "city": "Macon",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/ocmu/planyourvisit/directions.htm"
+      },
+      "description": "Walk among great earthen mounds above the Ocmulgee River, built by Mississippian communities beginning around 900 CE. The park preserves evidence of thousands of years of Indigenous life in this landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/ocmu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "paal": {
+      "near": {
+        "city": "Brownsville",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/paal/planyourvisit/directions.htm"
+      },
+      "description": "Walk the prairie where U.S. and Mexican troops fought on May 8, 1846. The battlefield introduces the opening clash of a war that redrew North America's map and left a lasting borderland legacy.",
+      "descriptionSourceUrl": "https://www.nps.gov/paal/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pagr": {
+      "near": {
+        "city": "Paterson",
+        "state": "NJ",
+        "sourceUrl": "https://www.nps.gov/pagr/planyourvisit/directions.htm"
+      },
+      "description": "Watch the Passaic River plunge through the Great Falls in the heart of an industrial city. Founded as a planned manufacturing center in 1792, Paterson used this waterpower to drive mills and factories that reshaped American life.",
+      "descriptionSourceUrl": "https://www.nps.gov/pagr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "peco": {
+      "near": {
+        "city": "Pecos",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/peco/planyourvisit/directions.htm"
+      },
+      "description": "Explore a high-country crossroads where Pueblo communities, missionaries, traders, soldiers, and ranchers left their marks. The landscape opens a long story of movement, cultural encounter, and enduring traditions.",
+      "descriptionSourceUrl": "https://www.nps.gov/peco/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "reer": {
+      "near": {
+        "city": "Beaufort",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/reer/planyourvisit/directions.htm"
+      },
+      "description": "Explore Beaufort County places where formerly enslaved people built new lives during Reconstruction. The park connects education, citizenship, work, and political change with the communities that helped define freedom after emancipation.",
+      "descriptionSourceUrl": "https://www.nps.gov/reer/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rori": {
+      "near": {
+        "city": "Richmond",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/rori/planyourvisit/directions.htm"
+      },
+      "description": "Explore Richmond's World War II home-front story through waterfront places and civilian experiences. The park follows the workers and families whose wartime opportunities, sacrifices, and unequal treatment changed their communities.",
+      "descriptionSourceUrl": "https://www.nps.gov/rori/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "saga": {
+      "near": {
+        "city": "Cornish",
+        "state": "NH",
+        "sourceUrl": "https://www.nps.gov/saga/planyourvisit/directions.htm"
+      },
+      "description": "Explore Augustus Saint-Gaudens's home, studio, and sculpture-filled landscape. Bronze works set among gardens and woodland connect an artist's creative process with the setting that inspired him.",
+      "descriptionSourceUrl": "https://www.nps.gov/saga/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "saan": {
+      "near": {
+        "city": "San Antonio",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/saan/planyourvisit/directions.htm"
+      },
+      "description": "Follow a chain of mission communities whose stone churches and grounds preserve layers of eighteenth-century history. These living places reveal Indigenous and Spanish encounters, cultural change, and the use of water and land along the San Antonio River.",
+      "descriptionSourceUrl": "https://www.nps.gov/saan/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "safr": {
+      "near": {
+        "city": "San Francisco",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/safr/planyourvisit/directions.htm"
+      },
+      "description": "Explore 50 acres around Aquatic Park Cove, where historic waterfront landmarks evoke San Francisco's seafaring past. Bay views and maritime stories connect the city with Pacific trade and life at sea.",
+      "descriptionSourceUrl": "https://www.nps.gov/safr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sajh": {
+      "near": {
+        "city": "Friday Harbor",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/sajh/planyourvisit/directions.htm"
+      },
+      "description": "Explore saltwater shores, quiet woods, and native prairie at the island's former military camps. In 1859, a dispute sparked by the killing of a pig brought the United States and Britain close to war here.",
+      "descriptionSourceUrl": "https://www.nps.gov/sajh/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sara": {
+      "near": {
+        "city": "Stillwater",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/sara/planyourvisit/directions.htm"
+      },
+      "description": "Follow the fields and ridges where the 1777 Saratoga campaign ended in a British army's surrender. The landscape reveals a Revolutionary turning point with consequences far beyond the Hudson Valley.",
+      "descriptionSourceUrl": "https://www.nps.gov/sara/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "stge": {
+      "near": {
+        "city": "Sainte Genevieve",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/stge/planyourvisit/directions.htm"
+      },
+      "description": "Explore a Missouri river town established by French Canadian settlers by 1750. Distinctive historic houses and the town's agricultural story reveal a French colonial world along the Mississippi.",
+      "descriptionSourceUrl": "https://www.nps.gov/stge/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "edis": {
+      "near": {
+        "city": "West Orange",
+        "state": "NJ",
+        "sourceUrl": "https://www.nps.gov/edis/planyourvisit/directions.htm"
+      },
+      "description": "Step into the world of Thomas Edison's home and laboratory, where belt-driven machinery and experimental work helped shape modern life. The brick industrial complex makes invention feel like a working process.",
+      "descriptionSourceUrl": "https://www.nps.gov/edis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tuma": {
+      "near": {
+        "city": "Tumacacori",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/tuma/planyourvisit/directions.htm"
+      },
+      "description": "Explore the mission landscape of the Santa Cruz Valley, where O'odham, Yaqui, and Apache people encountered European missionaries and settlers. Timeworn paths and surviving structures reveal both conflict and cooperation at this cultural crossroads.",
+      "descriptionSourceUrl": "https://www.nps.gov/tuma/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "vafo": {
+      "near": {
+        "city": "King of Prussia",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/vafo/planyourvisit/directions.htm"
+      },
+      "description": "Explore 3,500 acres of meadows, woods, and historic ground where Washington's army camped in the winter of 1777–1778. The landscape connects the hardships of the encampment with the training and resolve that sustained the Revolution.",
+      "descriptionSourceUrl": "https://www.nps.gov/vafo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wefa": {
+      "near": {
+        "city": "Wilton",
+        "state": "CT",
+        "sourceUrl": "https://www.nps.gov/wefa/planyourvisit/directions.htm"
+      },
+      "description": "Explore more than 60 acres of woods, fields, and waterways around painter J. Alden Weir's home and studio. Paths through the farm reveal the scenes that inspired generations of American artists.",
+      "descriptionSourceUrl": "https://www.nps.gov/wefa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wori": {
+      "near": {
+        "city": "Seneca Falls",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/wori/planyourvisit/directions.htm"
+      },
+      "description": "Explore the places tied to the 1848 Women's Rights Convention in Seneca Falls. The park connects the gathering's demands with the people and reform movements that carried the struggle for equality forward.",
+      "descriptionSourceUrl": "https://www.nps.gov/wori/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "asis": {
+      "near": {
+        "city": "Berlin",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/asis/planyourvisit/directions.htm"
+      },
+      "description": "Walk from Atlantic beaches into salt marshes, coastal bays, and maritime forest on a shifting barrier island. Assateague's wild horses are part of a landscape continually reshaped by wind and waves.",
+      "descriptionSourceUrl": "https://www.nps.gov/asis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cana": {
+      "near": {
+        "city": "Titusville",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/cana/planyourvisit/directions.htm"
+      },
+      "description": "Explore dunes, coastal hammocks, and the waters of Mosquito Lagoon along a protected barrier island. Timucua shell mounds reveal a human story reaching thousands of years into this coastal landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/cana/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "caco": {
+      "near": {
+        "city": "Eastham",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/caco/planyourvisit/directions.htm"
+      },
+      "description": "Explore 40 miles of Outer Cape beach, with dunes, marshes, ponds, and woodland beyond the surf. Lighthouses and wild cranberry bogs connect the shore's scenery with Cape Cod's continuing ways of life.",
+      "descriptionSourceUrl": "https://www.nps.gov/caco/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "caha": {
+      "near": {
+        "city": "Buxton",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/caha/planyourvisit/directions.htm"
+      },
+      "description": "Follow a chain of barrier islands where ocean beaches give way to quiet salt marshes and sounds. Lighthouse landscapes and paddling waters reveal a coast continually changed by wind, water, and storms.",
+      "descriptionSourceUrl": "https://www.nps.gov/caha/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "calo": {
+      "near": {
+        "city": "Harkers Island",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/calo/planyourvisit/directions.htm"
+      },
+      "description": "Cross by boat to barrier islands with wide beaches, historic villages, and the diamond-patterned Cape Lookout Lighthouse. Remote shores and horse habitat on Shackleford Banks give this seashore a distinctly offshore character.",
+      "descriptionSourceUrl": "https://www.nps.gov/calo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cuis": {
+      "near": {
+        "city": "Saint Marys",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/cuis/planyourvisit/directions.htm"
+      },
+      "description": "Leave the mainland for maritime forest, broad marshes, and undeveloped Atlantic beaches. More than 9,800 acres of designated wilderness sit within an island landscape layered with Indigenous, African American, and industrial-era history.",
+      "descriptionSourceUrl": "https://www.nps.gov/cuis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fiis": {
+      "near": {
+        "city": "Patchogue",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/fiis/planyourvisit/directions.htm"
+      },
+      "description": "Explore a barrier island of high dunes, Atlantic beaches, and old maritime forest. Lighthouse scenery and historic places add depth to a coastal landscape just beyond the pressure of New York City.",
+      "descriptionSourceUrl": "https://www.nps.gov/fiis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "guis": {
+      "near": {
+        "city": "Gulf Breeze",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/guis/planyourvisit/directions.htm"
+      },
+      "description": "Explore white-sand barrier islands, marshes, and clear coastal waters across Florida and Mississippi. Historic forts add another layer to beaches reached by both road and boat.",
+      "descriptionSourceUrl": "https://www.nps.gov/guis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pais": {
+      "near": {
+        "city": "Corpus Christi",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/pais/planyourvisit/directions.htm"
+      },
+      "description": "Explore 66 miles of protected coastline, where Gulf beaches meet coastal prairie and the hypersaline Laguna Madre. Dunes and tidal flats reveal a barrier-island landscape shaped by water, wind, and a long human history.",
+      "descriptionSourceUrl": "https://www.nps.gov/pais/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pore": {
+      "near": {
+        "city": "Point Reyes Station",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/pore/planyourvisit/directions.htm"
+      },
+      "description": "Follow forested ridges and open grasslands toward rocky headlands and broad Pacific beaches. More than 1,500 plant and animal species share a peninsula whose lighthouse and cultural places add human stories to the scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/pore/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "afbg": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/afbg/planyourvisit/directions.htm"
+      },
+      "description": "Pause at the Manhattan burial ground of free and enslaved Africans whose work helped build early New York. The memorial and exhibits restore individual lives and a long-obscured community to the city's history.",
+      "descriptionSourceUrl": "https://www.nps.gov/afbg/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "agfo": {
+      "near": {
+        "city": "Harrison",
+        "state": "NE",
+        "sourceUrl": "https://www.nps.gov/agfo/planyourvisit/directions.htm"
+      },
+      "description": "Explore prairie hills where paleontologists uncovered complete skeletons of extinct Miocene mammals in the early twentieth century. Exhibits also connect the landscape with Lakota history and the friendship between James Cook and Chief Red Cloud.",
+      "descriptionSourceUrl": "https://www.nps.gov/agfo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "alfl": {
+      "near": {
+        "city": "Fritch",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/alfl/planyourvisit/directions.htm"
+      },
+      "description": "Explore the source of colorful flint used by people of the High Plains for some 13,000 years. The quarries connect a striking stone with toolmaking, trade, and survival across generations.",
+      "descriptionSourceUrl": "https://www.nps.gov/alfl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "azru": {
+      "near": {
+        "city": "Aztec",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/azru/planyourvisit/directions.htm"
+      },
+      "description": "Walk through an ancestral Pueblo great house with original wooden beams and intricate stonework. A restored Great Kiva helps reveal the scale and communal life of this sacred Chacoan place.",
+      "descriptionSourceUrl": "https://www.nps.gov/azru/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "band": {
+      "near": {
+        "city": "White Rock",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/band/planyourvisit/directions.htm"
+      },
+      "description": "Explore more than 33,000 acres of canyons and mesas, where homes carved into soft cliffs stand beside masonry walls and petroglyphs. These ancestral Pueblo places connect the landscape with cultures that continue in surrounding communities.",
+      "descriptionSourceUrl": "https://www.nps.gov/band/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bepa": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/bepa/planyourvisit/directions.htm"
+      },
+      "description": "Step into the historic headquarters where the National Woman's Party organized for women's equality. Close to the Capitol, the house connects Alice Paul's campaigns with the long struggle for the Equal Rights Amendment.",
+      "descriptionSourceUrl": "https://www.nps.gov/bepa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bicr": {
+      "near": {
+        "city": "Birmingham",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/bicr/planyourvisit/directions.htm"
+      },
+      "description": "Explore places tied to Birmingham's pivotal 1963 civil rights campaign. The district reveals the courage of nonviolent protesters and the brutal response that brought segregation's injustice before a worldwide audience.",
+      "descriptionSourceUrl": "https://www.nps.gov/bicr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bowa": {
+      "near": {
+        "city": "Hardy",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/bowa/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Virginia farm where Booker T. Washington was born into slavery in 1856. The landscape introduces the early life of the educator who later led Tuskegee and became an influential author and public figure.",
+      "descriptionSourceUrl": "https://www.nps.gov/bowa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cabr": {
+      "near": {
+        "city": "San Diego",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/cabr/planyourvisit/directions.htm"
+      },
+      "description": "Look over San Diego Bay from Point Loma while exploring the story of Cabrillo's 1542 expedition. Coastal trails and historic features connect Pacific scenery with centuries of human use.",
+      "descriptionSourceUrl": "https://www.nps.gov/cabr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cane": {
+      "near": {
+        "city": "Nicholasville",
+        "state": "KY",
+        "sourceUrl": "https://www.nps.gov/cane/planyourvisit/directions.htm"
+      },
+      "description": "Walk the ground of a Civil War supply depot that became a major recruiting and training center for United States Colored Troops. Camp Nelson also sheltered families and people escaping slavery in pursuit of freedom.",
+      "descriptionSourceUrl": "https://www.nps.gov/cane/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cach": {
+      "near": {
+        "city": "Chinle",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/cach/planyourvisit/directions.htm"
+      },
+      "description": "Look into deep sandstone canyons where ancient homes and images share the landscape with living Diné communities. Navajo families continue to farm, raise livestock, and maintain connections reaching across many generations.",
+      "descriptionSourceUrl": "https://www.nps.gov/cach/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cavo": {
+      "near": {
+        "city": "Capulin",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/cavo/planyourvisit/directions.htm"
+      },
+      "description": "Walk a volcanic rim above northeastern New Mexico's plains, within the 8,000-square-mile Raton-Clayton Volcanic Field. The cinder cone offers a vivid introduction to the eruptions that shaped this broad landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/cavo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cagr": {
+      "near": {
+        "city": "Coolidge",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/cagr/planyourvisit/directions.htm"
+      },
+      "description": "Stand beside the Great House, a remarkable earthen structure left by an Ancestral Sonoran Desert farming community. The site reveals a world of irrigation canals, trade, and interconnected desert settlements.",
+      "descriptionSourceUrl": "https://www.nps.gov/cagr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "casa": {
+      "near": {
+        "city": "Saint Augustine",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/casa/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Spanish stone fortress built to defend St. Augustine and Atlantic trade routes. Its walls frame the waterfront while revealing centuries of conflict and cultural encounter in Florida.",
+      "descriptionSourceUrl": "https://www.nps.gov/casa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cacl": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/cacl/planyourvisit/directions.htm"
+      },
+      "description": "Step inside a harbor fort at Manhattan's southern tip that later served theatergoers and arriving immigrants. Castle Clinton's changing uses trace New York's growth from a defended port into a gateway city.",
+      "descriptionSourceUrl": "https://www.nps.gov/cacl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "camo": {
+      "near": {
+        "city": "Searchlight",
+        "state": "NV",
+        "sourceUrl": "https://www.nps.gov/camo/planyourvisit/directions.htm"
+      },
+      "description": "Explore nearly 21,000 acres of Mojave Desert grasslands, Joshua tree forests, and rugged mountain scenery. This remote landscape beside Mojave National Preserve also holds traces of a rich human past.",
+      "descriptionSourceUrl": "https://www.nps.gov/camo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cebr": {
+      "near": {
+        "city": "Cedar City",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/cebr/planyourvisit/directions.htm"
+      },
+      "description": "Look into a half-mile-deep amphitheater of eroded rock from a rim above 10,000 feet. Bristlecone pines, subalpine forest, and high meadows surround the dramatic basin.",
+      "descriptionSourceUrl": "https://www.nps.gov/cebr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cech": {
+      "near": {
+        "city": "Keene",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/cech/planyourvisit/directions.htm"
+      },
+      "description": "Explore the place associated with Cesar Chavez's leadership of the farmworker movement. The monument connects organizing for better wages and safer conditions with the people who built a lasting agricultural union.",
+      "descriptionSourceUrl": "https://www.nps.gov/cech/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chyo": {
+      "near": {
+        "city": "Wilberforce",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/chyo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the life of Charles Young, a military leader who advanced through the ranks despite entrenched racism. His Ohio home connects personal achievement with the wider history of the Buffalo Soldiers and the fight for equality.",
+      "descriptionSourceUrl": "https://www.nps.gov/chyo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "colm": {
+      "near": {
+        "city": "Fruita",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/colm/planyourvisit/directions.htm"
+      },
+      "description": "Follow Rim Rock Drive above sheer red-rock canyons and towering monoliths. Overlooks and trails reveal a plateau landscape that also provides habitat for bighorn sheep and eagles.",
+      "descriptionSourceUrl": "https://www.nps.gov/colm/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "crmo": {
+      "near": {
+        "city": "Arco",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/crmo/planyourvisit/directions.htm"
+      },
+      "description": "Explore dark lava flows, cinder cones, and islands of sagebrush across a stark volcanic landscape. Trails through the monument reveal the textures and forms left by successive eruptions.",
+      "descriptionSourceUrl": "https://www.nps.gov/crmo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "depo": {
+      "near": {
+        "city": "Mammoth Lakes",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/depo/planyourvisit/directions.htm"
+      },
+      "description": "Stand below basalt columns rising as much as 60 feet, then follow mountain trails toward 101-foot Rainbow Falls. Protected since 1911, the monument pairs unusual volcanic geometry with Sierra scenery.",
+      "descriptionSourceUrl": "https://www.nps.gov/depo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "deto": {
+      "near": {
+        "city": "Hulett",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/deto/planyourvisit/directions.htm"
+      },
+      "description": "Follow the base of a huge, fluted rock tower rising above the prairie near the Black Hills. The formation is sacred to many Northern Plains Indigenous peoples and holds cultural meaning beyond its striking geology.",
+      "descriptionSourceUrl": "https://www.nps.gov/deto/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "dino": {
+      "near": {
+        "city": "Jensen",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/dino/planyourvisit/directions.htm"
+      },
+      "description": "See dinosaur fossils still embedded in the rock, then explore desert canyons cut by winding rivers. Petroglyphs and historic places add human stories to a landscape whose fossil record reaches back about 150 million years.",
+      "descriptionSourceUrl": "https://www.nps.gov/dino/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "efmo": {
+      "near": {
+        "city": "Marquette",
+        "state": "IA",
+        "sourceUrl": "https://www.nps.gov/efmo/planyourvisit/directions.htm"
+      },
+      "description": "Walk wooded Mississippi River bluffs among more than 200 Indigenous mounds. These sacred earthworks invite careful reflection on the communities that built them and the Tribal nations whose connections continue.",
+      "descriptionSourceUrl": "https://www.nps.gov/efmo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "elma": {
+      "near": {
+        "city": "Grants",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/elma/planyourvisit/directions.htm"
+      },
+      "description": "Explore lava flows, cinder cones, sandstone bluffs, and the rough textures of a volcanic landscape. Generations of people have found ways to live and travel through this apparently forbidding terrain.",
+      "descriptionSourceUrl": "https://www.nps.gov/elma/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "elmo": {
+      "near": {
+        "city": "Ramah",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/elmo/planyourvisit/directions.htm"
+      },
+      "description": "Follow a sandstone bluff to the waterhole that drew travelers here for centuries. More than 2,000 petroglyphs, names, dates, and messages connect ancestral Pueblo, Spanish, and American journeys.",
+      "descriptionSourceUrl": "https://www.nps.gov/elmo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "flfo": {
+      "near": {
+        "city": "Florissant",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/flfo/planyourvisit/directions.htm"
+      },
+      "description": "Explore a mountain valley where petrified redwood stumps reach up to 14 feet across. Delicate insect and plant fossils reveal a prehistoric Colorado very different from today's grassy landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/flfo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fofr": {
+      "near": {
+        "city": "Saint Simons Island",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/fofr/planyourvisit/directions.htm"
+      },
+      "description": "Walk the traces of a British colonial town and fort established by James Oglethorpe in 1736. Archaeology brings the lives of its residents into the story of Britain and Spain's struggle over the southern frontier.",
+      "descriptionSourceUrl": "https://www.nps.gov/fofr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "foma": {
+      "near": {
+        "city": "Saint Augustine",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/foma/planyourvisit/directions.htm"
+      },
+      "description": "See a coquina watchtower completed in 1742 to guard St. Augustine's southern approach. Around it, roughly 300 protected acres preserve a coastal mosaic of dunes, marsh, and maritime forest.",
+      "descriptionSourceUrl": "https://www.nps.gov/foma/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fomc": {
+      "near": {
+        "city": "Baltimore",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/fomc/planyourvisit/directions.htm"
+      },
+      "description": "Walk the harbor defenses whose survival during the September 1814 Battle of Baltimore inspired the words of the national anthem. The star-shaped fort also holds stories from the Civil War through World War II.",
+      "descriptionSourceUrl": "https://www.nps.gov/fomc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fomr": {
+      "near": {
+        "city": "Hampton",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/fomr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the coastal fort where people escaping slavery sought freedom during the Civil War. Old Point Comfort's longer history links Indigenous homelands, the 1619 arrival of enslaved Africans, and centuries of national defense.",
+      "descriptionSourceUrl": "https://www.nps.gov/fomr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fopu": {
+      "near": {
+        "city": "Savannah",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/fopu/planyourvisit/directions.htm"
+      },
+      "description": "Explore the brick fortress where rifled artillery demonstrated the vulnerability of masonry defenses during the Civil War. Massive walls and the surrounding coastal landscape make a turning point in military technology tangible.",
+      "descriptionSourceUrl": "https://www.nps.gov/fopu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fost": {
+      "near": {
+        "city": "Rome",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/fost/planyourvisit/directions.htm"
+      },
+      "description": "Explore a fort associated with the struggle to control the Oneida Carrying Place, the vital portage linking eastern waterways with the Great Lakes. The site connects military rivalry with the homelands and choices of the Six Nations Confederacy.",
+      "descriptionSourceUrl": "https://www.nps.gov/fost/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "foun": {
+      "near": {
+        "city": "Watrous",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/foun/planyourvisit/directions.htm"
+      },
+      "description": "Walk among adobe walls rising from shortgrass prairie beside traces of the Santa Fe Trail. From 1851 to 1891, Fort Union helped reshape life, trade, and military power across the Southwest.",
+      "descriptionSourceUrl": "https://www.nps.gov/foun/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fobu": {
+      "near": {
+        "city": "Kemmerer",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/fobu/planyourvisit/directions.htm"
+      },
+      "description": "Explore fossil-rich ridges that preserve an ancient freshwater lake and its surrounding life. Exceptionally detailed fish, plants, and other animals reveal a warm, wet world beneath today's Wyoming landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/fobu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frri": {
+      "near": {
+        "city": "Anniston",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/frri/planyourvisit/directions.htm"
+      },
+      "description": "Explore the story of the Freedom Riders, whose 1961 challenge to segregated interstate travel met violent resistance in Alabama. The monument connects the attack near Anniston with a campaign that changed the civil rights struggle.",
+      "descriptionSourceUrl": "https://www.nps.gov/places/freedom-riders-national-monument.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gewa": {
+      "near": {
+        "city": "Colonial Beach",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/gewa/planyourvisit/directions.htm"
+      },
+      "description": "Explore 551 acres in Virginia's Northern Neck where George Washington was born in 1732. The family landscape also reveals how later generations chose to remember his beginnings.",
+      "descriptionSourceUrl": "https://www.nps.gov/gewa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gwca": {
+      "near": {
+        "city": "Diamond",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/gwca/planyourvisit/directions.htm"
+      },
+      "description": "Walk the farm landscape that helped awaken George Washington Carver's curiosity about plants. The monument connects his childhood with the scientist, educator, and humanitarian he became.",
+      "descriptionSourceUrl": "https://www.nps.gov/gwca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gicl": {
+      "near": {
+        "city": "Gila Hot Springs",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/gicl/planyourvisit/nearbyattractions.htm"
+      },
+      "description": "Follow a canyon trail to rooms built inside natural caves by Mogollon people in the late 1200s. The surviving walls make family life and skilled construction tangible within a rugged mountain setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/gicl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gois": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/gois/planyourvisit/directions.htm"
+      },
+      "description": "Cross New York Harbor to an island shaped by nearly two centuries of Army and Coast Guard service. Historic fortifications place the city's waterfront in a wider story of defense and national service.",
+      "descriptionSourceUrl": "https://www.nps.gov/gois/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "grpo": {
+      "near": {
+        "city": "Grand Portage",
+        "state": "MN",
+        "sourceUrl": "https://www.nps.gov/grpo/planyourvisit/directions.htm"
+      },
+      "description": "Explore a reconstructed fur-trade depot on Lake Superior and the pathways that linked it with inland waters. The monument tells the partnership between the Grand Portage Anishinaabe and the North West Company, with continuing Tribal stewardship today.",
+      "descriptionSourceUrl": "https://www.nps.gov/grpo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hafo": {
+      "near": {
+        "city": "Hagerman",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/hafo/planyourvisit/directions.htm"
+      },
+      "description": "Discover fossils of horses, mastodons, ground sloths, and other animals from a very different Idaho. The monument reveals the wetlands, forests, and grasslands that supported life during the Pliocene.",
+      "descriptionSourceUrl": "https://www.nps.gov/hafo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pima": {
+      "near": {
+        "city": "Sacaton",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/pima/planyourvisit/directions.htm"
+      },
+      "description": "This protected archaeological place preserves the story of an ancestral Sonoran Desert community and its farming landscape. It lies on Gila River Indian Community land and is not open for public visitation.",
+      "descriptionSourceUrl": "https://www.nps.gov/pima/learn/news/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hove": {
+      "near": {
+        "city": "Cortez",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/hove/planyourvisit/directions.htm"
+      },
+      "description": "Follow canyon rims to multistory stone towers balanced on ledges and boulders. Built between 1200 and 1300 CE, Hovenweep's six settlement groups preserve a striking ancestral Pueblo landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/hove/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jeca": {
+      "near": {
+        "city": "Custer",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/jeca/planyourvisit/directions.htm"
+      },
+      "description": "Explore a small portion of an underground system with more than 220 surveyed miles of passage. Guided cave routes reveal delicate formations and the intricate spaces hidden beneath the Black Hills.",
+      "descriptionSourceUrl": "https://www.nps.gov/jeca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "joda": {
+      "near": {
+        "city": "Dayville",
+        "state": "OR",
+        "sourceUrl": "https://www.nps.gov/joda/planyourvisit/directions.htm"
+      },
+      "description": "Explore a fossil landscape that records changing climates, forests, and grasslands across ancient Oregon. Exhibits and colorful rock formations reveal worlds inhabited by early horses, brontotheres, and other long-vanished mammals.",
+      "descriptionSourceUrl": "https://www.nps.gov/joda/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "kaww": {
+      "near": {
+        "city": "Patten",
+        "state": "ME",
+        "sourceUrl": "https://www.nps.gov/kaww/planyourvisit/directions.htm"
+      },
+      "description": "Explore wooded country threaded by rivers and streams, with broad views toward Katahdin. Trails and water routes connect Maine's northern landscape with a human history reaching back millennia.",
+      "descriptionSourceUrl": "https://www.nps.gov/kaww/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "labe": {
+      "near": {
+        "city": "Tulelake",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/labe/planyourvisit/directions.htm"
+      },
+      "description": "Explore a volcanic landscape shaped by the Medicine Lake volcano, with more than 800 caves and rugged high-desert terrain. Rock art, campsites, and battlefields connect its geology with Indigenous history and conflict.",
+      "descriptionSourceUrl": "https://www.nps.gov/labe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "libi": {
+      "near": {
+        "city": "Crow Agency",
+        "state": "MT",
+        "sourceUrl": "https://www.nps.gov/libi/planyourvisit/directions.htm"
+      },
+      "description": "Walk the hills where Lakota, Cheyenne, and Arapaho warriors fought the U.S. Seventh Cavalry on June 25–26, 1876. Memorials and battlefield places invite reflection on the battle and the policies that threatened Indigenous ways of life.",
+      "descriptionSourceUrl": "https://www.nps.gov/libi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "memy": {
+      "near": {
+        "city": "Jackson",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/memy/planyourvisit/directions.htm"
+      },
+      "description": "Encounter the family home of civil rights organizers Medgar and Myrlie Evers. Medgar's assassination here in June 1963 connects this modest house with a national struggle for equality and justice.",
+      "descriptionSourceUrl": "https://www.nps.gov/memy/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "misp": {
+      "near": {
+        "city": "Nancy",
+        "state": "KY",
+        "sourceUrl": "https://www.nps.gov/misp/planyourvisit/directions.htm"
+      },
+      "description": "Explore rolling Kentucky fields where Union forces won an important early Civil War victory. The battlefield reveals why control of this border state mattered to both sides.",
+      "descriptionSourceUrl": "https://www.nps.gov/misp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "moca": {
+      "near": {
+        "city": "Camp Verde",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/moca/planyourvisit/directions.htm"
+      },
+      "description": "Look up at a twenty-room dwelling tucked into a limestone cliff above the desert. Protected since 1906, this remarkable structure reveals the ingenuity of the people who made a home here.",
+      "descriptionSourceUrl": "https://www.nps.gov/moca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "muwo": {
+      "near": {
+        "city": "Mill Valley",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/muwo/planyourvisit/directions.htm"
+      },
+      "description": "Walk beneath old-growth coast redwoods along Redwood Creek, where fog and flowing water sustain the forest. Protected since 1908, the grove offers an intimate encounter with towering trees close to San Francisco.",
+      "descriptionSourceUrl": "https://www.nps.gov/muwo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nabr": {
+      "near": {
+        "city": "Blanding",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/nabr/planyourvisit/directions.htm"
+      },
+      "description": "Look down on three great sandstone bridges or follow trails into the canyons beneath them. Protected since 1908, these spans reveal the power of flowing water in a dry ancestral Pueblo landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/nabr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nava": {
+      "near": {
+        "city": "Kayenta",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/nava/planyourvisit/directions.htm"
+      },
+      "description": "Look across sandstone canyons toward ancestral homes sheltered in natural alcoves. The villages were last occupied around 1300, but remain spiritually important to the Hopi, Zuni, Paiute, and Navajo peoples connected with this place.",
+      "descriptionSourceUrl": "https://www.nps.gov/nava/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "orca": {
+      "near": {
+        "city": "Cave Junction",
+        "state": "OR",
+        "sourceUrl": "https://www.nps.gov/orca/planyourvisit/directions.htm"
+      },
+      "description": "Enter twisting passages carved by acidic water through marble in the Siskiyou Mountains. Guided cave routes reveal an underground landscape, while forest trails explore the mountain above.",
+      "descriptionSourceUrl": "https://www.nps.gov/orca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "orpi": {
+      "near": {
+        "city": "Ajo",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/orpi/planyourvisit/directions.htm"
+      },
+      "description": "Explore a living Sonoran Desert of distinctive cacti, mountain backdrops, and hidden animal habitats. Scenic drives and wilderness paths connect this biosphere reserve with thousands of years of desert life.",
+      "descriptionSourceUrl": "https://www.nps.gov/orpi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "petr": {
+      "near": {
+        "city": "Albuquerque",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/petr/planyourvisit/directions.htm"
+      },
+      "description": "Follow volcanic rock escarpments marked with designs carved by Native Americans and Spanish settlers some 400 to 700 years ago. These images remain culturally and spiritually important to their descendants.",
+      "descriptionSourceUrl": "https://www.nps.gov/petr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pisp": {
+      "near": {
+        "city": "Fredonia",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/pisp/planyourvisit/directions.htm"
+      },
+      "description": "Explore a spring-centered landscape where Kaibab Paiute traditions meet the history of Mormon settlement. A fort, cabins, and gardens reveal why this water source mattered in the arid country.",
+      "descriptionSourceUrl": "https://www.nps.gov/pisp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pipe": {
+      "near": {
+        "city": "Pipestone",
+        "state": "MN",
+        "sourceUrl": "https://www.nps.gov/pipe/planyourvisit/directions.htm"
+      },
+      "description": "Follow the red-stone landscape where Indigenous people have quarried pipestone for more than 3,000 years. The continuing creation of ceremonial pipes makes this a living sacred place.",
+      "descriptionSourceUrl": "https://www.nps.gov/pipe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "popo": {
+      "near": {
+        "city": "Epps",
+        "state": "LA",
+        "sourceUrl": "https://www.nps.gov/popo/planyourvisit/directions.htm"
+      },
+      "description": "Walk among monumental earthworks built by a sophisticated culture some 3,000 years ago. Poverty Point's scale and far-reaching trade connections reveal an extraordinary ancient center in the lower Mississippi region.",
+      "descriptionSourceUrl": "https://www.nps.gov/popo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pull": {
+      "near": {
+        "city": "Chicago",
+        "state": "IL",
+        "sourceUrl": "https://www.nps.gov/pull/planyourvisit/directions.htm"
+      },
+      "description": "Walk a planned industrial neighborhood known for its distinctive architecture and urban design. Pullman's preserved places reveal how race, gender, labor, and economic power shaped the opportunities of people who lived and worked here.",
+      "descriptionSourceUrl": "https://www.nps.gov/pull/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rabr": {
+      "near": {
+        "city": "Page",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/rabr/planyourvisit/directions.htm"
+      },
+      "description": "Approach a vast natural sandstone bridge tucked within remote canyon country. Rainbow Bridge is sacred to neighboring Tribal nations, giving this remarkable span a significance beyond its geology.",
+      "descriptionSourceUrl": "https://www.nps.gov/rabr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ruca": {
+      "near": {
+        "city": "Bridgeport",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/ruca/planyourvisit/directions.htm"
+      },
+      "description": "Explore the story of a rock shelter used by people for about 12,000 years. Although the cave itself is closed to entry, the archaeological record reveals changing technologies and lifeways across the prehistoric Southeast.",
+      "descriptionSourceUrl": "https://www.nps.gov/ruca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sapu": {
+      "near": {
+        "city": "Mountainair",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/sapu/planyourvisit/directions.htm"
+      },
+      "description": "Explore three separate landscapes of Pueblo settlements and Spanish mission remains. Their walls reveal cultural exchange, conflict, and the difficult consequences of early colonial encounters in New Mexico.",
+      "descriptionSourceUrl": "https://www.nps.gov/sapu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "scbl": {
+      "near": {
+        "city": "Gering",
+        "state": "NE",
+        "sourceUrl": "https://www.nps.gov/scbl/planyourvisit/directions.htm"
+      },
+      "description": "Look up at an 800-foot landmark above the North Platte River, recognized by Indigenous peoples and emigrant travelers alike. Across 3,000 acres, trails and overlooks connect sweeping prairie scenery with the Oregon, California, and Mormon trails.",
+      "descriptionSourceUrl": "https://www.nps.gov/scbl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "stli": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/stli/planyourvisit/directions.htm"
+      },
+      "description": "Cross the harbor toward the Statue of Liberty, France's gift dedicated in 1886. The island setting brings an enduring symbol of freedom into view against the skyline and waters of New York.",
+      "descriptionSourceUrl": "https://www.nps.gov/stli/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ston": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/ston/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Greenwich Village streets associated with the Stonewall Uprising of June 1969. This small urban landscape marks a pivotal moment in the LGBTQ civil rights movement.",
+      "descriptionSourceUrl": "https://www.nps.gov/ston/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sucr": {
+      "near": {
+        "city": "Flagstaff",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/sucr/planyourvisit/directions.htm"
+      },
+      "description": "Walk beside dark lava flows left by an eruption roughly a thousand years ago. Trees and flowers growing among the volcanic rock reveal the gradual renewal of a landscape that changed lives across northern Arizona.",
+      "descriptionSourceUrl": "https://www.nps.gov/sucr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tica": {
+      "near": {
+        "city": "American Fork",
+        "state": "UT",
+        "sourceUrl": "https://www.nps.gov/tica/planyourvisit/directions.htm"
+      },
+      "description": "Climb into mountain scenery before entering a hidden world of decorated cave chambers. Guided tours connect delicate formations with the science and history of cave exploration.",
+      "descriptionSourceUrl": "https://www.nps.gov/tica/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tont": {
+      "near": {
+        "city": "Roosevelt",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/tont/planyourvisit/directions.htm"
+      },
+      "description": "Look into cliff dwellings occupied between 1300 and 1450 in the northern Sonoran Desert. The buildings preserve evidence of the diverse communities that formed the Salado cultural world in Tonto Basin.",
+      "descriptionSourceUrl": "https://www.nps.gov/tont/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tule": {
+      "near": {
+        "city": "Tulelake",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/tule/planyourvisit/directions.htm"
+      },
+      "description": "Explore the history of the Tule Lake Segregation Center, where Japanese Americans were incarcerated during World War II. Nearby Camp Tulelake adds the stories of a CCC camp, detention facility, and prisoner-of-war camp.",
+      "descriptionSourceUrl": "https://www.nps.gov/tule/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tusk": {
+      "near": {
+        "city": "North Las Vegas",
+        "state": "NV",
+        "sourceUrl": "https://www.nps.gov/tusk/planyourvisit/directions.htm"
+      },
+      "description": "Explore an open fossil landscape at the edge of Las Vegas, shaped by water over roughly 570,000 years. The ground beneath today's desert preserves evidence of changing environments and ancient life.",
+      "descriptionSourceUrl": "https://www.nps.gov/tusk/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tuzi": {
+      "near": {
+        "city": "Clarkdale",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/tuzi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the remains of a hilltop pueblo above the Verde Valley. Its growth from a small community about a thousand years ago reveals the importance of water and farming in this desert landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/tuzi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "waco": {
+      "near": {
+        "city": "Waco",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/waco/planyourvisit/directions.htm"
+      },
+      "description": "See the fossil story of a nursery herd of Columbian mammoths preserved in central Texas. These animals stood as tall as 14 feet, giving an arresting sense of the Ice Age world beneath today's landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/waco/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "waca": {
+      "near": {
+        "city": "Flagstaff",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/waca/planyourvisit/directions.htm"
+      },
+      "description": "Follow a winding canyon landscape where ancestral communities built homes beneath cliffs and farmed along the rim. The surviving dwellings connect dramatic scenery with Indigenous lives and continuing cultural ties.",
+      "descriptionSourceUrl": "https://www.nps.gov/waca/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wupa": {
+      "near": {
+        "city": "Flagstaff",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/wupa/planyourvisit/directions.htm"
+      },
+      "description": "Explore stone pueblos between the Painted Desert and northern Arizona's pine-covered highlands. In the early 1100s, ancestors of today's Pueblo communities made this a center of trade and cultural life.",
+      "descriptionSourceUrl": "https://www.nps.gov/wupa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "yuho": {
+      "near": {
+        "city": "Cortez",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/yuho/planyourvisit/directions.htm"
+      },
+      "description": "Explore the setting of a large, unexcavated pueblo in Montezuma Valley between Mesa Verde and Ute Mountain. Protected since 1919, Yucca House preserves an archaeological landscape whose scale emerges through careful observation.",
+      "descriptionSourceUrl": "https://www.nps.gov/yuho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "alpo": {
+      "near": {
+        "city": "Cresson",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/alpo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the mountain railroad that completed Pennsylvania's canal route between Philadelphia and Pittsburgh in 1834. Its surviving landscape reveals the ingenuity required to carry boats and travelers across the Alleghenies.",
+      "descriptionSourceUrl": "https://www.nps.gov/alpo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ande": {
+      "near": {
+        "city": "Andersonville",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/ande/planyourvisit/directions.htm"
+      },
+      "description": "Walk the grounds of the Civil War prison where nearly 13,000 men died. The cemetery and National Prisoner of War Museum broaden this place of remembrance to the experience of American captivity across conflicts.",
+      "descriptionSourceUrl": "https://www.nps.gov/ande/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "anjo": {
+      "near": {
+        "city": "Greeneville",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/anjo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home and community of Andrew Johnson, whose presidency unfolded amid the struggle over Reconstruction. His story brings impeachment, citizenship, and the balance of federal powers into a personal historic setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/anjo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "beol": {
+      "near": {
+        "city": "La Junta",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/beol/planyourvisit/directions.htm"
+      },
+      "description": "Step into a reconstructed adobe trading post on the Santa Fe Trail beside the Arkansas River. Bent's Fort reveals the exchange among traders, travelers, Cheyenne and Arapaho people, and the expanding United States during the 1840s.",
+      "descriptionSourceUrl": "https://www.nps.gov/beol/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "boaf": {
+      "near": {
+        "city": "Boston",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/boaf/planyourvisit/directions.htm"
+      },
+      "description": "Walk Beacon Hill streets shaped by Boston's nineteenth-century Black community. Historic places connect abolition, the Underground Railroad, and the long struggle for equal education and civil rights.",
+      "descriptionSourceUrl": "https://www.nps.gov/boaf/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "brvb": {
+      "near": {
+        "city": "Topeka",
+        "state": "KS",
+        "sourceUrl": "https://www.nps.gov/brvb/planyourvisit/directions.htm"
+      },
+      "description": "Explore the people and communities whose organizing led to the landmark Brown v. Board of Education decision. The site reveals how ordinary families challenged school segregation and helped change the nation's understanding of equality.",
+      "descriptionSourceUrl": "https://www.nps.gov/brvb/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "carl": {
+      "near": {
+        "city": "Flat Rock",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/carl/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home and mountain setting of writer Carl Sandburg. The farm landscape offers a personal view of the poet's life, work, and connection to the natural world.",
+      "descriptionSourceUrl": "https://www.nps.gov/carl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cawo": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/cawo/planyourvisit/directions.htm"
+      },
+      "description": "Visit the home where historian Carter G. Woodson helped transform the study of African American life. Here he established Negro History Week in 1926, the observance that developed into Black History Month.",
+      "descriptionSourceUrl": "https://www.nps.gov/cawo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chpi": {
+      "near": {
+        "city": "Mount Pleasant",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/chpi/planyourvisit/directions.htm"
+      },
+      "description": "Explore Snee Farm, a plantation associated with Constitution signer Charles Pinckney. The site examines his political life alongside the labor and lives of the African people he enslaved.",
+      "descriptionSourceUrl": "https://www.nps.gov/chpi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "clba": {
+      "near": {
+        "city": "Glen Echo",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/clba/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home where Clara Barton spent the final fifteen years of her life. Its unusual spaces reveal a life organized around humanitarian service and aid during war and disaster.",
+      "descriptionSourceUrl": "https://www.nps.gov/clba/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "edal": {
+      "near": {
+        "city": "Philadelphia",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/edal/planyourvisit/directions.htm"
+      },
+      "description": "Step into the modest house of Edgar Allan Poe during his productive Philadelphia years. The rooms offer a close view of the creativity, family hardship, and uncertainty behind his enduring stories.",
+      "descriptionSourceUrl": "https://www.nps.gov/edal/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "eise": {
+      "near": {
+        "city": "Gettysburg",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/eise/planyourvisit/directions.htm"
+      },
+      "description": "Explore Dwight and Mamie Eisenhower's farm beside the Gettysburg battlefield, with views toward South Mountain. This country retreat also became a meeting place for world leaders during the tensions of the Cold War.",
+      "descriptionSourceUrl": "https://www.nps.gov/eise/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "elro": {
+      "near": {
+        "city": "Hyde Park",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/elro/planyourvisit/directions.htm"
+      },
+      "description": "Explore Val-Kill, Eleanor Roosevelt's home and a gathering place for activists, journalists, friends, and state visitors. Its informal setting opens a personal view of her public life and commitment to human rights.",
+      "descriptionSourceUrl": "https://www.nps.gov/elro/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "euon": {
+      "near": {
+        "city": "Danville",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/euon/planyourvisit/directions.htm"
+      },
+      "description": "Explore Tao House, the secluded California home where Eugene O'Neill wrote several of his best-known plays. The hillside setting connects a quiet refuge with the intense family worlds of his later work.",
+      "descriptionSourceUrl": "https://www.nps.gov/euon/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fila": {
+      "near": {
+        "city": "Canton",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/fila/planyourvisit/directions.htm"
+      },
+      "description": "Explore Ida Saxton McKinley's historic home and the stories of America's first ladies in downtown Canton. The site examines how the role grew from a private relationship into a position of public influence.",
+      "descriptionSourceUrl": "https://www.nps.gov/fila/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "foth": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/foth/planyourvisit/directions.htm"
+      },
+      "description": "Visit the theater where Abraham Lincoln was shot on April 14, 1865. The surrounding historic places connect his assassination with the ordinary people who witnessed and responded to a national tragedy.",
+      "descriptionSourceUrl": "https://www.nps.gov/foth/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fobo": {
+      "near": {
+        "city": "Bowie",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/fobo/planyourvisit/directions.htm"
+      },
+      "description": "Follow a three-mile loop through the landscape of Fort Bowie and Apache Pass. The route reveals the collision between Chiricahua Apache defense of their homeland and the U.S. Army's westward expansion.",
+      "descriptionSourceUrl": "https://www.nps.gov/fobo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "foda": {
+      "near": {
+        "city": "Fort Davis",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/foda/planyourvisit/directions.htm"
+      },
+      "description": "Explore the surviving buildings of a frontier post that guarded routes across west Texas from 1854 to 1891. The setting beneath rugged cliffs brings the military and travel history of the Trans-Pecos into view.",
+      "descriptionSourceUrl": "https://www.nps.gov/foda/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fola": {
+      "near": {
+        "city": "Fort Laramie",
+        "state": "WY",
+        "sourceUrl": "https://www.nps.gov/fola/planyourvisit/directions.htm"
+      },
+      "description": "Walk a post that began as an 1834 fur-trading fort and became a major Northern Plains military center. Its buildings and grounds connect western migration with treaties, conflict, and Indigenous resistance to encroachment.",
+      "descriptionSourceUrl": "https://www.nps.gov/fola/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fols": {
+      "near": {
+        "city": "Larned",
+        "state": "KS",
+        "sourceUrl": "https://www.nps.gov/fols/planyourvisit/directions.htm"
+      },
+      "description": "Explore a well-preserved sandstone army post from the 1860s and 1870s beside the Santa Fe Trail. Barracks and other historic buildings reveal military life during a turbulent era of expansion and conflict.",
+      "descriptionSourceUrl": "https://www.nps.gov/fols/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fopo": {
+      "near": {
+        "city": "San Francisco",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/fopo/planyourvisit/directions.htm"
+      },
+      "description": "Explore vaulted brick casemates directly beneath the Golden Gate Bridge. Built to defend San Francisco Bay after the Gold Rush, Fort Point pairs intricate military architecture with an extraordinary harbor setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/fopo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fora": {
+      "near": {
+        "city": "Manteo",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/fora/planyourvisit/directions.htm"
+      },
+      "description": "Explore Roanoke Island's layered history, from Algonquian communities and early English colonization to a Civil War freedmen's community. The wooded coastal setting also holds stories of later experiments in radio communication.",
+      "descriptionSourceUrl": "https://www.nps.gov/fora/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fosc": {
+      "near": {
+        "city": "Fort Scott",
+        "state": "KS",
+        "sourceUrl": "https://www.nps.gov/fosc/planyourvisit/directions.htm"
+      },
+      "description": "Walk among historic buildings, a parade ground, and tallgrass prairie at a post active through the upheavals of 1842–1873. Its stories connect westward expansion, contested freedom, and the Civil War.",
+      "descriptionSourceUrl": "https://www.nps.gov/fosc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fosm": {
+      "near": {
+        "city": "Fort Smith",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/fosm/planyourvisit/directions.htm"
+      },
+      "description": "Explore the edge of historic Indian Territory through military remains, courthouse stories, and the Trail of Tears. The site follows nearly eighty years of conflict, law, and federal power from 1817 to 1896.",
+      "descriptionSourceUrl": "https://www.nps.gov/fosm/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fous": {
+      "near": {
+        "city": "Williston",
+        "state": "ND",
+        "sourceUrl": "https://www.nps.gov/fous/planyourvisit/directions.htm"
+      },
+      "description": "Explore a reconstructed trading post where Northern Plains nations exchanged buffalo robes and furs for goods from across the world. Active from 1828 to 1867, Fort Union reveals the relationships that sustained Upper Missouri commerce.",
+      "descriptionSourceUrl": "https://www.nps.gov/fous/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fova": {
+      "near": {
+        "city": "Vancouver",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/fova/planyourvisit/directions.htm"
+      },
+      "description": "Explore Columbia River history through a fur-trading post, military places, and aviation stories. The park's separate sites reveal transitions in settlement, power, and community across the Pacific Northwest.",
+      "descriptionSourceUrl": "https://www.nps.gov/fova/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frdo": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/frdo/planyourvisit/directions.htm"
+      },
+      "description": "Explore Cedar Hill, where Frederick Douglass lived for the final seventeen years of his life. The hilltop home brings his work as an abolitionist, writer, and advocate for equality into a personal setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/frdo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frla": {
+      "near": {
+        "city": "Brookline",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/frla/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home and design office where Frederick Law Olmsted established his landscape architecture practice in 1883. The site reveals how ideas and drawings became parks and public landscapes across the country.",
+      "descriptionSourceUrl": "https://www.nps.gov/frla/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frhi": {
+      "near": {
+        "city": "Point Marion",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/frhi/planyourvisit/directions.htm"
+      },
+      "description": "Explore Albert Gallatin's restored country estate above the Monongahela River. Its rooms and grounds introduce the Treasury secretary whose work helped finance the Louisiana Purchase, exploration, and early national infrastructure.",
+      "descriptionSourceUrl": "https://www.nps.gov/frhi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "grko": {
+      "near": {
+        "city": "Deer Lodge",
+        "state": "MT",
+        "sourceUrl": "https://www.nps.gov/grko/planyourvisit/directions.htm"
+      },
+      "description": "Explore the headquarters of a cattle operation that once ranged across a ten-million-acre empire. Historic ranch buildings and open land reveal the labor and business behind a powerful image of the American West.",
+      "descriptionSourceUrl": "https://www.nps.gov/grko/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hamp": {
+      "near": {
+        "city": "Towson",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/hamp/planyourvisit/directions.htm"
+      },
+      "description": "Explore the surviving estate of a plantation that once extended across 25,000 acres. Its grand house and working landscape reveal the intertwined lives of the Ridgely family, enslaved people, servants, and other laborers.",
+      "descriptionSourceUrl": "https://www.nps.gov/hamp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hstr": {
+      "near": {
+        "city": "Independence",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/hstr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Missouri surroundings that Harry Truman knew before, during, and after his presidency. Home and neighborhood stories connect an internationally consequential public life with familiar routines and local roots.",
+      "descriptionSourceUrl": "https://www.nps.gov/hstr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "heho": {
+      "near": {
+        "city": "West Branch",
+        "state": "IA",
+        "sourceUrl": "https://www.nps.gov/heho/planyourvisit/directions.htm"
+      },
+      "description": "Explore Herbert Hoover's modest birthplace and the community landscape preserved around it. The site traces the early influences behind a life of humanitarian service and a presidency marked by crisis.",
+      "descriptionSourceUrl": "https://www.nps.gov/heho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hofr": {
+      "near": {
+        "city": "Hyde Park",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/hofr/planyourvisit/directions.htm"
+      },
+      "description": "Explore Franklin D. Roosevelt's family home in the Hudson Valley, a refuge he returned to through personal and political crises. Gardens, paths, and nearby presidential history place his long public career within a familiar landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/hofr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hofu": {
+      "near": {
+        "city": "Elverson",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/hofu/planyourvisit/directions.htm"
+      },
+      "description": "Explore 848 acres around a charcoal-fired ironmaking community that operated from 1771 to 1883. Historic structures reveal the technology, business, and everyday work behind early American industry.",
+      "descriptionSourceUrl": "https://www.nps.gov/hofu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hutr": {
+      "near": {
+        "city": "Ganado",
+        "state": "AZ",
+        "sourceUrl": "https://www.nps.gov/hutr/planyourvisit/directions.htm"
+      },
+      "description": "Step into a trading post that has sold goods and traded Native American art in Ganado since 1878. Wooden floors, rugs, and mercantile spaces connect a working business with the history of the Navajo Nation.",
+      "descriptionSourceUrl": "https://www.nps.gov/hutr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jaga": {
+      "near": {
+        "city": "Mentor",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/jaga/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home whose front porch became the stage for James Garfield's 1880 presidential campaign. The house opens the story of his family and a political career cut short by assassination.",
+      "descriptionSourceUrl": "https://www.nps.gov/jaga/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jofi": {
+      "near": {
+        "city": "Brookline",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/jofi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the birthplace of John F. Kennedy in a residential Boston-area neighborhood. The family home introduces the early surroundings of a child who would become the thirty-fifth president.",
+      "descriptionSourceUrl": "https://www.nps.gov/jofi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "jomu": {
+      "near": {
+        "city": "Martinez",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/jomu/planyourvisit/directions.htm"
+      },
+      "description": "Explore John Muir's home and fruit-ranch landscape, where family life and working land shaped a passionate advocate for wilderness. The site connects his writing and conservation work with the practical world he inhabited.",
+      "descriptionSourceUrl": "https://www.nps.gov/jomu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "knri": {
+      "near": {
+        "city": "Stanton",
+        "state": "ND",
+        "sourceUrl": "https://www.nps.gov/knri/planyourvisit/directions.htm"
+      },
+      "description": "Explore village ground beside the Knife River where earthlodge communities farmed, hunted, and traded. The site reveals centuries of Indigenous commerce before and during the rise of the fur trade.",
+      "descriptionSourceUrl": "https://www.nps.gov/knri/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "liho": {
+      "near": {
+        "city": "Springfield",
+        "state": "IL",
+        "sourceUrl": "https://www.nps.gov/liho/planyourvisit/directions.htm"
+      },
+      "description": "Walk the neighborhood around Abraham and Mary Lincoln's Springfield home. The preserved domestic setting brings the future president into view as a spouse, parent, and neighbor.",
+      "descriptionSourceUrl": "https://www.nps.gov/liho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chsc": {
+      "near": {
+        "city": "Little Rock",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/chsc/planyourvisit/directions.htm"
+      },
+      "description": "Encounter the school where the Little Rock Nine challenged segregation in 1957. The site examines their courage and the confrontation that tested the federal government's commitment to civil rights.",
+      "descriptionSourceUrl": "https://www.nps.gov/chsc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "long": {
+      "near": {
+        "city": "Cambridge",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/long/planyourvisit/directions.htm"
+      },
+      "description": "Explore a Georgian house that served as Washington's Revolutionary headquarters and later the home of poet Henry Wadsworth Longfellow. Its layered history also includes colonial enslavement and community activism.",
+      "descriptionSourceUrl": "https://www.nps.gov/long/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mawa": {
+      "near": {
+        "city": "Richmond",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/mawa/planyourvisit/directions.htm"
+      },
+      "description": "Explore the preserved home of Maggie Lena Walker in Richmond's historic Jackson Ward. Her work as a bank president, editor, and organizer reveals a determined campaign for economic opportunity and civil rights under Jim Crow.",
+      "descriptionSourceUrl": "https://www.nps.gov/mawa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "manz": {
+      "near": {
+        "city": "Independence",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/manz/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Owens Valley site where the U.S. government incarcerated Japanese Americans during World War II. Surviving traces and reconstructed spaces help reveal the lives disrupted behind the camp's boundaries.",
+      "descriptionSourceUrl": "https://www.nps.gov/manz/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mava": {
+      "near": {
+        "city": "Kinderhook",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/mava/planyourvisit/directions.htm"
+      },
+      "description": "Explore Martin Van Buren's home and historic landscape near his birthplace. The setting invites a closer look at a political life shaped by expansion, Indigenous removal, slavery, and the crises leading toward the Civil War.",
+      "descriptionSourceUrl": "https://www.nps.gov/mava/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mabe": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/mamc/planyourvisit/directions.htm"
+      },
+      "description": "Explore the council house associated with Mary McLeod Bethune and the National Council of Negro Women. The site connects Black women's organizing with the struggle for civil rights and expanded opportunity.",
+      "descriptionSourceUrl": "https://www.nps.gov/mamc/learn/historyculture/the-council-house.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "miin": {
+      "near": {
+        "city": "Jerome",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/miin/planyourvisit/directions.htm"
+      },
+      "description": "Walk the Idaho landscape where more than 13,000 Japanese Americans were held during World War II. Remnants of the camp preserve personal histories and the consequences of incarceration without due process.",
+      "descriptionSourceUrl": "https://www.nps.gov/miin/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mimi": {
+      "near": {
+        "city": "Philip",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/mimi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Cold War missile landscape hidden in the open Great Plains. Preserved facilities reveal the technology, daily vigilance, and immense destructive power behind nuclear deterrence.",
+      "descriptionSourceUrl": "https://www.nps.gov/mimi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nico": {
+      "near": {
+        "city": "Nicodemus",
+        "state": "KS",
+        "sourceUrl": "https://www.nps.gov/nico/planyourvisit/directions.htm"
+      },
+      "description": "Explore a Great Plains community established by formerly enslaved African Americans seeking opportunity after Reconstruction. Historic buildings preserve the story of Black homesteading and a settlement whose community endures.",
+      "descriptionSourceUrl": "https://www.nps.gov/nico/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "nisi": {
+      "near": {
+        "city": "Ninety Six",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/nisi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the remains of a South Carolina backcountry town, trading place, and Revolutionary battlefield. The landscape reveals the competing ambitions of settlers, Cherokee people, and armies in the eighteenth century.",
+      "descriptionSourceUrl": "https://www.nps.gov/nisi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "paav": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/paav/planyourvisit/directions.htm"
+      },
+      "description": "Walk the ceremonial avenue where Americans have paraded, protested, and marked national change. Its streetscape connects the everyday capital with the public rituals and political struggles of the nation.",
+      "descriptionSourceUrl": "https://www.nps.gov/paav/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wicl": {
+      "near": {
+        "city": "Hope",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/wicl/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Arkansas house where Bill Clinton spent his earliest years with his mother and grandparents. The setting introduces the family and community experiences behind the future president's public life.",
+      "descriptionSourceUrl": "https://www.nps.gov/wicl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rrbh": {
+      "near": {
+        "city": "Dixon",
+        "state": "IL",
+        "sourceUrl": "https://yaf.org/reagan-boyhood-home/"
+      },
+      "description": "Explore the Illinois home associated with Ronald Reagan's boyhood. The house connects a small-town upbringing with the early life of the future actor and president.",
+      "descriptionSourceUrl": "https://yaf.org/reagan-boyhood-home/",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sahi": {
+      "near": {
+        "city": "Oyster Bay",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/sahi/planyourvisit/directions.htm"
+      },
+      "description": "Explore Theodore Roosevelt's home, historic buildings, and 83 acres of natural surroundings. His family retreat became a Summer White House, linking a Long Island landscape with the affairs of a growing world power.",
+      "descriptionSourceUrl": "https://www.nps.gov/sahi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sapa": {
+      "near": {
+        "city": "Mount Vernon",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/sapa/planyourvisit/directions.htm"
+      },
+      "description": "Explore a colonial churchyard and stone church drawn into the American Revolution. The grounds connect local voting and militia life with the troops who used the unfinished chapel as a wartime hospital.",
+      "descriptionSourceUrl": "https://www.nps.gov/sapa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sama": {
+      "near": {
+        "city": "Salem",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/sama/planyourvisit/directions.htm"
+      },
+      "description": "Walk nine acres of historic waterfront with wharves and buildings tied to New England's maritime past. Salem's preserved places connect local work and commerce with stories reaching across the world's oceans.",
+      "descriptionSourceUrl": "https://www.nps.gov/sama/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sand": {
+      "near": {
+        "city": "Eads",
+        "state": "CO",
+        "sourceUrl": "https://www.nps.gov/sand/planyourvisit/directions.htm"
+      },
+      "description": "Pause beside the landscape where U.S. troops attacked a Cheyenne and Arapaho encampment on November 29, 1864. The site preserves a place of profound loss, remembrance, and continuing importance to descendant communities.",
+      "descriptionSourceUrl": "https://www.nps.gov/sand/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sair": {
+      "near": {
+        "city": "Saugus",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/sair/planyourvisit/directions.htm"
+      },
+      "description": "Explore twelve acres beside the Saugus River where seventeenth-century ironmakers brought industrial skills to colonial Massachusetts. Waterwheels, forges, and mills reveal the mechanics and labor of early iron production.",
+      "descriptionSourceUrl": "https://www.nps.gov/sair/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "spar": {
+      "near": {
+        "city": "Springfield",
+        "state": "MA",
+        "sourceUrl": "https://www.nps.gov/spar/planyourvisit/directions.htm"
+      },
+      "description": "Explore the armory landscape and collections behind nearly two centuries of military manufacturing. Firearms, historic buildings, and engineering stories reveal how Springfield influenced both national defense and American industry.",
+      "descriptionSourceUrl": "https://www.nps.gov/spar/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "stea": {
+      "near": {
+        "city": "Scranton",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/stea/planyourvisit/directions.htm"
+      },
+      "description": "Explore massive steam locomotives and the spaces where railroads were built, repaired, and preserved. Steamtown connects the machinery's scale with the workers and travelers who shaped the railway age.",
+      "descriptionSourceUrl": "https://www.nps.gov/stea/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "thrb": {
+      "near": {
+        "city": "New York City",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/thrb/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Manhattan townhouse setting of Theodore Roosevelt's childhood. His early interests and efforts to overcome poor health reveal the beginnings of a lifelong enthusiasm for vigorous outdoor life.",
+      "descriptionSourceUrl": "https://www.nps.gov/thrb/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "thri": {
+      "near": {
+        "city": "Buffalo",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/thri/planyourvisit/directions.htm"
+      },
+      "description": "Visit the Buffalo house where an improvised ceremony brought Theodore Roosevelt into the presidency in 1901. The setting introduces the sudden transition and the policies that would reshape government and international affairs.",
+      "descriptionSourceUrl": "https://www.nps.gov/thri/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "thst": {
+      "near": {
+        "city": "Port Tobacco",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/thst/planyourvisit/directions.htm"
+      },
+      "description": "Explore the home landscape of Thomas Stone, a Maryland signer of the Declaration of Independence. The estate connects a consequential political decision with the family and property he risked in supporting independence.",
+      "descriptionSourceUrl": "https://www.nps.gov/thst/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tuai": {
+      "near": {
+        "city": "Tuskegee",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/tuai/planyourvisit/directions.htm"
+      },
+      "description": "Explore Moton Field, where African American military pilots began their flight training during World War II. Hangars and exhibits reveal the skill and determination behind the airmen who challenged the assumptions of a segregated military.",
+      "descriptionSourceUrl": "https://www.nps.gov/tuai/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tuin": {
+      "near": {
+        "city": "Tuskegee",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/tuin/planyourvisit/directions.htm"
+      },
+      "description": "Explore the campus story that Booker T. Washington began building in 1881. Historic places connect education and self-determination with George Washington Carver's agricultural research and Tuskegee's continuing influence.",
+      "descriptionSourceUrl": "https://www.nps.gov/tuin/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ulsg": {
+      "near": {
+        "city": "Grantwood Village",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/ulsg/planyourvisit/directions.htm"
+      },
+      "description": "Explore White Haven, the Dent family home where Ulysses S. Grant met Julia and later lived with his family. The site examines their lives alongside those of the enslaved African Americans who worked the property.",
+      "descriptionSourceUrl": "https://www.nps.gov/ulsg/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "vama": {
+      "near": {
+        "city": "Hyde Park",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/vama/planyourvisit/directions.htm"
+      },
+      "description": "Explore a grand Hudson Valley estate built for the Vanderbilts' privileged way of life. The mansion and grounds reveal the architecture, wealth, and social world of America's Gilded Age.",
+      "descriptionSourceUrl": "https://www.nps.gov/vama/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "waba": {
+      "near": {
+        "city": "Cheyenne",
+        "state": "OK",
+        "sourceUrl": "https://www.nps.gov/waba/planyourvisit/directions.htm"
+      },
+      "description": "Walk the landscape where Custer's cavalry attacked Peace Chief Black Kettle's Cheyenne village at dawn on November 27, 1868. The site offers a place to remember those killed and examine the Great Plains Wars.",
+      "descriptionSourceUrl": "https://www.nps.gov/waba/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "whmi": {
+      "near": {
+        "city": "Walla Walla",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/whmi/planyourvisit/directions.htm"
+      },
+      "description": "Explore the place where a mission encounter became part of a devastating transformation of Cayuse homelands. The site examines newcomers, disease, conflict, and the consequences that followed the killings of 1847.",
+      "descriptionSourceUrl": "https://www.nps.gov/whmi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wiho": {
+      "near": {
+        "city": "Cincinnati",
+        "state": "OH",
+        "sourceUrl": "https://www.nps.gov/wiho/planyourvisit/directions.htm"
+      },
+      "description": "Explore the hilltop Greek Revival house where William Howard Taft was born and grew up. Family rooms and stories reveal the civic values and early environment of a future president and chief justice.",
+      "descriptionSourceUrl": "https://www.nps.gov/wiho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cato": {
+      "near": {
+        "city": "Thurmont",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/cato/planyourvisit/directions.htm"
+      },
+      "description": "Explore wooded mountain trails in a landscape restored through New Deal-era public works. Rocky viewpoints and regrowing forest reveal how former working land became a place for recreation.",
+      "descriptionSourceUrl": "https://www.nps.gov/cato/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "coga": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/coga/planyourvisit/directions.htm"
+      },
+      "description": "Pause among trees, lawn, and water within the National Mall's memorial landscape. Constitution Gardens offers a quieter setting for reflection close to the capital's major monuments.",
+      "descriptionSourceUrl": "https://www.nps.gov/coga/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fowa": {
+      "near": {
+        "city": "Fort Washington",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/fowa/planyourvisit/directions.htm"
+      },
+      "description": "Explore a Potomac River fort whose defenses evolved from nineteenth-century masonry to twentieth-century concrete and steel. Its commanding riverside position reveals why this approach to Washington mattered for more than two centuries.",
+      "descriptionSourceUrl": "https://www.nps.gov/fowa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gree": {
+      "near": {
+        "city": "Greenbelt",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/gree/planyourvisit/directions.htm"
+      },
+      "description": "Follow forest paths and camp among trees just beyond Washington's urban core. Greenbelt offers a wooded setting for walking and overnight stays close to the capital.",
+      "descriptionSourceUrl": "https://www.nps.gov/gree/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "naca": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/nace/planyourvisit/directions.htm"
+      },
+      "description": "Explore park places across the nation's capital, from neighborhood green spaces to landscapes tied to public memory. This retained inventory entry represents a broad park grouping rather than one entrance or visitor destination.",
+      "descriptionSourceUrl": "https://www.nps.gov/nace/planyourvisit/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mall": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/nama/planyourvisit/directions.htm"
+      },
+      "description": "Walk the capital's broad ceremonial landscape between museums, monuments, and spaces used for national gatherings. The National Mall brings commemoration, protest, and everyday public life into the same open setting.",
+      "descriptionSourceUrl": "https://www.nps.gov/nama/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pisc": {
+      "near": {
+        "city": "Accokeek",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/pisc/planyourvisit/directions.htm"
+      },
+      "description": "Follow boardwalks over freshwater tidal wetlands and paths through meadows and woods beside the Potomac. Habitat for bald eagles, ospreys, and beavers shares the landscape with National Colonial Farm.",
+      "descriptionSourceUrl": "https://www.nps.gov/pisc/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "prwi": {
+      "near": {
+        "city": "Triangle",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/prwi/planyourvisit/directions.htm"
+      },
+      "description": "Explore wooded trails and streams in a park that began as a Depression-era recreation area in 1936. The forest connects the legacy of children's relief camps with generations of walking, cycling, and camping.",
+      "descriptionSourceUrl": "https://www.nps.gov/prwi/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rocr": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/rocr/planyourvisit/directions.htm"
+      },
+      "description": "Explore 1,754 acres of wooded valley within the capital, protected as a federal park in 1890. Creekside paths and old trees offer a close encounter with nature and layers of human history inside the city.",
+      "descriptionSourceUrl": "https://www.nps.gov/rocr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "whho": {
+      "near": {
+        "city": "Washington",
+        "state": "DC",
+        "sourceUrl": "https://www.nps.gov/whho/planyourvisit/directions.htm"
+      },
+      "description": "Explore the public landscape around the White House, a presidential home and a longstanding focus for protest and national debate. President's Park connects the building's familiar image with the people who have lived, worked, and gathered here.",
+      "descriptionSourceUrl": "https://www.nps.gov/whho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wotr": {
+      "near": {
+        "city": "Vienna",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/wotr/planyourvisit/directions.htm"
+      },
+      "description": "Pair a performance with a park setting of wooded grounds and outdoor gathering spaces. Wolf Trap brings music, theater, and dance into a national park devoted to the performing arts.",
+      "descriptionSourceUrl": "https://www.nps.gov/wotr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "appa": {
+      "near": {
+        "city": "Harpers Ferry",
+        "state": "WV",
+        "sourceUrl": "https://www.nps.gov/appa/planyourvisit/directions.htm"
+      },
+      "description": "Follow a footpath extending more than 2,190 miles through the Appalachian Mountains, from wooded valleys to open ridges. Built by private citizens and completed in 1937, the trail offers both short walks and long-distance journeys.",
+      "descriptionSourceUrl": "https://www.nps.gov/appa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cajo": {
+      "near": {
+        "city": "Jamestown",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/cajo/planyourvisit/basicinfo.htm"
+      },
+      "description": "Explore more than 3,000 miles of Chesapeake Bay water trails linking Indigenous homelands with the voyages John Smith recorded in 1608. Shoreline stops and paddling routes reveal a world of communities, waterways, and continuing Tribal connections.",
+      "descriptionSourceUrl": "https://www.nps.gov/cajo/faqs.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "iatr": {
+      "near": {
+        "city": "Cross Plains",
+        "state": "WI",
+        "sourceUrl": "https://www.nps.gov/iatr/planyourvisit/directions.htm"
+      },
+      "description": "Follow a roughly 1,200-mile route through Wisconsin's glacial landscapes. Ridges, lakes, and valleys reveal the edge of the last great ice sheet across the ancestral lands of fifteen Tribes.",
+      "descriptionSourceUrl": "https://www.nps.gov/iatr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "lecl": {
+      "near": {
+        "city": "Omaha",
+        "state": "NE",
+        "sourceUrl": "https://www.nps.gov/lecl/planyourvisit/directions.htm"
+      },
+      "description": "Trace nearly 4,900 miles from Pittsburgh toward the Pacific along routes associated with the 1803–1806 Lewis and Clark expedition. Connected places reveal both the travelers' journey and the homelands of more than sixty Tribal nations.",
+      "descriptionSourceUrl": "https://www.nps.gov/lecl/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "noco": {
+      "near": {
+        "city": "Lowell",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/noco/planyourvisit/directions.htm"
+      },
+      "description": "Explore a route of more than 4,800 miles from North Dakota to Vermont through northern forests, open prairie, and lake country. Individual trail sections reveal glacial landscapes, communities, and a remarkable variety of walking terrain.",
+      "descriptionSourceUrl": "https://www.nps.gov/noco/planyourvisit/basicinfo.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "semo": {
+      "near": {
+        "city": "Selma",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/semo/planyourvisit/directions.htm"
+      },
+      "description": "Trace the 54-mile route of the 1965 voting rights march from Selma to Montgomery. Interpretive places connect the roads and river crossing with the people whose nonviolent campaign challenged racial exclusion.",
+      "descriptionSourceUrl": "https://www.nps.gov/semo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bicy": {
+      "near": {
+        "city": "Ochopee",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/bicy/planyourvisit/directions.htm"
+      },
+      "description": "Explore more than 729,000 acres of freshwater swamp that help sustain the neighboring Everglades and coastal estuaries. Cypress country and mixed plant communities provide habitat for the endangered Florida panther.",
+      "descriptionSourceUrl": "https://www.nps.gov/bicy/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "bith": {
+      "near": {
+        "city": "Kountze",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/bith/planyourvisit/directions.htm"
+      },
+      "description": "Explore more than 113,000 acres where longleaf pine forest, cypress-lined bayous, and other southeast Texas habitats meet. Trails and waterways reveal a biological crossroads that includes insect-eating pitcher plants and sundews.",
+      "descriptionSourceUrl": "https://www.nps.gov/bith/learn/the-big-thicket.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "crmp": {
+      "near": {
+        "city": "Arco",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/crmo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the wider volcanic landscape adjoining Craters of the Moon's developed monument area. Lava flows, cinder cones, and sagebrush country reveal the scale of Idaho's volcanic terrain beyond the principal visitor loop.",
+      "descriptionSourceUrl": "https://www.nps.gov/crmo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "liri": {
+      "near": {
+        "city": "Fort Payne",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/liri/planyourvisit/directions.htm"
+      },
+      "description": "Explore 15,288 acres of waterfalls, forested uplands, and sheer sandstone bluffs along a river flowing atop Lookout Mountain. Canyon overlooks and boulder-strewn pools reveal a distinctive Southern Appalachian landscape.",
+      "descriptionSourceUrl": "https://www.nps.gov/liri/learn/management/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "moja": {
+      "near": {
+        "city": "Baker",
+        "state": "CA",
+        "sourceUrl": "https://www.nps.gov/moja/planyourvisit/directions.htm"
+      },
+      "description": "Explore 1.6 million acres of Mojave Desert mountains, dunes, volcanic terrain, and Joshua tree habitat. This vast preserve also protects desert tortoises and traces of ten thousand years of human connection with the desert.",
+      "descriptionSourceUrl": "https://www.nps.gov/moja/planyourvisit/trip-ideas.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tapr": {
+      "near": {
+        "city": "Strong City",
+        "state": "KS",
+        "sourceUrl": "https://www.nps.gov/tapr/planyourvisit/directions.htm"
+      },
+      "description": "Walk roughly 10,900 acres of surviving tallgrass prairie in the Kansas Flint Hills, where a bison herd helps sustain the grassland. Open horizons and historic ranch places connect a rare ecosystem with generations of human use.",
+      "descriptionSourceUrl": "https://www.nps.gov/tapr/planyourvisit/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "timu": {
+      "near": {
+        "city": "Jacksonville",
+        "state": "FL",
+        "sourceUrl": "https://www.nps.gov/timu/planyourvisit/directions.htm"
+      },
+      "description": "Explore roughly 46,000 acres of salt marshes, coastal dunes, and hardwood hammocks with a human history reaching back some 6,000 years. Fort Caroline and Kingsley Plantation connect this estuary landscape with colonial encounter and the lives of enslaved people.",
+      "descriptionSourceUrl": "https://www.nps.gov/timu/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "vall": {
+      "near": {
+        "city": "Los Alamos",
+        "state": "NM",
+        "sourceUrl": "https://www.nps.gov/vall/planyourvisit/directions.htm"
+      },
+      "description": "Explore 88,900 acres of mountain meadows and meandering streams inside a volcanic depression fourteen miles wide. This ancient caldera provides habitat for elk and Gunnison's prairie dogs alongside ancestral homelands and historic ranch country.",
+      "descriptionSourceUrl": "https://www.nps.gov/vall/learn/news/presskit.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "chch": {
+      "near": {
+        "city": "Fort Oglethorpe",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/chch/planyourvisit/directions.htm"
+      },
+      "description": "Explore the wooded battlefield and commanding heights where armies fought for Chattanooga in 1863. A Confederate victory at Chickamauga was followed by a Union breakthrough that opened a gateway into the South.",
+      "descriptionSourceUrl": "https://www.nps.gov/chch/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "frsp": {
+      "near": {
+        "city": "Fredericksburg",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/frsp/planyourvisit/directions.htm"
+      },
+      "description": "Explore four Civil War battle landscapes around Fredericksburg, Chancellorsville, the Wilderness, and Spotsylvania. Preserved fields and historic places reveal the enormous cost borne by soldiers and nearby civilians.",
+      "descriptionSourceUrl": "https://www.nps.gov/frsp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "gett": {
+      "near": {
+        "city": "Gettysburg",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/gett/planyourvisit/directions.htm"
+      },
+      "description": "Follow ridges, fields, and monuments across the landscape of the Civil War's bloodiest battle. The Union victory ended Lee's second invasion of the North and gave Abraham Lincoln the setting for the Gettysburg Address.",
+      "descriptionSourceUrl": "https://www.nps.gov/gett/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "guco": {
+      "near": {
+        "city": "Greensboro",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/guco/planyourvisit/directions.htm"
+      },
+      "description": "Walk the wooded battlefield where Greene's and Cornwallis's armies fought on March 15, 1781. The encounter at this small courthouse community changed the course of the Revolution's Southern Campaign.",
+      "descriptionSourceUrl": "https://www.nps.gov/guco/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "hobe": {
+      "near": {
+        "city": "Dadeville",
+        "state": "AL",
+        "sourceUrl": "https://www.nps.gov/hobe/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Tallapoosa River bend where Andrew Jackson's army attacked Red Stick Creek defenses on March 27, 1814. The battle's devastating losses and ensuing land cession reshaped the Creek homeland and the southeastern United States.",
+      "descriptionSourceUrl": "https://www.nps.gov/hobe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "kimo": {
+      "near": {
+        "city": "Blacksburg",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/kimo/planyourvisit/directions.htm"
+      },
+      "description": "Follow a wooded ridge where patriot forces won an important Revolutionary victory on October 7, 1780. The battlefield reveals a turning point in the struggle for the southern colonies.",
+      "descriptionSourceUrl": "https://www.nps.gov/kimo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "peri": {
+      "near": {
+        "city": "Pea Ridge",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/peri/planyourvisit/directions.htm"
+      },
+      "description": "Explore 4,400 acres where more than 23,000 soldiers fought on March 7–8, 1862. The preserved battlefield reveals a struggle for Missouri and a pivotal moment in the Civil War west of the Mississippi.",
+      "descriptionSourceUrl": "https://www.nps.gov/peri/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "shil": {
+      "near": {
+        "city": "Shiloh",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/shil/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Shiloh and Corinth battle landscapes, where the Civil War's western campaigns left a staggering human cost. Fields, woods, and preserved historic places connect military decisions with the experiences of those who fought.",
+      "descriptionSourceUrl": "https://www.nps.gov/shil/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "vick": {
+      "near": {
+        "city": "Vicksburg",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/vick/planyourvisit/directions.htm"
+      },
+      "description": "Follow the defensive landscape surrounding the Mississippi River city that both sides considered a key to victory. Fortifications and monuments reveal the campaign and siege that changed the Civil War's course.",
+      "descriptionSourceUrl": "https://www.nps.gov/vick/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "blue": {
+      "near": {
+        "city": "Hinton",
+        "state": "WV",
+        "sourceUrl": "https://www.nps.gov/blue/planyourvisit/directions.htm"
+      },
+      "description": "Explore a 10.5-mile protected reach of the Bluestone River through a rugged Appalachian gorge. Wooded slopes and riverside routes reveal a landscape rich in habitats and shaped by flowing water.",
+      "descriptionSourceUrl": "https://www.nps.gov/blue/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "buff": {
+      "near": {
+        "city": "Jasper",
+        "state": "AR",
+        "sourceUrl": "https://www.nps.gov/buff/planyourvisit/directions.htm"
+      },
+      "description": "Follow 135 miles of free-flowing river through the Ozarks, from rapids to quiet pools beneath massive bluffs. Established in 1972, Buffalo National River protects a rare undammed river landscape in the lower forty-eight states.",
+      "descriptionSourceUrl": "https://www.nps.gov/buff/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "dela": {
+      "near": {
+        "city": "Bushkill",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/dewa/planyourvisit/directions.htm"
+      },
+      "description": "Explore the Middle Delaware's forty-mile river corridor through Delaware Water Gap's wooded ridges and valley. Paddling routes and riverside stops reveal a free-flowing landscape shared by Pennsylvania and New Jersey.",
+      "descriptionSourceUrl": "https://www.nps.gov/dewa/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "losa": {
+      "near": {
+        "city": "Stillwater",
+        "state": "MN",
+        "sourceUrl": "https://www.nps.gov/sacn/planyourvisit/directions.htm"
+      },
+      "description": "Explore the lower St. Croix's wooded riverbanks and historic river towns. This retained inventory entry covers a lower river corridor with multiple access points, rather than a single park entrance.",
+      "descriptionSourceUrl": "https://www.nps.gov/sacn/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mnrr": {
+      "near": {
+        "city": "Yankton",
+        "state": "SD",
+        "sourceUrl": "https://www.nps.gov/mnrr/planyourvisit/directions.htm"
+      },
+      "description": "Explore two free-flowing stretches of the Missouri that together preserve roughly one hundred miles of river country. Sandbars, banks, and broad water offer a glimpse of a river landscape transformed elsewhere by dams.",
+      "descriptionSourceUrl": "https://www.nps.gov/mnrr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "niob": {
+      "near": {
+        "city": "Valentine",
+        "state": "NE",
+        "sourceUrl": "https://www.nps.gov/niob/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Niobrara through a valley of waterfalls, wooded slopes, and changing habitats. Canoeing, kayaking, and riverside walks reveal an unexpectedly varied landscape within Nebraska's northern plains.",
+      "descriptionSourceUrl": "https://www.nps.gov/niob/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "obri": {
+      "near": {
+        "city": "Wartburg",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/obed/planyourvisit/directions.htm"
+      },
+      "description": "Explore a rugged river gorge on the Cumberland Plateau, where steep sandstone walls rise above moving water. Paddling routes and overlooks reveal the meeting of rivers, rock, and forest.",
+      "descriptionSourceUrl": "https://www.nps.gov/obed/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ozar": {
+      "near": {
+        "city": "Van Buren",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/ozar/planyourvisit/directions.htm"
+      },
+      "description": "Explore the clear, spring-fed Current and Jacks Fork rivers through the Ozark landscape. Hundreds of freshwater springs, caves, and places such as Alley Mill add depth to paddling and riverside walks.",
+      "descriptionSourceUrl": "https://www.nps.gov/ozar/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rigr": {
+      "near": {
+        "city": "Terlingua",
+        "state": "TX",
+        "sourceUrl": "https://www.nps.gov/rigr/planyourvisit/directions.htm"
+      },
+      "description": "Follow a 196-mile free-flowing reach of the Rio Grande through desert expanses and layered-rock canyons. Remote river journeys reveal a borderland landscape that rewards careful preparation and self-reliance.",
+      "descriptionSourceUrl": "https://www.nps.gov/rigr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sacn": {
+      "near": {
+        "city": "Saint Croix Falls",
+        "state": "WI",
+        "sourceUrl": "https://www.nps.gov/sacn/planyourvisit/directions.htm"
+      },
+      "description": "Paddle through forested country along the St. Croix and Namekagon rivers, which together offer more than two hundred miles of protected riverway. Historic towns and trails create other ways to explore the banks.",
+      "descriptionSourceUrl": "https://www.nps.gov/sacn/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "upde": {
+      "near": {
+        "city": "Narrowsburg",
+        "state": "NY",
+        "sourceUrl": "https://www.nps.gov/upde/planyourvisit/directions.htm"
+      },
+      "description": "Follow the Delaware through rapids, quiet pools, rolling hills, and riverfront villages. Paddling and fishing places reveal a free-flowing river corridor shared by New York and Pennsylvania.",
+      "descriptionSourceUrl": "https://www.nps.gov/upde/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "apis": {
+      "near": {
+        "city": "Bayfield",
+        "state": "WI",
+        "sourceUrl": "https://www.nps.gov/apis/planyourvisit/directions.htm"
+      },
+      "description": "Explore twenty-one Lake Superior islands and twelve miles of mainland shoreline within the Ojibwe homeland. Sea caves, beaches, and historic lighthouses give this northern archipelago its distinctive character.",
+      "descriptionSourceUrl": "https://www.nps.gov/apis/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "piro": {
+      "near": {
+        "city": "Munising",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/piro/planyourvisit/directions.htm"
+      },
+      "description": "Explore Lake Superior's sculpted sandstone cliffs, beaches, waterfalls, and dunes. Inland lakes and deep forest add quieter terrain behind a shoreline continually shaped by the great lake.",
+      "descriptionSourceUrl": "https://www.nps.gov/piro/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "slbe": {
+      "near": {
+        "city": "Empire",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/slbe/planyourvisit/directions.htm"
+      },
+      "description": "Climb into high dune country above Lake Michigan, where bluffs rise as much as 450 feet. Beaches, forests, inland lakes, and historic farmsteads connect broad water views with a layered coastal history.",
+      "descriptionSourceUrl": "https://www.nps.gov/slbe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "anti": {
+      "near": {
+        "city": "Sharpsburg",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/anti/planyourvisit/directions.htm"
+      },
+      "description": "Follow fields and lanes where twelve hours of fighting on September 17, 1862, left about 23,000 soldiers killed, wounded, or missing. The battle stopped Lee's first northern invasion and preceded Lincoln's preliminary Emancipation Proclamation.",
+      "descriptionSourceUrl": "https://www.nps.gov/anti/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "biho": {
+      "near": {
+        "city": "Wisdom",
+        "state": "MT",
+        "sourceUrl": "https://www.nps.gov/biho/planyourvisit/directions.htm"
+      },
+      "description": "Walk the landscape where U.S. troops attacked a sleeping nimíipuu camp in August 1877. The battlefield preserves a place of loss and remembrance for the Nez Perce people and all who were caught in the fighting.",
+      "descriptionSourceUrl": "https://www.nps.gov/biho/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "brcr": {
+      "near": {
+        "city": "Baldwyn",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/brcr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the crossroads associated with a Confederate victory under Nathan Bedford Forrest. The compact memorial landscape introduces a battle whose tactical result and longer-term consequences told different stories.",
+      "descriptionSourceUrl": "https://www.nps.gov/brcr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "cowp": {
+      "near": {
+        "city": "Chesnee",
+        "state": "SC",
+        "sourceUrl": "https://www.nps.gov/cowp/planyourvisit/directions.htm"
+      },
+      "description": "Walk a former pasturing ground where Daniel Morgan's army enveloped British forces in a decisive Revolutionary encounter. The open battlefield helps reveal how a carefully planned maneuver became a patriot victory.",
+      "descriptionSourceUrl": "https://www.nps.gov/cowp/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fodo": {
+      "near": {
+        "city": "Dover",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/fodo/planyourvisit/directions.htm"
+      },
+      "description": "Explore the river fortress whose surrender on February 16, 1862, brought Ulysses S. Grant national attention. The Union victory opened a route into Tennessee and quickly changed the military balance in the West.",
+      "descriptionSourceUrl": "https://www.nps.gov/fodo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "fone": {
+      "near": {
+        "city": "Farmington",
+        "state": "PA",
+        "sourceUrl": "https://www.nps.gov/fone/planyourvisit/directions.htm"
+      },
+      "description": "Explore the meadow landscape where fighting in 1754 opened the French and Indian War. The site connects a young George Washington with a larger struggle among British, French, and Indigenous powers.",
+      "descriptionSourceUrl": "https://www.nps.gov/fone/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "kemo": {
+      "near": {
+        "city": "Kennesaw",
+        "state": "GA",
+        "sourceUrl": "https://www.nps.gov/kemo/planyourvisit/directions.htm"
+      },
+      "description": "Explore 2,965 acres of wooded mountain and preserved battlefield from the 1864 Atlanta Campaign. Trails and historic ground connect wide-ranging views with the armies' maneuvers and fighting.",
+      "descriptionSourceUrl": "https://www.nps.gov/kemo/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mana": {
+      "near": {
+        "city": "Manassas",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/mana/planyourvisit/directions.htm"
+      },
+      "description": "Walk the fields above Bull Run where armies fought in July 1861 and again in August 1862. The landscape reveals how the expectation of a short war gave way to repeated, costly conflict.",
+      "descriptionSourceUrl": "https://www.nps.gov/mana/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mono": {
+      "near": {
+        "city": "Frederick",
+        "state": "MD",
+        "sourceUrl": "https://www.nps.gov/mono/planyourvisit/directions.htm"
+      },
+      "description": "Explore farms and riverbanks where outnumbered Union troops fought on July 9, 1864. Their delaying action bought time for reinforcements to reach Washington during a Confederate advance on the capital.",
+      "descriptionSourceUrl": "https://www.nps.gov/mono/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "mocr": {
+      "near": {
+        "city": "Currie",
+        "state": "NC",
+        "sourceUrl": "https://www.nps.gov/mocr/planyourvisit/directions.htm"
+      },
+      "description": "Follow the creek-side battlefield where patriot forces waited beyond a partially dismantled bridge on February 27, 1776. The brief encounter became an important early Revolutionary victory in North Carolina.",
+      "descriptionSourceUrl": "https://www.nps.gov/mocr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "pete": {
+      "near": {
+        "city": "Petersburg",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/pete/planyourvisit/directions.htm"
+      },
+      "description": "Explore the ground of a 292-day siege that cut supplies to Petersburg and Richmond. Earthworks and separate battlefield sites reveal the campaign's immense cost and its role in the collapse of Lee's army.",
+      "descriptionSourceUrl": "https://www.nps.gov/pete/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rich": {
+      "near": {
+        "city": "Richmond",
+        "state": "VA",
+        "sourceUrl": "https://www.nps.gov/rich/planyourvisit/directions.htm"
+      },
+      "description": "Explore battlefields, earthworks, and historic places surrounding the Confederate capital. The park connects military campaigns with the factories, hospitals, and civilian lives caught up in Richmond's wartime importance.",
+      "descriptionSourceUrl": "https://www.nps.gov/rich/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "rira": {
+      "near": {
+        "city": "Monroe",
+        "state": "MI",
+        "sourceUrl": "https://www.nps.gov/rira/planyourvisit/directions.htm"
+      },
+      "description": "Explore the landscape of the January 1813 River Raisin battles and their aftermath. The site connects a major British and Indigenous victory with the later policies of removal and assimilation imposed on Native nations.",
+      "descriptionSourceUrl": "https://www.nps.gov/rira/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "stri": {
+      "near": {
+        "city": "Murfreesboro",
+        "state": "TN",
+        "sourceUrl": "https://www.nps.gov/stri/planyourvisit/directions.htm"
+      },
+      "description": "Walk fields and wooded ground where the Battle of Stones River began on the last day of 1862. The Union's gains came at a terrible cost to the soldiers and communities whose lives were changed here.",
+      "descriptionSourceUrl": "https://www.nps.gov/stri/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "tupe": {
+      "near": {
+        "city": "Tupelo",
+        "state": "MS",
+        "sourceUrl": "https://www.nps.gov/tupe/planyourvisit/directions.htm"
+      },
+      "description": "Pause at the memorial ground of the July 1864 fighting around Tupelo. The campaign involved United States Colored Troops and helped keep Confederate forces away from important Union railroads in Tennessee.",
+      "descriptionSourceUrl": "https://www.nps.gov/tupe/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "wicr": {
+      "near": {
+        "city": "Republic",
+        "state": "MO",
+        "sourceUrl": "https://www.nps.gov/wicr/planyourvisit/directions.htm"
+      },
+      "description": "Explore the rolling battlefield of August 10, 1861, the first major Civil War battle west of the Mississippi. The costly Southern victory brought national attention to the conflict in Missouri.",
+      "descriptionSourceUrl": "https://www.nps.gov/wicr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ciro": {
+      "near": {
+        "city": "Almo",
+        "state": "ID",
+        "sourceUrl": "https://www.nps.gov/ciro/planyourvisit/directions.htm"
+      },
+      "description": "Explore granite spires and rock formations that California Trail emigrants likened to a city. Climbing routes, walking paths, and historic traces connect unusual geology with the journeys of nineteenth-century travelers.",
+      "descriptionSourceUrl": "https://www.nps.gov/ciro/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "ebla": {
+      "near": {
+        "city": "Coupeville",
+        "state": "WA",
+        "sourceUrl": "https://www.nps.gov/ebla/planyourvisit/directions.htm"
+      },
+      "description": "Walk a Salish Sea landscape of working farmland, coastal bluffs, and historic settlement. The reserve preserves the intertwined agricultural and cultural traditions of Native and Euro-American communities.",
+      "descriptionSourceUrl": "https://www.nps.gov/ebla/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
+    },
+    "sacr": {
+      "near": {
+        "city": "Calais",
+        "state": "ME",
+        "sourceUrl": "https://www.nps.gov/sacr/planyourvisit/directions.htm"
+      },
+      "description": "Look toward the island where a French expedition endured the deadly winter of 1604–1605. The mainland site interprets the settlement attempt and the Indigenous aid that helped survivors recover when spring returned.",
+      "descriptionSourceUrl": "https://www.nps.gov/sacr/index.htm",
+      "photo": null,
+      "reviewedAt": "2026-11-04"
     }
   }
 }
