@@ -79,3 +79,22 @@
 #map .leaflet-popup-pane{z-index:1000}
 
 .map-site-summary .summary-preferences{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;margin:12px 0}.map-site-summary .summary-number{display:block;font-size:11px;margin:0}.summary-number>span:first-child{display:block;min-height:30px;line-height:1.35}.summary-number-row{display:flex;align-items:center;gap:5px;white-space:nowrap}.map-site-summary .summary-number input{width:68px;height:34px;padding:5px;accent-color:auto;font-size:14px}.summary-number input::-webkit-inner-spin-button{opacity:1}.map-site-summary .summary-description{font-size:12px;line-height:1.65;margin:15px 0}.map-site-summary figure{margin:12px 0}.map-site-summary figure img{display:block;width:100%;height:145px;object-fit:cover;border-radius:5px}.map-site-summary figcaption{font-size:9px;line-height:1.4;color:var(--muted)}.map-site-summary figcaption a{display:inline;font-size:9px;padding:0}.map-site-summary .summary-error{color:#98412d;font-size:11px}.map-site-summary input[aria-invalid=true]{border-color:#98412d}.site-summary-popup .leaflet-popup-content{max-width:calc(100vw - 100px)}
+
+/* Compact map summaries keep the description, photo and trip controls together. */
+.site-summary-popup .leaflet-popup-content{margin:12px 14px;line-height:1.4}
+.site-summary-popup .map-site-summary{display:flex;flex-direction:column;gap:7px}
+.site-summary-popup .map-site-summary>h3{margin:0 18px 0 0;line-height:1.1}
+.site-summary-popup .map-site-summary>p,.site-summary-popup .map-site-summary>figure,.site-summary-popup .map-site-summary>.summary-preferences{margin:0}
+.site-summary-popup .map-site-summary>.summary-meta{line-height:1.3}
+.site-summary-popup .summary-preferences{gap:12px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.site-summary-popup .summary-number>span:first-child{min-height:0;margin-bottom:3px;line-height:1.3}
+.site-summary-popup .summary-number input{height:30px;width:62px}
+.site-summary-popup .map-site-summary>.summary-description{line-height:1.45}
+.site-summary-popup .map-site-summary figcaption{margin-top:3px;line-height:1.3}
+.site-summary-popup .summary-actions{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.site-summary-popup .summary-actions .summary-trip-toggle{margin:0;font-size:12px;min-height:30px}
+.site-summary-popup .summary-actions>a{padding:5px 0;white-space:nowrap}
+@media(max-width:760px){.site-summary-popup .map-site-summary{gap:6px}.site-summary-popup .map-site-summary figure img{height:125px}}
+
+#map:has(.site-summary-popup) .leaflet-map-pane{z-index:1001}
+.site-summary-popup .summary-actions{position:sticky;bottom:0;background:var(--white);box-shadow:0 -4px 6px var(--white);z-index:1}

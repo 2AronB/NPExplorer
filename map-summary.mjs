@@ -28,10 +28,10 @@ export function mountMapSummary({site,record,selected,onSaveField,onToggle,onMor
  const error=document.createElement('p');error.className='summary-error';error.setAttribute('role','status');error.hidden=true;
  for(const [field,title,suffix,min,max,step]of [['days','Exploration day equivalents','days planned',site.type==='site'?.25:1,365,site.type==='site'?.25:1],['priority','Priority','/5',1,5,1]]){
   const label=document.createElement('label');label.className='summary-number';
-  const text=document.createElement('span');text.textContent=title;label.append(text);
+  const text=document.createElement('span');text.textContent=field==='days'?'Exploration days':title;text.title=title;label.append(text);
   const row=document.createElement('span');row.className='summary-number-row';
   const input=document.createElement('input');input.type='number';input.min=min;input.max=max;input.step=step;input.required=true;input.value=site[field]??1;input.dataset.popupField=field;input.dataset.siteId=site.id;input.setAttribute('aria-label',title+' for '+site.shortName);
-  const unit=document.createElement('span');unit.textContent=suffix;row.append(input,unit);label.append(row);fields.append(label);
+  const unit=document.createElement('span');unit.textContent=field==='days'?'planned':suffix;row.append(input,unit);label.append(row);fields.append(label);
   input.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();commit(true);input.blur();}};
   const commit=showError=>{
    const value=input.value===''?NaN:Number(input.value),message=popupPreferenceError(site,field,value);
@@ -52,8 +52,9 @@ export function mountMapSummary({site,record,selected,onSaveField,onToggle,onMor
   for(const link of [source,license]){link.target='_blank';link.rel='noopener noreferrer';}
   caption.append(source,document.createTextNode(' · '),license);figure.append(img,caption);box.append(figure);
  }
+ const actions=document.createElement('div');actions.className='summary-actions';
  const label=document.createElement('label');label.className='summary-trip-toggle';
- const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.dataset.popupSelect=site.id;checkbox.checked=selected;label.append(checkbox,document.createTextNode('Add to trip'));box.append(label);checkbox.onchange=()=>onToggle(checkbox.checked);
- const more=document.createElement('a');more.href='#detail';more.textContent='More info ↓';more.onclick=e=>{e.preventDefault();onMore();};box.append(more);
+ const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.dataset.popupSelect=site.id;checkbox.checked=selected;label.append(checkbox,document.createTextNode('Add to trip'));actions.append(label);checkbox.onchange=()=>onToggle(checkbox.checked);
+ const more=document.createElement('a');more.href='#detail';more.textContent='More info ↓';more.onclick=e=>{e.preventDefault();onMore();};actions.append(more);box.append(actions);
  return box;
 }
