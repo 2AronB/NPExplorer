@@ -3,6 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {loadExcelJS} from '../scripts/sample-itineraries.mjs';
 import {explorationVisits,reviewTripAccess,accessSummaryHtml,accessWarningsHtml} from '../access-review.mjs';
+
+test('zero access flags use a quiet summary while actual flags and research gaps retain warnings',()=>{
+ const base={visits:[],sources:{},affectedStops:0,unknownStops:0,limitations:['No flag is not a guarantee of access.']};
+ const clean=accessSummaryHtml(base);
+ assert.match(clean,/Access review · no modeled flags/);assert.doesNotMatch(clean,/class="warning/);
+ assert.match(clean,/No flag is not a guarantee/);
+ for(const change of [{affectedStops:1},{unknownStops:1}])assert.match(accessSummaryHtml({...base,...change}),/class="warning access-review"/);
+});
 import {schedule} from '../optimizer.mjs';
 import {optimizeTrip} from '../trip-optimizer.mjs';
 import {DEFAULT_SETTINGS} from '../plan-defaults.mjs';

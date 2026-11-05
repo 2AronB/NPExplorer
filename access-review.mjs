@@ -73,5 +73,6 @@ export function accessWarningsHtml(review,{siteId,date}={}){
 }
 export function accessSummaryHtml(review){
  if(!review)return '';
- return `<details class="warning access-review"><summary>Core access needs review: ${review.affectedStops} park${review.affectedStops===1?'':'s'}${review.unknownStops?` · research gaps: ${review.unknownStops}`:''}</summary>${accessWarningsHtml(review)||'<p>No modeled access flags on these exploration dates.</p>'}<p class="fineprint">${esc(review.limitations.join(' '))}</p></details>`;
+ const flagged=review.affectedStops||review.unknownStops;
+ return `<details class="${flagged?'warning':'estimate-notes'} access-review"><summary>${flagged?`Core access needs review: ${review.affectedStops} park${review.affectedStops===1?'':'s'}${review.unknownStops?` · research gaps: ${review.unknownStops}`:''}`:'Access review · no modeled flags'}</summary>${accessWarningsHtml(review)||'<p>No modeled access flags on these exploration dates.</p>'}<p class="fineprint">${esc(review.limitations.join(' '))}</p></details>`;
 }

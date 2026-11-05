@@ -10,6 +10,8 @@ The app needs no shared accounts, API keys, server database or package installat
 
 Driving estimates use a road-distance factor calibrated once against Google Maps comparisons. Trip settings keeps average driving speed and the break allowance editable; calibration fitting is not part of the planning workflow. Existing saved custom factors and calibration records remain compatible. Use Save & export for backups and reports, Restore backup to reopen inputs, and Prepare to track booking research. Longer explanations are available in expandable sections.
 
+Returning planners get a compact header. Map layers, daily driving limits, route-card day details and detailed comparison measures expand when needed. Route cards keep visit dates and driving estimates visible; return-home arrival uses the final occupied road date. Access warnings and research gaps remain visible, while a zero-flag review uses a neutral summary.
+
 ## Publish this repository
 
 1. Upload this package's contents to the root of `2AronB/NPExplorer` on the `main` branch. `index.html` and `.github/workflows/pages.yml` must be at those exact paths; do not upload the ZIP itself or an enclosing folder.

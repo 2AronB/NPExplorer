@@ -24,7 +24,7 @@
     <div id="circlePreview" class="circle-preview" role="status" hidden></div>
     <div id="map" aria-label="Interactive map of national parks and NPS sites"></div>
     <div class="map-legend" id="mapLegend"><span>Draft quality</span><span>0 <i class="quality-scale"></i> 10</span><span><i class="dot closed"></i>Park closure</span><span><i class="dot access-striped"></i>Mostly closed highlights*</span></div>
-    <div id="shapeLegend" class="shape-legend" aria-label="Site shapes and selection legend"></div>
+    <details id="mapLayers" class="map-layers"><summary>Map layers <span id="mapLayerCount">8 types shown</span></summary><div id="shapeLegend" class="shape-legend" aria-label="Site shapes and selection legend"></div></details>
     <div class="map-caption" id="mapCaption">Season colors show draft suitability for the map month. The route is hidden so it cannot cover the colors.</div>
    </div>
    <aside class="planner">
@@ -41,13 +41,17 @@
     <section id="tripPanel" class="tab-panel" hidden>
      <p class="eyebrow">SET YOUR OWN PACE</p><h2>Your trip, your way.</h2>
      <form id="settingsForm">
+      <fieldset><legend>Start location</legend><label>Name<input id="startName" required maxlength="100"></label><details class="field-help"><summary>Edit coordinates</summary><div class="field-row"><label>Latitude<input id="startLat" type="number" step="any" min="24" max="50" required></label><label>Longitude<input id="startLng" type="number" step="any" min="-125" max="-66" required></label></div></details><button id="pickStart" class="text-button" type="button">Pick start on map ↗</button></fieldset>
+      <label>Finish<select id="endMode"><option value="return">Back at the start · round trip</option><option value="open">Wherever the route ends · one way</option><option value="custom">A different location</option></select></label>
+      <fieldset id="endFields" hidden><legend>Finish location</legend><label>Name<input id="endName" maxlength="100"></label><details class="field-help"><summary>Edit coordinates</summary><div class="field-row"><label>Latitude<input id="endLat" type="number" step="any" min="24" max="50"></label><label>Longitude<input id="endLng" type="number" step="any" min="-125" max="-66"></label></div></details><button id="pickEnd" class="text-button" type="button">Pick finish on map ↗</button></fieldset>
+
       <div class="field-row"><label>Departure date<input type="date" id="startDate" required></label><label>Trip target · days<input type="number" id="duration" min="1" max="1500" required></label></div>
       <details class="field-help"><summary>About the trip target</summary><p>A planning target. Longer trips retain your requested visits.</p></details>
       <label>Route priority<select id="objective"><option value="season">Seasonal fit</option><option value="shortest">Less driving</option><option value="quiet">Quieter months</option></select></label>
-      <label>Extra driving allowed for better seasons · %<input type="number" id="seasonDetourPercent" min="0" max="75" step="1" required></label>
-      <p class="fineprint">Limits detours above the shortest route found.</p>
+      <label id="seasonDetourField">Extra driving allowed for better seasons · %<input type="number" id="seasonDetourPercent" min="0" max="75" step="1" required></label>
+      <p id="seasonDetourHelp" class="fineprint">Limits detours above the shortest route found.</p>
       <label>Driving pace<select id="pace"><option value="balanced">Balanced · allow stretch days</option><option value="relaxed">Relaxed · target comfortable days</option><option value="efficient">Fewer transfer days · allow long days</option></select></label>
-      <div class="field-row triple"><label>Comfortable h<input type="number" id="comfort" min="1" max="10" step="0.5" required></label><label>Stretch h<input type="number" id="stretch" min="1" max="10" step="0.5" required></label><label>Hard limit h<input type="number" id="maxDrive" min="1" max="10" step="0.5" required></label></div>
+      <details class="planner-options"><summary>Daily driving limits <span id="driveLimitsSummary"></span></summary><div class="field-row triple"><label>Comfortable h<input type="number" id="comfort" min="1" max="10" step="0.5" required></label><label>Stretch h<input type="number" id="stretch" min="1" max="10" step="0.5" required></label><label>Hard limit h<input type="number" id="maxDrive" min="1" max="10" step="0.5" required></label></div></details>
       <label>Travel and park days<select id="sharedDays"><option value="true">Allow shared exploration / driving days</option><option value="false">Preserve full park days</option></select></label>
       <details class="planner-options"><summary>Fine-tune daily activity and camp time</summary><div class="field-row"><label>Daily activity budget · hours<input id="dayBudget" type="number" min="6" max="12" step=".5" required></label><label>Full exploration day · hours<input id="explorationHours" type="number" min="4" max="10" step=".5" required></label></div>
       <div class="field-row"><label>Camper teardown · hours<input id="teardownHours" type="number" min="0" max="4" step=".25" required></label><label>Camper setup · hours<input id="setupHours" type="number" min="0" max="4" step=".25" required></label></div>
@@ -56,9 +60,6 @@
       <div class="field-row"><label id="uniformDaysField" hidden>Uniform park days<input type="number" id="defaultDays" min="1" max="90" required></label><label>Rest-day reserve<input type="number" id="restDays" min="0" max="365" required></label></div>
       <button type="button" id="restoreStays" class="text-button">Reset park days to this preset</button>
       <details class="planner-options"><summary>Driving estimates · speed & breaks</summary><label>Estimated average driving speed · mph<input type="number" id="averageMph" min="15" max="75" step="0.1" required></label><label>Extra time for breaks · %<input type="number" id="breakPercent" min="0" max="50" step="1" required></label><p class="fineprint">Speed estimates moving time; breaks are added separately. Daily driving limits exclude breaks, while the daily activity budget includes them.</p></details>
-      <fieldset><legend>Start location</legend><label>Name<input id="startName" required maxlength="100"></label><div class="field-row"><label>Latitude<input id="startLat" type="number" step="any" min="24" max="50" required></label><label>Longitude<input id="startLng" type="number" step="any" min="-125" max="-66" required></label></div><button id="pickStart" class="text-button" type="button">Pick start on map ↗</button></fieldset>
-      <label>Finish<select id="endMode"><option value="return">Back at the start · round trip</option><option value="open">Wherever the route ends · one way</option><option value="custom">A different location</option></select></label>
-      <fieldset id="endFields" hidden><legend>Finish location</legend><label>Name<input id="endName" maxlength="100"></label><div class="field-row"><label>Latitude<input id="endLat" type="number" step="any" min="24" max="50"></label><label>Longitude<input id="endLng" type="number" step="any" min="-125" max="-66"></label></div><button id="pickEnd" class="text-button" type="button">Pick finish on map ↗</button></fieldset>
       <button class="button secondary" type="submit">Apply trip settings</button>
      </form>
     </section>
@@ -72,7 +73,7 @@
   <section id="restPlacement" class="rest-placement" aria-label="Rest placement"></section>
   <section id="detail" class="detail" hidden aria-label="Location details"></section>
   <section class="journey" id="journey"><div class="section-title"><div><p class="eyebrow">THE ROAD AHEAD</p><h2>Your trip, taking shape.</h2></div><span id="routeStatus" class="pill">DRAFT ITINERARY</span></div><div id="routeOutput" aria-live="polite"><div class="empty-state"><span>↝</span><p>A few places are already checked to get you started.<br>Choose <strong>Find my route</strong> to sketch the journey.</p></div></div></section>
-  <section class="suggestions" id="suggestionSection" hidden><div class="section-title"><div><p class="eyebrow">WHILE YOU’RE IN THE NEIGHBORHOOD</p><h2>Worth the little detour.</h2></div><span class="muted">Discover stops that fit your time</span></div><div id="suggestionList"></div></section>
+  <section class="suggestions route-next" id="suggestionSection" aria-label="Find more stops" hidden><div id="suggestionList"></div></section>
   <section id="transportSettings" class="transport-settings"></section>
   <section id="bookingChecklist" class="transport-settings" aria-label="Preparation shortcut"></section>
   </div>

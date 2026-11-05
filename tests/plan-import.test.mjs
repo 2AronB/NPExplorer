@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {importPlanFile} from '../plan-import.mjs';
+import {importPlanFile,mountPlanImport} from '../plan-import.mjs';
 import {MAX_PLAN_IMPORT_BYTES} from '../plan-defaults.mjs';
 const file=text=>({size:Buffer.byteLength(text),text:async()=>text});
 const validate=raw=>{if(raw.version!==1)throw Error('Unrecognized plan format');return {...raw,normalized:true};};
@@ -29,4 +29,15 @@ test('the byte limit is inclusive and rejects oversized files before reading or 
 test('multibyte preparation histories within the byte limit round trip without losing notes',async()=>{
  const notes='森'.repeat(1000),raw={version:1,preparation:Object.fromEntries(Array.from({length:1000},(_,i)=>['site:history-'+i+':visit',{status:'researched',notes}]))},input=file(JSON.stringify(raw)),storage=store('existing');
  assert.ok(input.size>2_000_000&&input.size<MAX_PLAN_IMPORT_BYTES);const next=await importPlanFile(input,{validate,storage});assert.deepEqual(next.preparation,raw.preparation);assert.equal(JSON.parse(storage.value).preparation['site:history-999:visit'].notes,notes);
+});
+
+test('Restore backup opens the picker and publishes only a saved valid plan',async()=>{
+ const storage=store('existing'),button={},errors=[];let picked=0,active=null;
+ const input={click(){picked++;},files:[],value:''};
+ mountPlanImport({button,input,validate,storage,onImported:next=>{assert.deepEqual(next,JSON.parse(storage.value));active=next;},onError:error=>errors.push(error.message)});
+ button.onclick();assert.equal(picked,1);
+ input.files=[file('{broken')];input.value='bad.json';await input.onchange({target:input});
+ assert.equal(active,null);assert.equal(storage.writes,0);assert.equal(input.value,'');assert.equal(errors.length,1);
+ input.files=[file('{"version":1,"selected":["flfo"],"days":{"flfo":0.25}}')];input.value='valid.json';await input.onchange({target:input});
+ assert.deepEqual(active.selected,['flfo']);assert.equal(active.days.flfo,.25);assert.equal(storage.writes,1);assert.equal(input.value,'');
 });

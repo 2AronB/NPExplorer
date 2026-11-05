@@ -10,3 +10,14 @@ export async function importPlanFile(file,{validate,storage,key='long-way-plan-v
  catch{throw Error('Could not save the imported plan: browser storage is full or unavailable. Your existing trip was kept. Export a JSON backup before trying again.');}
  return next;
 }
+
+export function mountPlanImport({button,input,validate,storage,onImported,onError}){
+ button.onclick=()=>input.click();
+ input.onchange=async({target})=>{
+  const file=target.files?.[0];
+  if(!file)return;
+  try{onImported(await importPlanFile(file,{validate,storage}));}
+  catch(error){onError(error);}
+  finally{target.value='';}
+ };
+}

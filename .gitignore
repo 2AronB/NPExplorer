@@ -139,3 +139,6 @@
 !/map-summary.mjs
 !/data/map-summaries.json
 !/tests/map-summary.test.mjs
+
+!/route-cards.mjs
+!/tests/route-cards.test.mjs
